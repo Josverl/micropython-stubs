@@ -36,6 +36,7 @@ Ruff can be configured in your `pyproject.toml` file. For MicroPython stubs, we 
 [tool.ruff]
 line-length = 140
 target-version = "py39"
+builtins = ["ptr", "ptr8", "ptr16", "ptr32", "uint", "micropython", "const"]
 
 [tool.ruff.lint]
 extend-select = [
@@ -44,7 +45,6 @@ extend-select = [
 ignore = [
     "F401",   # unused import
     "F403",   # import *
-    "F821",   # undefined name (can occur in stubs)
     "E402",   # module level import not at top of file - common in test snippets
     "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
     "PYI044", # `from __future__ import annotations` - used in generated stubs
@@ -54,6 +54,8 @@ ignore = [
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
 ]
 ```
+
+The `builtins` list prevents undefined-name diagnostics for names provided directly by the MicroPython compiler. Ruff does not read `builtins.pyi`, so this setting is required independently of type-checker configuration.
 
 ## Running Ruff
 

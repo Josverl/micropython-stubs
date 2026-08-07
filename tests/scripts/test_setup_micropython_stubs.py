@@ -126,7 +126,7 @@ def test_main_builds_ty_stdlib_after_install(monkeypatch, tmp_path: Path):
     sleep_calls: list[float] = []
 
     monkeypatch.setattr(mod, "_load_stub_packages_from_url", lambda timeout=15: packages)
-    monkeypatch.setattr(mod, "_load_pyproject_template_from_url", lambda timeout=15: "[tool.ty.src]\ninclude = [\".\"]\n")
+    monkeypatch.setattr(mod, "_load_pyproject_template_from_url", lambda timeout=15: '[tool.ty.src]\ninclude = ["."]\n')
     monkeypatch.setattr(mod.time, "sleep", lambda seconds: sleep_calls.append(seconds))
 
     def _fake_install(package, target: Path):
@@ -189,7 +189,7 @@ stubs = [
     mod.write_optional_dependencies(pyproject, package=pkg, target="typings")
 
     content = pyproject.read_text(encoding="utf-8")
-    assert "dev = [\"pytest\"]" in content
+    assert 'dev = ["pytest"]' in content
     assert "micropython-old-stubs" not in content
     assert '"micropython-esp32-stubs==1.28.0.*"' in content
 
@@ -256,8 +256,8 @@ stubPath = "typings"
     result = pyproject.read_text(encoding="utf-8")
     assert "[tool.black]" in result
     assert "line-length = 120" in result
-    assert "typeCheckingMode = \"basic\"" in result
-    assert "typeCheckingMode = \"standard\"" not in result
+    assert 'typeCheckingMode = "basic"' in result
+    assert 'typeCheckingMode = "standard"' not in result
 
 
 def test_write_pyproject_overwrites_existing_section_with_force(tmp_path: Path):
@@ -286,9 +286,9 @@ stubPath = "typings"
     result = pyproject.read_text(encoding="utf-8")
     assert "[tool.black]" in result
     assert "line-length = 120" in result
-    assert "typeCheckingMode = \"standard\"" in result
-    assert "stubPath = \"typings\"" in result
-    assert "typeCheckingMode = \"basic\"" not in result
+    assert 'typeCheckingMode = "standard"' in result
+    assert 'stubPath = "typings"' in result
+    assert 'typeCheckingMode = "basic"' not in result
 
 
 def test_write_pyproject_appends_missing_section(tmp_path: Path):
@@ -313,7 +313,7 @@ mypy_path = "typings"
     result = pyproject.read_text(encoding="utf-8")
     assert "[tool.black]" in result
     assert "[tool.mypy]" in result
-    assert "mypy_path = \"typings\"" in result
+    assert 'mypy_path = "typings"' in result
 
 
 def test_extract_tool_sections_reads_template_sections():
@@ -360,20 +360,22 @@ def test_available_type_checkers_filters_known_names():
         "mypy": "[tool.mypy]\n",
         "ty.environment": "[tool.ty.environment]\n",
         "ty.src": "[tool.ty.src]\n",
+        "ruff": "[tool.ruff]\n",
+        "ruff.lint": "[tool.ruff.lint]\n",
         "black": "[tool.black]\n",
     }
 
     checkers = mod.available_type_checkers(sections)
 
-    assert checkers == ["mypy", "pyright", "ty"]
+    assert checkers == ["mypy", "pyright", "ruff", "ty"]
 
 
 def test_sections_for_type_checker_includes_nested_ty_sections():
     mod = _load_setup_script_module()
     sections = {
-        "mypy": "[tool.mypy]\nmypy_path = \"typings\"\n",
-        "ty.environment": "[tool.ty.environment]\nextra-paths = [\"typings\"]\n",
-        "ty.src": "[tool.ty.src]\ninclude = [\".\"]\n",
+        "mypy": '[tool.mypy]\nmypy_path = "typings"\n',
+        "ty.environment": '[tool.ty.environment]\nextra-paths = ["typings"]\n',
+        "ty.src": '[tool.ty.src]\ninclude = ["."]\n',
     }
 
     selected = mod.sections_for_type_checker(sections, "ty")
@@ -381,6 +383,21 @@ def test_sections_for_type_checker_includes_nested_ty_sections():
     assert selected == [
         ("tool.ty.environment", sections["ty.environment"]),
         ("tool.ty.src", sections["ty.src"]),
+    ]
+
+
+def test_sections_for_type_checker_includes_ruff_builtins():
+    mod = _load_setup_script_module()
+    sections = {
+        "ruff": '[tool.ruff]\nbuiltins = ["ptr8", "uint", "const"]\n',
+        "ruff.lint": '[tool.ruff.lint]\nextend-select = ["PYI"]\n',
+    }
+
+    selected = mod.sections_for_type_checker(sections, "ruff")
+
+    assert selected == [
+        ("tool.ruff", sections["ruff"]),
+        ("tool.ruff.lint", sections["ruff.lint"]),
     ]
 
 
@@ -473,13 +490,15 @@ def test_main_with_type_checker_none_installs_without_pyproject_changes(monkeypa
     monkeypatch.setattr(
         mod,
         "_load_pyproject_template_from_url",
-        lambda timeout=15: "[tool.pyright]\nstubPath = \"typings\"\n\n[tool.mypy]\nmypy_path = \"typings\"\n",
+        lambda timeout=15: '[tool.pyright]\nstubPath = "typings"\n\n[tool.mypy]\nmypy_path = "typings"\n',
     )
     monkeypatch.setattr(mod.questionary, "select", _select)
     monkeypatch.setattr(mod.questionary, "confirm", lambda *args, **kwargs: _Prompt(True))
     monkeypatch.setattr(mod.questionary, "path", _path)
     monkeypatch.setattr(mod.questionary, "form", _form)
-    monkeypatch.setattr(mod, "update_pyproject", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("pyproject should not be updated")))
+    monkeypatch.setattr(
+        mod, "update_pyproject", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("pyproject should not be updated"))
+    )
     monkeypatch.setattr(
         mod,
         "write_optional_dependencies",
@@ -537,7 +556,7 @@ def test_main_creates_selected_source_folder_when_missing(monkeypatch, tmp_path:
         return _Prompt("src" if len(select_calls) == 1 else "none")
 
     monkeypatch.setattr(mod, "_load_stub_packages_from_url", lambda timeout=15: packages)
-    monkeypatch.setattr(mod, "_load_pyproject_template_from_url", lambda timeout=15: "[tool.mypy]\nmypy_path = \"typings\"\n")
+    monkeypatch.setattr(mod, "_load_pyproject_template_from_url", lambda timeout=15: '[tool.mypy]\nmypy_path = "typings"\n')
     monkeypatch.setattr(mod.questionary, "path", lambda *args, **kwargs: _Prompt(str(tmp_path)))
     monkeypatch.setattr(mod.questionary, "select", _select)
     monkeypatch.setattr(mod.questionary, "confirm", lambda *args, **kwargs: _Prompt(True))
@@ -607,7 +626,9 @@ def test_main_collects_upfront_questions_before_changes(monkeypatch, tmp_path: P
     monkeypatch.setattr(
         mod,
         "_load_pyproject_template_from_url",
-        lambda timeout=15: "[tool.pyright]\ninclude = [\"src\"]\nextraPaths = [\"src/lib\"]\nstubPath = \"typings\"\n\n[tool.mypy]\nfiles = \"src/*.py\"\nmypy_path = \"src/lib,typings\"\n",
+        lambda timeout=15: (
+            '[tool.pyright]\ninclude = ["src"]\nextraPaths = ["src/lib"]\nstubPath = "typings"\n\n[tool.mypy]\nfiles = "src/*.py"\nmypy_path = "src/lib,typings"\n'
+        ),
     )
     monkeypatch.setattr(mod, "install_stubs", lambda package, target: None)
     monkeypatch.setattr(mod, "write_optional_dependencies", lambda *args, **kwargs: None)

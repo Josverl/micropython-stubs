@@ -29,10 +29,9 @@ PYPROJECT_TEMPLATE_URL = f"{REPO_ROOT_URL}/examples/src/pyproject.toml"
 
 
 DEFAULT_STABLE_VERSION = "v1.28.0.*"
-KNOWN_TYPE_CHECKERS = {"pyright", "mypy", "ty", "pyrefly", "zuban"}
+KNOWN_TYPE_CHECKERS = {"pyright", "mypy", "ty", "pyrefly", "zuban", "ruff"}
 TYPE_CHECKER_NONE = "none"
 DEFAULT_SOURCE_LOCATION = "src"
-
 
 
 # qprint
@@ -40,30 +39,28 @@ STYLE_BOLD = "bold green"
 STYLE_NORMAL = "cyan"
 STYLE_WARNING = "bold darkorange"
 
-STUB_STYLE= Style(
-        [
-            ("qmark", "limegreen bold"),  # "?" prefix — bold, inherits fg
-            ("question", "bold"),  # question text
-            ("answer", "fg:green bold"),  # confirmed answer
-            ("pointer", "fg:forestgreen bold"),  # selection cursor
-            ("selected", "fg:green"),  # ticked checkbox item
-            ("search_success", "bold fg:limegreen"),
-            ("search_none", "bold fg:red"),
-            ("highlighted", "fg: yellow bold bg:limegreen"), # currently highlighted autocomplete match
-            ("separator", "fg:default"),
-            ("instruction", "fg:default italic"),
-            ("text", STYLE_NORMAL),
-            # Autocomplete dropdown — dark background, dim text, no glare
-            ("completion-menu", "bg:ansiblack fg:ansiwhite"),
-            ("completion-menu.completion", "bg:ansiblack fg:ansiwhite"),
-            ("completion-menu.completion.current", "bg:ansidarkgray fg:ansimagenta bold"),
-            ("completion-menu.meta", "bg:ansiblack fg:ansidarkgray"),
-            ("completion-menu.meta.completion", "bg:ansiblack fg:ansidarkgray"),
-            ("completion-menu.meta.completion.current", "bg:ansiyellow fg:ansigray"),
-        ]
+STUB_STYLE = Style(
+    [
+        ("qmark", "limegreen bold"),  # "?" prefix — bold, inherits fg
+        ("question", "bold"),  # question text
+        ("answer", "fg:green bold"),  # confirmed answer
+        ("pointer", "fg:forestgreen bold"),  # selection cursor
+        ("selected", "fg:green"),  # ticked checkbox item
+        ("search_success", "bold fg:limegreen"),
+        ("search_none", "bold fg:red"),
+        ("highlighted", "fg: yellow bold bg:limegreen"),  # currently highlighted autocomplete match
+        ("separator", "fg:default"),
+        ("instruction", "fg:default italic"),
+        ("text", STYLE_NORMAL),
+        # Autocomplete dropdown — dark background, dim text, no glare
+        ("completion-menu", "bg:ansiblack fg:ansiwhite"),
+        ("completion-menu.completion", "bg:ansiblack fg:ansiwhite"),
+        ("completion-menu.completion.current", "bg:ansidarkgray fg:ansimagenta bold"),
+        ("completion-menu.meta", "bg:ansiblack fg:ansidarkgray"),
+        ("completion-menu.meta.completion", "bg:ansiblack fg:ansidarkgray"),
+        ("completion-menu.meta.completion.current", "bg:ansiyellow fg:ansigray"),
+    ]
 )
-
-
 
 
 def _ty_typeshed_dir_name(stub_path: str) -> str:
@@ -170,6 +167,7 @@ def filter_packages_by_version(candidates: list[StubPackage], version: str) -> l
 
     return [pkg for pkg in candidates if _normalize_version(pkg.version) == req_version]
 
+
 def extract_tool_sections(template: str) -> dict[str, str]:
     pattern = re.compile(r"(?ms)^\[tool\.(?P<name>[^\]]+)\]\n(?P<body>.*?)(?=^\[tool\.|\Z)")
     sections: dict[str, str] = {}
@@ -219,7 +217,7 @@ def source_location_choices(project_dir: str | Path) -> list[str]:
     choices = [DEFAULT_SOURCE_LOCATION, "."]
     if project_root.exists() and project_root.is_dir():
         for child in sorted(project_root.iterdir()):
-            if child.is_dir() and not child.name.startswith((".", "_","typings")):
+            if child.is_dir() and not child.name.startswith((".", "_", "typings")):
                 choices.append(child.name)
 
     ordered: list[str] = []
@@ -251,6 +249,7 @@ def prompt_for_selection(message: str, choices: list[str], default: str | None =
     if not answer:
         raise SystemExit("Setup cancelled before applying changes.")
     return answer
+
 
 def prompt_for_gitignore_update(project_dir: Path, pattern: str) -> bool:
     if not sys.stdin.isatty() or not sys.stdout.isatty():
@@ -329,12 +328,7 @@ def _toml_escape(value: str) -> str:
 
 def _initial_project_section(project_dir: Path) -> str:
     project_name = _toml_escape(project_dir.resolve().name)
-    return (
-        "[project]\n"
-        f'name = "{project_name}"\n'
-        'version = "0.1.0"\n'
-        'description = "A MicroPython project"\n'
-    )
+    return f'[project]\nname = "{project_name}"\nversion = "0.1.0"\ndescription = "A MicroPython project"\n'
 
 
 def _render_optional_dependencies_body(existing_body: str, requirement: str, target: str) -> str:
@@ -401,6 +395,7 @@ def write_optional_dependencies(pyproject_path: Path, package: StubPackage, targ
     merged = _upsert_toml_section(existing_text, section_header=section_header, section_text=section_text)
     pyproject_path.write_text(merged, encoding="utf-8")
     qprint(f"Updated [{section_header}] stubs dependency: {requirement}", style=STYLE_NORMAL)
+
 
 def ensure_gitignore_typings_with_mode(project_dir: Path, mode: str) -> None:
     gitignore = project_dir / ".gitignore"
@@ -519,8 +514,7 @@ def install_stubs(package: StubPackage, target: Path) -> None:
         ]
     else:
         raise RuntimeError(
-            "Could not install stubs: none of 'uv', 'pipx', or 'pip' is available. "
-            "Install uv, or install pipx/pip and retry."
+            "Could not install stubs: none of 'uv', 'pipx', or 'pip' is available. Install uv, or install pipx/pip and retry."
         )
 
     qprint(f"Install command: {' '.join(cmd)}", style=STYLE_NORMAL)
@@ -586,7 +580,6 @@ def build_ty_stdlib_typeshed(typings_dir: Path, output_dir: Path, clean: bool = 
     qprint(f"Created Ty stdlib typeshed at: {merged_stdlib}", style=STYLE_NORMAL)
 
 
-
 def cli_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Set up MicroPython stubs in a local project using uv.")
     parser.add_argument("--package", help="Exact package name (for example: micropython-rp2-rpi_pico_w-stubs).")
@@ -601,7 +594,9 @@ def cli_parser() -> argparse.ArgumentParser:
         "--type-checker",
         help="Static type checker section to merge from template (for example: pyright, mypy) or 'none' to skip pyproject changes.",
     )
-    parser.add_argument("--force", action="store_true", help="Overwrite existing checker sections when they differ from recommended settings.")
+    parser.add_argument(
+        "--force", action="store_true", help="Overwrite existing checker sections when they differ from recommended settings."
+    )
     parser.add_argument(
         "--update-gitignore",
         choices=["ask", "always", "never"],
@@ -642,7 +637,7 @@ def main(argv: list[str] | None = None) -> int:
     gitignore_mode = args.update_gitignore
 
     needs_upfront_form = (not type_checker) or (not package_name)
-    if needs_upfront_form: 
+    if needs_upfront_form:
         if not (sys.stdin.isatty() and sys.stdout.isatty()):
             parser.error("Insufficient CLI options provided, interactive form requires a TTY.")
 
@@ -746,9 +741,7 @@ def main(argv: list[str] | None = None) -> int:
     if type_checker is not None:
         selected_sections = sections_for_type_checker(sections, type_checker)
         if not selected_sections:
-            parser.error(
-                f"Type checker '{type_checker}' not found in template. Available options: {', '.join(checkers)}"
-            )
+            parser.error(f"Type checker '{type_checker}' not found in template. Available options: {', '.join(checkers)}")
 
         for section_header, section_text in selected_sections:
             update_pyproject(config_path, section_header=section_header, section_text=section_text, force=args.force)
@@ -771,4 +764,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
