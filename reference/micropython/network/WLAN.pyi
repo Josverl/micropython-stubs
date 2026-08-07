@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Tuple, overload
+from typing import Any, List, Literal, Tuple, overload
 
 from _typeshed import Incomplete
 
@@ -74,7 +74,7 @@ class WLAN:
         """
         ...
 
-    def scan(self) -> List[Tuple]:
+    def scan(self) -> List[Tuple[bytes, bytes, int, int, int, int]]:
         """
         Scan for the available wireless networks.
         Hidden networks -- where the SSID is not broadcast -- will also be scanned
@@ -172,7 +172,27 @@ class WLAN:
         """
 
     @overload
-    def config(self, param: str, /) -> Any:
+    def config(self, param: Literal["mac"], /) -> bytes: ...
+    @overload
+    def config(self, param: Literal["ssid"], /) -> str: ...
+    @overload
+    def config(self, param: Literal["channel"], /) -> int: ...
+    @overload
+    def config(self, param: Literal["hidden"], /) -> bool: ...
+    @overload
+    def config(self, param: Literal["security"], /) -> int: ...
+    @overload
+    def config(self, param: Literal["key"], /) -> str: ...
+    @overload
+    def config(self, param: Literal["hostname"], /) -> str: ...
+    @overload
+    def config(self, param: Literal["reconnects"], /) -> int: ...
+    @overload
+    def config(self, param: Literal["txpower"], /) -> int | float: ...
+    @overload
+    def config(self, param: Literal["pm"], /) -> int: ...
+    @overload
+    def config(self, param: str, /) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -207,7 +227,21 @@ class WLAN:
         """
 
     @overload
-    def config(self, **kwargs: Any) -> None:
+    def config(
+        self,
+        *,
+        mac: bytes = ...,
+        ssid: str = ...,
+        channel: int = ...,
+        hidden: bool = ...,
+        security: int = ...,
+        key: str = ...,
+        hostname: str = ...,
+        reconnects: int = ...,
+        txpower: float = ...,
+        pm: int = ...,
+        **kwargs: Any,
+    ) -> None:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

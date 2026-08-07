@@ -60,7 +60,7 @@ try:
 except AttributeError:
     default_pm_mode = None
 try:
-    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N # stubs-ignore : port not in ["esp32"]
+    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N  # stubs-ignore : port not in ["esp32"]
 except AttributeError:
     default_protocol = None
 
@@ -72,7 +72,7 @@ def channel(channel=0):
         raise OSError("can not set channel when connected to wifi network.")
     if _ap.isconnected():
         raise OSError("can not set channel when clients are connected to AP.")
-    if _sta.active() and not is_esp8266: 
+    if _sta.active() and not is_esp8266:
         _sta.config(channel=channel)  # On ESP32 use STA interface
         return _sta.config("channel")
     else:
@@ -120,10 +120,11 @@ def reset(
     _ap.active(ap)
     if sta:
         disconnect()  # For ESP8266
-        try:
-            _sta.config(pm=pm)
-        except ValueError:
-            pass
+        if pm is not None:
+            try:
+                _sta.config(pm=pm)
+            except ValueError:
+                pass
     try:
         wlan = _sta if sta else _ap if ap else None
         if wlan and (protocol is not None):
@@ -138,12 +139,10 @@ def status():
     from binascii import hexlify
 
     for name, w in (("STA", _sta), ("AP", _ap)):
-        active = (
-            "on," if w.active() else "off,"   
-        )
+        active = "on," if w.active() else "off,"
         mac = w.config("mac")
         hex = hexlify(mac, ":").decode()
-        print("{:3s}: {:4s} mac= {} ({})".format(name, active, hex, mac))
+        print("{:3s}: {:4s} mac= {} ({!r})".format(name, active, hex, mac))
     if _sta.isconnected():
         print("     connected:", _sta.config("ssid"), end="")
     else:
@@ -164,13 +163,7 @@ def status():
         mode_names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
         protocol = _sta.config("protocol")
         try:
-            p = "|".join(
-                (
-                    x  
-                    for x in mode_names
-                    if protocol & getattr(network, x)  
-                )
-            )
+            p = "|".join((x for x in mode_names if protocol & getattr(network, x)))
         except AttributeError:
             p = ""
         print(", protocol={:d} ({})".format(protocol, p), end="")
@@ -179,4 +172,3 @@ def status():
     print()
     if _sta.isconnected():
         print("     ifconfig:", _sta.ifconfig())
-
