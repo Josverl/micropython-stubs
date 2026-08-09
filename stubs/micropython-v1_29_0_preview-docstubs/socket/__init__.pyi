@@ -210,7 +210,7 @@ class socket:
         destination socket is specified by *address*.
         """
         ...
-    def recvfrom(self, bufsize: int, /) -> Tuple:
+    def recvfrom(self, bufsize: int, /) -> Tuple[bytes, _Address]:
         """
         Receive data from the socket. The return value is a pair *(bytes, address)* where *bytes* is a
         bytes object representing the data received and *address* is the address of the socket sending
