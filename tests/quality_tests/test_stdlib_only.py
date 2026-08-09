@@ -19,13 +19,13 @@ log = logging.getLogger()
     [
         "pyright",
         "mypy",
-        pytest.param(
-            "basilisk",
-            marks=pytest.mark.xfail(
-                reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
-                strict=False,
-            ),
-        ),
+        # pytest.param(
+        #     "basilisk",
+        #     marks=pytest.mark.xfail(
+        #         reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+        #         strict=False,
+        #     ),
+        # ),
     ],
 )
 def test_typecheck_stdlib_only(

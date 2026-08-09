@@ -133,7 +133,7 @@ def run_typechecker(
         version (str): The version of the stubs.
         portboard (str): The portboard of the project.
         pytestconfig: The pytest configuration object.
-        linter (str): The type-checker to use ("pyright", "mypy", "ruff", or "basilisk").
+        linter (str): The type-checker to use ("pyright", "mypy", "ruff", ...).
 
     Returns:
         tuple: A tuple containing the information message and the number of errors found.
@@ -219,6 +219,7 @@ def check_with_pyright(snip_path: Path):
 
 
 def check_with_basilisk(snip_path: Path):
+    """Basilisk has been removed from the tests for now, but this function is kept for future reference."""
     cmd = ["basilisk", "check", "--output", "json", "."]
     results = {}
 

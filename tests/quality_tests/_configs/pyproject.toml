@@ -18,15 +18,6 @@ reportMissingModuleSource = "none"
 reportUnnecessaryTypeIgnoreComment = "error"
 
 # ###################################################################
-# basilisk options:
-
-[tool.basilisk]
-python-version = "3.9"
-python-platform = "Linux"
-stub-paths = ["typings"]
-typeshed-path = "typings"
-
-# ###################################################################
 # mypy global options:
 [tool.mypy]
 platform = "linux"
@@ -86,4 +77,13 @@ extend-ignore = [
     "PYI052",
 
 ]
+# ###################################################################
+# basilisk options:
+
+# [tool.basilisk]
+# python-version = "3.9"
+# python-platform = "Linux"
+# stub-paths = ["typings"]
+# typeshed-path = "typings"
+
 # ###################################################################
