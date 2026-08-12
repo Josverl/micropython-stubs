@@ -6,10 +6,6 @@ from typing import Any, Callable, Optional
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from rp2 import bootsel_button
-from rp2.Flash import Flash
-from rp2.PIO import PIO
-from rp2.StateMachine import StateMachine
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class DMA:
