@@ -27,7 +27,7 @@ from rp2.StateMachine import StateMachine
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
 from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program, bootsel_button
+from rp2 import PIOASMEmit, _PIO_ASM_Program
 from rp2.asm_pio_rp2040 import *
 from typing import Callable, List, Literal, Union, overload
 from vfs import AbstractBlockDev
