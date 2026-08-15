@@ -261,9 +261,26 @@ def set_native_code_location(start: int, length: int, /) -> None:
 
 # ESP32-only API.
 def gpio_matrix_in(pin: int, sig: int, inv: int, /) -> None:
+    """
+    Route GPIO *pin* to peripheral input signal *sig* through the GPIO matrix.
+
+    Set *inv* to a nonzero value to invert the input signal.
+
+    For more details see Espressif's `ESP-IDF GPIO documentation.
+    <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html#gpio-summary>`_.
+    """
     ...
 
 def gpio_matrix_out(pin: int, sig: int, out_inv: int, oen_inv: int, /) -> None:
+    """
+    Route peripheral output signal *sig* to GPIO *pin* through the GPIO matrix.
+
+    Set *out_inv* to a nonzero value to invert the output signal and *oen_inv*
+    to a nonzero value to invert the output-enable signal.
+
+    For more details see Espressif's `ESP-IDF GPIO documentation.
+    <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html#gpio-summary>`_.
+    """
     ...
 
 # ESP8266-only API.
