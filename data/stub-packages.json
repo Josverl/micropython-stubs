@@ -149,6 +149,13 @@
             ""
         ],
         [
+            "micropython-webassembly-stubs",
+            "1.28.0",
+            "webassembly",
+            "GENERIC",
+            ""
+        ],
+        [
             "micropython-windows-stubs",
             "1.28.0",
             "windows",
