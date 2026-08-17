@@ -1,6 +1,4 @@
 import json
-from io import IOBase
-from typing import cast
 
 JSON_DATA = """
 [
