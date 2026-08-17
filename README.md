@@ -3,10 +3,9 @@
 [![Documentation Status](https://readthedocs.org/projects/micropython-stubs/badge/?version=main)](https://micropython-stubs.readthedocs.io/en/latest/?badge=main "Document build status badge")
 [![Star on GitHub](https://img.shields.io/github/stars/josverl/micropython-stubs.svg?style=social)](https://github.com/josverl/micropython-stubs/stargazers)
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-green.svg?style=flat-square)](#Contributions)
-[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black "Black badge")
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/) 
-<!-- [![Checked with pyright](https://github.com/Josverl/micropython-stubs/actions/workflows/test_stub_quality.yml/badge.svg?branch=main)](https://microsoft.github.io/pyright/) -->
+
 
 Welcome to the MicroPython Stubs repository! 
 
@@ -55,17 +54,27 @@ For installation instructions and configuration of your preferred IDE, please re
 
 ## Integrations with IDEs and Tools
 
-VSCode: 
- - https://github.com/paulober/MicroPico - A VSCode extension to simplify and speed up the development of MicroPython projects for the Raspberry Pi Pico and Pico W boards.
+- **VSCode:**  
+    A VSCode extension to simplify and speed up the development of MicroPython projects for the Raspberry Pi Pico and Pico W boards.  
+    https://github.com/paulober/MicroPico 
+- **PyCharm / IntelliJ:**  
+   MicroPython Tools Plugin for PyCharm, CLion, IntelliJ and other JetBrains IDEs.  
+   https://github.com/lukaskremla/micropython-tools-jetbrains 
+<!-- - **ViperIDE:**  
+  Viper IDE now has a built-in option to check you code using the stubs.  
+  [Viper IDE](https://viper-ide.org/#) -->
+- **Thonny:**  
+  Thonny IDE 5 has built-in support for MicroPython and uses the micropython-stubs.  
+  https://github.com/thonny/thonny
+- **Tooling:**  
+  A TypeScript tool to fetch and use MicroPython stubs for code completion and type checking in editors like VSCode.  
+  https://github.com/standsi/MicropythonStubsFetchTypescript
 
- PyCharm / IntelliJ:
- - https://github.com/lukaskremla/micropython-tools-jetbrains - MicroPython Tools Plugin for PyCharm, CLion, IntelliJ and other JetBrains IDEs
+## 3rd party stubs that use MicroPython stubs
 
-Thonny:
- - https://github.com/thonny/thonny - Thonny IDE 5 has built-in support for MicroPython and uses the micropython-stubs.
-
-Tooling:
- - https://github.com/standsi/MicropythonStubsFetchTypescript - A TypeScript tool to fetch and use MicroPython stubs for code completion and type checking in editors like VSCode.
+- **Pimorino pico stubs:**  
+  Type stubs that help you write code for Pimoroni Pico MicroPython's many built-in modules.
+  https://github.com/pimoroni/pimoroni-pico-stubs
 
 ## Explore Available Stubs
 
