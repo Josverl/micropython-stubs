@@ -169,13 +169,13 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
                 strict=False,
             ),
         ),
-        # pytest.param(
-        #     "basilisk",
-        #     marks=pytest.mark.xfail(
-        #         reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
-        #         strict=False,
-        #     ),
-        # ),
+        pytest.param(
+            "ty",
+            marks=pytest.mark.xfail(
+                reason="ty support is experimental",
+                strict=False,
+            ),
+        ),
     ],
 )
 def test_typecheck(

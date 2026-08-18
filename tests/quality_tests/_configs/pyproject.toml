@@ -87,12 +87,11 @@ python_version = "3.9"
 python_platform = "linux"
 
 # ###################################################################
-# basilisk options:
+# ty options:
+[tool.ty.environment]
+python-version = "3.9"
+python-platform = "linux"
+extra-paths = ["typings"]
 
-# [tool.basilisk]
-# python-version = "3.9"
-# python-platform = "Linux"
-# stub-paths = ["typings"]
-# typeshed-path = "typings"
-
-# ###################################################################
+[tool.ty.src]
+exclude = ["**/typings/**", "**/__pycache__/**"]
