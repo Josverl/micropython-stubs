@@ -14,6 +14,7 @@ from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version, InvalidVersion
 from typecheck_mypy import check_with_mypy
 from typecheck_ruff import check_with_ruff
+from typecheck_pyrefly import check_with_pyrefly
 
 log = logging.getLogger()
 
@@ -156,6 +157,8 @@ def run_typechecker(
         results = check_with_mypy(snip_path, patch=patch)
     elif linter == "ruff":
         results = check_with_ruff(snip_path)
+    elif linter == "pyrefly":
+        results = check_with_pyrefly(snip_path)
     else:
         raise NotImplementedError(f"Unknown linter {linter}")
 

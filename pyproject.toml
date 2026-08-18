@@ -43,6 +43,7 @@ test = [
 "pyright>=1.1.341",
 "mypy",
 "ruff",
+"pyrefly",
 "basilisk-python",
 # pinned: mip/*.mpy are byte-compared against a rebuild in tests/quality_tests/test_mip_modules.py
 # when bumping, re-run mip/x-compile.sh and commit the regenerated .mpy files

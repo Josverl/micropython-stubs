@@ -78,6 +78,15 @@ extend-ignore = [
 
 ]
 # ###################################################################
+# pyrefly options:
+[tool.pyrefly]
+project_includes = ["**/*.py"]
+project_excludes = ["**/typings/**", "**/__pycache__/**"]
+search_path = ["typings"]
+python_version = "3.9"
+python_platform = "linux"
+
+# ###################################################################
 # basilisk options:
 
 # [tool.basilisk]

@@ -74,7 +74,7 @@ update-stubs v="stable":
 
 # install all supported type-checkers and linters into the active venv (uv)
 install-linters:
-    uv pip install pyright mypy ruff 
+    uv pip install pyright mypy ruff pyrefly
     # uv pip install basilisk-python
 
 # clear the pytest cache
@@ -97,7 +97,7 @@ test-preview *args="":
 test-recent *args="":
     pytest -m snippets --recent-majors {{args}}
 
-# run snippet tests for a single linter (pyright|mypy|ruff) on the stable release
+# run snippet tests for a single linter (pyright|mypy|ruff|pyrefly) on the stable release
 test-linter linter="pyright" *args="":
     pytest -m snippets --stable-only -k "{{linter}}" {{args}}
 
