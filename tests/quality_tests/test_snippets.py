@@ -162,6 +162,13 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         "pyright",
         "mypy",
         "ruff",
+        pytest.param(
+            "pyrefly",
+            marks=pytest.mark.xfail(
+                reason="pyrefly support is experimental",
+                strict=False,
+            ),
+        ),
         # pytest.param(
         #     "basilisk",
         #     marks=pytest.mark.xfail(
