@@ -34,7 +34,7 @@ just update_stubs v1.26.1
 
 There is a custom pytest configuration in `conftest.py` that will automatically download and copy the relevant stubs to the `typings` folder in the various `check_xxxx` and  `feat_yyyy` folders.
 
-The tests themselves live in `test_snippets.py` (pyright, mypy and ruff), with `test_mypy.py`, `test_ruff.py` and `test_pyrefly.py` covering their dedicated feature folders. All snippet tests are marked with the `snippets` marker.
+The tests themselves live in `test_snippets.py` (pyright, mypy, ruff, and pyrefly/ty as `xfail` since they are experimental), with `test_mypy.py`, `test_ruff.py` and `test_pyrefly.py` covering their dedicated feature folders. All snippet tests are marked with the `snippets` marker.
 
 ### Using `just`
 
@@ -46,7 +46,7 @@ The most common test runs are available as [`just`](https://just.systems) recipe
 | `just test-stable` | current stable release only (`--stable-only`) |
 | `just test-preview` | most recent preview build (`--preview-only`) |
 | `just test-recent` | last 3 stable `major.minor` releases (`--recent-majors`) |
-| `just test-linter [pyright\|mypy\|ruff\|pyrefly]` | a single linter on the stable release (default: `pyright`) |
+| `just test-linter [pyright\|mypy\|ruff\|pyrefly\|ty]` | a single linter on the stable release (default: `pyright`) |
 | `just test-version [v1.28.0]` | a specific version (default: `v1.28.0`) |
 
 ```powershell
@@ -115,9 +115,10 @@ pytest -m snippets -k "v1.28.0"
 
 ## Running specific linter(s)
 
-Each snippet is checked by `pyright`, `mypy` and `ruff`; `pyrefly` runs against its own dedicated
-feature folder (see `test_pyrefly.py`). Because the linter name is part of the test node id, you
-can select linters with `-k` or by running the dedicated test files:
+Each snippet is checked by `pyright`, `mypy` and `ruff`, plus `pyrefly` and `ty` marked as `xfail`
+since they are experimental. `pyrefly` also runs against its own dedicated feature folder (see
+`test_pyrefly.py`). Because the linter name is part of the test node id, you can select linters
+with `-k` or by running the dedicated test files:
 
 ```powershell
 # only pyright

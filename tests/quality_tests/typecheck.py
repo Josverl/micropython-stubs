@@ -15,6 +15,7 @@ from packaging.version import Version, InvalidVersion
 from typecheck_mypy import check_with_mypy
 from typecheck_ruff import check_with_ruff
 from typecheck_pyrefly import check_with_pyrefly
+from typecheck_ty import check_with_ty
 
 log = logging.getLogger()
 
@@ -134,7 +135,7 @@ def run_typechecker(
         version (str): The version of the stubs.
         portboard (str): The portboard of the project.
         pytestconfig: The pytest configuration object.
-        linter (str): The type-checker to use ("pyright", "mypy", "ruff", ...).
+        linter (str): The type-checker to use ("pyright", "mypy", "ruff", "pyrefly", "ty", ...).
 
     Returns:
         tuple: A tuple containing the information message and the number of errors found.
@@ -159,6 +160,8 @@ def run_typechecker(
         results = check_with_ruff(snip_path)
     elif linter == "pyrefly":
         results = check_with_pyrefly(snip_path)
+    elif linter == "ty":
+        results = check_with_ty(snip_path)
     else:
         raise NotImplementedError(f"Unknown linter {linter}")
 
