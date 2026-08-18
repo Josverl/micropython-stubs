@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_29_0_preview",
         "nodename": "micropython",
         "version": "v1.29.0-preview",
-        "release": "v1.29.0-preview-724-g61e751f04",
+        "release": "v1.29.0-preview-731-g1c3c20114",
         "sysname": "micropython"
     },
     "stubber": {
@@ -227,6 +227,10 @@
         {
             "file": "network/PPP.pyi",
             "module": "PPP"
+        },
+        {
+            "file": "network/USBD_NCM.pyi",
+            "module": "USBD_NCM"
         },
         {
             "file": "network/WIZNET5K.pyi",

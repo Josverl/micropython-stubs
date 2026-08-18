@@ -46,6 +46,7 @@ from network.WLANWiPy import WLANWiPy
 from network.WIZNET5K import WIZNET5K
 from network.LAN import LAN
 from network.PPP import PPP
+from network.USBD_NCM import USBD_NCM
 from abc import abstractmethod
 
 STA_IF: int
