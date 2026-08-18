@@ -77,3 +77,22 @@ extend-ignore = [
     "PYI052",
 
 ]
+# ###################################################################
+# pyrefly options:
+[tool.pyrefly]
+project_includes = ["**/*.py"]
+project_excludes = ["**/typings/**", "**/__pycache__/**"]
+search_path = ["typings"]
+python_version = "3.9"
+python_platform = "linux"
+
+# ###################################################################
+# basilisk options:
+
+# [tool.basilisk]
+# python-version = "3.9"
+# python-platform = "Linux"
+# stub-paths = ["typings"]
+# typeshed-path = "typings"
+
+# ###################################################################
