@@ -1167,7 +1167,7 @@
 |micropython |v1.28   |frozen  |zephyr|GENERIC|2|1.28.3|[stubs/micropython-v1_28_0-frozen/zephyr/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/zephyr/GENERIC)
 |micropython |v1.28   |frozen  |zephyr|MIMXRT1020_EVK|3|1.28.3|[stubs/micropython-v1_28_0-frozen/zephyr/MIMXRT1020_EVK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/zephyr/MIMXRT1020_EVK)
 |micropython |v1.28   |frozen  |zephyr|XIAO_BLE_NRF52840_SENSE|12|1.28.3|[stubs/micropython-v1_28_0-frozen/zephyr/XIAO_BLE_NRF52840_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/zephyr/XIAO_BLE_NRF52840_SENSE)
-|micropython |v1.29-La|documentation|-|micropython|126|1.28.5|[stubs/micropython-v1_29_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0_preview-docstubs)
+|micropython |v1.29-La|documentation|-|micropython|127|1.28.5|[stubs/micropython-v1_29_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0_preview-docstubs)
 |micropython |v1.29-La|board   |esp32|generic|90|v1.28.1|[stubs/micropython-v1_29_0_preview-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0_preview-esp32-ESP32_GENERIC)
 |micropython |v1.29-La|frozen  |esp32|ARDUINO_NANO_ESP32|41|1.28.2|[stubs/micropython-v1_29_0_preview-frozen/esp32/ARDUINO_NANO_ESP32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0_preview-frozen/esp32/ARDUINO_NANO_ESP32)
 |micropython |v1.29-La|frozen  |esp32|GENERIC|22|1.28.2|[stubs/micropython-v1_29_0_preview-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0_preview-frozen/esp32/GENERIC)
@@ -1311,4 +1311,4 @@
 
 ## Metrics
 
-Total stub modules:  31634
+Total stub modules:  31635
