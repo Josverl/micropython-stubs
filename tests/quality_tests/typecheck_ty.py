@@ -129,19 +129,17 @@ def run_ty(path: Path) -> list:
 
             # ty returns exit code 1 if there are errors, which is expected
             if result.returncode not in (0, 1):
-                log.error(f"ty failed with returncode {result.returncode}: {result.stderr}")
-                return []
+                raise RuntimeError(f"ty failed with returncode {result.returncode}: {result.stderr}")
 
             if result.stdout.strip():
                 try:
                     return json.loads(result.stdout)
                 except json.JSONDecodeError as e:
-                    log.error(f"Could not parse ty JSON output: {e}")
-                    return []
+                    raise RuntimeError(f"Could not parse ty JSON output: {e}") from e
             return []
-    except Exception as e:
-        log.error(f"Error running ty: {e}")
-        return []
+    except Exception:
+        log.exception("Error running ty")
+        raise
 
 
 def ty_to_pyright(ty_output: list, base_path: Path):
