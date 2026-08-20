@@ -14,8 +14,41 @@ from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version, InvalidVersion
 from typecheck_mypy import check_with_mypy
 from typecheck_ruff import check_with_ruff
+from typecheck_pyrefly import check_with_pyrefly
+from typecheck_ty import check_with_ty
 
 log = logging.getLogger()
+
+# Single source of truth for the linters exercised by the typecheck test suites
+# (test_snippets.py::test_typecheck and test_stdlib_only.py::test_typecheck_stdlib_only).
+# Stable, well supported linters are listed as plain strings; experimental / partially
+# supported linters are wrapped in pytest.param(..., marks=xfail) so failures do not break CI.
+LINTER_PARAMS = [
+    "pyright",
+    "mypy",
+    "ruff",
+    pytest.param(
+        "pyrefly",
+        marks=pytest.mark.xfail(
+            reason="pyrefly support is experimental",
+            strict=False,
+        ),
+    ),
+    pytest.param(
+        "ty",
+        marks=pytest.mark.xfail(
+            reason="ty support is experimental",
+            strict=False,
+        ),
+    ),
+    # pytest.param(
+    #     "basilisk",
+    #     marks=pytest.mark.xfail(
+    #         reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+    #         strict=False,
+    #     ),
+    # ),
+]
 
 
 def copy_config_files():
@@ -133,7 +166,7 @@ def run_typechecker(
         version (str): The version of the stubs.
         portboard (str): The portboard of the project.
         pytestconfig: The pytest configuration object.
-        linter (str): The type-checker to use ("pyright", "mypy", "ruff", ...).
+        linter (str): The type-checker to use ("pyright", "mypy", "ruff", "pyrefly", "ty", ...).
 
     Returns:
         tuple: A tuple containing the information message and the number of errors found.
@@ -156,6 +189,10 @@ def run_typechecker(
         results = check_with_mypy(snip_path, patch=patch)
     elif linter == "ruff":
         results = check_with_ruff(snip_path)
+    elif linter == "pyrefly":
+        results = check_with_pyrefly(snip_path)
+    elif linter == "ty":
+        results = check_with_ty(snip_path)
     else:
         raise NotImplementedError(f"Unknown linter {linter}")
 

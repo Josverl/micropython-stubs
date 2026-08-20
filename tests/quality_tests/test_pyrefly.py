@@ -2,24 +2,31 @@ import logging
 from pathlib import Path
 
 import pytest
-from test_snippets import SOURCES, run_typechecker
-from typecheck import LINTER_PARAMS
+from typecheck import run_typechecker
+from conftest import get_test_versions
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
 
 log = logging.getLogger()
 
+HERE = Path(__file__).parent.absolute()
 
-@pytest.mark.parametrize("portboard", ["stdlib"], scope="session")
-@pytest.mark.parametrize("version", ["-"], scope="session")
-@pytest.mark.parametrize("feature", ["stdlib_only"], scope="session")
-@pytest.mark.parametrize("stub_source", SOURCES, scope="session")
-@pytest.mark.parametrize(
-    "linter",
-    LINTER_PARAMS,
-)
-def test_typecheck_stdlib_only(
+SOURCES = ["local"]
+
+
+def pytest_generate_tests(metafunc: pytest.Metafunc):
+    """Generate test parameters dynamically, respecting --stable-only flag."""
+    if "test_pyrefly" in metafunc.function.__name__:
+        versions = get_test_versions(metafunc.config)
+        metafunc.parametrize("portboard", ["esp32", "rp2-rpi_pico_w"], scope="session")
+        metafunc.parametrize("version", versions, scope="session")
+        metafunc.parametrize("feature", ["pyrefly"], scope="session")
+        metafunc.parametrize("stub_source", SOURCES, scope="session")
+        metafunc.parametrize("linter", ["pyrefly"])
+
+
+def test_pyrefly(
     stub_source: str,
     portboard: str,
     feature: str,
@@ -30,10 +37,6 @@ def test_typecheck_stdlib_only(
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-    # Use the isolated workspace (snip_path_fx) whose typings/ symlink is refreshed
-    # from the freshly built stubs by copy_type_stubs_fx. Running against the original
-    # feat_stdlib_only folder would pick up a stale typings/ directory left over from a
-    # previous run and report false-positive errors.
     if not snip_path_fx or not snip_path_fx.exists():
         pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
