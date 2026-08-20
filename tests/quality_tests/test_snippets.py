@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from conftest import get_test_versions
 from packaging.version import Version
-from typecheck import copy_config_files, port_and_board, run_typechecker
+from typecheck import LINTER_PARAMS, copy_config_files, port_and_board, run_typechecker
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -158,32 +158,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
 
 @pytest.mark.parametrize(
     "linter",
-    [
-        "pyright",
-        "mypy",
-        "ruff",
-        pytest.param(
-            "pyrefly",
-            marks=pytest.mark.xfail(
-                reason="pyrefly support is experimental",
-                strict=False,
-            ),
-        ),
-        pytest.param(
-            "ty",
-            marks=pytest.mark.xfail(
-                reason="ty support is experimental",
-                strict=False,
-            ),
-        ),
-        # pytest.param(
-        #     "basilisk",
-        #     marks=pytest.mark.xfail(
-        #         reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
-        #         strict=False,
-        #     ),
-        # ),
-    ],
+    LINTER_PARAMS,
 )
 def test_typecheck(
     linter: str,

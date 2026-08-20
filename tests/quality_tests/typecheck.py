@@ -19,6 +19,37 @@ from typecheck_ty import check_with_ty
 
 log = logging.getLogger()
 
+# Single source of truth for the linters exercised by the typecheck test suites
+# (test_snippets.py::test_typecheck and test_stdlib_only.py::test_typecheck_stdlib_only).
+# Stable, well supported linters are listed as plain strings; experimental / partially
+# supported linters are wrapped in pytest.param(..., marks=xfail) so failures do not break CI.
+LINTER_PARAMS = [
+    "pyright",
+    "mypy",
+    "ruff",
+    pytest.param(
+        "pyrefly",
+        marks=pytest.mark.xfail(
+            reason="pyrefly support is experimental",
+            strict=False,
+        ),
+    ),
+    pytest.param(
+        "ty",
+        marks=pytest.mark.xfail(
+            reason="ty support is experimental",
+            strict=False,
+        ),
+    ),
+    # pytest.param(
+    #     "basilisk",
+    #     marks=pytest.mark.xfail(
+    #         reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+    #         strict=False,
+    #     ),
+    # ),
+]
+
 
 def copy_config_files():
     # copy the config files from the __config folder to all check_* and feat_* folders
