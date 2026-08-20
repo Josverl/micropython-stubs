@@ -45,7 +45,7 @@ DIAGNOSTIC = """
 
 SEVERITY_MAP = {
     "error": "error",
-    "warning": "warning",
+    "warn": "warning",
     "info": "information",
 }
 
