@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from test_snippets import SOURCES, run_typechecker
+from typecheck import LINTER_PARAMS
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -16,10 +17,7 @@ log = logging.getLogger()
 @pytest.mark.parametrize("stub_source", SOURCES, scope="session")
 @pytest.mark.parametrize(
     "linter",
-    [
-        "pyright",
-        "mypy",
-    ],
+    LINTER_PARAMS,
 )
 def test_typecheck_stdlib_only(
     stub_source: str,
