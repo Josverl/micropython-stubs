@@ -1,0 +1,105 @@
+"""
+PyScript makes available convenience objects, functions and attributes.
+
+These APIs will work with both Pyodide and MicroPython in exactly the same way.
+
+PyScript can run in two contexts: the main browser thread, or on a web worker. T
+he following three categories of API functionality explain features that are common for:
+ - both main thread and worker,
+ - main thread only,
+ - and worker only.
+
+ Most features work in both contexts in exactly the same manner, but please be aware that some are specific to either the main thread
+ or a worker context.
+
+---
+Module: 'pyscript.__init__' on micropython-v1.29.0-webassembly-pyscript
+"""
+
+# MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.6
+from __future__ import annotations
+from typing import Literal, Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+from pyscript.events import Event as Event
+from pyscript.magic_js import (
+    RUNNING_IN_WORKER as RUNNING_IN_WORKER,
+    config as config,
+    current_target as current_target,
+    document as document,
+    js_modules as js_modules,
+    sync as sync,
+    window as window,
+)
+from pyscript.storage import Storage as _Storage
+from pyscript.websocket import WebSocket as _WebSocket
+from pyscript.workers import workers as workers
+from pyscript.fetch import _FetchPromise
+
+config: dict = {}
+RUNNING_IN_WORKER: Final[bool] = False
+
+def display(*values: Any, target: Any = None, append: bool = True) -> None: ...
+def current_target() -> Incomplete: ...
+def fetch(url: str, **kw: Any) -> _FetchPromise: ...
+def when(target: Any, *args: Any, **kwargs: Any) -> Any: ...
+
+workers: Incomplete  ## <class '_ReadOnlyProxy'> = <_ReadOnlyProxy object at ...>
+
+class HTML:
+    def _repr_html_(self) -> Incomplete: ...
+    def __init__(self, html: Any) -> None: ...
+
+class Storage:
+    def popitem(self) -> Incomplete: ...
+    def pop(self, *args, **kwargs) -> Incomplete: ...
+    def values(self) -> Incomplete: ...
+    def setdefault(self, *args, **kwargs) -> Incomplete: ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
+    def keys(self) -> Incomplete: ...
+    def copy(self) -> Incomplete: ...
+    def get(self, *args, **kwargs) -> Incomplete: ...
+    def items(self) -> Incomplete: ...
+    @classmethod
+    def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
+    async def sync(self) -> Incomplete: ...
+    def clear(self) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+async def storage(name: str = "", storage_class: type[_Storage] = _Storage) -> _Storage: ...
+
+class WebSocket(_WebSocket):
+    OPEN: Final[int] = 1
+    CLOSED: Final[int] = 3
+    CLOSING: Final[int] = 2
+    CONNECTING: Final[int] = 0
+    def send(self, data: str | bytes | bytearray | memoryview) -> None: ...
+    def close(self, code: int | None = None, reason: str | None = None) -> None: ...
+    def __init__(self, url: str, protocols: str | list[str] | None = None, **kw: Any) -> None: ...
+
+async def create_named_worker(
+    src: str,
+    name: str,
+    config: dict[str, Any] | str | None = None,
+    type: Literal["py", "mpy"] = "py",
+) -> Any: ...
+@classmethod
+def py_import(*args: str) -> tuple[Any, ...]: ...
+
+class Event:
+    def add_listener(self, x1) -> Incomplete: ...
+    def remove_listener(self) -> Incomplete: ...
+    def trigger(self, x1) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+sync: Incomplete  ## <class 'NotSupported'> = <NotSupported pyscript.sync [pyscript.sync works only when running in a worker]>
+
+@classmethod
+def PyWorker(url: str, **options: Any) -> Any: ...
+
+js_modules: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
+
+@classmethod
+def js_import(name: str) -> Any: ...
+
+document: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
