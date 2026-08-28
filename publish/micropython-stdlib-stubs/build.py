@@ -795,8 +795,6 @@ def update(
 
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
-    # find any firmware board stub folder for this version instead of hardcoding a board name
-    boardstub_path = find_boardstub_path(rootpath / "stubs", flat_version)
     typeshed_path = rootpath / "repos/typeshed"
     reference_path = rootpath / "reference"
 
@@ -804,9 +802,13 @@ def update(
     assert rootpath.exists(), f"rootpath {rootpath} does not exist"
     assert dist_stdlib_path.exists(), f"dist_stdlib_path {dist_stdlib_path} does not exist"
     assert docstubs_path.exists(), f"docstubs_path {docstubs_path} does not exist"
-    assert boardstub_path is not None and boardstub_path.exists(), (
-        f"No firmware board stub folder found for version {flat_version} in {rootpath / 'stubs'}"
-    )
+    # find any firmware board stub folder for this version instead of hardcoding a board name
+    boardstub_path = find_boardstub_path(rootpath / "stubs", flat_version)
+    if not boardstub_path or not boardstub_path.exists():
+        raise FileNotFoundError(
+            f"No firmware board stub folder found for version {flat_version} in {rootpath / 'stubs'}.\n"
+            "Please first run 'stubber mcu' on at least one board for this version to match the 'io' module globals"
+        )
 
     if clone:
         # clone typeshed if needed and switch to the pinned commit hash
