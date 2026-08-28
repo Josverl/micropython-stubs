@@ -1,7 +1,7 @@
 """
 Pack and unpack primitive data types.
 
-MicroPython module: https://docs.micropython.org/en/v1.28.0/library/struct.html
+MicroPython module: https://docs.micropython.org/en/v1.29.0/library/struct.html
 
 CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
@@ -57,10 +57,12 @@ The following data types are supported:
 """
 
 from __future__ import annotations
-from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
+
 from collections.abc import Iterator
 from typing import Any
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 __all__ = ["calcsize", "pack", "pack_into", "unpack", "unpack_from", "iter_unpack", "Struct", "error"]

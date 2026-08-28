@@ -1,6 +1,7 @@
 import sys
 from collections.abc import Awaitable, Callable, Coroutine
 from typing import Any, TypeVar, overload
+
 from typing_extensions import ParamSpec, TypeGuard, TypeIs
 
 if sys.version_info >= (3, 11):

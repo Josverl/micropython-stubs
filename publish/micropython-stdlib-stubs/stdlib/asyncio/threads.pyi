@@ -1,5 +1,6 @@
 from collections.abc import Callable
 from typing import TypeVar
+
 from typing_extensions import ParamSpec
 
 __all__ = ("to_thread",)

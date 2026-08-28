@@ -1,7 +1,7 @@
 """
 Basic "operating system" services.
 
-MicroPython module: https://docs.micropython.org/en/v1.28.0/library/os.html
+MicroPython module: https://docs.micropython.org/en/v1.29.0/library/os.html
 
 CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 
@@ -912,6 +912,7 @@ def symlink(src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool 
 def sync() -> None:
     """
     Sync all filesystems.
+    On some ports this function isn't present because it isn't necessary to sync after writes to the file-system.
     """
     ...
 

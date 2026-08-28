@@ -2,9 +2,10 @@ import enum
 import sre_compile
 import sre_constants
 import sys
-from _typeshed import MaybeNone, ReadableBuffer
 from collections.abc import Callable, Iterator, Mapping
 from typing import Any, AnyStr, Generic, Literal, TypeVar, final, overload
+
+from _typeshed import MaybeNone, ReadableBuffer
 from typing_extensions import TypeAlias
 
 if sys.version_info >= (3, 9):

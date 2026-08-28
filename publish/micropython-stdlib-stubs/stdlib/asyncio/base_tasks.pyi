@@ -1,6 +1,7 @@
-from _typeshed import StrOrBytesPath
 from types import FrameType
 from typing import Any
+
+from _typeshed import StrOrBytesPath
 
 from . import tasks
 

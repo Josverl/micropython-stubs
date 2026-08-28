@@ -1,10 +1,11 @@
-import _typeshed
 import sys
 import types
-from _typeshed import SupportsKeysAndGetItem, Unused
 from builtins import property as _builtins_property
 from collections.abc import Callable, Iterable, Iterator, Mapping
 from typing import Any, Generic, Literal, TypeVar, overload
+
+import _typeshed
+from _typeshed import SupportsKeysAndGetItem, Unused
 from typing_extensions import Self, TypeAlias
 
 __all__ = ["EnumMeta", "Enum", "IntEnum", "Flag", "IntFlag", "auto", "unique"]

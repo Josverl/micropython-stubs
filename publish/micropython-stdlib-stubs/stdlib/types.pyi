@@ -1,6 +1,4 @@
 import sys
-from _typeshed import MaybeNone, SupportsKeysAndGetItem
-from _typeshed.importlib import LoaderProtocol
 from collections.abc import (
     AsyncGenerator,
     Awaitable,
@@ -18,6 +16,9 @@ from importlib.machinery import ModuleSpec
 
 # pytype crashes if types.MappingProxyType inherits from collections.abc.Mapping instead of typing.Mapping
 from typing import Any, ClassVar, Literal, Mapping, TypeVar, final, overload  # noqa: Y022
+
+from _typeshed import MaybeNone, SupportsKeysAndGetItem
+from _typeshed.importlib import LoaderProtocol
 from typing_extensions import ParamSpec, Self, TypeVarTuple, deprecated
 
 __all__ = [

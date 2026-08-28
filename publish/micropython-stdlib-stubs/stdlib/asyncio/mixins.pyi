@@ -1,5 +1,6 @@
 import sys
 import threading
+
 from typing_extensions import Never
 
 _global_lock: threading.Lock

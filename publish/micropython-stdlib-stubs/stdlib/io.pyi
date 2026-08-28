@@ -1,7 +1,7 @@
 """
 Input/output streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.28.0/library/io.html
+MicroPython module: https://docs.micropython.org/en/v1.29.0/library/io.html
 
 CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 
@@ -70,38 +70,69 @@ buffered, they aren't in MicroPython. (Indeed, that's one of the cases
 for which we may introduce buffering support.)
 
 Note that for efficiency, MicroPython doesn't provide abstract base
-classes corresponding to the hierarchy above, and it's not possible
-to implement, or subclass, a stream class in pure Python.
+classes corresponding to the hierarchy above.  However, the
+:class:`IOBase` class can be subclassed to implement custom stream
+objects in pure Python.
 """
 
 from __future__ import annotations
+
 import abc
 import sys
 from _io import (
     DEFAULT_BUFFER_SIZE as DEFAULT_BUFFER_SIZE,
+)
+from _io import (
     BlockingIOError as BlockingIOError,
+)
+from _io import (
     BufferedRandom as BufferedRandom,
+)
+from _io import (
     BufferedReader as BufferedReader,
+)
+from _io import (
     BufferedRWPair as BufferedRWPair,
+)
+from _io import (
     BufferedWriter as BufferedWriter,
+)
+from _io import (
     BytesIO as BytesIO,
+)
+from _io import (
     FileIO as FileIO,
+)
+from _io import (
     IncrementalNewlineDecoder as IncrementalNewlineDecoder,
+)
+from _io import (
     StringIO as StringIO,
+)
+from _io import (
     TextIOWrapper as TextIOWrapper,
+)
+from _io import (
     _BufferedIOBase,
     _IOBase,
     _RawIOBase,
     _TextIOBase,
+)
+from _io import (
     _WrappedBuffer as _WrappedBuffer,  # used elsewhere in typeshed
+)
+from _io import (
     open as open,
+)
+from _io import (
     open_code as open_code,
 )
+from array import array
 from typing import overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, FileIO, IOBase_mp, PathLike, TextIOWrapper
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
 from _typeshed import Incomplete
-from array import array
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 __all__ = [
@@ -141,7 +172,7 @@ _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int
 _Self = TypeVar("_Self")
 
 class UnsupportedOperation(OSError, ValueError): ...
-class IOBase(_IOBase, metaclass=abc.ABCMeta): ...
+class IOBase(IOBase_mp, metaclass=abc.ABCMeta): ...
 class RawIOBase(_RawIOBase, IOBase): ...
 class BufferedIOBase(_BufferedIOBase, IOBase): ...
 class TextIOBase(_TextIOBase, IOBase): ...
