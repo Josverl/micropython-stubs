@@ -12,7 +12,10 @@ Module: 'pyscript.fs' on micropython-v1.29.0-webassembly-pyscript
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
 # Stubber: v1.28.6
 from __future__ import annotations
-from typing import Literal, Any, Final, Generator, AsyncGenerator
+
+from typing import Any, AsyncGenerator, Final, Generator, Literal
+
+from _mpy_shed import mp_available
 from _typeshed import Incomplete
 
 mounted: dict = {}
@@ -64,3 +67,6 @@ async def mount(
         PermissionError: If the browser denies filesystem access
     """
     ...
+
+@mp_available(port="webassembly")
+async def revoke(path: str, id: str = "pyscript") -> bool: ...

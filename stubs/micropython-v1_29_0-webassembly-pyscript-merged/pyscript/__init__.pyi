@@ -34,6 +34,7 @@ from pyscript.magic_js import (
 from pyscript.storage import Storage as _Storage
 from pyscript.websocket import WebSocket as _WebSocket
 from pyscript.workers import workers as workers
+from _mpy_shed import mp_available
 from pyscript.fetch import _FetchPromise
 
 config: dict = {}
@@ -83,8 +84,8 @@ async def create_named_worker(
     config: dict[str, Any] | str | None = None,
     type: Literal["py", "mpy"] = "py",
 ) -> Any: ...
-@classmethod
-def py_import(*args: str) -> tuple[Any, ...]: ...
+@mp_available(port="webassembly")
+async def py_import(*args: str) -> tuple[Any, ...]: ...
 
 class Event:
     def add_listener(self, x1) -> Incomplete: ...
@@ -94,12 +95,10 @@ class Event:
 
 sync: Incomplete  ## <class 'NotSupported'> = <NotSupported pyscript.sync [pyscript.sync works only when running in a worker]>
 
-@classmethod
 def PyWorker(url: str, **options: Any) -> Any: ...
 
 js_modules: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
 
-@classmethod
 def js_import(name: str) -> Any: ...
 
 document: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
