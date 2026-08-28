@@ -159,6 +159,56 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
     return lib_path
 
 
+@pytest.fixture(scope="session")
+def micropython_containers_fx():
+    """Keep one reusable container per MicroPython version alive for the session."""
+    if not is_docker_running():
+        pytest.skip("Docker is not running")
+
+    containers: dict[tuple[str, Path], str] = {}
+
+    def get_container(mp_version: str, snip_path: Path) -> str:
+        key = (mp_version, snip_path)
+        if key in containers:
+            return containers[key]
+
+        image = f"micropython/unix:{mp_version}"
+        cmd = [
+            "docker",
+            "run",
+            "--detach",
+            "--rm",
+            "--label",
+            "micropython-stubs.test-typing=true",
+            "--entrypoint",
+            "sh",
+            "-u",
+            "1000",
+            "-v",
+            f"{snip_path}:/code",
+            image,
+            "-c",
+            "while :; do sleep 3600; done",
+        ]
+        log.info("Starting reusable container for %s", image)
+        result = subprocess.run(cmd, text=True, capture_output=True)
+        if result.returncode != 0:
+            error = result.stderr.strip() or result.stdout.strip()
+            if "Unable to find image" in error or "pull access denied" in error:
+                pytest.skip(error)
+            pytest.fail(f"Could not start {image}: {error}")
+
+        container_id = result.stdout.strip()
+        containers[key] = container_id
+        return container_id
+
+    try:
+        yield get_container
+    finally:
+        for container_id in containers.values():
+            subprocess.run(["docker", "rm", "--force", container_id], text=True, capture_output=True)
+
+
 @pytest.mark.parametrize("ext", [".py", ".mpy"], scope="session")
 @pytest.mark.parametrize("mp_version", get_unix_docker_versions(), scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
@@ -169,7 +219,8 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 )
 @pytest.mark.parametrize("snip_path_fx", [HERE / "feat_typing"], scope="session")
 def test_typing_runtime(
-    copy_mpy_typings_fx,
+    micropython_containers_fx,
+    copy_mpy_typings_fx: Path,
     feature: str,
     snip_path_fx: Path,  # Not a fixture - overriden by parameterize
     check_file,
@@ -177,18 +228,16 @@ def test_typing_runtime(
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-    if not is_docker_running():
-        pytest.skip("Docker is not running")
-
     if not snip_path_fx or not snip_path_fx.exists():
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
     # log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
 
-    lib_path = copy_mpy_typings_fx
-    cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {lib_path}:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
-    log.info(f"Running {cmd}")
-    result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
+    container_id = micropython_containers_fx(mp_version, snip_path_fx)
+    lib_path = f"/code/{copy_mpy_typings_fx.name}"
+    cmd = ["docker", "exec", "--env", f"MICROPYPATH={lib_path}", container_id, "micropython", f"/code/{check_file}"]
+    log.info("Running %s", subprocess.list2cmdline(cmd))
+    result = subprocess.run(cmd, cwd=snip_path_fx, text=True, capture_output=True)
     output = result.stdout + result.stderr
     error = [line for line in result.stderr.split("\n") + result.stdout.split("\n") if "Traceback" not in line]
     if error and "Unable to find image 'micropython/unix:" in error[0]:
