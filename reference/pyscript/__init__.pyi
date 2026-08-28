@@ -16,7 +16,7 @@ he following three categories of API functionality explain features that are com
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any, Awaitable, Literal
+from typing import Any, Literal
 
 __all__ = [
     "PyWorker",
@@ -38,7 +38,7 @@ __all__ = [
     "create_named_worker",
 ]
 
-def py_import(*args: str) -> Awaitable[tuple[Any, ...]]: ...
+async def py_import(*args: str) -> tuple[Any, ...]: ...
 
 class HTML:
     def __init__(self, html: Any) -> None: ...
