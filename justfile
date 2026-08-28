@@ -81,33 +81,52 @@ install-linters:
 clear-cache:
     pytest -m snippets --cache-clear
 
+fixup_pyscript v="1.29.0" f="1_29_0":
+    stubber merge --version {{v}} --port webassembly
+    # Now copy additional PyScript stubs for the webassembly-pyscript variant
+    copy reference\pyscript\display.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\events.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\fetch.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\ffi.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\flatted.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\magic_js.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\media.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\polyscript.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\storage.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\util.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\web.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\websocket.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+    copy reference\pyscript\workers.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
+
+    stubber build --version {{v}} --port webassembly
+
 # run all snippet quality tests (pass extra pytest args, e.g. `just test --cache-clear`)
-test *args="":
-    pytest -m snippets {{args}}
+test *PARAMS:
+    pytest -m snippets {{PARAMS}}
 
 # run snippet tests for the current stable release only
-test-stable *args="":
-    pytest -m snippets --stable-only {{args}}
+test-stable *PARAMS:
+    pytest -m snippets --stable-only {{PARAMS}}
 
 # run snippet tests for the most recent preview build
-test-preview *args="":
-    pytest -m snippets --preview-only {{args}}
+test-preview *PARAMS:
+    pytest -m snippets --preview-only {{PARAMS}}
 
 # run snippet tests for the last 3 stable major.minor releases
-test-recent *args="":
-    pytest -m snippets --recent-majors {{args}}
+test-recent *PARAMS:
+    pytest -m snippets --recent-majors {{PARAMS}}
 
 # run snippet tests for a single linter (pyright|mypy|ruff) on the stable release
-test-linter linter="pyright" *args="":
-    pytest -m snippets --stable-only -k "{{linter}}" {{args}}
+test-linter linter="pyright" *PARAMS:
+    pytest -m snippets --stable-only -k "{{linter}}" {{PARAMS}}
 
 # run snippet tests for a basilisk and show the xfail output (basilisk is experimental and may fail on some stubs)
-# test-basilisk *args="":
-#     pytest -m snippets --stable-only --no-cache -k "basilisk"  --runxfail -rA {{args}}
+# test-basilisk *PARAMS:
+#     pytest -m snippets --stable-only --no-cache -k "basilisk"  --runxfail -rA {{PARAMS}}
 
 # run snippet tests for a specific version (e.g. `just test-version v1.28.0`)
-test-version version="v1.28.0" *args="":
-    pytest -m snippets -k "{{version}}" {{args}}
+test-version version="v1.28.0" *PARAMS:
+    pytest -m snippets -k "{{version}}" {{PARAMS}}
 
 release version commit :
     git tag {{version}} {{commit}}
