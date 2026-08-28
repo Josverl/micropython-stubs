@@ -1,0 +1,13 @@
+"""
+Module: 'platform' on micropython-v1.29.0-stm32-PYBV11
+"""
+
+# MCU: {'variant': '', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11', 'mpy': 'v6.3', 'ver': '1.29.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.29.0'}
+# Stubber: v1.28.6
+from __future__ import annotations
+
+from _typeshed import Incomplete
+
+def platform(*args, **kwargs) -> Incomplete: ...
+def python_compiler(*args, **kwargs) -> Incomplete: ...
+def libc_ver(*args, **kwargs) -> Incomplete: ...
