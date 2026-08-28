@@ -1,0 +1,16 @@
+"""
+Module: 'ntptime' on micropython-v1.29.0-esp32-ESP32_GENERIC_H2
+"""
+
+# MCU: {'variant': '', 'build': '', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_H2', 'board_id': 'ESP32_GENERIC_H2', 'mpy': 'v6.3', 'ver': '1.29.0', 'family': 'micropython', 'cpu': 'ESP32-H2', 'version': '1.29.0'}
+# Stubber: v1.28.6
+from __future__ import annotations
+
+from _typeshed import Incomplete
+
+timeout: int = 1
+host: str = "pool.ntp.org"
+
+def time(*args, **kwargs) -> Incomplete: ...
+def settime(*args, **kwargs) -> Incomplete: ...
+def gmtime(*args, **kwargs) -> Incomplete: ...

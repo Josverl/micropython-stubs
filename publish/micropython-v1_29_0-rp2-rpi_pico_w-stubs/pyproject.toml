@@ -1,0 +1,55 @@
+[project]
+name = "micropython-rp2-rpi_pico_w-stubs"
+description = "MicroPython stubs"
+version = "1.29.0.post1"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Jos Verlinde", email = "josverl@users.noreply.github.com" },
+]
+classifiers = [
+    "Typing :: Stubs Only",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Operating System :: OS Independent",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Software Development :: Testing",
+    "Natural Language :: English",
+]
+dependencies = [
+    "micropython-stdlib-stubs  ~=1.29.0",
+]
+
+[project.urls]
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+repository = "https://github.com/josverl/micropython-stubs"
+
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "*.pyi",
+    "**/*.pyi",
+    "README.md",
+    "LICENSE.md",
+    "pyproject.toml",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "*.pyi",
+    "**/*.pyi",
+    "README.md",
+    "LICENSE.md",
+    "pyproject.toml",
+]
