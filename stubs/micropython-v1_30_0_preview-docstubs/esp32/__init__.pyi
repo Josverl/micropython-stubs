@@ -677,7 +677,7 @@ class LDO:
         ...
     def release(self) -> None:
         """
-        Release the LDO channel.
+        Release the LDO channel, disabling its voltage output. Create a new LDO object to re-enable the output.
         """
         ...
 
