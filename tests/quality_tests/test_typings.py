@@ -28,15 +28,17 @@ _DOCKER_TAGS_CACHE_TTL = 24 * 60 * 60
 
 # Fallback list of known micropython/unix Docker image versions (used when Docker Hub is unreachable)
 _KNOWN_UNIX_VERSIONS = [
-    "v1.20.0",
-    "v1.21.0",
-    "v1.22.0",
-    "v1.23.0",
-    "v1.24.0",
-    "v1.24.1",
-    "v1.25.0",
-    "v1.26.0",
+    # "v1.20.0",
+    # "v1.21.0",
+    # "v1.22.0",
+    # "v1.23.0",
+    # "v1.24.0",
+    # "v1.24.1",
+    # "v1.25.0",
+    # "v1.26.0",
     "v1.27.0",
+    "v1.28.0",
+    "v1.29.0",
 ]
 
 
