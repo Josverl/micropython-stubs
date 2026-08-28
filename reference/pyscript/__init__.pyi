@@ -17,6 +17,7 @@ he following three categories of API functionality explain features that are com
 # MIT Licensed
 
 from typing import Any, Literal
+from _mpy_shed import mp_available
 
 __all__ = [
     "PyWorker",
@@ -38,6 +39,7 @@ __all__ = [
     "create_named_worker",
 ]
 
+@mp_available(port="webassembly")
 async def py_import(*args: str) -> tuple[Any, ...]: ...
 
 class HTML:

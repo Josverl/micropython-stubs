@@ -9,6 +9,7 @@ allowing mounting, syncing, and unmounting of virtual filesystems.
 # MIT Licensed
 
 from typing import Any, Literal
+from _mpy_shed import mp_available
 
 mounted: dict[str, Any]
 """Dictionary mapping mount points to filesystem information"""
@@ -60,4 +61,5 @@ async def unmount(path: str) -> None:
     """
     ...
 
+@mp_available(port="webassembly")
 async def revoke(path: str, id: str = "pyscript") -> bool: ...
