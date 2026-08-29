@@ -1,6 +1,4 @@
-# samples from: https://docs.pyscript.net/2025.2.3/api/#pyscriptwhen
-
-# pyscript.when
+# PyScript 2026.7.3: DOM and custom Event decorator contracts.
 
 from pyscript import when
 from pyscript.web import page
@@ -28,3 +26,9 @@ def click_handler(event):
 
 ### Or manually setting handler without a decorator
 when("click", "#my-button")(click_handler)
+
+
+from pyscript import Event
+
+completed = Event()
+when(completed)(click_handler)

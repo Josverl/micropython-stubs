@@ -1,23 +1,8 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Named-worker API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
 from typing import Any, Awaitable, Literal
-
-def _get(name: str) -> Any:
-    """
-    Internal function to get a worker by name.
-
-    Args:
-        name: The name of the worker to retrieve
-
-    Returns:
-        The worker object
-    """
-    ...
 
 class _ReadOnlyWorkersProxy:
     """
@@ -30,7 +15,6 @@ class _ReadOnlyWorkersProxy:
     def __getitem__(self, name: str) -> Awaitable[Any]: ...
     def __getattr__(self, name: str) -> Awaitable[Any]: ...
 
-_ReadOnlyProxy = _ReadOnlyWorkersProxy
 workers: _ReadOnlyWorkersProxy
 """
 Read-only proxy to access named workers.

@@ -1,3 +1,4 @@
+# PyScript 2026.7.3: media stream and device contracts.
 from pyscript.media import Device, list_devices
 
 

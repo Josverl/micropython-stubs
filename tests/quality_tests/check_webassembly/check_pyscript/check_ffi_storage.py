@@ -1,5 +1,6 @@
-from pyscript import storage
-from pyscript.ffi import assign, create_proxy, direct, is_none, to_js
+# PyScript 2026.7.3: FFI and generic Storage subclass contracts.
+from pyscript import Storage, storage
+from pyscript.ffi import assign, create_proxy, direct, gather, is_none, query, to_js
 
 
 def callback(value):
@@ -13,7 +14,12 @@ remote = direct(merged)
 print(proxy, remote, is_none(None))
 
 
+class Preferences(Storage):
+    pass
+
+
 async def check_storage():
-    preferences = await storage("preferences")
+    preferences: Preferences = await storage("preferences", Preferences)
     preferences["theme"] = "dark"
     await preferences.sync()
+    print(gather, query)

@@ -1,7 +1,4 @@
-# samples from: https://docs.pyscript.net/2025.2.3/user-guide/dom/#pyscriptweb
-# pyscript.web
-
-# pyscript.web.page
+# PyScript 2026.7.3: current web element, collection, class, style, and options contracts.
 
 from pyscript.web import page
 
@@ -14,6 +11,7 @@ paragraph = page["paragraph-id"]
 if paragraph is not None:
     print(paragraph.children)
 
+# PyScript 2026.3.1: update_all delegates classes and style to Element.update.
 paragraphs.update_all(classes="checked", style={"color": "green"})
 
 
@@ -52,7 +50,9 @@ from pyscript.web import page, div, p
 
 my_div = div()
 my_div.style["background-color"] = "red"
+del my_div.style["background-color"]
 my_div.classes.add("a-css-class")
+my_div.classes.discard("optional-class")
 
 my_p = p()
 my_p.content = "This is a paragraph."
@@ -62,3 +62,8 @@ my_div.append(my_p)
 first_child = my_div[0]
 child_slice = my_div[:1]
 found_child = my_div["paragraph-id"]
+
+choices = select()
+choices.options.add(value="mpy", text="MicroPython")
+selected_option = choices.options.selected
+print(first_child, child_slice, found_child, selected_option)

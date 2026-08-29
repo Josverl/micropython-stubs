@@ -1,3 +1,4 @@
+# PyScript 2026.7.3: named-worker contracts.
 from pyscript import create_named_worker, workers
 
 

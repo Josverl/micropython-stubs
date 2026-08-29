@@ -1,7 +1,4 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""WebSocket API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
@@ -17,7 +14,7 @@ class WebSocketEvent:
 
     def __init__(self, event: Any) -> None:
         """
-        Initialize an EventMessage wrapper.
+        Initialize a WebSocketEvent wrapper.
 
         Args:
             event: The JavaScript WebSocket event object to wrap
@@ -36,8 +33,6 @@ class WebSocketEvent:
             a string for text data, or other types depending on the attribute
         """
         ...
-
-EventMessage = WebSocketEvent
 
 class WebSocket:
     """

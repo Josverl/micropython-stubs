@@ -1,3 +1,4 @@
+# PyScript 2026.7.3: fetch and WebSocket contracts.
 from pyscript import WebSocket, fetch
 from pyscript.websocket import WebSocketEvent
 
@@ -17,5 +18,6 @@ def on_message(event: WebSocketEvent):
 
 
 socket = WebSocket("wss://example.com/socket", onmessage=on_message)
+state: int = socket.CONNECTING
 socket.send(bytearray((1, 2, 3)))
 socket.close()

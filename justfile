@@ -98,6 +98,9 @@ fixup_pyscript v="1.29.0" f="1_29_0":
     copy reference\pyscript\websocket.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
     copy reference\pyscript\workers.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged
 
+    # Refresh the complete pyscript package, including context and __init__.
+    Copy-Item reference\pyscript\*.pyi stubs\micropython-v{{f}}-webassembly-pyscript-merged\pyscript -Force
+
     stubber build --version {{v}} --port webassembly
 
 # run all snippet quality tests (pass extra pytest args, e.g. `just test --cache-clear`)
