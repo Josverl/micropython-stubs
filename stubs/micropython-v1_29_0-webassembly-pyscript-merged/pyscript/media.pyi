@@ -1,7 +1,4 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Media-device API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
@@ -92,7 +89,7 @@ class Device:
                    constraints (e.g., {"width": 1280, "height": 720})
 
         Returns:
-            A Device instance with an active media stream
+            The requested JavaScript MediaStream.
 
         Example:
             # Request audio and video

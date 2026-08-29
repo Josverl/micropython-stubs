@@ -1,11 +1,8 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Persistent storage API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any, Type
+from typing import Any, TypeVar, overload
 
 class Storage(dict[str, Any]):
     """
@@ -49,10 +46,12 @@ class Storage(dict[str, Any]):
         """
         ...
 
-async def storage(
-    name: str = "",
-    storage_class: Type[Storage] = Storage,
-) -> Storage:
+_StorageT = TypeVar("_StorageT", bound=Storage)
+
+@overload
+async def storage(name: str = "") -> Storage: ...
+@overload
+async def storage(name: str, storage_class: type[_StorageT]) -> _StorageT:
     """
     Create or access a named storage instance.
 

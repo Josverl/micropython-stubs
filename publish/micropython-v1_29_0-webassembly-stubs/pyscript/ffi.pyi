@@ -1,7 +1,4 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Cross-interpreter FFI API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 

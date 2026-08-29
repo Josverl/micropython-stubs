@@ -1,44 +1,10 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Circular JSON API documented by PyScript 2026.7.3."""
+
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
+from typing import Any
 
-from typing import Any, Callable
-
-class _Known:
-    """
-    Internal class for tracking known objects during serialization.
-
-    Used by the flatted algorithm to detect and handle circular references.
-    """
-
-    def __init__(self) -> None:
-        """Initialize a _Known instance for tracking objects."""
-        ...
-
-class _String:
-    """
-    Internal wrapper class for string values during serialization.
-
-    Used by the flatted algorithm to distinguish between regular strings
-    and special marker strings.
-    """
-
-    def __init__(self, value: str) -> None:
-        """
-        Initialize a _String wrapper.
-
-        Args:
-            value: The string value to wrap
-        """
-        ...
-
-def parse(
-    value: str,
-    reviver: Callable[[str, Any], Any] | None = None,
-) -> Any:
+def parse(value: str, *args: Any, **kwargs: Any) -> Any:
     """
     Parse a flatted JSON string into a Python object.
 
@@ -47,9 +13,7 @@ def parse(
 
     Args:
         value: The flatted JSON string to parse
-        reviver: Optional function to transform values during parsing.
-                Called for each key-value pair with (key, value) and
-                should return the transformed value.
+        Additional arguments are passed to ``json.loads``.
 
     Returns:
         The reconstructed Python object
@@ -60,11 +24,7 @@ def parse(
     """
     ...
 
-def stringify(
-    value: Any,
-    replacer: Callable[[str, Any], Any] | list[str] | None = None,
-    space: str | int = "",
-) -> str:
+def stringify(value: Any, *args: Any, **kwargs: Any) -> str:
     """
     Convert a Python object to flatted JSON string.
 
@@ -73,11 +33,7 @@ def stringify(
 
     Args:
         value: The Python object to serialize
-        replacer: Optional function to transform values during serialization,
-                 called with (key, value) and should return the transformed
-                 value. Can also be a list of keys to include.
-        space: Indentation for pretty-printing. Can be a string (used as-is)
-              or an integer (number of spaces). Default is no indentation.
+          Additional arguments are passed to ``json.dumps``.
 
     Returns:
         A flatted JSON string representation of the object
@@ -86,6 +42,6 @@ def stringify(
         obj = {"name": "Alice"}
         obj["self"] = obj  # Circular reference
         json_str = stringify(obj)  # Works with circular refs
-        json_str = stringify(obj, space=2)  # Pretty print
+        json_str = stringify(obj, indent=2)  # Pretty print
     """
     ...

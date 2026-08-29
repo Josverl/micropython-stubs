@@ -1,7 +1,4 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Fetch API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
@@ -145,9 +142,6 @@ class _FetchPromise:
             The response body as a string
         """
         ...
-
-_Response = _FetchResponse
-_DirectResponse = _FetchPromise
 
 def fetch(url: str, **kw: Any) -> _FetchPromise:
     """

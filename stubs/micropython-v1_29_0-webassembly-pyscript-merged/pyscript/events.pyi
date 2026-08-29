@@ -1,9 +1,10 @@
-"""
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
-"""
+"""Event API documented by PyScript 2026.7.3."""
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
+
+from typing import Callable, TypeVar
+
+_F = TypeVar("_F", bound=Callable[..., object])
 
 class Event:
     """
@@ -11,19 +12,19 @@ class Event:
     """
 
     def __init__(self) -> None: ...
-    def trigger(self, result) -> None:
+    def trigger(self, result: object) -> None:
         """
         Trigger the event with a result to pass into the handlers.
         """
         ...
 
-    def add_listener(self, listener) -> None:
+    def add_listener(self, listener: Callable[..., object]) -> None:
         """
         Add a callable/awaitable to listen to when this event is triggered.
         """
         ...
 
-    def remove_listener(self, *args) -> None:
+    def remove_listener(self, *listeners: Callable[..., object]) -> None:
         """
         Clear the specified handler functions in *args. If no handlers
         provided, clear all handlers.
@@ -31,8 +32,10 @@ class Event:
         ...
 
 def when(
-    target, *args, **kwargs
-):  #  -> _Wrapped[Callable[..., Any], Any, Callable[..., Any], CoroutineType[Any, Any, Any]] | Callable[..., _Wrapped[Callable[..., Any], Any, Callable[..., Any], CoroutineType[Any, Any, Any]]]:
+    event_type: str | Event | list[Event],
+    selector: object = None,
+    **options: object,
+) -> Callable[[_F], _F]:
     """
     Add an event listener to the target element(s) for the specified event type.
 
