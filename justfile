@@ -58,8 +58,15 @@ merge-all v="stable":
 build-all v="stable":
     stubber build --port all --board all --version {{v}}
 
+# Publish all (changed) packaged for a version 
 publish-all v="stable":
     stubber publish --port all --board all --version {{v}}
+    echo "Updating stub-packages.json from database"
+    uv run data/package_db_to_json.py
+    # commit the updated package database 
+    git add ./data
+    git commit -m "Update package database after publishing {{v}}"
+    git push
 
 # build stubs for a specific port
 port p="rp2" v="stable" b="all":

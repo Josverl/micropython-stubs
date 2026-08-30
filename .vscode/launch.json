@@ -40,7 +40,7 @@
             "request": "launch",
             "program": "${file}",
             "args": [
-                "--publish", "--version", "1.26.0"
+                "--version", "1.29.0"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",

@@ -31,6 +31,23 @@ except ModuleNotFoundError:
 ADD_STDLIB = False
 
 
+def package_modules(pyproject, pkg_path: Path):
+    """Return the Python module files included in a Poetry or Hatch package."""
+    poetry = pyproject.get("tool", {}).get("poetry", {})
+    if "packages" in poetry:
+        return poetry["packages"]
+
+    wheel = pyproject.get("tool", {}).get("hatch", {}).get("build", {}).get("targets", {}).get("wheel", {})
+    include_patterns = wheel.get("include", [])
+    module_paths = {
+        path.relative_to(pkg_path.parent).as_posix()
+        for pattern in include_patterns
+        for path in pkg_path.parent.glob(pattern)
+        if path.is_file() and path.suffix in {".py", ".pyi"}
+    }
+    return [{"include": path} for path in sorted(module_paths)]
+
+
 def partialhash(file: Path):
     with open(file, "rb") as f:
         # read by line and hash
@@ -38,7 +55,7 @@ def partialhash(file: Path):
         # skip the module docstring and initial comments
         l = 0
         for line in f:
-            # skip tripple quoated docstring
+            # skip triple quoted docstring
             if line.startswith(b'"""'):
                 l += 1
                 for line in f:
@@ -58,17 +75,16 @@ def add_package(pkg_path: Path, all_modules, port="", board="", pkg_version=""):
         # port , board  and pkg_version are optional and are only used for stdlib modules
         # to keep these consistend with the port and board they are included in
         pyproject = tomllib.load(f)
-        try:
-            # new style pyproject.toml
+        if "project" in pyproject:
             pkg_name = pyproject["project"]["name"]
             pkg_version = pkg_version or pyproject["project"]["version"]
-            dependencies = pyproject["project"]["dependencies"]
-        except KeyError:
+            dependencies = pyproject["project"].get("dependencies", [])
+        else:
             pkg_name = pyproject["tool"]["poetry"]["name"]
             pkg_version = pkg_version or pyproject["tool"]["poetry"]["version"]
-            dependencies = pyproject["tool"]["poetry"]["dependencies"]
+            dependencies = pyproject["tool"]["poetry"].get("dependencies", {})
         mpy_version = Version(pkg_version).base_version
-        modules = pyproject["tool"]["poetry"]["packages"]
+        modules = package_modules(pyproject, pkg_path)
         familiy = ""
 
         with contextlib.suppress(KeyError, IndexError):
@@ -115,7 +131,7 @@ def main(output_file="./all_modules.json", input_dir="./publish"):
         except KeyError as e:
             print(f"KeyError {e} in {pkg_path}")
             continue
-    with open("all_modules.json", "w") as f:
+    with open(output_file, "w") as f:
         json.dump(all_modules, f, indent=4)
 
 

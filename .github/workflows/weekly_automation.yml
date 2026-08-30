@@ -67,7 +67,7 @@ jobs:
         working-directory: ${{github.workspace}}/data
         run: |
           echo "Updating stub-packages.json from database"
-          python package_db_to_json.py
+          uv run package_db_to_json.py
 
       ######################################
       # Commit changes
