@@ -64,8 +64,11 @@ publish-all v="stable":
     echo "Updating stub-packages.json from database"
     uv run data/package_db_to_json.py
     # commit the updated package database 
+    # and add a tag for the version
     git add ./data
     git commit -m "Update package database after publishing {{v}}"
+    git tag {{v}}
+    git push --tags
     git push
 
 # build stubs for a specific port
