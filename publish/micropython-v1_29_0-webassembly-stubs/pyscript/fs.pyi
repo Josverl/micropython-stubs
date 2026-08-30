@@ -1,12 +1,47 @@
-"""Filesystem API documented by PyScript 2026.7.3."""
-# Copyright (c) 2020-2025 Jos Verlinde
-# MIT Licensed
+"""
+Filesystem API documented by PyScript 2026.7.3.
 
-from typing import Any, Literal
+---
+Module: 'pyscript.fs' on micropython-v1.29.0-webassembly-pyscript
+"""
+
+# MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.6
+from __future__ import annotations
+
+from typing import Any, AsyncGenerator, Final, Generator, Literal
+
 from _mpy_shed import mp_available
+from _typeshed import Incomplete
 
-mounted: dict[str, Any]
+mounted: dict = {}
 """Dictionary mapping mount points to filesystem information"""
+
+async def unmount(path: str) -> None:
+    """
+    Unmount the filesystem at the specified path.
+
+    Args:
+        path: The path of the mounted filesystem to unmount
+
+    Raises:
+        ValueError: If no filesystem is mounted at the specified path
+    """
+    ...
+
+async def sync(path: str) -> None:
+    """
+    Synchronize changes to the filesystem mounted at the given path.
+
+    This ensures any pending changes are written to the underlying storage.
+
+    Args:
+        path: The path to the mounted filesystem to synchronize
+
+    Raises:
+        ValueError: If no filesystem is mounted at the specified path
+    """
+    ...
 
 async def mount(
     path: str,
@@ -26,32 +61,6 @@ async def mount(
     Raises:
         ValueError: If the path is already mounted or parameters are invalid
         PermissionError: If the browser denies filesystem access
-    """
-    ...
-
-async def sync(path: str) -> None:
-    """
-    Synchronize changes to the filesystem mounted at the given path.
-
-    This ensures any pending changes are written to the underlying storage.
-
-    Args:
-        path: The path to the mounted filesystem to synchronize
-
-    Raises:
-        ValueError: If no filesystem is mounted at the specified path
-    """
-    ...
-
-async def unmount(path: str) -> None:
-    """
-    Unmount the filesystem at the specified path.
-
-    Args:
-        path: The path of the mounted filesystem to unmount
-
-    Raises:
-        ValueError: If no filesystem is mounted at the specified path
     """
     ...
 

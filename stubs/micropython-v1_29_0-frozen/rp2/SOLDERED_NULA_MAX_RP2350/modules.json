@@ -13,7 +13,7 @@
         "board": "SOLDERED_NULA_MAX_RP2350"
     },
     "stubber": {
-        "version": "1.28.6",
+        "version": "1.29.0",
         "stubtype": "frozen"
     },
     "modules": [

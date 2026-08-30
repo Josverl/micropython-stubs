@@ -13,7 +13,7 @@
         "board": "GARATRONIC_PYBSTICK26_F411"
     },
     "stubber": {
-        "version": "1.28.6",
+        "version": "1.29.0",
         "stubtype": "frozen"
     },
     "modules": [

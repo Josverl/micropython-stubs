@@ -13,7 +13,7 @@
         "board": "NULLBITS_BIT_C_PRO"
     },
     "stubber": {
-        "version": "1.28.6",
+        "version": "1.29.0",
         "stubtype": "frozen"
     },
     "modules": [

@@ -18,7 +18,9 @@ Module: 'cmath' on micropython-v1.29.0-unix-standard
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'unix', 'board': 'standard', 'board_id': 'standard', 'variant': '', 'cpu': 'linux [GCC 12.5.0] version', 'mpy': 'v6.3', 'arch': 'x64'}
 # Stubber: v1.28.6
 from __future__ import annotations
-from typing import SupportsComplex, SupportsFloat, SupportsIndex, Any, Final, Generator, AsyncGenerator
+
+from typing import Any, AsyncGenerator, Final, Generator, SupportsComplex, SupportsFloat, SupportsIndex
+
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
