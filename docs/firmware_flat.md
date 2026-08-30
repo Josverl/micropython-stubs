@@ -181,15 +181,18 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.29| esp32| generic| 89| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C5](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C5)
 |board| micropython| v1.29| esp32| generic| 89| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C6)
 |board| micropython| v1.29| esp32| generic| 86| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_H2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_H2)
+|board| micropython| v1.29| esp32| generic| 86| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_P4](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_P4)
 |board| micropython| v1.29| esp32| generic| 88| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S2)
 |board| micropython| v1.29| esp32| generic| 89| v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S3)
 |board| micropython| v1.29| esp8266| generic| 85| v1.28.6|[stubs/micropython-v1_29_0-esp8266-ESP8266_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp8266-ESP8266_GENERIC)
 |board| micropython| v1.29| nrf| generic| 59| v1.28.6|[stubs/micropython-v1_29_0-nrf-SEEED_XIAO_NRF52](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-nrf-SEEED_XIAO_NRF52)
 |board| micropython| v1.29| rp2| generic| 92| v1.28.6|[stubs/micropython-v1_29_0-rp2-ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-ARDUINO_NANO_RP2040_CONNECT)
+|board| micropython| v1.29| rp2| generic| 66| v1.28.6|[stubs/micropython-v1_29_0-rp2-PIMORONI_PICOLIPO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-PIMORONI_PICOLIPO)
 |board| micropython| v1.29| rp2| generic| 66| v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO)
 |board| micropython| v1.29| rp2| generic| 66| v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO2)
 |board| micropython| v1.29| rp2| generic| 91| v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO2_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO2_W)
 |board| micropython| v1.29| rp2| generic| 91| v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO_W)
+|board| micropython| v1.29| rp2| generic| 66| v1.28.6|[stubs/micropython-v1_29_0-rp2-WAVESHARE_RP2040_ZERO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-WAVESHARE_RP2040_ZERO)
 |board| micropython| v1.29| samd| generic| 57| v1.28.6|[stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.29| stm32| generic| 64| v1.28.6|[stubs/micropython-v1_29_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-stm32-PYBV11)
 |board| micropython| v1.29| unix| generic| 75| v1.28.6|[stubs/micropython-v1_29_0-unix-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-unix-standard)
@@ -1303,4 +1306,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  33305
+Total modules  33523

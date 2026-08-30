@@ -1175,6 +1175,7 @@
 |micropython |v1.29   |board   |esp32|generic|89|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C5](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C5)
 |micropython |v1.29   |board   |esp32|generic|89|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_C6)
 |micropython |v1.29   |board   |esp32|generic|86|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_H2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_H2)
+|micropython |v1.29   |board   |esp32|generic|86|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_P4](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_P4)
 |micropython |v1.29   |board   |esp32|generic|88|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S2)
 |micropython |v1.29   |board   |esp32|generic|89|v1.28.6|[stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-esp32-ESP32_GENERIC_S3)
 |micropython |v1.29   |frozen  |esp32|ARDUINO_NANO_ESP32|41|1.28.6|[stubs/micropython-v1_29_0-frozen/esp32/ARDUINO_NANO_ESP32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-frozen/esp32/ARDUINO_NANO_ESP32)
@@ -1236,10 +1237,12 @@
 |micropython |v1.29   |frozen  |rp2|WEACTSTUDIO|7|1.28.6|[stubs/micropython-v1_29_0-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-frozen/rp2/WEACTSTUDIO)
 |micropython |v1.29   |frozen  |rp2|WEACTSTUDIO_RP2350B_CORE|7|1.28.6|[stubs/micropython-v1_29_0-frozen/rp2/WEACTSTUDIO_RP2350B_CORE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-frozen/rp2/WEACTSTUDIO_RP2350B_CORE)
 |micropython |v1.29   |board   |rp2|generic|92|v1.28.6|[stubs/micropython-v1_29_0-rp2-ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-ARDUINO_NANO_RP2040_CONNECT)
+|micropython |v1.29   |board   |rp2|generic|66|v1.28.6|[stubs/micropython-v1_29_0-rp2-PIMORONI_PICOLIPO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-PIMORONI_PICOLIPO)
 |micropython |v1.29   |board   |rp2|generic|66|v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO)
 |micropython |v1.29   |board   |rp2|generic|66|v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO2)
 |micropython |v1.29   |board   |rp2|generic|91|v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO2_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO2_W)
 |micropython |v1.29   |board   |rp2|generic|91|v1.28.6|[stubs/micropython-v1_29_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-RPI_PICO_W)
+|micropython |v1.29   |board   |rp2|generic|66|v1.28.6|[stubs/micropython-v1_29_0-rp2-WAVESHARE_RP2040_ZERO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-rp2-WAVESHARE_RP2040_ZERO)
 |micropython |v1.29   |frozen  |samd|GENERIC|1|1.28.6|[stubs/micropython-v1_29_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-frozen/samd/GENERIC)
 |micropython |v1.29   |board   |samd|generic|57|v1.28.6|[stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL)
 |micropython |v1.29   |frozen  |stm32|ARDUINO_GIGA|30|1.28.6|[stubs/micropython-v1_29_0-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-frozen/stm32/ARDUINO_GIGA)
@@ -1339,4 +1342,4 @@
 
 ## Metrics
 
-Total stub modules:  33305
+Total stub modules:  33523
