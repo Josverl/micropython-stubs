@@ -53,18 +53,14 @@ def partialhash(file: Path):
         # read by line and hash
         md5 = hashlib.blake2b(digest_size=4)
         # skip the module docstring and initial comments
-        l = 0
         for line in f:
             # skip triple quoted docstring
             if line.startswith(b'"""'):
-                l += 1
                 for line in f:
-                    l += 1
                     if line.startswith(b'"""'):
                         break
             # skip comment
-            if line.startswith(b"#"):  # and l < 10:
-                l += 1
+            if line.startswith(b"#"):
                 continue
             md5.update(line)
     return md5.hexdigest()
