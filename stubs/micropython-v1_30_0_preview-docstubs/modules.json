@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_30_0_preview",
         "nodename": "micropython",
         "version": "v1.30.0-preview",
-        "release": "v1.30.0-preview-17-g47e9329e5",
+        "release": "v1.30.0-preview-24-g816245185",
         "sysname": "micropython"
     },
     "stubber": {
@@ -507,6 +507,10 @@
         {
             "file": "zephyr/DiskAccess.pyi",
             "module": "DiskAccess"
+        },
+        {
+            "file": "zephyr/Display.pyi",
+            "module": "Display"
         },
         {
             "file": "zephyr/FlashArea.pyi",

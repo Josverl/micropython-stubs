@@ -12,6 +12,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from zephyr.DiskAccess import DiskAccess
+from zephyr.Display import Display
 from zephyr.FlashArea import FlashArea
 from zephyr.zsensor import zsensor
 from DiskAccess import *
