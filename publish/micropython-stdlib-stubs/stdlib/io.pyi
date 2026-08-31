@@ -114,7 +114,6 @@ from _io import (
 )
 from _io import (
     _BufferedIOBase,
-    _IOBase,
     _RawIOBase,
     _TextIOBase,
 )
@@ -127,7 +126,6 @@ from _io import (
 from _io import (
     open_code as open_code,
 )
-from array import array
 from typing import overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, FileIO, IOBase_mp, PathLike, TextIOWrapper

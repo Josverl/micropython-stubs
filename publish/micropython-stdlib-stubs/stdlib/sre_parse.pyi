@@ -2,7 +2,6 @@ import sys
 from collections.abc import Iterable
 from re import Match
 from re import Pattern as _Pattern
-from sre_constants import *
 from sre_constants import _NamedIntConstant as _NIC
 from sre_constants import error as _Error
 from typing import Any, overload
