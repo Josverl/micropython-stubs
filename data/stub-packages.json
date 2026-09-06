@@ -86,6 +86,13 @@
             ""
         ],
         [
+            "micropython-nrf-seeed_xiao_nrf52-stubs",
+            "1.29.0",
+            "nrf",
+            "SEEED_XIAO_NRF52",
+            ""
+        ],
+        [
             "micropython-nrf-stubs",
             "1.29.0",
             "nrf",
