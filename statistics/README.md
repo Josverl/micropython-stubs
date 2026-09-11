@@ -60,10 +60,10 @@ Replace `YOUR_PROJECT_ID` in these commands. Run them once on each development m
 
 ```bash
 gcloud init
-gcloud config set project YOUR_PROJECT_ID
+gcloud config set project micropython-stubs
 gcloud services enable bigquery.googleapis.com
 gcloud auth application-default login --scopes=https://www.googleapis.com/auth/cloud-platform
-gcloud auth application-default set-quota-project YOUR_PROJECT_ID
+gcloud auth application-default set-quota-project micropython-stubs
 ```
 
 `gcloud init` authenticates the CLI. `gcloud auth application-default login` is a separate login that creates credentials for Python client libraries. Both are needed here.
@@ -75,7 +75,7 @@ For a remote Linux host, WSL session, or SSH session that cannot open a browser,
 ```bash
 gcloud init --console-only
 gcloud auth application-default login --no-launch-browser --scopes=https://www.googleapis.com/auth/cloud-platform
-gcloud auth application-default set-quota-project YOUR_PROJECT_ID
+gcloud auth application-default set-quota-project micropython-stubs
 ```
 
 Open the displayed URL on a trusted browser and enter the one-time code directly in the terminal. Do not send that code through chat, email, or an issue.
