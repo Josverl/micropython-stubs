@@ -72,3 +72,10 @@ tests/doc_test/micropython/
 # typings runtime checking lib folder
 tests/quality_tests/feat_typing/lib
 tests/quality_tests/feat_typing/lib_*
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
