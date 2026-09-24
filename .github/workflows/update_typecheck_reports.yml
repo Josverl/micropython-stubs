@@ -1,0 +1,66 @@
+name: update_typecheck_reports
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 0" # Every Sunday at 04:00 UTC
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-typecheck-reports-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+
+jobs:
+  update-reports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install test dependencies
+        run: |
+          uv venv
+          uv pip install ".[test]"
+
+      - name: Generate type checker reports
+        run: |
+          rm -f typecheck_report*.md
+          set +e
+          uv run pytest \
+            tests/quality_tests/test_snippets.py \
+            tests/quality_tests/test_stdlib_only.py \
+            --report
+          pytest_status=$?
+          set -e
+          if [[ $pytest_status -ne 0 && $pytest_status -ne 1 ]]; then
+            exit "$pytest_status"
+          fi
+
+      - name: Commit updated reports
+        run: |
+          git add --all -- 'typecheck_report*.md'
+          if git diff --cached --quiet; then
+            echo "Type checker reports are unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update weekly type checker reports"
+          git push
