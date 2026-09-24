@@ -50,7 +50,7 @@ def copy_config_files():
         if (folder / "pyrightconfig.json").exists():
             os.remove(folder / "pyrightconfig.json")
         for file in config_path.glob("*.*"):
-            if file.name == "readme.md":
+            if not file.is_file() or file.name == "readme.md":
                 continue
             try:
                 shutil.copy(file, folder)

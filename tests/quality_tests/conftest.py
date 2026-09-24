@@ -31,6 +31,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
+from markdown_report import add_report_metadata, write_markdown_report
 from mpflash.versions import clean_version, get_preview_mp_version, get_stable_mp_version, micropython_versions
 from packaging.version import Version
 
@@ -74,6 +75,12 @@ def pytest_addoption(parser: pytest.Parser):
         action="store_true",
         default=False,
         help="Only run tests for the last 3 stable major.minor MicroPython releases (excludes preview).",
+    )
+    parser.addoption(
+        "--report",
+        action="store_true",
+        default=False,
+        help="Write a Markdown overview of checker-parametrized test results.",
     )
 
 
@@ -200,6 +207,7 @@ def pytest_runtest_makereport(item, call):
     """
     outcome = yield
     report = outcome.get_result()
+    add_report_metadata(item, call, report)
 
     # we only look at actual failing test calls, not setup/teardown
     if report.when == "call" and report.failed:
@@ -404,7 +412,7 @@ def snip_path_fx(feature: str, tmp_path: Path, pytestconfig: pytest.Config) -> P
     # workspace is self-contained and can be used directly from the command line.
     config_path = my_path / "_configs"
     for file in config_path.glob("*.*"):
-        if file.name == "readme.md":
+        if not file.is_file() or file.name == "readme.md":
             continue
         try:
             shutil.copy(file, workspace)
@@ -490,6 +498,9 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
     (config.rootpath / "results").mkdir(exist_ok=True)
     with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
         json.dump(stats, f, indent=4)
+
+    if config.getoption("--report", default=False):
+        write_markdown_report(terminalreporter, config.rootpath / "typecheck_report.md")
 
     # print("----------------- Final summary -----------------")
     # print(json.dumps(stats, indent=4))
