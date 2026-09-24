@@ -1,8 +1,8 @@
 # See here for image contents: https://github.com/devcontainers/images/tree/main/src/python
 
 # [Choice] Python version: 3.14, 3.13, 3.12, 3.11, 3.10 (optionally suffixed with -bookworm or -trixie)
-ARG VARIANT="3.10-bookworm"
-FROM mcr.microsoft.com/devcontainers/python:1-${VARIANT}
+ARG VARIANT="3.14-bookworm"
+FROM mcr.microsoft.com/devcontainers/python:${VARIANT}
 
 # The base image includes Yarn, but its APT repository currently uses an expired signing key.
 RUN rm -f /etc/apt/sources.list.d/yarn.list

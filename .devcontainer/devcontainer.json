@@ -6,8 +6,8 @@
 		"dockerfile": "Dockerfile",
 		"context": "..",
 		"args": {
-			// Keep this aligned with the minimum version in pyproject.toml.
-			"VARIANT": "3.10-bookworm",
+			// Keep this aligned with the default in Dockerfile.
+			"VARIANT": "3.14-bookworm",
 			// Options
 			"NODE_VERSION": "lts/*"
 		}
