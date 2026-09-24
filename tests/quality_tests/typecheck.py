@@ -16,6 +16,7 @@ from typecheck_mypy import check_with_mypy
 from typecheck_ruff import check_with_ruff
 from typecheck_pyrefly import check_with_pyrefly
 from typecheck_ty import check_with_ty
+from typecheck_zuban import check_with_zuban
 
 log = logging.getLogger()
 
@@ -29,6 +30,13 @@ LINTER_PARAMS = [
     "ruff",
     pytest.param(
         "pyrefly",
+    ),
+    pytest.param(
+        "zuban",
+        marks=pytest.mark.xfail(
+            reason="Zuban support is experimental; see micropython-stubs-y1z, -y8v, and -996",
+            strict=False,
+        ),
     ),
     pytest.param(
         "ty",
@@ -180,6 +188,8 @@ def run_typechecker(
         results = check_with_pyrefly(snip_path)
     elif linter == "ty":
         results = check_with_ty(snip_path)
+    elif linter == "zuban":
+        results = check_with_zuban(snip_path)
     else:
         raise NotImplementedError(f"Unknown linter {linter}")
 

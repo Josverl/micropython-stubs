@@ -43,6 +43,22 @@ warn_unused_ignores = true  # allows to verify the absense of methods/classes in
 # show_error_context = true
 
 # ###################################################################
+# zuban options:
+[tool.zuban]
+mode = "default"
+mypy_path = ["typings", "typings/stdlib"]
+files = ["*.py"]
+exclude = ["typings[\\/].*"]
+platform = "linux"
+python_version = "3.9"
+follow_imports = "silent"
+follow_imports_for_stubs = true
+check_untyped_defs = true
+allow_redefinition = true
+warn_unused_ignores = true
+disable_error_code = ["no-redef", "assignment", "var-annotated"]
+
+# ###################################################################
 # ruff options:
 [tool.ruff]
 line-length = 140
