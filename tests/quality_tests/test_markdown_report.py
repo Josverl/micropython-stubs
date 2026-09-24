@@ -2,7 +2,7 @@ import json
 from types import SimpleNamespace
 
 import pytest
-from markdown_report import add_report_metadata, render_markdown
+from markdown_report import add_report_metadata, render_markdown, write_markdown_report
 
 pytest_plugins = ["pytester"]
 
@@ -11,17 +11,22 @@ def make_report(
     *,
     checker="pyright",
     test_name="test_typecheck",
+    names=("version", "portboard", "feature"),
     values=("v1.29.0", "unix", "stdlib"),
     outcome="passed",
     when="call",
     wasxfail=None,
     diagnostic="",
+    nodeid=None,
 ):
-    test_id = json.dumps([f"tests/test_example.py::{test_name}", ["version", "portboard", "feature"], list(values)])
+    nodeid = nodeid or f"tests/test_example.py::{test_name}[local-{'-'.join(values)}-{checker}]"
+    test_id = json.dumps([f"tests/test_example.py::{test_name}", list(names), list(values)])
     properties = [
         ("markdown_report_checker", checker),
         ("markdown_report_test_id", test_id),
         ("markdown_report_test_name", test_name),
+        ("markdown_report_nodeid", nodeid),
+        ("markdown_report_row_names", json.dumps(names)),
         ("markdown_report_row_values", json.dumps(values)),
     ]
     if diagnostic:
@@ -56,6 +61,8 @@ def test_add_report_metadata_omits_source_and_checker():
 
     properties = dict(report.user_properties)
     assert properties["markdown_report_checker"] == "pyrefly"
+    assert properties["markdown_report_nodeid"] == item.nodeid
+    assert json.loads(properties["markdown_report_row_names"]) == ["version", "portboard", "feature"]
     assert json.loads(properties["markdown_report_row_values"]) == ["v1.29.0", "unix", "stdlib"]
     assert "local" not in properties["markdown_report_test_id"]
 
@@ -88,12 +95,13 @@ def test_render_markdown_discovers_checkers_and_links_failure_details():
     markdown = render_markdown(reports)
 
     assert "| Test | future-checker | pyright | ty |" in markdown
-    assert "| v1.29.0 unix stdlib |" in markdown
-    assert markdown.count('<a href="#typecheck-detail-') == 2
-    assert "### future-checker" in markdown
-    assert "### ty" in markdown
-    assert "unknown member: Pin" in markdown
-    assert "bad assignment" in markdown
+    assert "## 1.29.0" in markdown
+    assert "| unix stdlib |" in markdown
+    assert markdown.count('<a href="typecheck_report_') == 2
+    assert 'href="typecheck_report_future_checker.md#typecheck-detail-future-checker-' in markdown
+    assert 'href="typecheck_report_ty.md#typecheck-detail-ty-' in markdown
+    assert "unknown member: Pin" not in markdown
+    assert "bad assignment" not in markdown
     assert "Traceback" not in markdown
 
 
@@ -106,7 +114,7 @@ def test_render_markdown_uses_failure_precedence_and_missing_cells():
 
     markdown = render_markdown(reports)
 
-    stdlib_line = next(line for line in markdown.splitlines() if line.startswith("| v1.29.0 unix stdlib |"))
+    stdlib_line = next(line for line in markdown.splitlines() if line.startswith("| unix stdlib |"))
     assert ">FAIL</span>" in stdlib_line
     assert "| - |" in stdlib_line
 
@@ -119,13 +127,58 @@ def test_render_markdown_disambiguates_rows_and_escapes_content():
 
     markdown = render_markdown(reports)
 
-    assert "v1.29.0 unix a\\|b (test_first)" in markdown
-    assert "v1.29.0 unix a\\|b (test_second)" in markdown
+    assert "unix a\\|b (test_first)" in markdown
+    assert "unix a\\|b (test_second)" in markdown
 
 
-def test_render_markdown_uses_a_longer_fence_for_checker_output():
-    markdown = render_markdown([make_report(outcome="failed", diagnostic="message with ``` inside")])
+def test_render_markdown_groups_stdlib_then_versions_descending():
+    reports = [
+        make_report(test_name="test_v19", values=("v1.9.0", "unix", "stdlib")),
+        make_report(test_name="test_stdlib", values=("-", "stdlib", "stdlib_only")),
+        make_report(test_name="test_v110", values=("v1.10.0", "unix", "stdlib")),
+        make_report(test_name="test_preview", values=("v1.11.0-preview", "unix", "stdlib")),
+        make_report(test_name="test_named", values=("latest", "unix", "stdlib")),
+        make_report(test_name="test_missing", names=("portboard", "feature"), values=("unix", "asyncio")),
+    ]
 
+    markdown = render_markdown(reports)
+
+    headings = [line for line in markdown.splitlines() if line.startswith("## ")]
+    assert headings == [
+        "## stdlib / no version",
+        "## 1.11.0-preview",
+        "## 1.10.0",
+        "## 1.9.0",
+        "## latest",
+    ]
+    assert "| stdlib stdlib_only |" in markdown
+    assert "| unix asyncio |" in markdown
+    assert "| v1.10.0 unix stdlib |" not in markdown
+
+
+def test_render_markdown_sorts_rows_within_version_and_repeats_checker_columns():
+    reports = [
+        make_report(checker="z-checker", test_name="test_b", values=("v1.29.0", "unix", "stdlib")),
+        make_report(checker="a-checker", test_name="test_a", values=("v1.29.0", "esp32", "asyncio")),
+        make_report(checker="a-checker", test_name="test_stdlib", values=("-", "stdlib", "stdlib_only")),
+    ]
+
+    markdown = render_markdown(reports)
+
+    assert markdown.count("| Test | a-checker | z-checker |") == 2
+    assert markdown.index("| esp32 asyncio |") < markdown.index("| unix stdlib |")
+
+
+def test_checker_report_uses_a_longer_fence_for_checker_output(tmp_path):
+    nodeid = "tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-webassembly-pyright]"
+    terminalreporter = SimpleNamespace(
+        stats={"failed": [make_report(outcome="failed", diagnostic="message with ``` inside", nodeid=nodeid)]}
+    )
+
+    write_markdown_report(terminalreporter, tmp_path / "typecheck_report.md")
+    markdown = (tmp_path / "typecheck_report_pyright.md").read_text(encoding="utf-8")
+
+    assert nodeid in markdown
     assert "````text\nmessage with ``` inside\n````" in markdown
 
 
@@ -158,11 +211,17 @@ def test_typecheck(stub_source, version, portboard, feature, linter):
 
     report_path = pytester.path / "typecheck_report.md"
     markdown = report_path.read_text(encoding="utf-8")
+    checker_report_path = pytester.path / "typecheck_report_expected_checker.md"
+    checker_markdown = checker_report_path.read_text(encoding="utf-8")
     assert "| Test | expected-checker | new-checker |" in markdown
-    assert "| v1.29.0 unix asyncio |" in markdown
-    assert '<a href="#typecheck-detail-expected-checker-' in markdown
-    assert "checker diagnostic without traceback" in markdown
-    assert "Traceback (most recent call last)" not in markdown
+    assert "## 1.29.0" in markdown
+    assert "| unix asyncio |" in markdown
+    assert '<a href="typecheck_report_expected_checker.md#typecheck-detail-expected-checker-' in markdown
+    assert "checker diagnostic without traceback" not in markdown
+    assert "checker diagnostic without traceback" in checker_markdown
+    assert "[Back to type checker test report](typecheck_report.md)" in checker_markdown
+    assert "Traceback (most recent call last)" not in checker_markdown
+    assert not (pytester.path / "typecheck_report_new_checker.md").exists()
 
     report_path.write_text("sentinel", encoding="utf-8")
     result = pytester.runpytest_subprocess("-n", "2", "-q")
