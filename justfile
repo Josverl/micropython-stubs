@@ -85,7 +85,6 @@ update-stubs v="stable":
 # install all supported type-checkers and linters into the active venv (uv)
 install-linters:
     uv pip install pyright mypy ruff 
-    # uv pip install basilisk-python
 
 # clear the pytest cache
 clear-cache:
@@ -132,10 +131,6 @@ test-recent *PARAMS:
 # run snippet tests for a single linter (pyright|mypy|ruff) on the stable release
 test-linter linter="pyright" *PARAMS:
     pytest -m snippets --stable-only -k "{{linter}}" {{PARAMS}}
-
-# run snippet tests for a basilisk and show the xfail output (basilisk is experimental and may fail on some stubs)
-# test-basilisk *PARAMS:
-#     pytest -m snippets --stable-only --no-cache -k "basilisk"  --runxfail -rA {{PARAMS}}
 
 # run snippet tests for a specific version (e.g. `just test-version v1.28.0`)
 test-version version="v1.28.0" *PARAMS:
