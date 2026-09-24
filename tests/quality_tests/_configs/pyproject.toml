@@ -80,11 +80,15 @@ extend-ignore = [
 # ###################################################################
 # pyrefly options:
 [tool.pyrefly]
-project_includes = ["**/*.py"]
-project_excludes = ["**/typings/**", "**/__pycache__/**"]
-search_path = ["typings"]
-python_version = "3.9"
-python_platform = "linux"
+project-includes = ["**/*.py"]
+project-excludes = ["**/typings/**", "**/__pycache__/**"]
+search-path = ["typings"]
+typeshed-path = "typings"
+python-version = "3.9"
+python-platform = "linux"
+skip-interpreter-query = true
+untyped-def-behavior = "check-and-infer-return-type"
+permissive-ignores = true
 
 # ###################################################################
 # ty options:

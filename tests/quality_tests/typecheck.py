@@ -29,10 +29,6 @@ LINTER_PARAMS = [
     "ruff",
     pytest.param(
         "pyrefly",
-        marks=pytest.mark.xfail(
-            reason="pyrefly support is experimental",
-            strict=False,
-        ),
     ),
     pytest.param(
         "ty",
