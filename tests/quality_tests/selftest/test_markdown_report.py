@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -183,12 +184,13 @@ def test_checker_report_uses_a_longer_fence_for_checker_output(tmp_path):
 
 
 def test_report_option_aggregates_xdist_results_and_is_opt_in(pytester):
-    quality_tests = __file__.rsplit("/", 1)[0]
+    quality_tests = Path(__file__).resolve().parent.parent
+    conftest = quality_tests / "conftest.py"
     pytester.makeconftest(
         f"""
 import sys
-sys.path.insert(0, {quality_tests!r})
-exec(compile(open({quality_tests + "/conftest.py"!r}).read(), {quality_tests + "/conftest.py"!r}, "exec"))
+sys.path.insert(0, {str(quality_tests)!r})
+exec(compile(open({str(conftest)!r}).read(), {str(conftest)!r}, "exec"))
 """
     )
     pytester.makepyfile(
