@@ -2,40 +2,49 @@
 Module: 'uos' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
 sep: str = '/'
-def rename(x0, x1) -> Incomplete:
+# inspect: arity=2
+def rename(*args, **kwargs) -> Incomplete:
     ...
 
-def rmdir(x0) -> Incomplete:
+# inspect: arity=1
+def rmdir(*args, **kwargs) -> Incomplete:
     ...
 
 def mount(*args, **kwargs) -> Incomplete:
     ...
 
-def unlink(x0) -> Incomplete:
+# inspect: arity=1
+def unlink(*args, **kwargs) -> Incomplete:
     ...
 
-def umount(x0) -> Incomplete:
+# inspect: arity=1
+def umount(*args, **kwargs) -> Incomplete:
     ...
 
-def stat(x0) -> Incomplete:
+# inspect: arity=1
+def stat(*args, **kwargs) -> Incomplete:
     ...
 
-def statvfs(x0) -> Incomplete:
+# inspect: arity=1
+def statvfs(*args, **kwargs) -> Incomplete:
     ...
 
-def chdir(x0) -> Incomplete:
+# inspect: arity=1
+def chdir(*args, **kwargs) -> Incomplete:
     ...
 
-def mkdir(x0) -> Incomplete:
+# inspect: arity=1
+def mkdir(*args, **kwargs) -> Incomplete:
     ...
 
-def remove(x0) -> Incomplete:
+# inspect: arity=1
+def remove(*args, **kwargs) -> Incomplete:
     ...
 
 def getcwd() -> Incomplete:

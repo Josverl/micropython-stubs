@@ -2,30 +2,37 @@
 Module: 'unittest.__init__' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def _run_suite(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+def _run_suite(*args, **kwargs) -> Incomplete:
     ...
 
-def skipUnless(x0, x1) -> Incomplete:
+# inspect: arity=2
+def skipUnless(*args, **kwargs) -> Incomplete:
     ...
 
-def _handle_test_exception(x0, x1, x2, x3) -> Incomplete:
+# inspect: arity=4
+def _handle_test_exception(*args, **kwargs) -> Incomplete:
     ...
 
-def skipIf(x0, x1) -> Incomplete:
+# inspect: arity=2
+def skipIf(*args, **kwargs) -> Incomplete:
     ...
 
-def expectedFailure(x0) -> Incomplete:
+# inspect: arity=1
+def expectedFailure(*args, **kwargs) -> Incomplete:
     ...
 
-def skip(x0) -> Incomplete:
+# inspect: arity=1
+def skip(*args, **kwargs) -> Incomplete:
     ...
 
-def main(x0, x1) -> Incomplete:
+# inspect: arity=2
+def main(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -45,13 +52,16 @@ class SubtestContext():
 
 
 class TestResult():
-    def printErrors(self) -> Incomplete:
+    # inspect: arity=1
+    def printErrors(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def wasSuccessful(self) -> Incomplete:
+    # inspect: arity=1
+    def wasSuccessful(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def printErrorList(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def printErrorList(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -59,67 +69,88 @@ class TestResult():
 
 
 class TestCase():
-    def assertNotEqual(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertNotEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertRaises(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def assertRaises(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIsNotNone(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def assertIsNotNone(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertNotAlmostEqual(self, x1, x2, x3, x4, x5) -> Incomplete:
+    # inspect: arity=6
+    def assertNotAlmostEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertLessEqual(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertLessEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def fail(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def fail(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def skipTest(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def skipTest(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertTrue(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def assertTrue(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def doCleanups(self) -> Incomplete:
+    # inspect: arity=1
+    def doCleanups(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertWarns(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def assertWarns(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def subTest(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def subTest(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertEqual(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertFalse(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def assertFalse(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIsNot(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertIsNot(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertAlmostEqual(self, x1, x2, x3, x4, x5) -> Incomplete:
+    # inspect: arity=6
+    def assertAlmostEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def addCleanup(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def addCleanup(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIsInstance(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertIsInstance(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIsNone(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def assertIsNone(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertGreaterEqual(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertGreaterEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIs(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertIs(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def assertIn(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def assertIn(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -127,7 +158,8 @@ class TestCase():
 
 
 class TextTestRunner():
-    def run(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def run(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -135,7 +167,8 @@ class TextTestRunner():
 
 
 class TestRunner():
-    def run(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def run(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -143,13 +176,16 @@ class TestRunner():
 
 
 class TestSuite():
-    def addTest(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def addTest(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def run(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def run(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def _load_module(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _load_module(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

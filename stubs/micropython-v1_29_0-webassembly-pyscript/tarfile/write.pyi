@@ -2,21 +2,25 @@
 Module: 'tarfile.write' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
 _TAR_HEADER: dict = {}
-def _open_write(x0, x1, x2, x3) -> Incomplete:
+# inspect: arity=4
+def _open_write(*args, **kwargs) -> Incomplete:
     ...
 
-def _close_write(x0) -> Incomplete:
+# inspect: arity=1
+def _close_write(*args, **kwargs) -> Incomplete:
     ...
 
-def addfile(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+def addfile(*args, **kwargs) -> Incomplete:
     ...
 
-def add(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+def add(*args, **kwargs) -> Incomplete:
     ...
 

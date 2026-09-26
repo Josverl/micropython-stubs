@@ -2,12 +2,13 @@
 Module: 'time' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def ticks_diff(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
 def ticks_ms() -> Incomplete:
@@ -16,7 +17,8 @@ def ticks_ms() -> Incomplete:
 def ticks_cpu() -> Incomplete:
     ...
 
-def ticks_add(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ticks_add(*args, **kwargs) -> Incomplete:
     ...
 
 def time_ns() -> Incomplete:
@@ -28,7 +30,8 @@ def ticks_us() -> Incomplete:
 def time() -> Incomplete:
     ...
 
-def strftime(x0, x1) -> Incomplete:
+# inspect: arity=2
+def strftime(*args, **kwargs) -> Incomplete:
     ...
 
 def gmtime(*args, **kwargs) -> Incomplete:
@@ -37,18 +40,23 @@ def gmtime(*args, **kwargs) -> Incomplete:
 def localtime(*args, **kwargs) -> Incomplete:
     ...
 
-def const(x0) -> Incomplete:
+# inspect: arity=1
+def const(*args, **kwargs) -> Incomplete:
     ...
 
-def sleep_us(x0) -> Incomplete:
+# inspect: arity=1
+def sleep_us(*args, **kwargs) -> Incomplete:
     ...
 
-def sleep_ms(x0) -> Incomplete:
+# inspect: arity=1
+def sleep_ms(*args, **kwargs) -> Incomplete:
     ...
 
-def mktime(x0) -> Incomplete:
+# inspect: arity=1
+def mktime(*args, **kwargs) -> Incomplete:
     ...
 
-def sleep(x0) -> Incomplete:
+# inspect: arity=1
+def sleep(*args, **kwargs) -> Incomplete:
     ...
 

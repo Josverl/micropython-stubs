@@ -2,7 +2,7 @@
 Module: 'mip' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
@@ -14,34 +14,44 @@ _B: Final[str] = '/'
 HEADERS_TO_IGNORE: tuple = ()
 _CHUNK_SIZE: Final[int] = 128
 _C: Final[bool] = False
-def _install_package(x0, x1, x2, x3, x4) -> Incomplete:
+# inspect: arity=5
+def _install_package(*args, **kwargs) -> Incomplete:
     ...
 
-def _chunk(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _chunk(*args, **kwargs) -> Incomplete:
     ...
 
-def _ensure_path_exists(x0) -> Incomplete:
+# inspect: arity=1
+def _ensure_path_exists(*args, **kwargs) -> Incomplete:
     ...
 
-def _rewrite_url(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _rewrite_url(*args, **kwargs) -> Incomplete:
     ...
 
-def _download_file(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _download_file(*args, **kwargs) -> Incomplete:
     ...
 
-def _check_exists(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _check_exists(*args, **kwargs) -> Incomplete:
     ...
 
-def _install_json(x0, x1, x2, x3, x4) -> Incomplete:
+# inspect: arity=5
+def _install_json(*args, **kwargs) -> Incomplete:
     ...
 
-def install(x0, x1, x2, x3, x4) -> Incomplete:
+# inspect: arity=5
+def install(*args, **kwargs) -> Incomplete:
     ...
 
-def request(x0, x1, x2, x3, x4) -> Incomplete:
+# inspect: arity=5
+def request(*args, **kwargs) -> Incomplete:
     ...
 
-def get(x0) -> Incomplete:
+# inspect: arity=1
+def get(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -78,10 +88,12 @@ class StringIO():
 
 
 class Response():
-    def json(self) -> Incomplete:
+    # inspect: arity=1
+    def json(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self) -> Incomplete:
+    # inspect: arity=1
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     content: Incomplete ## <class 'property'> = <property>

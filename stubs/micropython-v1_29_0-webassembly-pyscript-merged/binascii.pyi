@@ -13,7 +13,7 @@ Module: 'binascii' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator, Optional
@@ -33,8 +33,11 @@ def crc32(data, value: Optional[Any] = None) -> Incomplete:
     """
     ...
 
-def a2b_hex(x0) -> Incomplete: ...
+# inspect: arity=1
+def a2b_hex(*args, **kwargs) -> Incomplete: ...
 def b2a_hex(*args, **kwargs) -> Incomplete: ...
+
+# inspect: arity=1
 def a2b_base64(data: str | bytes, /) -> bytes:
     """
     Decode base64-encoded data, ignoring invalid characters in the input.
@@ -43,7 +46,8 @@ def a2b_base64(data: str | bytes, /) -> bytes:
     """
     ...
 
-def _transform(x0) -> Incomplete: ...
+# inspect: arity=1
+def _transform(*args, **kwargs) -> Incomplete: ...
 def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
@@ -54,6 +58,7 @@ def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:
     """
     ...
 
+# inspect: arity=1
 def unhexlify(data: str | bytes, /) -> bytes:
     """
     Convert hexadecimal data to binary representation. Returns bytes string.
@@ -61,6 +66,7 @@ def unhexlify(data: str | bytes, /) -> bytes:
     """
     ...
 
+# inspect: arity=2
 def b2a_base64(data: bytes, /, *, newline: bool = True) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548

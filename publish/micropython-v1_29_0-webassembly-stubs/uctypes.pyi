@@ -15,7 +15,7 @@ Module: 'uctypes' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Dict, Final, Generator, Tuple
@@ -125,6 +125,7 @@ def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) ->
     """
     ...
 
+# inspect: arity=2
 def bytes_at(addr: int, size: int, /) -> bytes:
     """
     Capture memory at the given address and size as bytes object. As bytes
@@ -134,6 +135,7 @@ def bytes_at(addr: int, size: int, /) -> bytes:
     """
     ...
 
+# inspect: arity=2
 def bytearray_at(addr: int, size: int, /) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
@@ -143,6 +145,7 @@ def bytearray_at(addr: int, size: int, /) -> bytearray:
     """
     ...
 
+# inspect: arity=1
 def addressof(obj: AnyReadableBuf, /) -> int:
     """
     Return address of an object. Argument should be bytes, bytearray or

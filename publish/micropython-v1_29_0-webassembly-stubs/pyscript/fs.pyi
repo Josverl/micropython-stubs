@@ -6,7 +6,7 @@ Module: 'pyscript.fs' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator, Literal
@@ -17,6 +17,7 @@ from _typeshed import Incomplete
 mounted: dict = {}
 """Dictionary mapping mount points to filesystem information"""
 
+# inspect: arity=1
 async def unmount(path: str) -> None:
     """
     Unmount the filesystem at the specified path.
@@ -29,6 +30,7 @@ async def unmount(path: str) -> None:
     """
     ...
 
+# inspect: arity=1
 async def sync(path: str) -> None:
     """
     Synchronize changes to the filesystem mounted at the given path.
@@ -43,6 +45,7 @@ async def sync(path: str) -> None:
     """
     ...
 
+# inspect: arity=4
 async def mount(
     path: str,
     mode: Literal["readwrite", "read"] = "readwrite",

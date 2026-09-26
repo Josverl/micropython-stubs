@@ -2,7 +2,7 @@
 Module: 'logging' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
@@ -17,57 +17,73 @@ WARNING: Final[int] = 30
 _default_fmt: str = '%(levelname)s:%(name)s:%(message)s'
 DEBUG: Final[int] = 10
 CRITICAL: Final[int] = 50
-def exception(x0, x1) -> Incomplete:
+# inspect: arity=2
+def exception(*args, **kwargs) -> Incomplete:
     ...
 
-def getLogger(x0) -> Incomplete:
+# inspect: arity=1
+def getLogger(*args, **kwargs) -> Incomplete:
     ...
 
-def info(x0) -> Incomplete:
+# inspect: arity=1
+def info(*args, **kwargs) -> Incomplete:
     ...
 
 def shutdown() -> Incomplete:
     ...
 
-def critical(x0) -> Incomplete:
+# inspect: arity=1
+def critical(*args, **kwargs) -> Incomplete:
     ...
 
-def error(x0) -> Incomplete:
+# inspect: arity=1
+def error(*args, **kwargs) -> Incomplete:
     ...
 
-def basicConfig(x0, x1, x2, x3) -> Incomplete:
+# inspect: arity=4
+def basicConfig(*args, **kwargs) -> Incomplete:
     ...
 
-def debug(x0) -> Incomplete:
+# inspect: arity=1
+def debug(*args, **kwargs) -> Incomplete:
     ...
 
-def addLevelName(x0, x1) -> Incomplete:
+# inspect: arity=2
+def addLevelName(*args, **kwargs) -> Incomplete:
     ...
 
-def warning(x0) -> Incomplete:
+# inspect: arity=1
+def warning(*args, **kwargs) -> Incomplete:
     ...
 
-def log(x0, x1) -> Incomplete:
+# inspect: arity=2
+def log(*args, **kwargs) -> Incomplete:
     ...
 
-def const(x0) -> Incomplete:
+# inspect: arity=1
+def const(*args, **kwargs) -> Incomplete:
     ...
 
 
 class StreamHandler():
-    def emit(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def emit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setFormatter(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setFormatter(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setLevel(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def format(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def format(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self) -> Incomplete:
+    # inspect: arity=1
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -76,19 +92,24 @@ class StreamHandler():
 _stream: Incomplete ## <class 'TextIOWrapper'> = <io.TextIOWrapper 2>
 
 class FileHandler():
-    def emit(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def emit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setFormatter(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setFormatter(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setLevel(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def format(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def format(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self) -> Incomplete:
+    # inspect: arity=1
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -96,40 +117,52 @@ class FileHandler():
 
 
 class Logger():
-    def hasHandlers(self) -> Incomplete:
+    # inspect: arity=1
+    def hasHandlers(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def warning(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def warning(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def getEffectiveLevel(self) -> Incomplete:
+    # inspect: arity=1
+    def getEffectiveLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setLevel(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def info(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def info(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isEnabledFor(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def isEnabledFor(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def addHandler(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def addHandler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def exception(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def exception(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def log(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def log(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def error(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def error(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def critical(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def critical(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def debug(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def debug(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -137,13 +170,16 @@ class Logger():
 
 
 class Formatter():
-    def formatTime(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def formatTime(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def usesTime(self) -> Incomplete:
+    # inspect: arity=1
+    def usesTime(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def format(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def format(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -151,7 +187,8 @@ class Formatter():
 
 
 class LogRecord():
-    def set(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def set(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -159,16 +196,20 @@ class LogRecord():
 
 
 class Handler():
-    def setLevel(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setFormatter(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def setFormatter(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def format(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def format(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self) -> Incomplete:
+    # inspect: arity=1
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

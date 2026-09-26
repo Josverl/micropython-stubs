@@ -38,7 +38,7 @@ Module: 'time' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator, Literal, overload
@@ -160,6 +160,7 @@ def ticks_cpu() -> _TicksCPU:
     """
     ...
 
+# inspect: arity=2
 def ticks_add(ticks: _Ticks, delta: int, /) -> _Ticks:
     """
     Offset ticks value by a given number, which can be either positive or negative.
@@ -228,7 +229,8 @@ def time() -> int:
     """
     ...
 
-def strftime(x0, x1) -> Incomplete: ...
+# inspect: arity=2
+def strftime(*args, **kwargs) -> Incomplete: ...
 def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
@@ -273,7 +275,10 @@ def localtime(secs: int | None = None, /) -> _TimeTuple:
     """
     ...
 
-def const(x0) -> Incomplete: ...
+# inspect: arity=1
+def const(*args, **kwargs) -> Incomplete: ...
+
+# inspect: arity=1
 def sleep_us(us: int, /) -> None:
     """
     Delay for given number of microseconds, should be positive or 0.
@@ -284,6 +289,7 @@ def sleep_us(us: int, /) -> None:
     """
     ...
 
+# inspect: arity=1
 def sleep_ms(ms: int, /) -> None:
     """
     Delay for given number of milliseconds, should be positive or 0.
@@ -298,6 +304,7 @@ def sleep_ms(ms: int, /) -> None:
     """
     ...
 
+# inspect: arity=1
 def mktime(local_time: _TimeTuple, /) -> int:
     """
     This is inverse function of localtime. It's argument is a full 8-tuple
@@ -306,6 +313,7 @@ def mktime(local_time: _TimeTuple, /) -> int:
     """
     ...
 
+# inspect: arity=1
 def sleep(seconds: float, /) -> None:
     """
     Sleep for the given number of seconds. Some boards may accept *seconds* as a

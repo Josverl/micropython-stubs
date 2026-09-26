@@ -2,26 +2,31 @@
 Module: 'asyncio.funcs' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def wait_for_ms(x0, x1) -> Incomplete:
+# inspect: arity=2
+def wait_for_ms(*args, **kwargs) -> Incomplete:
     ...
 
-async def gather(x0) -> Incomplete:
+# inspect: arity=1
+async def gather(*args, **kwargs) -> Incomplete:
     ...
 
-async def wait_for(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+async def wait_for(*args, **kwargs) -> Incomplete:
     ...
 
-async def _run(x0, x1) -> Incomplete:
+# inspect: arity=2
+async def _run(*args, **kwargs) -> Incomplete:
     ...
 
 
 class _Remove():
-    def remove(self) -> Incomplete:
+    # inspect: arity=1
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

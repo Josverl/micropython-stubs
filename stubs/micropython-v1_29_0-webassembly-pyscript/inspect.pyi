@@ -2,63 +2,80 @@
 Module: 'inspect' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def isclass(x0) -> Incomplete:
+# inspect: arity=1
+def isclass(*args, **kwargs) -> Incomplete:
     ...
 
-def signature(x0) -> Incomplete:
+# inspect: arity=1
+def signature(*args, **kwargs) -> Incomplete:
     ...
 
-def iscoroutine(x0) -> Incomplete:
+# inspect: arity=1
+def iscoroutine(*args, **kwargs) -> Incomplete:
     ...
 
-def getmro(x0) -> Incomplete:
+# inspect: arity=1
+def getmro(*args, **kwargs) -> Incomplete:
     ...
 
-def getsourcefile(x0) -> Incomplete:
+# inspect: arity=1
+def getsourcefile(*args, **kwargs) -> Incomplete:
     ...
 
-def getsource(x0) -> Incomplete:
+# inspect: arity=1
+def getsource(*args, **kwargs) -> Incomplete:
     ...
 
-def ismethod(x0) -> Incomplete:
+# inspect: arity=1
+def ismethod(*args, **kwargs) -> Incomplete:
     ...
 
-def iscoroutinefunction(x0) -> Incomplete:
+# inspect: arity=1
+def iscoroutinefunction(*args, **kwargs) -> Incomplete:
     ...
 
-def ismodule(x0) -> Incomplete:
+# inspect: arity=1
+def ismodule(*args, **kwargs) -> Incomplete:
     ...
 
-def isfunction(x0) -> Incomplete:
+# inspect: arity=1
+def isfunction(*args, **kwargs) -> Incomplete:
     ...
 
-def isgeneratorfunction(x0) -> Incomplete:
+# inspect: arity=1
+def isgeneratorfunction(*args, **kwargs) -> Incomplete:
     ...
 
-def isgenerator(x0) -> Incomplete:
+# inspect: arity=1
+def isgenerator(*args, **kwargs) -> Incomplete:
     ...
 
-def getargspec(x0) -> Incomplete:
+# inspect: arity=1
+def getargspec(*args, **kwargs) -> Incomplete:
     ...
 
-def getmodule(x0, x1) -> Incomplete:
+# inspect: arity=2
+def getmodule(*args, **kwargs) -> Incomplete:
     ...
 
 def currentframe() -> Incomplete:
     ...
 
-def getmembers(x0, x1) -> Incomplete:
+# inspect: arity=2
+def getmembers(*args, **kwargs) -> Incomplete:
     ...
 
-def getfile(x0) -> Incomplete:
+# inspect: arity=1
+def getfile(*args, **kwargs) -> Incomplete:
     ...
 
-def getframeinfo(x0, x1) -> Incomplete:
+# inspect: arity=2
+def getframeinfo(*args, **kwargs) -> Incomplete:
     ...
 
 

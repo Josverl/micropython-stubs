@@ -2,68 +2,88 @@
 Module: 'operator' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def lt(x0, x1) -> Incomplete:
+# inspect: arity=2
+def lt(*args, **kwargs) -> Incomplete:
     ...
 
-def mod(x0, x1) -> Incomplete:
+# inspect: arity=2
+def mod(*args, **kwargs) -> Incomplete:
     ...
 
-def xor(x0, x1) -> Incomplete:
+# inspect: arity=2
+def xor(*args, **kwargs) -> Incomplete:
     ...
 
-def le(x0, x1) -> Incomplete:
+# inspect: arity=2
+def le(*args, **kwargs) -> Incomplete:
     ...
 
-def invert(x0) -> Incomplete:
+# inspect: arity=1
+def invert(*args, **kwargs) -> Incomplete:
     ...
 
-def or_(x0, x1) -> Incomplete:
+# inspect: arity=2
+def or_(*args, **kwargs) -> Incomplete:
     ...
 
-def truediv(x0, x1) -> Incomplete:
+# inspect: arity=2
+def truediv(*args, **kwargs) -> Incomplete:
     ...
 
-def mul(x0, x1) -> Incomplete:
+# inspect: arity=2
+def mul(*args, **kwargs) -> Incomplete:
     ...
 
-def neg(x0) -> Incomplete:
+# inspect: arity=1
+def neg(*args, **kwargs) -> Incomplete:
     ...
 
-def ne(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ne(*args, **kwargs) -> Incomplete:
     ...
 
-def sub(x0, x1) -> Incomplete:
+# inspect: arity=2
+def sub(*args, **kwargs) -> Incomplete:
     ...
 
-def and_(x0, x1) -> Incomplete:
+# inspect: arity=2
+def and_(*args, **kwargs) -> Incomplete:
     ...
 
-def inv(x0) -> Incomplete:
+# inspect: arity=1
+def inv(*args, **kwargs) -> Incomplete:
     ...
 
-def add(x0, x1) -> Incomplete:
+# inspect: arity=2
+def add(*args, **kwargs) -> Incomplete:
     ...
 
-def pow(x0, x1) -> Incomplete:
+# inspect: arity=2
+def pow(*args, **kwargs) -> Incomplete:
     ...
 
-def ge(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ge(*args, **kwargs) -> Incomplete:
     ...
 
-def gt(x0, x1) -> Incomplete:
+# inspect: arity=2
+def gt(*args, **kwargs) -> Incomplete:
     ...
 
-def attrgetter(x0) -> Incomplete:
+# inspect: arity=1
+def attrgetter(*args, **kwargs) -> Incomplete:
     ...
 
-def floordiv(x0, x1) -> Incomplete:
+# inspect: arity=2
+def floordiv(*args, **kwargs) -> Incomplete:
     ...
 
-def eq(x0, x1) -> Incomplete:
+# inspect: arity=2
+def eq(*args, **kwargs) -> Incomplete:
     ...
 

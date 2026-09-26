@@ -2,7 +2,7 @@
 Module: 'builtins' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
@@ -13,7 +13,8 @@ def eval(*args, **kwargs) -> Incomplete:
 def dir(*args, **kwargs) -> Incomplete:
     ...
 
-def divmod(x0, x1) -> Incomplete:
+# inspect: arity=2
+def divmod(*args, **kwargs) -> Incomplete:
     ...
 
 def globals() -> Incomplete:
@@ -25,28 +26,34 @@ def exec(*args, **kwargs) -> Incomplete:
 def getattr(*args, **kwargs) -> Incomplete:
     ...
 
-def hasattr(x0, x1) -> Incomplete:
+# inspect: arity=2
+def hasattr(*args, **kwargs) -> Incomplete:
     ...
 
 def sum(*args, **kwargs) -> Incomplete:
     ...
 
-def setattr(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+def setattr(*args, **kwargs) -> Incomplete:
     ...
 
-def any(x0) -> Incomplete:
+# inspect: arity=1
+def any(*args, **kwargs) -> Incomplete:
     ...
 
 def sorted(*args, **kwargs) -> Incomplete:
     ...
 
-def callable(x0) -> Incomplete:
+# inspect: arity=1
+def callable(*args, **kwargs) -> Incomplete:
     ...
 
-def chr(x0) -> Incomplete:
+# inspect: arity=1
+def chr(*args, **kwargs) -> Incomplete:
     ...
 
-def all(x0) -> Incomplete:
+# inspect: arity=1
+def all(*args, **kwargs) -> Incomplete:
     ...
 
 def next(*args, **kwargs) -> Incomplete:
@@ -55,7 +62,8 @@ def next(*args, **kwargs) -> Incomplete:
 def locals() -> Incomplete:
     ...
 
-def repr(x0) -> Incomplete:
+# inspect: arity=1
+def repr(*args, **kwargs) -> Incomplete:
     ...
 
 def pow(*args, **kwargs) -> Incomplete:
@@ -64,28 +72,35 @@ def pow(*args, **kwargs) -> Incomplete:
 def open(*args, **kwargs) -> Incomplete:
     ...
 
-def ord(x0) -> Incomplete:
+# inspect: arity=1
+def ord(*args, **kwargs) -> Incomplete:
     ...
 
-def hash(x0) -> Incomplete:
+# inspect: arity=1
+def hash(*args, **kwargs) -> Incomplete:
     ...
 
-def isinstance(x0, x1) -> Incomplete:
+# inspect: arity=2
+def isinstance(*args, **kwargs) -> Incomplete:
     ...
 
 def round(*args, **kwargs) -> Incomplete:
     ...
 
-def id(x0) -> Incomplete:
+# inspect: arity=1
+def id(*args, **kwargs) -> Incomplete:
     ...
 
-def len(x0) -> Incomplete:
+# inspect: arity=1
+def len(*args, **kwargs) -> Incomplete:
     ...
 
-def issubclass(x0, x1) -> Incomplete:
+# inspect: arity=2
+def issubclass(*args, **kwargs) -> Incomplete:
     ...
 
-def iter(x0) -> Incomplete:
+# inspect: arity=1
+def iter(*args, **kwargs) -> Incomplete:
     ...
 
 def print(*args, **kwargs) -> Incomplete:
@@ -97,10 +112,12 @@ def execfile(*args, **kwargs) -> Incomplete:
 def help(*args, **kwargs) -> Incomplete:
     ...
 
-def abs(x0) -> Incomplete:
+# inspect: arity=1
+def abs(*args, **kwargs) -> Incomplete:
     ...
 
-def delattr(x0, x1) -> Incomplete:
+# inspect: arity=2
+def delattr(*args, **kwargs) -> Incomplete:
     ...
 
 def compile(*args, **kwargs) -> Incomplete:
@@ -109,10 +126,12 @@ def compile(*args, **kwargs) -> Incomplete:
 def min(*args, **kwargs) -> Incomplete:
     ...
 
-def oct(x0) -> Incomplete:
+# inspect: arity=1
+def oct(*args, **kwargs) -> Incomplete:
     ...
 
-def hex(x0) -> Incomplete:
+# inspect: arity=1
+def hex(*args, **kwargs) -> Incomplete:
     ...
 
 def max(*args, **kwargs) -> Incomplete:
@@ -121,7 +140,8 @@ def max(*args, **kwargs) -> Incomplete:
 def input(*args, **kwargs) -> Incomplete:
     ...
 
-def bin(x0) -> Incomplete:
+# inspect: arity=1
+def bin(*args, **kwargs) -> Incomplete:
     ...
 
 Ellipsis: Incomplete ## <class ''> = Ellipsis

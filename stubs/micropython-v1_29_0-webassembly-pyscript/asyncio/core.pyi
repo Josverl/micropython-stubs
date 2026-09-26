@@ -2,25 +2,29 @@
 Module: 'asyncio.core' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
 _exc_context: dict = {}
-def _promote_to_task(x0) -> Incomplete:
+# inspect: arity=1
+def _promote_to_task(*args, **kwargs) -> Incomplete:
     ...
 
 def _run_iter() -> Incomplete:
     ...
 
-def ticks_diff(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
-def ticks_add(x0, x1) -> Incomplete:
+# inspect: arity=2
+def ticks_add(*args, **kwargs) -> Incomplete:
     ...
 
-def sleep_ms(x0, x1) -> Incomplete:
+# inspect: arity=2
+def sleep_ms(*args, **kwargs) -> Incomplete:
     ...
 
 def get_event_loop() -> Incomplete:
@@ -29,34 +33,41 @@ def get_event_loop() -> Incomplete:
 def new_event_loop() -> Incomplete:
     ...
 
-def _schedule_run_iter(x0) -> Incomplete:
+# inspect: arity=1
+def _schedule_run_iter(*args, **kwargs) -> Incomplete:
     ...
 
 def current_task() -> Incomplete:
     ...
 
-def create_task(x0) -> Incomplete:
+# inspect: arity=1
+def create_task(*args, **kwargs) -> Incomplete:
     ...
 
 def ticks() -> Incomplete:
     ...
 
-def sleep(x0) -> Incomplete:
+# inspect: arity=1
+def sleep(*args, **kwargs) -> Incomplete:
     ...
 
 asyncio_timer: Incomplete ## <class 'NoneType'> = None
 
 class ThenableEvent():
-    def set(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def set(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def cancel(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def cancel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
-    async def wait(self) -> Incomplete:
+    # inspect: arity=1
+    async def wait(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -64,10 +75,12 @@ class ThenableEvent():
 
 
 class TopLevelCoro():
-    def set(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def set(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def send(self) -> Incomplete:
+    # inspect: arity=1
+    def send(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -101,22 +114,29 @@ class Task():
 
 
 class Loop():
-    def default_exception_handler(self, x1) -> Incomplete:
+    # inspect: arity=1
+    def set_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def create_task(self) -> Incomplete:
+    # inspect: arity=1
+    def create_task(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    # inspect: arity=2
+    def default_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
     def get_exception_handler(self) -> Incomplete:
         ...
 
-    def set_exception_handler(self) -> Incomplete:
+    def create_future(self) -> Incomplete:
         ...
 
     def close(self) -> Incomplete:
         ...
 
-    def call_exception_handler(self) -> Incomplete:
+    # inspect: arity=1
+    def call_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
     _exc_handler: Incomplete ## <class 'NoneType'> = None

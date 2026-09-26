@@ -2,29 +2,33 @@
 Module: 'pyscript.__init__' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
 config: dict = {}
 RUNNING_IN_WORKER: Final[bool] = False
-def display(x0) -> Incomplete:
+# inspect: arity=1
+def display(*args, **kwargs) -> Incomplete:
     ...
 
 def current_target() -> Incomplete:
     ...
 
-def fetch(x0) -> Incomplete:
+# inspect: arity=1
+def fetch(*args, **kwargs) -> Incomplete:
     ...
 
-def when(x0) -> Incomplete:
+# inspect: arity=1
+def when(*args, **kwargs) -> Incomplete:
     ...
 
 workers: Incomplete ## <class '_ReadOnlyProxy'> = <_ReadOnlyProxy object at ...>
 
 class HTML():
-    def _repr_html_(self) -> Incomplete:
+    # inspect: arity=1
+    def _repr_html_(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -32,13 +36,15 @@ class HTML():
 
 
 class Storage():
-    def popitem(self) -> Incomplete:
+    # inspect: arity=1
+    def popitem(self, *args, **kwargs) -> Incomplete:
         ...
 
     def pop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def values(self) -> Incomplete:
+    # inspect: arity=1
+    def values(self, *args, **kwargs) -> Incomplete:
         ...
 
     def setdefault(self, *args, **kwargs) -> Incomplete:
@@ -47,32 +53,38 @@ class Storage():
     def update(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def keys(self) -> Incomplete:
+    # inspect: arity=1
+    def keys(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def copy(self) -> Incomplete:
+    # inspect: arity=1
+    def copy(self, *args, **kwargs) -> Incomplete:
         ...
 
     def get(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def items(self) -> Incomplete:
+    # inspect: arity=1
+    def items(self, *args, **kwargs) -> Incomplete:
         ...
 
     @classmethod
     def fromkeys(cls, *args, **kwargs) -> Incomplete:
         ...
 
-    async def sync(self) -> Incomplete:
+    # inspect: arity=1
+    async def sync(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def clear(self) -> Incomplete:
+    # inspect: arity=1
+    def clear(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
-async def storage(x0, x1) -> Incomplete:
+# inspect: arity=2
+async def storage(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -81,16 +93,19 @@ class WebSocket():
     CLOSED: Final[int] = 3
     CLOSING: Final[int] = 2
     CONNECTING: Final[int] = 0
-    def send(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def send(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self) -> Incomplete:
+    # inspect: arity=1
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
-async def create_named_worker(x0, x1, x2, x3) -> Incomplete:
+# inspect: arity=4
+async def create_named_worker(*args, **kwargs) -> Incomplete:
     ...
 
 @classmethod
@@ -99,13 +114,16 @@ def py_import(*args, **kwargs) -> Incomplete:
 
 
 class Event():
-    def add_listener(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def add_listener(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove_listener(self) -> Incomplete:
+    # inspect: arity=1
+    def remove_listener(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def trigger(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def trigger(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

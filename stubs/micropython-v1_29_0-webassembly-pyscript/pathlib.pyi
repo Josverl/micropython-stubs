@@ -2,83 +2,107 @@
 Module: 'pathlib' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def _mode_if_exists(x0) -> Incomplete:
+# inspect: arity=1
+def _mode_if_exists(*args, **kwargs) -> Incomplete:
     ...
 
-def _clean_segment(x0) -> Incomplete:
+# inspect: arity=1
+def _clean_segment(*args, **kwargs) -> Incomplete:
     ...
 
-def const(x0) -> Incomplete:
+# inspect: arity=1
+def const(*args, **kwargs) -> Incomplete:
     ...
 
 
 class Path():
-    def is_file(self) -> Incomplete:
+    # inspect: arity=1
+    def is_file(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_bytes(self) -> Incomplete:
+    # inspect: arity=1
+    def read_bytes(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_text(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def read_text(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def is_dir(self) -> Incomplete:
+    # inspect: arity=1
+    def is_dir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def glob(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def glob(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_text(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def write_text(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def with_suffix(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def with_suffix(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_bytes(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def write_bytes(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def resolve(self) -> Incomplete:
+    # inspect: arity=1
+    def resolve(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def touch(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def touch(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def rglob(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def rglob(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def rename(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def rename(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def rmdir(self) -> Incomplete:
+    # inspect: arity=1
+    def rmdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stat(self) -> Incomplete:
+    # inspect: arity=1
+    def stat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def mkdir(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def mkdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def open(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def open(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def expanduser(self) -> Incomplete:
+    # inspect: arity=1
+    def expanduser(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def absolute(self) -> Incomplete:
+    # inspect: arity=1
+    def absolute(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def unlink(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def unlink(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def exists(self) -> Incomplete:
+    # inspect: arity=1
+    def exists(self, *args, **kwargs) -> Incomplete:
         ...
 
-    async def _glob(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    async def _glob(self, *args, **kwargs) -> Incomplete:
         ...
 
     parent: Incomplete ## <class 'property'> = <property>

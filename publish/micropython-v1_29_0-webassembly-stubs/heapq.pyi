@@ -16,7 +16,7 @@ Module: 'heapq' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator
@@ -26,6 +26,7 @@ from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
 
+# inspect: arity=1
 def heappop(heap: list[_T], /) -> _T:
     """
     Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
@@ -35,12 +36,14 @@ def heappop(heap: list[_T], /) -> _T:
     """
     ...
 
+# inspect: arity=2
 def heappush(heap: list[_T], item: _T, /) -> None:
     """
     Push the ``item`` onto the ``heap``.
     """
     ...
 
+# inspect: arity=1
 def heapify(x: list[Any], /) -> None:
     """
     Convert the list ``x`` into a heap.  This is an in-place operation.

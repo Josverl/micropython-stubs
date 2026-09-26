@@ -1,5 +1,5 @@
 {"firmware": {"family": "micropython", "version": "1.29.0", "build": "", "ver": "1.29.0", "port": "webassembly", "board": "pyscript", "board_id": "pyscript", "variant": "", "cpu": "Emscripten", "mpy": "v6.3", "arch": ""},
-"stubber": {"version": "v1.28.6"}, "stubtype": "firmware",
+"stubber": {"version": "v1.29.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/stubs/micropython-v1_29_0-webassembly-pyscript/_asyncio.pyi"},
 {"module": "_pyscript", "file": "/stubs/micropython-v1_29_0-webassembly-pyscript/_pyscript.pyi"},

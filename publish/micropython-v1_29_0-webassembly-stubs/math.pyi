@@ -18,7 +18,7 @@ Module: 'math' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator, SupportsFloat, overload
@@ -34,18 +34,21 @@ e: float = 2.718281828459045
 """base of the natural logarithm"""
 tau: float = 6.283185307179586
 
+# inspect: arity=2
 def ldexp(x: SupportsFloat, exp: int, /) -> float:
     """
     Return ``x * (2**exp)``.
     """
     ...
 
+# inspect: arity=1
 def lgamma(x: SupportsFloat, /) -> float:
     """
     Return the natural logarithm of the gamma function of ``x``.
     """
     ...
 
+# inspect: arity=1
 def trunc(x: SupportsFloat, /) -> int:
     """
     Return an integer, being ``x`` rounded towards 0.
@@ -53,36 +56,43 @@ def trunc(x: SupportsFloat, /) -> int:
     ...
 
 def isclose(*args, **kwargs) -> Incomplete: ...
+
+# inspect: arity=1
 def gamma(x: SupportsFloat, /) -> float:
     """
     Return the gamma function of ``x``.
     """
     ...
 
+# inspect: arity=1
 def isnan(x: SupportsFloat, /) -> bool:
     """
     Return ``True`` if ``x`` is not-a-number
     """
     ...
 
+# inspect: arity=1
 def isfinite(x: SupportsFloat, /) -> bool:
     """
     Return ``True`` if ``x`` is finite.
     """
     ...
 
+# inspect: arity=1
 def isinf(x: SupportsFloat, /) -> bool:
     """
     Return ``True`` if ``x`` is infinite.
     """
     ...
 
+# inspect: arity=1
 def sqrt(x: SupportsFloat, /) -> float:
     """
     Return the square root of ``x``.
     """
     ...
 
+# inspect: arity=1
 def sinh(x: SupportsFloat, /) -> float:
     """
     Return the hyperbolic sine of ``x``.
@@ -107,36 +117,42 @@ def log(x: SupportsFloat, base: SupportsFloat, /) -> float:
     """
     ...
 
+# inspect: arity=1
 def tan(x: SupportsFloat, /) -> float:
     """
     Return the tangent of ``x``.
     """
     ...
 
+# inspect: arity=1
 def tanh(x: SupportsFloat, /) -> float:
     """
     Return the hyperbolic tangent of ``x``.
     """
     ...
 
+# inspect: arity=1
 def log2(x: SupportsFloat, /) -> float:
     """
     Return the base-2 logarithm of ``x``.
     """
     ...
 
+# inspect: arity=1
 def log10(x: SupportsFloat, /) -> float:
     """
     Return the base-10 logarithm of ``x``.
     """
     ...
 
+# inspect: arity=1
 def sin(x: SupportsFloat, /) -> float:
     """
     Return the sine of ``x``.
     """
     ...
 
+# inspect: arity=1
 def modf(x: SupportsFloat, /) -> tuple[float, float]:
     """
     Return a tuple of two floats, being the fractional and integral parts of
@@ -144,42 +160,49 @@ def modf(x: SupportsFloat, /) -> tuple[float, float]:
     """
     ...
 
+# inspect: arity=1
 def radians(x: SupportsFloat, /) -> float:
     """
     Return degrees ``x`` converted to radians.
     """
     ...
 
+# inspect: arity=1
 def atanh(x: SupportsFloat, /) -> float:
     """
     Return the inverse hyperbolic tangent of ``x``.
     """
     ...
 
+# inspect: arity=2
 def atan2(y: SupportsFloat, x: SupportsFloat, /) -> float:
     """
     Return the principal value of the inverse tangent of ``y/x``.
     """
     ...
 
+# inspect: arity=1
 def atan(x: SupportsFloat, /) -> float:
     """
     Return the inverse tangent of ``x``.
     """
     ...
 
+# inspect: arity=1
 def ceil(x: SupportsFloat, /) -> int:
     """
     Return an integer, being ``x`` rounded towards positive infinity.
     """
     ...
 
+# inspect: arity=2
 def copysign(x: SupportsFloat, y: SupportsFloat, /) -> float:
     """
     Return ``x`` with the sign of ``y``.
     """
     ...
 
+# inspect: arity=1
 def frexp(x: SupportsFloat, /) -> tuple[float, int]:
     """
     Decomposes a floating-point number into its mantissa and exponent.
@@ -189,91 +212,108 @@ def frexp(x: SupportsFloat, /) -> tuple[float, int]:
     """
     ...
 
+# inspect: arity=1
 def acos(x: SupportsFloat, /) -> float:
     """
     Return the inverse cosine of ``x``.
     """
     ...
 
+# inspect: arity=2
 def pow(x: SupportsFloat, y: SupportsFloat, /) -> float:
     """
     Returns ``x`` to the power of ``y``.
     """
     ...
 
+# inspect: arity=1
 def asinh(x: SupportsFloat, /) -> float:
     """
     Return the inverse hyperbolic sine of ``x``.
     """
     ...
 
+# inspect: arity=1
 def acosh(x: SupportsFloat, /) -> float:
     """
     Return the inverse hyperbolic cosine of ``x``.
     """
     ...
 
+# inspect: arity=1
 def asin(x: SupportsFloat, /) -> float:
     """
     Return the inverse sine of ``x``.
     """
     ...
 
-def factorial(x0) -> Incomplete: ...
+# inspect: arity=1
+def factorial(*args, **kwargs) -> Incomplete: ...
+
+# inspect: arity=1
 def fabs(x: SupportsFloat, /) -> float:
     """
     Return the absolute value of ``x``.
     """
     ...
 
+# inspect: arity=1
 def expm1(x: SupportsFloat, /) -> float:
     """
     Return ``exp(x) - 1``.
     """
     ...
 
+# inspect: arity=1
 def floor(x: SupportsFloat, /) -> int:
     """
     Return an integer, being ``x`` rounded towards negative infinity.
     """
     ...
 
+# inspect: arity=2
 def fmod(x: SupportsFloat, y: SupportsFloat, /) -> float:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
+# inspect: arity=1
 def cos(x: SupportsFloat, /) -> float:
     """
     Return the cosine of ``x``.
     """
     ...
 
+# inspect: arity=1
 def degrees(x: SupportsFloat, /) -> float:
     """
     Return radians ``x`` converted to degrees.
     """
     ...
 
+# inspect: arity=1
 def cosh(x: SupportsFloat, /) -> float:
     """
     Return the hyperbolic cosine of ``x``.
     """
     ...
 
+# inspect: arity=1
 def exp(x: SupportsFloat, /) -> float:
     """
     Return the exponential of ``x``.
     """
     ...
 
+# inspect: arity=1
 def erf(x: SupportsFloat, /) -> float:
     """
     Return the error function of ``x``.
     """
     ...
 
+# inspect: arity=1
 def erfc(x: SupportsFloat, /) -> float:
     """
     Return the complementary error function of ``x``.

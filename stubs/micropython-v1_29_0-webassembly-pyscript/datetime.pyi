@@ -2,97 +2,125 @@
 Module: 'datetime' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
 MAXYEAR: Final[int] = 9999
 MINYEAR: Final[int] = 1
-def _iso2t(x0) -> Incomplete:
+# inspect: arity=1
+def _iso2t(*args, **kwargs) -> Incomplete:
     ...
 
-def _iso2d(x0) -> Incomplete:
+# inspect: arity=1
+def _iso2d(*args, **kwargs) -> Incomplete:
     ...
 
-def _t2iso(x0, x1, x2, x3) -> Incomplete:
+# inspect: arity=4
+def _t2iso(*args, **kwargs) -> Incomplete:
     ...
 
-def _leap(x0) -> Incomplete:
+# inspect: arity=1
+def _leap(*args, **kwargs) -> Incomplete:
     ...
 
-def _o2ymd(x0) -> Incomplete:
+# inspect: arity=1
+def _o2ymd(*args, **kwargs) -> Incomplete:
     ...
 
-def _d2iso(x0) -> Incomplete:
+# inspect: arity=1
+def _d2iso(*args, **kwargs) -> Incomplete:
     ...
 
-def _time(x0, x1, x2, x3, x4) -> Incomplete:
+# inspect: arity=5
+def _time(*args, **kwargs) -> Incomplete:
     ...
 
-def _dim(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _dim(*args, **kwargs) -> Incomplete:
     ...
 
-def _date(x0, x1, x2) -> Incomplete:
+# inspect: arity=3
+def _date(*args, **kwargs) -> Incomplete:
     ...
 
-def _dbm(x0, x1) -> Incomplete:
+# inspect: arity=2
+def _dbm(*args, **kwargs) -> Incomplete:
     ...
 
 
 class datetime():
-    def isoweekday(self) -> Incomplete:
+    # inspect: arity=1
+    def isoweekday(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def dst(self) -> Incomplete:
+    # inspect: arity=1
+    def dst(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tzname(self) -> Incomplete:
+    # inspect: arity=1
+    def tzname(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def date(self) -> Incomplete:
+    # inspect: arity=1
+    def date(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isoformat(self, x1, x2) -> Incomplete:
+    # inspect: arity=3
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def toordinal(self) -> Incomplete:
+    # inspect: arity=1
+    def toordinal(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def timestamp(self) -> Incomplete:
+    # inspect: arity=1
+    def timestamp(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def timetuple(self) -> Incomplete:
+    # inspect: arity=1
+    def timetuple(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def timetz(self) -> Incomplete:
+    # inspect: arity=1
+    def timetz(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def weekday(self) -> Incomplete:
+    # inspect: arity=1
+    def weekday(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def time(self) -> Incomplete:
+    # inspect: arity=1
+    def time(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tuple(self) -> Incomplete:
+    # inspect: arity=1
+    def tuple(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def replace(self, x1, x2, x3, x4, x5) -> Incomplete:
+    # inspect: arity=6
+    def replace(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def utcoffset(self) -> Incomplete:
+    # inspect: arity=1
+    def utcoffset(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def _cmp(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _cmp(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def astimezone(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def astimezone(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def _sub(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _sub(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def _mktime(self) -> Incomplete:
+    # inspect: arity=1
+    def _mktime(self, *args, **kwargs) -> Incomplete:
         ...
 
     year: Incomplete ## <class 'property'> = <property>
@@ -130,19 +158,24 @@ class datetime():
 
 
 class timedelta():
-    def _tuple(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _tuple(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def _fmt(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _fmt(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isoformat(self) -> Incomplete:
+    # inspect: arity=1
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def total_seconds(self) -> Incomplete:
+    # inspect: arity=1
+    def total_seconds(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tuple(self) -> Incomplete:
+    # inspect: arity=1
+    def tuple(self, *args, **kwargs) -> Incomplete:
         ...
 
     min: Incomplete ## <class 'timedelta'> = datetime.timedelta(microseconds=-86399999913600000000)
@@ -156,19 +189,24 @@ class timedelta():
 
 
 class timezone():
-    def isoformat(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tzname(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def tzname(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def utcoffset(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def utcoffset(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def fromutc(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def fromutc(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def dst(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def dst(self, *args, **kwargs) -> Incomplete:
         ...
 
     utc: Incomplete ## <class 'timezone'> = datetime.timezone(datetime.timedelta(microseconds=0), None)
@@ -177,19 +215,24 @@ class timezone():
 
 
 class tzinfo():
-    def isoformat(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tzname(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def tzname(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def utcoffset(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def utcoffset(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def fromutc(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def fromutc(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def dst(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def dst(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -197,25 +240,32 @@ class tzinfo():
 
 
 class time():
-    def _sub(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def _sub(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def dst(self) -> Incomplete:
+    # inspect: arity=1
+    def dst(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isoformat(self, x1) -> Incomplete:
+    # inspect: arity=2
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tzname(self) -> Incomplete:
+    # inspect: arity=1
+    def tzname(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def utcoffset(self) -> Incomplete:
+    # inspect: arity=1
+    def utcoffset(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tuple(self) -> Incomplete:
+    # inspect: arity=1
+    def tuple(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def replace(self, x1, x2, x3, x4, x5, x6) -> Incomplete:
+    # inspect: arity=7
+    def replace(self, *args, **kwargs) -> Incomplete:
         ...
 
     resolution: Incomplete ## <class 'timedelta'> = datetime.timedelta(microseconds=1)
@@ -236,25 +286,32 @@ class time():
 
 
 class date():
-    def timetuple(self) -> Incomplete:
+    # inspect: arity=1
+    def timetuple(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def toordinal(self) -> Incomplete:
+    # inspect: arity=1
+    def toordinal(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isoformat(self) -> Incomplete:
+    # inspect: arity=1
+    def isoformat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isoweekday(self) -> Incomplete:
+    # inspect: arity=1
+    def isoweekday(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def weekday(self) -> Incomplete:
+    # inspect: arity=1
+    def weekday(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def replace(self, x1, x2, x3) -> Incomplete:
+    # inspect: arity=4
+    def replace(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tuple(self) -> Incomplete:
+    # inspect: arity=1
+    def tuple(self, *args, **kwargs) -> Incomplete:
         ...
 
     @classmethod

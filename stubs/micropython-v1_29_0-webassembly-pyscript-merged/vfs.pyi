@@ -22,7 +22,7 @@ Module: 'vfs' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -56,6 +56,16 @@ def mount() -> List[tuple[Incomplete, str]]:
     """
     ...
 
+@overload
+def rom_ioctl(op: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...
+
+# inspect: arity=1
 def umount(mount_point: Incomplete) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
@@ -65,6 +75,42 @@ def umount(mount_point: Incomplete) -> None:
     Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
     """
     ...
+
+class VfsRom(AbstractBlockDev):
+    """
+    Create a filesystem object that accesses a ROMFS image from a readable buffer.
+    """
+    def umount(self, *args, **kwargs) -> Incomplete: ...
+    def mount(self, *args, **kwargs) -> Incomplete: ...
+    def stat(self, *args, **kwargs) -> Incomplete: ...
+    def statvfs(self, path) -> Incomplete:
+        """
+        The block size is reported as 1 and
+        the block count represents the total size of the ROMFS image in bytes.
+        """
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Incomplete: ...
+    def open(self, path, mode) -> Incomplete:
+        """
+        Open a file from the ROMFS.  Only read modes (``''``, ``'r'``,
+        ``'rt'``, ``'rb'``) are supported.
+        For binary files opened in read mode,
+        the returned object also supports the buffer protocol so that a
+        ``memoryview`` of the file data can be obtained, which refers
+        directly into the ROMFS memory (zero-copy).
+        """
+        ...
+
+    def chdir(self, path) -> Incomplete:
+        """
+        Change directory within the ROMFS.  Only the root (``'/'``) is
+        supported; changing to any subdirectory raises ``OSError(EOPNOTSUPP)``.
+        """
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, memory: AnyReadableBuf) -> None: ...
 
 class VfsPosix(AbstractBlockDev):
     """
@@ -204,12 +250,3 @@ class AbstractBlockDev:
         for failure, with the value returned being an ``OSError`` errno code.
         """
         ...
-
-@overload
-def rom_ioctl(op: int, /) -> Incomplete: ...
-@overload
-def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
-@overload
-def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
-@overload
-def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...

@@ -2,7 +2,7 @@
 Module: 'usys' on micropython-v1.29.0-webassembly-pyscript
 """
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
@@ -10,7 +10,7 @@ from _typeshed import Incomplete
 platform: str = 'webassembly'
 version_info: tuple = ()
 path: list = []
-version: str = '3.4.0; MicroPython v1.29.0 on 2026-08-28'
+version: str = '3.4.0; MicroPython v1.29.0-6.gc763859f35 on 2026-08-25'
 ps1: str = '>>> '
 ps2: str = '... '
 byteorder: str = 'little'

@@ -8,7 +8,7 @@ Module: 'micropython' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Callable, Final, Generator, Optional, Tuple, overload
@@ -156,6 +156,7 @@ def qstr_info(verbose: bool, /) -> None:
     verbose mode it prints out the names of all RAM-interned strings.
     """
 
+# inspect: arity=2
 def schedule(func: Callable[[_T], None], arg: _T, /) -> None:
     """
     Schedule the function *func* to be executed "very soon".  The function
@@ -218,6 +219,7 @@ def stack_use() -> int:
     """
     ...
 
+# inspect: arity=1
 def kbd_intr(chr: int) -> None:
     """
     Set the character that will raise a `KeyboardInterrupt` exception.  By
@@ -231,6 +233,7 @@ def kbd_intr(chr: int) -> None:
     """
     ...
 
+# inspect: arity=1
 def const(expr: Const_T, /) -> Const_T:
     """
     Used to declare that the expression is a constant so that the compiler can

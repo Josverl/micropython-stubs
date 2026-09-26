@@ -32,7 +32,7 @@ Module: 'gzip' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator
@@ -46,18 +46,21 @@ class GzipFile:
     """
     def __init__(self, *, fileobj, mode) -> None: ...
 
+# inspect: arity=1
 def decompress(data: bytes, /) -> bytes:
     """
     Decompresses *data* into a bytes object.
     """
     ...
 
+# inspect: arity=1
 def compress(data: bytes, /) -> bytes:
     """
     Compresses *data* into a bytes object.
     """
     ...
 
+# inspect: arity=2
 def open(filename, mode: str = "rb", /) -> Incomplete:
     """
     Wrapper around built-in :func:`open` returning a GzipFile instance.

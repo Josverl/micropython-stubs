@@ -31,7 +31,7 @@ Module: 'random' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator, overload
@@ -90,6 +90,7 @@ def seed(n: int | None = None, /) -> None:
     """
     ...
 
+# inspect: arity=2
 def uniform(a: float, b: float) -> float:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
@@ -97,6 +98,7 @@ def uniform(a: float, b: float) -> float:
     """
     ...
 
+# inspect: arity=1
 def choice(sequence: Subscriptable[_T], /) -> _T:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
@@ -104,12 +106,14 @@ def choice(sequence: Subscriptable[_T], /) -> _T:
     """
     ...
 
+# inspect: arity=2
 def randint(a: int, b: int, /) -> int:
     """
     Return a random integer in the range [*a*, *b*].
     """
     ...
 
+# inspect: arity=1
 def getrandbits(n: int, /) -> int:
     """
     Return an integer with *n* random bits (0 <= n <= 32).

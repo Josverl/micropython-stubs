@@ -13,7 +13,7 @@ Module: 'ucollections' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from collections.abc import Iterable, MutableSequence
@@ -26,6 +26,7 @@ _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 _T = TypeVar("_T")
 
+# inspect: arity=2
 def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific

@@ -34,7 +34,7 @@ Module: 'zlib' on micropython-v1.29.0-webassembly-pyscript
 """
 
 # MCU: {'family': 'micropython', 'version': '1.29.0', 'build': '', 'ver': '1.29.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.28.6
+# Stubber: v1.29.0
 from __future__ import annotations
 
 from typing import Any, AsyncGenerator, Final, Generator
@@ -42,7 +42,10 @@ from typing import Any, AsyncGenerator, Final, Generator
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def _decode_wbits(x0, x1) -> Incomplete: ...
+# inspect: arity=2
+def _decode_wbits(*args, **kwargs) -> Incomplete: ...
+
+# inspect: arity=2
 def compress(data: bytes, wbits: int = 15, /) -> bytes:
     """
     Compresses *data* into a bytes object.
@@ -73,6 +76,7 @@ def compress(data: bytes, wbits: int = 15, /) -> bytes:
     """
     ...
 
+# inspect: arity=2
 def decompress(data: bytes, wbits: int = 15, /) -> bytes:
     """
     Decompresses *data* into a bytes object.
