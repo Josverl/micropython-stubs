@@ -64,6 +64,7 @@ disable_error_code = ["no-redef", "assignment", "var-annotated"]
 line-length = 140
 target-version = "py39"
 builtins = ["ptr", "ptr8", "ptr16", "ptr32", "uint", "micropython", "const"]
+extend-exclude = ["typings"]
 
 [tool.ruff.lint]
 extend-select = [
