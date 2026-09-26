@@ -33,7 +33,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
             if stat[0] & 0x4000:  # stat.S_IFDIR
                 info["Type"] = "dir"
                 # recurse folder(s)
-                if sub == True:
+                if sub is True:
                     # log.debug("Folder :{}".format(full))
                     subdir = listdir(path=full, sub=True, JSON=False, gethash=gethash)
             else:
@@ -51,6 +51,6 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         info["Fullname"] = full
         li.append(info)
         # recurse folder(s)
-        if sub == True:
+        if sub is True:
             assert isinstance(subdir, list)
             li = li + subdir
