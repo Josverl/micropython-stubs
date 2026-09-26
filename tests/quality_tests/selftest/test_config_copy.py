@@ -59,3 +59,19 @@ def test_refresh_mpy_shed_replaces_stale_install(tmp_path):
 
     assert (destination / "time_mp.pyi").read_text(encoding="utf-8") == "class _TicksMs: ...\n"
     assert not (destination / "removed.pyi").exists()
+
+
+def test_refresh_mpy_shed_leaves_matching_install_untouched(tmp_path, monkeypatch):
+    source = tmp_path / "reference" / "_mpy_shed"
+    source.mkdir(parents=True)
+    (source / "time_mp.pyi").write_text("class _TicksMs: ...\n", encoding="utf-8")
+    destination = tmp_path / "typings" / "_mpy_shed"
+
+    conftest._refresh_mpy_shed(source, destination)
+
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("matching cache was rewritten")
+
+    monkeypatch.setattr(conftest.shutil, "rmtree", fail_if_called)
+    monkeypatch.setattr(conftest.shutil, "copytree", fail_if_called)
+    conftest._refresh_mpy_shed(source, destination)

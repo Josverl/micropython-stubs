@@ -22,6 +22,7 @@
 
 """
 
+import hashlib
 import json
 import shutil
 import subprocess
@@ -357,9 +358,24 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
 def _refresh_mpy_shed(source: Path, destination: Path) -> None:
     if not source.exists():
         return
+    fingerprint = _directory_fingerprint(source)
+    fingerprint_path = destination.parent / f".{destination.name}.sha256"
+    if destination.exists() and fingerprint_path.exists() and fingerprint_path.read_text(encoding="ascii") == fingerprint:
+        return
     if destination.exists():
         shutil.rmtree(destination)
     shutil.copytree(source, destination)
+    fingerprint_path.write_text(fingerprint, encoding="ascii")
+
+
+def _directory_fingerprint(source: Path) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(path for path in source.rglob("*") if path.is_file()):
+        digest.update(path.relative_to(source).as_posix().encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
 
 
 @pytest.fixture(scope="function")
