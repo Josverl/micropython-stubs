@@ -183,6 +183,71 @@ def test_checker_report_uses_a_longer_fence_for_checker_output(tmp_path):
     assert "````text\nmessage with ``` inside\n````" in markdown
 
 
+def test_checker_report_hoists_repeated_isolated_workspace_diagnostics(tmp_path):
+    reports = [
+        make_report(
+            checker="zuban",
+            values=("v1.29.0", "esp32", "asyncio"),
+            outcome="failed",
+            diagnostic=(
+                "zuban found 2 errors.\nassert 2 == 0\n\n"
+                '".pytest_cache/d/typings_v1_29_0_esp32_asyncio/_mpy_shed/foo.pyi"(12,4): Invalid type annotation\n'
+                '".pytest_cache/d/typings_v1_29_0_esp32_asyncio/asyncio.py"(8,2): Asyncio-only error'
+            ),
+        ),
+        make_report(
+            checker="zuban",
+            values=("v1.29.0", "rp2", "machine"),
+            outcome="failed",
+            diagnostic=(
+                "zuban found 2 errors.\nassert 2 == 0\n\n"
+                '".pytest_cache/d/typings_v1_29_0_rp2_machine/_mpy_shed/foo.pyi"(12,4): Invalid type annotation\n'
+                '".pytest_cache/d/typings_v1_29_0_rp2_machine/machine.py"(9,3): Machine-only error'
+            ),
+        ),
+        make_report(
+            checker="zuban",
+            values=("v1.29.0", "stm32", "stdlib"),
+            outcome="failed",
+            diagnostic=(
+                "zuban found 2 errors.\nassert 2 == 0\n\n"
+                '"C:/Users/test/AppData/Local/Temp/pytest-of-test/pytest-9/popen-gw0/'
+                'test_typecheck_local_v1_29_0_s0/typings/_mpy_shed/foo.pyi"(12,4): Invalid type annotation\n'
+                '"C:/Users/test/AppData/Local/Temp/pytest-of-test/pytest-9/popen-gw0/'
+                'test_typecheck_local_v1_29_0_s0/check_time.py"(8,2): Windows-only error'
+            ),
+        ),
+        make_report(
+            checker="zuban",
+            values=("v1.29.0", "unix", "stdlib"),
+            outcome="failed",
+            diagnostic=(
+                "zuban found 2 errors.\nassert 2 == 0\n\n"
+                '"/tmp/pytest-of-runner/pytest-0/popen-gw1/'
+                'test_typecheck_local_v1_29_0_u0/typings/_mpy_shed/foo.pyi"(12,4): Invalid type annotation\n'
+                '"/tmp/pytest-of-runner/pytest-0/popen-gw1/'
+                'test_typecheck_local_v1_29_0_u0/check_time.py"(8,2): Linux-only error'
+            ),
+        ),
+    ]
+    terminalreporter = SimpleNamespace(stats={"failed": reports})
+
+    write_markdown_report(terminalreporter, tmp_path / "typecheck_report.md")
+    markdown = (tmp_path / "typecheck_report_zuban.md").read_text(encoding="utf-8")
+
+    assert markdown.count('"_mpy_shed/foo.pyi"(12,4): Invalid type annotation') == 1
+    assert ".pytest_cache/d/typings_" not in markdown
+    assert "pytest-of-test" not in markdown
+    assert "pytest-of-runner" not in markdown
+    assert "1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics)." in markdown
+    assert "## Shared diagnostics" in markdown
+    assert "Reported by 4 tests" in markdown
+    assert "Asyncio-only error" in markdown
+    assert "Machine-only error" in markdown
+    assert "Windows-only error" in markdown
+    assert "Linux-only error" in markdown
+
+
 def test_report_option_aggregates_xdist_results_and_is_opt_in(pytester):
     quality_tests = Path(__file__).resolve().parent.parent
     conftest = quality_tests / "conftest.py"

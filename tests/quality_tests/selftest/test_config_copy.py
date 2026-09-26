@@ -44,3 +44,18 @@ def test_bulk_config_copy_ignores_config_directories(tmp_path, monkeypatch):
     assert (feature_path / "pyproject.toml").is_file()
     assert not (feature_path / ".venv").exists()
     assert not (feature_path / "readme.md").exists()
+
+
+def test_refresh_mpy_shed_replaces_stale_install(tmp_path):
+    source = tmp_path / "reference" / "_mpy_shed"
+    source.mkdir(parents=True)
+    (source / "time_mp.pyi").write_text("class _TicksMs: ...\n", encoding="utf-8")
+    destination = tmp_path / "typings" / "_mpy_shed"
+    destination.mkdir(parents=True)
+    (destination / "time_mp.pyi").write_text("# stale\n", encoding="utf-8")
+    (destination / "removed.pyi").write_text("# obsolete\n", encoding="utf-8")
+
+    conftest._refresh_mpy_shed(source, destination)
+
+    assert (destination / "time_mp.pyi").read_text(encoding="utf-8") == "class _TicksMs: ...\n"
+    assert not (destination / "removed.pyi").exists()

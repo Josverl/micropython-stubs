@@ -263,6 +263,7 @@ def type_stub_cache_path_fx(
             timestamp = request.config.cache.get(cache_key, None)
             if not no_cache and timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
                 log.debug(f"Using cached type stubs for {portboard} {version}")
+                _refresh_mpy_shed(pytestconfig.inipath.parent / "reference" / "_mpy_shed", tsc_path / "_mpy_shed")
                 return tsc_path
 
         ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
@@ -344,16 +345,21 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         pytest.skip(f"{e.stderr}")
         return False
 
-    # _mpy_shed is gitignored inside publish/micropython-stdlib-stubs/ (generated
-    # from reference/ by build.py) so it is absent in a fresh clone.  Copy it from
-    # the reference folder when it is missing so that type stubs that import from
-    # _mpy_shed (e.g. stdlib/sys/__init__.pyi) can be resolved correctly.
+    # _mpy_shed is generated and gitignored inside publish/micropython-stdlib-stubs/.
+    # Always refresh it so local generated artifacts cannot differ from a clean checkout.
     _mpy_shed_src = pytestconfig.inipath.parent / "reference" / "_mpy_shed"
     _mpy_shed_dst = tsc_path / "_mpy_shed"
-    if _mpy_shed_src.exists() and not _mpy_shed_dst.exists():
-        shutil.copytree(_mpy_shed_src, _mpy_shed_dst)
+    _refresh_mpy_shed(_mpy_shed_src, _mpy_shed_dst)
 
     return True
+
+
+def _refresh_mpy_shed(source: Path, destination: Path) -> None:
+    if not source.exists():
+        return
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(source, destination)
 
 
 @pytest.fixture(scope="function")

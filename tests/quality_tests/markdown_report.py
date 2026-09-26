@@ -7,6 +7,7 @@ import html
 import json
 import logging
 import re
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -20,9 +21,18 @@ _STATUS_COLORS = {
     "FAIL": "#cf222e",
     "SKIP": "#6e7781",
     "XFAIL": "#9a6700",
-    "XPASS": "#8250df",
+    "XPASS": "#16ef71",
 }
 _PREFERRED_ROW_PARAMS = ("version", "portboard", "feature")
+_LOCATION_DIAGNOSTIC_RE = re.compile(r'^"(?P<path>.+)"\((?P<location>\d+,\d+)\): (?P<message>.+)$')
+_ISOLATED_WORKSPACE_RE = re.compile(
+    r"^(?:"
+    r".*?\.pytest_cache[\\/]d[\\/][^\\/\"]+[\\/]"
+    r"|.*?[\\/]pytest-of-[^\\/]+[\\/]pytest-(?:\d+|current)[\\/]"
+    r"(?:popen-gw\d+[\\/])?test_[^\\/]+[\\/](?:typings[\\/])?"
+    r")",
+    re.IGNORECASE,
+)
 
 
 @dataclass
@@ -157,12 +167,22 @@ def _render_checker_details(rows: dict[str, ReportRow], checkers: list[str], mai
         ]
         if not details:
             continue
+        normalized_details = [(row, cell, _normalized_diagnostic_lines(cell.diagnostic)) for row, cell in details]
+        occurrence_counts = Counter(
+            line
+            for _, _, diagnostic_lines in normalized_details
+            for line in set(diagnostic_lines)
+            if _LOCATION_DIAGNOSTIC_RE.match(line)
+        )
+        shared_diagnostics = {line: count for line, count in occurrence_counts.items() if count > 1}
         lines = [
             f"# {_escape_markdown(checker)} failures and expected failures",
             "",
             f"[Back to type checker test report]({_escape_markdown(main_filename)})",
         ]
-        for row, cell in details:
+        for row, cell, diagnostic_lines in normalized_details:
+            unique_diagnostic = "\n".join(line for line in diagnostic_lines if line not in shared_diagnostics).rstrip()
+            shared_count = sum(line in shared_diagnostics for line in diagnostic_lines)
             lines.extend(
                 [
                     "",
@@ -172,13 +192,30 @@ def _render_checker_details(rows: dict[str, ReportRow], checkers: list[str], mai
                     "**Test specification:**",
                     f"> pytest {cell.nodeid}",
                     "",
-                    _fenced_text(
-                        cell.diagnostic or "No checker diagnostic was captured; the test failed before checker output was available."
-                    ),
+                    _fenced_text(unique_diagnostic or "No unique checker diagnostic was captured."),
                 ]
             )
+            if shared_count:
+                noun = "diagnostic" if shared_count == 1 else "diagnostics"
+                lines.extend(["", f"{shared_count} shared {noun} omitted; see [Shared diagnostics](#shared-diagnostics)."])
+        if shared_diagnostics:
+            shared_lines = [f"{line} (Reported by {count} tests)" for line, count in sorted(shared_diagnostics.items())]
+            lines.extend(["", "## Shared diagnostics", "", _fenced_text("\n".join(shared_lines))])
         rendered[checker] = "\n".join(lines) + "\n"
     return rendered
+
+
+def _normalized_diagnostic_lines(diagnostic: str) -> list[str]:
+    """Remove per-test workspace prefixes while preserving diagnostic locations and messages."""
+    normalized = []
+    for line in diagnostic.splitlines():
+        match = _LOCATION_DIAGNOSTIC_RE.match(line)
+        if match is None:
+            normalized.append(line)
+            continue
+        path = _ISOLATED_WORKSPACE_RE.sub("", match["path"]).replace("\\", "/")
+        normalized.append(f'"{path}"({match["location"]}): {match["message"]}')
+    return normalized
 
 
 def _detail_filenames(checkers: Iterable[str], stem: str, suffix: str) -> dict[str, str]:
