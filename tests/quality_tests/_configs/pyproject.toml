@@ -116,3 +116,11 @@ extra-paths = ["typings"]
 
 [tool.ty.src]
 exclude = ["**/typings/**", "**/__pycache__/**"]
+
+[tool.ty.rules]
+# `reveal_type` is a type-checker builtin for pyright/mypy, ty wants it imported
+undefined-reveal = "ignore"
+# the `# type: ignore` comments in the snippets target pyright/mypy, not ty
+unused-type-ignore-comment = "ignore"
+# MicroPython stubs mark port specific/legacy APIs as deprecated on purpose
+deprecated = "ignore"

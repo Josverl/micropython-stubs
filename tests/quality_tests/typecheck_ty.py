@@ -1,8 +1,11 @@
 import json
 import logging
 import os
+import hashlib
+import shutil
 import subprocess
 import sys
+import tempfile
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -101,6 +104,90 @@ def chdir_mgr(path):
         os.chdir(oldpwd)
 
 
+# Directories inside `typings/` that are not MicroPython module stubs.
+_NON_MODULE_DIRS = {"stdlib", "stubs", "__pycache__"}
+
+# Marker file written once a merged typeshed has been built completely.
+_TYPESHED_MARKER = ".mpy-typeshed-complete"
+
+
+def build_ty_typeshed(typings: Path, destination: Path) -> Path:
+    """
+    Build a custom typeshed root for ty from an installed `typings/` folder.
+
+    Unlike pyright (`stubPath`) and mypy (`MYPYPATH`), ty always resolves standard library
+    modules from its typeshed search path, so MicroPython stubs placed on `extra-paths` can
+    never shadow them. The only way to make ty see `time.ticks_ms`, `gc.mem_free`, ... is to
+    hand it a custom typeshed that already contains the MicroPython flavour of those modules.
+
+    The destination must live outside every other search path, otherwise ty panics
+    (see https://github.com/astral-sh/ty/issues/523).
+    """
+    if (destination / _TYPESHED_MARKER).exists():
+        return destination
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    staging = Path(tempfile.mkdtemp(dir=destination.parent, prefix="build-"))
+    stdlib = staging / "stdlib"
+    shutil.copytree(typings / "stdlib", stdlib)
+    if (typings / "stubs").is_dir():
+        shutil.copytree(typings / "stubs", staging / "stubs")
+
+    # Overlay the MicroPython module stubs on top of the reduced typeshed.
+    module_names = set()
+    for item in typings.iterdir():
+        if item.is_dir():
+            if item.name in _NON_MODULE_DIRS or item.name.endswith(".dist-info"):
+                continue
+            shutil.copytree(item, stdlib / item.name, dirs_exist_ok=True)
+            module_names.add(item.name)
+        elif item.suffix == ".pyi":
+            shutil.copy2(item, stdlib / item.name)
+            module_names.add(item.stem)
+
+    versions = stdlib / "VERSIONS"
+    known = {line.split(":", 1)[0].strip() for line in versions.read_text(encoding="utf-8").splitlines()}
+    extra = sorted(name for name in module_names if name not in known)
+    if extra:
+        with versions.open("a", encoding="utf-8") as f:
+            f.write("\n" + "\n".join(f"{name}: 3.0-" for name in extra) + "\n")
+
+    (staging / _TYPESHED_MARKER).touch()
+    try:
+        staging.rename(destination)
+    except OSError:
+        # Another xdist worker won the race; its copy is equivalent.
+        shutil.rmtree(staging, ignore_errors=True)
+    return destination
+
+
+def _fingerprint(typings: Path) -> str:
+    "Stable key for the contents of a `typings/` folder."
+    h = hashlib.sha256()
+    for file in sorted(p for p in typings.rglob("*") if p.is_file()):
+        h.update(file.relative_to(typings).as_posix().encode())
+        h.update(str(file.stat().st_size).encode())
+    return h.hexdigest()[:16]
+
+
+def ty_typeshed_for(path: Path) -> Path | None:
+    """
+    Return the custom typeshed to use for the snippet workspace `path`, building it on demand.
+
+    The typeshed is cached outside of any snippet workspace - both to avoid rebuilding it for
+    every folder, and because ty panics when the typeshed overlaps another search path.
+    """
+    typings = path / "typings"
+    if not (typings / "stdlib").is_dir():
+        return None
+    destination = Path(tempfile.gettempdir()) / "mpy-ty-typeshed" / _fingerprint(typings)
+    try:
+        return build_ty_typeshed(typings, destination)
+    except Exception:
+        log.exception("Could not build a custom typeshed for ty")
+        return None
+
+
 def run_ty(path: Path) -> list:
     """
     Run ty on the specified path.
@@ -118,6 +205,9 @@ def run_ty(path: Path) -> list:
         "check",
         "--output-format=gitlab",
     ]
+    typeshed = ty_typeshed_for(path)
+    if typeshed:
+        cmd += ["--typeshed", str(typeshed)]
 
     try:
         with chdir_mgr(path):
