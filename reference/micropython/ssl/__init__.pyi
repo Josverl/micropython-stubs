@@ -44,11 +44,10 @@ class SSLContext:
     _context: Incomplete
     def __init__(self, *args) -> None: ...
 
-    # verify_mode: Incomplete  ## <class 'property'> = <property>
-    @property
-    def verify_mode(self) -> Incomplete: ...
-    @verify_mode.setter
-    def verify_mode(self, val: Incomplete) -> None: ...
+    # Implemented by the C level attr handler, so not visible to createstubs.
+    # mp_available
+    verify_mode: int
+    """Certificate verification mode: `CERT_NONE`, `CERT_OPTIONAL` or `CERT_REQUIRED`."""
 
     def load_verify_locations(self, cafile=None, cadata: bytes | None = None) -> None:
         """

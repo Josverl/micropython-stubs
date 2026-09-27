@@ -10,7 +10,7 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 # MicroPython Implementation is split across two modules: tls and ssl
-# This is the tls module 
+# This is the tls module
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from _typeshed import Incomplete
 
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # This section is duplicated in tls and ssl modules
-# as cpython stdlib does not include a tls module 
+# as cpython stdlib does not include a tls module
 # todo: avoid duplication by moving to _mpy_shed
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -103,7 +103,6 @@ class SSLContext:
         """
         ...
 
-
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# End duplicated section 
+# End duplicated section
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

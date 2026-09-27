@@ -41,6 +41,10 @@
             "module": "__init__"
         },
         {
+            "file": "builtins/__init__.pyi",
+            "module": "__init__"
+        },
+        {
             "file": "cmath/__init__.pyi",
             "module": "__init__"
         },

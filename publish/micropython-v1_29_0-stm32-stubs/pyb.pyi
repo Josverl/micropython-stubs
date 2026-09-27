@@ -14,7 +14,6 @@ Module: 'pyb' on micropython-v1.29.0-stm32-PYBV11
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from array import array
 from collections.abc import Sequence
 from typing import Any, Callable, Dict, Final, List, NoReturn, Optional, overload
 
