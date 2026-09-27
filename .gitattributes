@@ -1,4 +1,42 @@
+# Normalize line endings so Windows, WSL/Linux and CI produce identical worktrees.
+# Generated stubs are written by tooling that runs on both platforms, so pin the
+# checkout EOL instead of relying on core.autocrlf.
+
+* text=auto
+
+# Source and data formats are LF everywhere, including on Windows.
+*.py    text eol=lf
+*.pyi   text eol=lf
+*.sh    text eol=lf
+*.toml  text eol=lf
+*.cfg   text eol=lf
+*.ini   text eol=lf
+*.md    text eol=lf
+*.rst   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+Makefile text eol=lf
+
+# Windows shells expect CRLF.
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
 # These are binary so should never be modified by git.
 *.mpy binary
+*.wasm  binary
+*.exe   binary
+*.uf2   binary
+*.bin   binary
+*.db    binary
+*.zip   binary
+*.xlsx  binary
+*.pptx  binary
+*.png   binary
+*.PNG   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
 
 .github/workflows/*.lock.yml linguist-generated=true merge=ours
