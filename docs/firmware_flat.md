@@ -196,7 +196,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.29| samd| generic| 57| v1.28.6|[stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.29| stm32| generic| 64| v1.28.6|[stubs/micropython-v1_29_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-stm32-PYBV11)
 |board| micropython| v1.29| unix| generic| 75| v1.28.6|[stubs/micropython-v1_29_0-unix-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-unix-standard)
-|board| micropython| v1.29| webassembly| generic| 80| v1.28.6|[stubs/micropython-v1_29_0-webassembly-pyscript](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-webassembly-pyscript)
+|board| micropython| v1.29| webassembly| generic| 80| v1.29.0|[stubs/micropython-v1_29_0-webassembly-pyscript](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-webassembly-pyscript)
 |board| micropython| v1.29| windows| generic| 37| v1.28.6|[stubs/micropython-v1_29_0-windows-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_29_0-windows-standard)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
