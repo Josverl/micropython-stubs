@@ -82,7 +82,8 @@ def decode_services(payload):
     for u in decode_field(payload, _ADV_TYPE_UUID16_COMPLETE):
         services.append(bluetooth.UUID(struct.unpack("<h", u)[0]))
     for u in decode_field(payload, _ADV_TYPE_UUID32_COMPLETE):
-        services.append(bluetooth.UUID(struct.unpack("<d", u)[0]))
+        # a 32 bit UUID is an unsigned 32 bit integer, upstream uses "<d" which decodes an 8 byte float
+        services.append(bluetooth.UUID(struct.unpack("<I", u)[0]))
     for u in decode_field(payload, _ADV_TYPE_UUID128_COMPLETE):
         services.append(bluetooth.UUID(u))
     return services
