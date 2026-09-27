@@ -38,7 +38,9 @@ def read_byte(buffer: bytearray, offset: int) -> uint:
     return uint(data[offset])
 ```
 
-The stdlib stub package declares these names in its custom `builtins.pyi`. Pyright and Pylance additionally receive them through the MicroPython core `__builtins__.pyi` overlay. Mypy resolves them when `custom_typeshed_dir` points to the installed MicroPython stdlib stubs.
+The viper emitter accepts `object`, `bool`, `int`, `uint`, `ptr`, `ptr8`, `ptr16` and `ptr32` as parameter annotations, but only `object`, `bool`, `int` and `uint` as return annotations. A plain `ptr` has no element size and is not subscriptable; use `ptr8`, `ptr16` or `ptr32` for memory access.
+
+These names exist only in the MicroPython compiler; they cannot be imported at runtime. The stdlib stub package declares them in its custom `builtins.pyi`. Pyright and Pylance additionally receive them through the MicroPython core `__builtins__.pyi` overlay. Mypy resolves them when `custom_typeshed_dir` points to the installed MicroPython stdlib stubs.
 
 Ty has an equivalent `[tool.ty.environment] typeshed` setting, which the setup script configures. Ty 0.0.65 currently crashes while loading this custom stdlib, so support cannot yet be validated. Ruff does not load type stubs; configure its `builtins` setting as described in {ref}`ruff_config`.
 
