@@ -75,7 +75,7 @@ def port_and_board(portboard):
     return port, board
 
 
-def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
+def stub_ignore(line, version, port, board, linter, is_source=True, strict=False) -> bool:
     """
     Check if a typecheck error should be ignored based on the version of micropython , the port and the board
     the same syntax can be used in the source file or in the test case condition :
@@ -87,6 +87,9 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
         version<1.21.0
         skip version<1.21.0 # skip prefix to helps human understanding / reading
         skip port.startswith('esp')
+
+    When `strict` is set a malformed condition raises ValueError instead of being
+    logged and silently treated as False.
     """
     if is_source:
         comment = line.rsplit("#")[-1].strip()
@@ -119,8 +122,14 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
         result = eval(condition, context)
         # print(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
     except Exception as e:
+        if strict:
+            raise ValueError(f"Incorrect stubs-ignore condition: `{condition}` caused: {e}") from e
         log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
         result = False
+    else:
+        if strict and not isinstance(result, bool):
+            # a non-boolean result signals a truncated condition such as `skip version`
+            raise ValueError(f"Incorrect stubs-ignore condition: `{condition}` does not evaluate to a bool")
 
     return bool(result)
 

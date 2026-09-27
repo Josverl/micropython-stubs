@@ -1,11 +1,10 @@
 import logging
-import re
 import sys
 from pathlib import Path
 
 import pytest
+import typecheck
 from conftest import get_test_versions
-from packaging.version import Version
 from typecheck import LINTER_PARAMS, copy_config_files, port_and_board, run_typechecker
 
 # only snippets tests
@@ -55,11 +54,11 @@ PORTBOARD_FEATURES = {
         "aioble:skip version<1.21.0",
     ],
     "rp2-rpi_pico2:skip version<1.24.0": RP2_CORE,
-    "rp2-rpi_pico2_w:skip version=<1.24.0": RP2_CORE
+    "rp2-rpi_pico2_w:skip version<1.25.0": RP2_CORE
     + [
         "networking",
-        "bluetooth:skip version",
-        "aioble:skip version",
+        "bluetooth",
+        "aioble",
     ],
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly:skip version<1.23.0": CORE,
@@ -113,47 +112,8 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
 
 
 def stub_ignore(line, version, port, board, linter="pyright", is_source=True) -> bool:
-    """
-    Check if a typecheck error should be ignored based on the version of micropython , the port and the board
-    the same syntax can be used in the source file or in the test case condition :
-
-    format of the source line (is_source=True)
-        import espnow # stubs-ignore: version<1.21.0 or not port.startswith('esp')
-
-    or condition (is_source=False) line:
-        version<1.21.0
-        skip version<1.21.0 # skip prefix to helps human understanding / reading
-        skip port.startswith('esp')
-    """
-    if is_source:
-        comment = line.rsplit("#")[-1].strip()
-        if not (comment.startswith("stubs-ignore") and ":" in comment):
-            return False
-        id, condition = comment.split(":")
-        if id.strip() != "stubs-ignore":
-            return False
-        condition = condition.strip()
-    else:
-        condition = line.strip()
-    if condition.lower().startswith("skip"):
-        condition = condition[4:].strip()
-    context = {}
-    context["Version"] = Version
-    context["version"] = Version(version) if version not in ("latest", "-", "preview") else Version("9999.99.99")
-    context["port"] = port
-    context["board"] = board
-    context["linter"] = linter
-
-    try:
-        # transform : version>=1.20.1 to version>=Version('1.20.1') using a regular expression
-        condition = re.sub(r"(\d+\.\d+\.\d+)", r"Version('\1')", condition.strip())
-        result = eval(condition, context)
-        log.debug(f"stubs-ignore: {condition} -> {'Skip' if result else 'Process'}")
-    except Exception as e:
-        log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
-        result = False
-
-    return bool(result)
+    """Thin wrapper that keeps the historic signature used by this module."""
+    return typecheck.stub_ignore(line, version, port, board, linter=linter, is_source=is_source, strict=not is_source)
 
 
 @pytest.mark.parametrize(
