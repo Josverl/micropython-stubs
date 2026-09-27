@@ -1162,11 +1162,11 @@ assert 1466 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-micropython-zuban]
 
 ```text
-zuban found 1452 errors and 0 warnings in 71 files.
-assert 1451 == 0
+zuban found 1451 errors and 0 warnings in 71 files.
+assert 1450 == 0
 ```
 
-1451 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1450 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-330ec99c4357"></a>
 ## v1.29.0 webassembly stdlib - XFAIL
@@ -1175,11 +1175,11 @@ assert 1451 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-stdlib-zuban]
 
 ```text
-zuban found 1444 errors and 0 warnings in 73 files.
-assert 1444 == 0
+zuban found 1443 errors and 0 warnings in 73 files.
+assert 1443 == 0
 ```
 
-1444 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1443 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-4d6943f5b1c5"></a>
 ## v1.29.0 webassembly webassembly - XFAIL
@@ -1188,11 +1188,11 @@ assert 1444 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-webassembly-zuban]
 
 ```text
-zuban found 1438 errors and 0 warnings in 68 files.
-assert 1438 == 0
+zuban found 1437 errors and 0 warnings in 68 files.
+assert 1437 == 0
 ```
 
-1438 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1437 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-747f239f5b4a"></a>
 ## v1.29.0 windows asyncio - XFAIL
@@ -3619,12 +3619,16 @@ assert 1451 == 0
 "hashlib.pyi"(99,4): Overloaded function signature 4 will never be matched: signature 2's parameter type(s) are the same or broader (Reported by 51 tests)
 "heapq.pyi"(27,23): Variable "heapq._T" is not valid as a type (Reported by 162 tests)
 "heapq.pyi"(27,34): Variable "heapq._T" is not valid as a type (Reported by 162 tests)
-"heapq.pyi"(29,23): Variable "heapq._T" is not valid as a type (Reported by 97 tests)
-"heapq.pyi"(29,34): Variable "heapq._T" is not valid as a type (Reported by 97 tests)
+"heapq.pyi"(29,23): Variable "heapq._T" is not valid as a type (Reported by 94 tests)
+"heapq.pyi"(29,34): Variable "heapq._T" is not valid as a type (Reported by 94 tests)
+"heapq.pyi"(30,23): Variable "heapq._T" is not valid as a type (Reported by 3 tests)
+"heapq.pyi"(30,34): Variable "heapq._T" is not valid as a type (Reported by 3 tests)
 "heapq.pyi"(36,24): Variable "heapq._T" is not valid as a type (Reported by 162 tests)
 "heapq.pyi"(36,35): Variable "heapq._T" is not valid as a type (Reported by 162 tests)
-"heapq.pyi"(38,24): Variable "heapq._T" is not valid as a type (Reported by 97 tests)
-"heapq.pyi"(38,35): Variable "heapq._T" is not valid as a type (Reported by 97 tests)
+"heapq.pyi"(38,24): Variable "heapq._T" is not valid as a type (Reported by 94 tests)
+"heapq.pyi"(38,35): Variable "heapq._T" is not valid as a type (Reported by 94 tests)
+"heapq.pyi"(40,24): Variable "heapq._T" is not valid as a type (Reported by 3 tests)
+"heapq.pyi"(40,35): Variable "heapq._T" is not valid as a type (Reported by 3 tests)
 "inspect.pyi"(16,4): Method must have at least one argument. Did you forget the "self" argument? (Reported by 6 tests)
 "machine.pyi"(105,0): Overloaded function signature 5 will never be matched: signature 2's parameter type(s) are the same or broader (Reported by 10 tests)
 "machine.pyi"(1091,4): Cannot override final attribute "LSB" (previously declared in base class "SPI") (Reported by 10 tests)
@@ -3852,8 +3856,8 @@ assert 1451 == 0
 "micropython.pyi"(111,46): Variable "micropython._T" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(121,29): Variable "micropython._T" is not valid as a type (Reported by 154 tests)
 "micropython.pyi"(121,46): Variable "micropython._T" is not valid as a type (Reported by 154 tests)
-"micropython.pyi"(159,29): Variable "micropython._T" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(159,46): Variable "micropython._T" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(160,29): Variable "micropython._T" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(160,46): Variable "micropython._T" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(171,29): Variable "micropython._T" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(171,46): Variable "micropython._T" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(182,16): Variable "micropython.Const_T" is not valid as a type (Reported by 3 tests)
@@ -3866,8 +3870,8 @@ assert 1451 == 0
 "micropython.pyi"(196,31): Variable "micropython.Const_T" is not valid as a type (Reported by 71 tests)
 "micropython.pyi"(201,16): Variable "micropython.Const_T" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(201,31): Variable "micropython.Const_T" is not valid as a type (Reported by 83 tests)
-"micropython.pyi"(234,16): Variable "micropython.Const_T" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(234,31): Variable "micropython.Const_T" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(237,16): Variable "micropython.Const_T" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(237,31): Variable "micropython.Const_T" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(244,16): Variable "micropython.Const_T" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(244,31): Variable "micropython.Const_T" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(245,16): Variable "micropython.Const_T" is not valid as a type (Reported by 4 tests)
@@ -3954,50 +3958,50 @@ assert 1451 == 0
 "micropython.pyi"(380,39): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(380,61): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(380,69): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
-"micropython.pyi"(402,26): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(402,34): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(402,56): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(402,64): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(404,26): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(404,34): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(404,56): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(404,64): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
+"micropython.pyi"(405,26): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(405,34): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(405,56): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(405,64): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(406,26): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(406,34): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(406,56): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(406,64): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
-"micropython.pyi"(413,27): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(413,35): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(413,57): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(413,65): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(415,27): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(415,35): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(415,57): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(415,65): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
+"micropython.pyi"(416,27): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(416,35): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(416,57): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(416,65): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(417,27): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(417,35): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(417,57): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(417,65): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
-"micropython.pyi"(422,30): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(422,38): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(422,60): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(422,68): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(424,30): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(424,38): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(424,60): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(424,68): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
+"micropython.pyi"(425,30): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(425,38): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(425,60): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(425,68): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(426,30): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(426,38): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(426,60): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(426,68): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
-"micropython.pyi"(433,31): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(433,39): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
-"micropython.pyi"(433,61): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
-"micropython.pyi"(433,69): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(435,31): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(435,39): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
 "micropython.pyi"(435,61): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 4 tests)
 "micropython.pyi"(435,69): Variable "micropython._Ret" is not valid as a type (Reported by 4 tests)
+"micropython.pyi"(436,31): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(436,39): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
+"micropython.pyi"(436,61): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 3 tests)
+"micropython.pyi"(436,69): Variable "micropython._Ret" is not valid as a type (Reported by 3 tests)
 "micropython.pyi"(437,31): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
 "micropython.pyi"(437,39): Variable "micropython._Ret" is not valid as a type (Reported by 83 tests)
 "micropython.pyi"(437,61): The first argument to Callable must be a list of types, parameter specification, or "..." (Reported by 83 tests)
@@ -4039,18 +4043,18 @@ assert 1451 == 0
 "pyb.pyi"(958,4): Signature of "ioctl" incompatible with supertype "vfs.AbstractBlockDev" (Reported by 10 tests)
 "pyb.pyi"(960,4): Signature of "ioctl" incompatible with supertype "vfs.AbstractBlockDev" (Reported by 10 tests)
 "pyscript/__init__.pyi"(32,0): Cannot redefine an existing name as final (Reported by 3 tests)
+"pyscript/__init__.pyi"(36,0): "classmethod" used with a non-method (Reported by 3 tests)
 "pyscript/__init__.pyi"(40,0): Cannot redefine an existing name as final (Reported by 3 tests)
-"pyscript/__init__.pyi"(73,0): "classmethod" used with a non-method (Reported by 3 tests)
-"pyscript/__init__.pyi"(84,0): "classmethod" used with a non-method (Reported by 3 tests)
-"pyscript/__init__.pyi"(89,0): "classmethod" used with a non-method (Reported by 3 tests)
 "pyscript/fetch.pyi"(119,33): Function "pyscript.fetch._FetchPromise.bytearray" is not valid as a type (Reported by 3 tests)
 "pyscript/fetch.pyi"(122,33): Function "pyscript.fetch._FetchPromise.bytearray" is not valid as a type (Reported by 3 tests)
 "pyscript/fetch.pyi"(43,33): Function "pyscript.fetch._FetchResponse.bytearray" is not valid as a type (Reported by 3 tests)
 "pyscript/fetch.pyi"(46,33): Function "pyscript.fetch._FetchResponse.bytearray" is not valid as a type (Reported by 3 tests)
 "pyscript/web.pyi"(158,22): Argument 1 of "discard" is incompatible with supertype "builtins.set"; supertype defines the argument type as "object" (Reported by 3 tests)
 "pyscript/web.pyi"(300,48): Invalid type comment or annotation (Reported by 3 tests)
-"random.pyi"(100,35): Variable "random._T" is not valid as a type (Reported by 88 tests)
-"random.pyi"(100,46): Variable "random._T" is not valid as a type (Reported by 88 tests)
+"random.pyi"(100,35): Variable "random._T" is not valid as a type (Reported by 85 tests)
+"random.pyi"(100,46): Variable "random._T" is not valid as a type (Reported by 85 tests)
+"random.pyi"(102,35): Variable "random._T" is not valid as a type (Reported by 3 tests)
+"random.pyi"(102,46): Variable "random._T" is not valid as a type (Reported by 3 tests)
 "random.pyi"(98,35): Variable "random._T" is not valid as a type (Reported by 82 tests)
 "random.pyi"(98,46): Variable "random._T" is not valid as a type (Reported by 82 tests)
 "rp2/__init__.pyi"(155,15): Invalid type comment or annotation (Reported by 34 tests)
@@ -5458,6 +5462,7 @@ assert 1451 == 0
 "vfs.pyi"(107,0): Class vfs.VfsFat has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 60 tests)
 "vfs.pyi"(109,0): Class vfs.VfsFat has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 73 tests)
 "vfs.pyi"(113,0): Class vfs.VfsLfs2 has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 10 tests)
+"vfs.pyi"(115,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 3 tests)
 "vfs.pyi"(132,0): Class vfs.VfsLfs1 has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 4 tests)
 "vfs.pyi"(137,0): Class vfs.VfsLfs2 has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 10 tests)
 "vfs.pyi"(138,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 4 tests)
@@ -5467,9 +5472,10 @@ assert 1451 == 0
 "vfs.pyi"(67,0): Class vfs.VfsLfs2 has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 60 tests)
 "vfs.pyi"(67,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 4 tests)
 "vfs.pyi"(69,0): Class vfs.VfsLfs2 has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 73 tests)
-"vfs.pyi"(69,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 7 tests)
+"vfs.pyi"(69,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 4 tests)
 "vfs.pyi"(69,0): Class vfs.VfsRom has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 4 tests)
 "vfs.pyi"(76,0): Class vfs.VfsFat has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 10 tests)
 "vfs.pyi"(78,0): Class vfs.VfsFat has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 14 tests)
+"vfs.pyi"(79,0): Class vfs.VfsRom has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 3 tests)
 "vfs.pyi"(88,0): Class vfs.VfsPosix has abstract attributes "ioctl", "readblocks", "writeblocks" (Reported by 3 tests)
 ```

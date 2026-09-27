@@ -935,33 +935,6 @@ assert 21 == 0
 
 41 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
-<a id="typecheck-detail-ty-4379a2376c42"></a>
-## v1.29.0 webassembly webassembly - XFAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-webassembly-ty]
-
-```text
-ty found 15 errors and 0 warnings in 7 files.
-assert 15 == 0
-
-"check_pyscript/check_config.py"(8,20): unknown-argument: Argument `target` does not match any known parameter of function `display`
-"check_pyscript/check_config.py"(8,36): unknown-argument: Argument `append` does not match any known parameter of function `display`
-"check_pyscript/check_html.py"(11,37): unknown-argument: Argument `target` does not match any known parameter of function `display`
-"check_pyscript/check_html.py"(29,0): unresolved-attribute: Unresolved attribute `onopen` on type `WebSocket`
-"check_pyscript/check_html.py"(30,0): unresolved-attribute: Unresolved attribute `onmessage` on type `WebSocket`
-"check_pyscript/check_html.py"(31,0): unresolved-attribute: Unresolved attribute `onclose` on type `WebSocket`
-"check_pyscript/check_pyworker.py"(5,23): unknown-argument: Argument `target` does not match any known parameter of function `display`
-"check_pyscript/check_pyworker.py"(5,40): unknown-argument: Argument `append` does not match any known parameter of function `display`
-"check_pyscript/check_when.py"(10,15): too-many-positional-arguments: Too many positional arguments to function `when`: expected 1, got 2
-"check_pyscript/check_when.py"(18,15): too-many-positional-arguments: Too many positional arguments to function `when`: expected 1, got 2
-"check_pyscript/check_when.py"(28,14): too-many-positional-arguments: Too many positional arguments to function `when`: expected 1, got 2
-"check_pyscript/check_workers.py"(6,19): missing-argument: No arguments provided for required parameters `x2`, `x3` of function `create_named_worker`
-"check_pyscript/check_workers.py"(6,68): unknown-argument: Argument `type` does not match any known parameter of function `create_named_worker`
-```
-
-2 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
-
 <a id="typecheck-detail-ty-16ea3ca16cef"></a>
 ## v1.29.0 windows asyncio - XFAIL
 
@@ -1924,12 +1897,12 @@ assert 8 == 0
 "check_pyscript/check_config.py"(3,5): unresolved-import: Cannot resolve imported module `pyscript.context`
 "check_pyscript/check_ffi_storage.py"(22,31): invalid-assignment: Object of type `Storage` is not assignable to `Preferences`
 "check_pyscript/check_ffi_storage.py"(22,60): invalid-argument-type: Argument to function `storage` is incorrect: Expected `type[Storage]`, found `<class 'Preferences'>`
+"check_pyscript/check_ffi_storage.py"(23,4): invalid-assignment: Cannot assign to a subscript on an object of type `Preferences`
+"check_pyscript/check_modules.py"(16,22): too-many-positional-arguments: Too many positional arguments to bound method `Event.remove_listener`: expected 1, got 2
 "check_pyscript/check_modules.py"(18,58): unknown-argument: Argument `indent` does not match any known parameter of function `stringify`
 "check_pyscript/check_web.py"(53,4): not-subscriptable: Cannot delete subscript on object of type `Style` with no `__delitem__` method
 "check_pyscript/check_web.py"(55,0): unresolved-attribute: Object of type `Classes` has no attribute `discard`
 ```
-
-2 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-ty-e1484e72a98a"></a>
 ## v1.28.0 windows asyncio - XFAIL
@@ -2788,8 +2761,6 @@ assert 21 == 0
 "check_os/check_mount.py"(9,0): unresolved-attribute: Module `os` has no member `mount` (Reported by 43 tests)
 "check_os/check_os_mount.py"(10,0): unresolved-attribute: Module `os` has no member `umount` (Reported by 43 tests)
 "check_os/check_os_mount.py"(8,0): unresolved-attribute: Module `os` has no member `mount` (Reported by 43 tests)
-"check_pyscript/check_ffi_storage.py"(23,4): invalid-assignment: Cannot assign to a subscript on an object of type `Preferences` (Reported by 2 tests)
-"check_pyscript/check_modules.py"(16,22): too-many-positional-arguments: Too many positional arguments to bound method `Event.remove_listener`: expected 1, got 2 (Reported by 2 tests)
 "check_socket.py"(19,0): type-assertion-failure: Type `Unknown` does not match asserted type `bytes` (Reported by 12 tests)
 "check_ssl_1.py"(16,42): unused-type-ignore-comment: Unused blanket `type: ignore` directive (Reported by 18 tests)
 "check_ssl_2.py"(50,20): deprecated: The function `wrap_socket` is deprecated: Deprecated since Python 3.7; removed in Python 3.12. Use `SSLContext.wrap_socket()` instead. (Reported by 18 tests)
