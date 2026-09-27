@@ -1,5 +1,7 @@
 import sys
 
+from typing_extensions import reveal_type
+
 import espnow
 import network
 

@@ -1,5 +1,7 @@
 import json
 
+from typing_extensions import reveal_type
+
 JSON_DATA = """
 [
 {

@@ -3,6 +3,8 @@ import json
 from collections import namedtuple
 from typing import Union
 
+from typing_extensions import reveal_type
+
 WifiConfig = namedtuple('WifiConfig', ('ssid', 'password'))
 reveal_type(WifiConfig) 
 

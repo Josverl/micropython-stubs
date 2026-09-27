@@ -16,6 +16,8 @@ import random
 import struct
 import time
 
+from typing_extensions import reveal_type
+
 import bluetooth
 from ble_advertising import advertising_payload
 from micropython import const
