@@ -256,8 +256,9 @@ def type_stub_cache_path_fx(
     )
     # prevent simultaneous updates to the cache across parallel workers
     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
+    cache_sentinel = tsc_path / ("stdlib/builtins.pyi" if portboard == "stdlib" else "micropython.pyi")
     with cache_lock:
-        if (tsc_path / "micropython.pyi").exists():
+        if cache_sentinel.exists():
             # stubs appear to be installed – check the freshness timestamp
             # (skipped when --no-cache is passed on the command line)
             no_cache = request.config.getoption("--no-cache", default=False)
