@@ -16,4 +16,5 @@ x = poll()
 
 
 received, address = socket(AF_INET, SOCK_DGRAM).recvfrom(1024)
-assert_type(received, bytes)
+# recvfrom was typed as a bare Tuple until the v1.29.0 stubs were generated
+assert_type(received, bytes)  # stubs-ignore: version<1.29.0

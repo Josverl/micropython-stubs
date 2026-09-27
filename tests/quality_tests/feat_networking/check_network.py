@@ -4,6 +4,7 @@
 # The network module:
 
 import network
+from typing_extensions import assert_type
 
 wlan = network.WLAN(network.STA_IF)  # create station interface
 wlan.active(True)  # activate the interface
@@ -12,6 +13,10 @@ wlan.isconnected()  # check if the station is connected to an AP
 wlan.connect("essid", "password")  # connect to an AP
 wlan.config("mac")  # get the interface's MAC address
 wlan.ifconfig()  # get the interface's IP/netmask/gw/DNS addresses
+
+# Literal-key overloads for WLAN.config were added in the v1.29.0 stubs
+assert_type(wlan.config("mac"), bytes)  # stubs-ignore: version<1.29.0
+assert_type(wlan.config("ssid"), str)  # stubs-ignore: version<1.29.0
 
 ap = network.WLAN(network.AP_IF)  # create access-point interface
 ap.active(True)  # activate the interface
