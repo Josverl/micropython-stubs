@@ -25,6 +25,21 @@ bd where
 
 Use the `bd` CLI when shell access is available. It is the most compact and direct Beads interface.
 
+## Repository Sync Policy
+
+This repository authorizes agents to synchronize Beads-only Dolt history. It
+does not authorize source Git commits, pulls, or pushes.
+
+1. Run `bd dolt pull` before relying on issue status or mutating Beads.
+2. Search for an existing issue before creating a replacement. Continue the
+	original issue where possible; use `bd supersede <old> --with <new>` for a
+	duplicate that already exists.
+3. After any successful Beads mutation, run `bd dolt push` before handoff.
+4. Never force a Dolt push. Stop and report any pull, merge, or push conflict.
+
+Git branch merges and rebases do not synchronize Beads. Cross-machine Beads
+state is carried by the Dolt remote under `refs/dolt/data`.
+
 ## Core CLI Workflow
 
 1. Find work:

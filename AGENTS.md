@@ -13,6 +13,35 @@ This project uses **bd** (beads) for issue tracking. Run `bd prime` for full wor
 > source of truth; don't `bd import` during normal operation; don't
 > reach for third-party Dolt hosting before trying the default).
 
+## Repository Beads Sync Policy
+
+This repository explicitly authorizes agents to synchronize Beads-only Dolt
+history with the configured remote. This authorization does not include source
+Git commits, `git pull`, or `git push`.
+
+At the start of every agent session, run these commands in order:
+
+```bash
+bd prime
+bd hooks install
+bd hooks list
+bd dolt pull
+```
+
+`bd hooks install` is intentionally unconditional: it is idempotent and
+preserves unrelated hook content. Do not assume that hooks in a cloned
+repository are already active; confirm the installation with `bd hooks list`.
+
+- Run `bd dolt pull` before relying on issue status or mutating Beads.
+- Search for an existing issue before creating a replacement. Continue the
+   original issue when possible; use `bd supersede <old> --with <new>` when a
+   duplicate already exists.
+- After any successful Beads mutation, run `bd dolt push` before handoff.
+- Never use `bd dolt push --force`. If pull, merge, or push reports a conflict
+   or failure, stop and report the exact error; do not claim the state is synced.
+- Git branch merges and rebases do not synchronize Beads. Beads state travels
+   only through the Dolt remote at `refs/dolt/data`.
+
 ## Quick Reference
 
 ```bash
