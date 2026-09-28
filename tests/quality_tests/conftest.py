@@ -7,9 +7,10 @@
   Only ``typings/`` remains a symlink to the shared stub cache.
 
 - type_stub_cache_path_fx
-  Session-scoped fixture that installs type stubs once per (version, portboard, stub_source)
-  and caches them for 24 hours.  An inter-process lock prevents simultaneous installations
-  from parallel workers.
+    Session-scoped fixture that installs type stubs per
+    (version, portboard, stub_source). Local targets are reused while their
+    source fingerprint matches. An inter-process lock lets parallel workers
+    share the completed target.
 
 - install_stubs
   is the function that does the actual pip install to a folder
@@ -24,9 +25,11 @@
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import time
+from functools import cache
 from pathlib import Path
 
 import fasteners
@@ -37,7 +40,8 @@ from mpflash.versions import clean_version, get_preview_mp_version, get_stable_m
 from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
-MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
+_RUN_ID_FILE = ".pytest-run-id"
+_SOURCE_FINGERPRINT_FILE = ".stub-source.sha256"
 
 # Fallback version strings used when the GitHub API is unreachable.
 # Keep in sync with the most recent stable + preview release.
@@ -57,7 +61,7 @@ def pytest_addoption(parser: pytest.Parser):
         "--no-cache",
         action="store_true",
         default=False,
-        help="Disable the 24-hour stub-installation cache and always reinstall stubs.",
+        help="Disable uv's package cache when installing stubs.",
     )
     parser.addoption(
         "--stable-only",
@@ -191,6 +195,37 @@ def flat_version(version):
     return clean_version(version, flat=True)
 
 
+def _project_root(pytestconfig: pytest.Config) -> Path:
+    return pytestconfig.inipath.parent if pytestconfig.inipath is not None else pytestconfig.rootpath
+
+
+def _local_stubs_sources(pytestconfig: pytest.Config, portboard: str, version: str) -> tuple[Path, Path]:
+    if version == "-":
+        foldername = f"micropython-{portboard}-stubs"
+    else:
+        foldername = f"micropython-{flat_version(version)}-{portboard}-stubs"
+    publish_path = _project_root(pytestconfig) / "publish"
+    return publish_path / "micropython-stdlib-stubs", publish_path / foldername
+
+
+def _local_stubs_fingerprint(pytestconfig: pytest.Config, portboard: str, version: str) -> str | None:
+    sources = _local_stubs_sources(pytestconfig, portboard, version)
+    if any(not source.exists() for source in sources):
+        return None
+    digest = hashlib.sha256()
+    for source in dict.fromkeys(sources):
+        digest.update(source.name.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(_cached_directory_fingerprint(source).encode("ascii"))
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+@cache
+def _cached_directory_fingerprint(source: Path) -> str:
+    return _directory_fingerprint(source)
+
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     """
@@ -231,12 +266,13 @@ def type_stub_cache_path_fx(
     request: pytest.FixtureRequest,
 ) -> Path:
     """
-    Installs type stubs for the given portboard and version to a persistent cache.
+    Installs type stubs for the given portboard and version to a shared target.
     Returns the path to the cache folder.
 
-    The cache is valid for MAX_CACHE_AGE seconds (24 hours).
-    An inter-process lock ensures that parallel test workers do not install the
-    same stubs simultaneously.
+    Local targets are reused across runs while their source fingerprint
+    matches. Other sources are rebuilt once per run. uv's package cache
+    accelerates installs, while an inter-process lock lets xdist workers share
+    the completed target safely.
 
     Args:
         portboard: The portboard.
@@ -249,7 +285,6 @@ def type_stub_cache_path_fx(
         Path: The path to the cache folder.
     """
     log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
-    cache_key = f"stubber/{stub_source}/{version}/{portboard}"
     flatversion = flat_version(version)
     tsc_path = Path(
         request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}")  # type: ignore
@@ -257,27 +292,35 @@ def type_stub_cache_path_fx(
     # prevent simultaneous updates to the cache across parallel workers
     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
     cache_sentinel = tsc_path / ("stdlib/builtins.pyi" if portboard == "stdlib" else "micropython.pyi")
+    no_cache = bool(request.config.getoption("--no-cache", default=False))
+    run_id = os.environ.get("PYTEST_XDIST_TESTRUNUID", f"pid-{os.getpid()}")
+    run_id_path = tsc_path / _RUN_ID_FILE
+    source_fingerprint = _local_stubs_fingerprint(pytestconfig, portboard, version) if stub_source == "local" and not no_cache else None
+    source_fingerprint_path = tsc_path / _SOURCE_FINGERPRINT_FILE
     with cache_lock:
-        if cache_sentinel.exists():
-            # stubs appear to be installed – check the freshness timestamp
-            # (skipped when --no-cache is passed on the command line)
-            no_cache = request.config.getoption("--no-cache", default=False)
-            timestamp = request.config.cache.get(cache_key, None)
-            if not no_cache and timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
-                log.debug(f"Using cached type stubs for {portboard} {version}")
-                _refresh_mpy_shed(pytestconfig.inipath.parent / "reference" / "_mpy_shed", tsc_path / "_mpy_shed")
-                return tsc_path
+        local_source_matches = (
+            source_fingerprint is not None
+            and source_fingerprint_path.exists()
+            and source_fingerprint_path.read_text(encoding="ascii") == source_fingerprint
+        )
+        current_run_matches = run_id_path.exists() and run_id_path.read_text(encoding="ascii") == run_id
+        if not no_cache and cache_sentinel.exists() and (local_source_matches or current_run_matches):
+            log.debug(f"Using cached type stubs for {portboard} {version}")
+            _refresh_mpy_shed(_project_root(pytestconfig) / "reference" / "_mpy_shed", tsc_path / "_mpy_shed")
+            return tsc_path
 
-        ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
+        ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path, no_cache=no_cache)
         if not ok:
             pytest.skip(f"Could not install stubs for {portboard} {version}")
-        # record the installation timestamp
-        request.config.cache.set(cache_key, time.time())
+        if source_fingerprint is not None and not no_cache:
+            source_fingerprint_path.write_text(source_fingerprint, encoding="ascii")
+        else:
+            run_id_path.write_text(run_id, encoding="ascii")
 
     return tsc_path
 
 
-def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path) -> bool:
+def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path, *, no_cache: bool = False) -> bool:
     """
     Cleans up prior install to avoid stale files.
     Uses uv pip to install type stubs for the given portboard and version.
@@ -287,7 +330,6 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         version: The version.
         stub_source: The stub source.
         pytestconfig: The pytest Config object.
-        flatversion: The flat version.
         tsc_path: The path to the cache folder.
 
     Returns:
@@ -309,7 +351,6 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         except Exception:
             version = _FALLBACK_STABLE_VERSION
 
-    flatversion = flat_version(version)
     # clean up prior install to avoid stale files
     if tsc_path.exists():
         shutil.rmtree(tsc_path, ignore_errors=True)
@@ -317,30 +358,44 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
     # Install type stubs for portboard and version
     if stub_source == "pypi":
         # Add version
-        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --target {tsc_path}"
+        cmd = ["uv", "pip", "install", f"micropython-{portboard}-stubs=={version.lower().lstrip('v')}.*", "--target", str(tsc_path)]
     elif stub_source == "pypi-pre":
         # Add version and --pre
-        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --pre --target {tsc_path}"
+        cmd = [
+            "uv",
+            "pip",
+            "install",
+            f"micropython-{portboard}-stubs=={version.lower().lstrip('v')}.*",
+            "--pre",
+            "--target",
+            str(tsc_path),
+        ]
     else:
         # local source and --pre to pull in a pre-release version of stdlib
-        if version == "-":
-            # stdlib has no version in publish/path
-            foldername = f"micropython-{portboard}-stubs"
-        else:
-            foldername = f"micropython-{flatversion}-{portboard}-stubs"
-        # stubsource = pytestconfig.inipath.parent / f"repos/micropython-stubs/publish/{foldername}"
-        stubs_source = pytestconfig.inipath.parent / f"publish/{foldername}"
-        stdlib_source = pytestconfig.inipath.parent / "publish/micropython-stdlib-stubs"
+        stdlib_source, stubs_source = _local_stubs_sources(pytestconfig, portboard, version)
         if not stubs_source.exists():
             pytest.skip(f"Could not find stubs for {portboard} {version} at {stubs_source}")
         # --no-deps - avoids mixing different versions of stdlib
         # > For directories, uv caches based on the last-modified time of the pyproject.toml file,
         #    so that must be updated when stdlib is rebuilt.
-        cmd = f"uv pip install --no-deps {stdlib_source} {stubs_source} --pre --target {tsc_path}"
+        cmd = [
+            "uv",
+            "pip",
+            "install",
+            "--no-deps",
+            str(stdlib_source),
+            str(stubs_source),
+            "--pre",
+            "--target",
+            str(tsc_path),
+        ]
+
+    if no_cache:
+        cmd.insert(1, "--no-cache")
 
     try:
-        log.debug(f"Installing stubs: {cmd}")
-        subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
+        log.debug(f"Installing stubs: {subprocess.list2cmdline(cmd)}")
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
     except subprocess.CalledProcessError as e:
         # skip test if source connot be found
         print(f"{e.stderr}")
@@ -349,7 +404,7 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
 
     # _mpy_shed is generated and gitignored inside publish/micropython-stdlib-stubs/.
     # Always refresh it so local generated artifacts cannot differ from a clean checkout.
-    _mpy_shed_src = pytestconfig.inipath.parent / "reference" / "_mpy_shed"
+    _mpy_shed_src = _project_root(pytestconfig) / "reference" / "_mpy_shed"
     _mpy_shed_dst = tsc_path / "_mpy_shed"
     _refresh_mpy_shed(_mpy_shed_src, _mpy_shed_dst)
 
