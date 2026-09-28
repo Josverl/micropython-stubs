@@ -89,7 +89,7 @@
         "mpy_files": 0,
         "python_files": 1,
         "requested_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
-        "resolved_version": "1.2"
+        "package_version": "1.2"
       },
       "typings": [
         "micropython-stdlib-stubs",
@@ -140,6 +140,23 @@
       "wall_seconds": 10.63
     }
   ],
+  "immutable_revision_validation": {
+    "offline": {
+      "checker_status": "pass",
+      "orchestration_seconds": 6.74,
+      "process_exit": 0
+    },
+    "package_version": "1.2",
+    "provider": "github",
+    "refresh": {
+      "checker_status": "pass",
+      "orchestration_seconds": 8.416,
+      "process_exit": 0,
+      "wall_seconds": 9.294
+    },
+    "requested_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
+    "resolved_revision": "61087f6f86236fb2240b53b47eca5fbbdefdfd88"
+  },
   "follow_up_beads": [
     {
       "id": "micropython-stubs-ut0.10",

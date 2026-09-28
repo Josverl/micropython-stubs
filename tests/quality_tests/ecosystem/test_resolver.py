@@ -75,6 +75,12 @@ def test_plan_provider_file_with_revision():
     assert planned.requested_revision == "v1.2.0"
 
 
+def test_plan_provider_file_encodes_revision_and_path_components():
+    planned = plan_mip_reference("github:example/package/drivers/value #1.py@release/1.0")
+
+    assert planned.fetch_reference == ("https://raw.githubusercontent.com/example/package/release%2F1.0/drivers/value%20%231.py")
+
+
 @pytest.mark.parametrize(
     ("reference", "expected"),
     [
@@ -197,24 +203,32 @@ def _resolver(tmp_path: Path, responses: dict[str, bytes], *, materialize: bool 
     return MipResolver(CachedFetcher(cache_root, upstream), workspace=workspace)
 
 
-def test_resolve_supplied_github_reference_from_local_responses(tmp_path: Path):
-    manifest_url = "https://raw.githubusercontent.com/howmanyoliversarethere/micropython-joystick-2-unit/HEAD/package.json"
-    source_url = "https://raw.githubusercontent.com/HowManyOliversAreThere/micropython-joystick-2-unit/HEAD/joystick_2_unit.py"
-    resolver = _resolver(
-        tmp_path,
+def test_resolve_supplied_github_reference_pins_commit_and_replays_offline(tmp_path: Path):
+    revision = "61087f6f86236fb2240b53b47eca5fbbdefdfd88"
+    revision_url = "https://api.github.com/repos/howmanyoliversarethere/micropython-joystick-2-unit/commits/HEAD"
+    manifest_url = f"https://raw.githubusercontent.com/howmanyoliversarethere/micropython-joystick-2-unit/{revision}/package.json"
+    source_url = f"https://raw.githubusercontent.com/HowManyOliversAreThere/micropython-joystick-2-unit/{revision}/joystick_2_unit.py"
+    upstream = MemoryFetcher(
         {
-            manifest_url: _fixture_bytes("simple/package.json"),
-            source_url: b"class Joystick2Unit:\n    pass\n",
-        },
+            revision_url: FetchResponse(json.dumps({"sha": revision}).encode(), revision_url),
+            manifest_url: FetchResponse(_fixture_bytes("simple/package.json"), manifest_url),
+            source_url: FetchResponse(b"class Joystick2Unit:\n    pass\n", source_url),
+        }
     )
+    cache_root = tmp_path / "cache"
+    reference = "github:howmanyoliversarethere/micropython-joystick-2-unit"
 
-    result = resolver.resolve_reference("github:howmanyoliversarethere/micropython-joystick-2-unit")
+    result = MipResolver(CachedFetcher(cache_root, upstream)).resolve_reference(reference)
+    offline = MipResolver(CachedFetcher(cache_root, None)).resolve_reference(reference, mode=CacheMode.OFFLINE)
 
     assert result.record.disposition is RecordDisposition.CHECK
     assert result.record.resolution is not None
-    assert result.record.resolution.resolved_revision == "1.2"
-    assert [file.target for file in result.record.resolution.files] == ["joystick_2_unit.py"]
-    assert len(result.payloads) == 1
+    assert result.record.resolution.resolved_revision == revision
+    assert result.record.resolution.package_version == "1.2"
+    assert result.record.resolution.manifest_reference == manifest_url
+    assert [file.source for file in result.record.resolution.files] == [source_url]
+    assert offline.record.resolution == result.record.resolution
+    assert upstream.calls == 3
 
 
 def test_resolve_direct_python_url(tmp_path: Path):
@@ -229,14 +243,65 @@ def test_resolve_direct_python_url(tmp_path: Path):
 
 
 def test_requested_provider_revision_is_not_replaced_by_manifest_version(tmp_path: Path):
-    manifest_url = "https://raw.githubusercontent.com/example/package/v1/package.json"
-    resolver = _resolver(tmp_path, {manifest_url: json.dumps({"version": "2.0", "urls": []}).encode()})
+    revision = "a" * 40
+    revision_url = "https://api.github.com/repos/example/package/commits/v1"
+    manifest_url = f"https://raw.githubusercontent.com/example/package/{revision}/package.json"
+    resolver = _resolver(
+        tmp_path,
+        {
+            revision_url: json.dumps({"sha": revision}).encode(),
+            manifest_url: json.dumps({"version": "2.0", "urls": []}).encode(),
+        },
+    )
 
     result = resolver.resolve_reference("github:example/package@v1")
 
     assert result.record.resolution is not None
     assert result.record.resolution.requested_revision == "v1"
-    assert result.record.resolution.resolved_revision == "v1"
+    assert result.record.resolution.resolved_revision == revision
+    assert result.record.resolution.package_version == "2.0"
+
+
+def test_gitlab_default_branch_resolves_to_immutable_commit(tmp_path: Path):
+    revision = "b" * 40
+    revision_url = "https://gitlab.com/api/v4/projects/example%2Fpackage/repository/commits?per_page=1"
+    source_url = f"https://gitlab.com/example/package/-/raw/{revision}/driver.py"
+    resolver = _resolver(
+        tmp_path,
+        {
+            revision_url: json.dumps([{"id": revision}]).encode(),
+            source_url: b"value = 1\n",
+        },
+    )
+
+    result = resolver.resolve_reference("gitlab:example/package/driver.py")
+
+    assert result.record.resolution is not None
+    assert result.record.resolution.resolved_revision == revision
+    assert result.record.resolution.package_version is None
+    assert result.record.resolution.files[0].source == source_url
+
+
+def test_codeberg_default_branch_resolves_to_immutable_commit(tmp_path: Path):
+    revision = "c" * 40
+    repository_url = "https://codeberg.org/api/v1/repos/example/package"
+    revision_url = "https://codeberg.org/api/v1/repos/example/package/git/commits/main"
+    source_url = f"https://codeberg.org/api/v1/repos/example/package/raw/driver.py?ref={revision}"
+    resolver = _resolver(
+        tmp_path,
+        {
+            repository_url: json.dumps({"default_branch": "main"}).encode(),
+            revision_url: json.dumps({"sha": revision}).encode(),
+            source_url: b"value = 1\n",
+        },
+    )
+
+    result = resolver.resolve_reference("codeberg:example/package/driver.py")
+
+    assert result.record.resolution is not None
+    assert result.record.resolution.resolved_revision == revision
+    assert result.record.resolution.package_version is None
+    assert result.record.resolution.files[0].source == source_url
 
 
 def test_resolve_mixed_and_mpy_only_payloads(tmp_path: Path):
@@ -291,11 +356,15 @@ def test_resolver_reports_invalid_manifest_paths_and_collisions(tmp_path: Path, 
 
 
 def test_resolver_detects_dependency_cycle(tmp_path: Path):
-    a_url = "https://raw.githubusercontent.com/fixtures/cycle-a/v1/package.json"
-    b_url = "https://raw.githubusercontent.com/fixtures/cycle-b/v1/package.json"
+    revision_a = "a" * 40
+    revision_b = "b" * 40
+    a_url = f"https://raw.githubusercontent.com/fixtures/cycle-a/{revision_a}/package.json"
+    b_url = f"https://raw.githubusercontent.com/fixtures/cycle-b/{revision_b}/package.json"
     resolver = _resolver(
         tmp_path,
         {
+            "https://api.github.com/repos/fixtures/cycle-a/commits/v1": json.dumps({"sha": revision_a}).encode(),
+            "https://api.github.com/repos/fixtures/cycle-b/commits/v1": json.dumps({"sha": revision_b}).encode(),
             a_url: _fixture_bytes("cycle/a.json"),
             b_url: _fixture_bytes("cycle/b.json"),
             "https://fixtures.invalid/cycle/a.py": b"a = 1\n",
@@ -346,8 +415,10 @@ def test_manifest_rejects_unsupported_format_version(tmp_path: Path):
 
 def test_nested_dependencies_are_inventoried_in_one_closure(tmp_path: Path):
     root_url = "https://fixtures.invalid/nested/package.json"
-    provider_manifest_url = "https://raw.githubusercontent.com/example/dependency/v1.0.0/package.json"
-    provider_source_url = "https://raw.githubusercontent.com/example/dependency/v1.0.0/provider_dependency.py"
+    provider_revision = "d" * 40
+    provider_revision_url = "https://api.github.com/repos/example/dependency/commits/v1.0.0"
+    provider_manifest_url = f"https://raw.githubusercontent.com/example/dependency/{provider_revision}/package.json"
+    provider_source_url = f"https://raw.githubusercontent.com/example/dependency/{provider_revision}/provider_dependency.py"
     index_manifest_url = "https://micropython.org/pi/v2/package/py/collections-defaultdict/latest.json"
     indexed_payload = b"from collections import defaultdict\n"
     short_hash = hashlib.sha256(indexed_payload).hexdigest()[:16]
@@ -359,6 +430,7 @@ def test_nested_dependencies_are_inventoried_in_one_closure(tmp_path: Path):
         {
             root_url: _fixture_bytes("nested/package.json"),
             "https://fixtures.invalid/nested/src/main.py": b"main = True\n",
+            provider_revision_url: json.dumps({"sha": provider_revision}).encode(),
             provider_manifest_url: _fixture_bytes("nested/provider-dependency.json"),
             provider_source_url: b"provider = True\n",
             index_manifest_url: json.dumps(index_manifest).encode(),
@@ -384,6 +456,7 @@ def test_nested_dependencies_are_inventoried_in_one_closure(tmp_path: Path):
         "github:example/dependency",
         "collections-defaultdict",
     }
+    assert metadata["package_version"] == "1.0.0"
 
 
 def test_workspace_materializes_and_cleans_one_package_independently(tmp_path: Path):

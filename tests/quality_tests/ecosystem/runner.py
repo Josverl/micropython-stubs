@@ -145,6 +145,7 @@ class QARunReport:
     results: tuple[QACheckerResult, ...]
     duration_seconds: float
     retained_workspace: Path | None
+    package_version: str | None = None
 
     @property
     def status(self) -> CheckerStatus:
@@ -161,6 +162,7 @@ class QARunReport:
             "provenance": list(self.provenance),
             "requested_reference": self.requested_reference,
             "resolved_revision": self.resolved_revision,
+            "package_version": self.package_version,
             "version": self.version,
             "portboard": self.portboard,
             "stub_source": self.stub_source.value,
@@ -468,6 +470,7 @@ class QARunner:
             results=results,
             duration_seconds=duration,
             retained_workspace=retained_workspace,
+            package_version=resolution.package_version if resolution else None,
         )
 
 

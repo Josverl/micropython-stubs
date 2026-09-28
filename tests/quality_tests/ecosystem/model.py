@@ -269,6 +269,7 @@ class PackageResolution:
     manifest_sha256: str | None
     dependencies: tuple[DependencyEdge, ...]
     files: tuple[PackageFile, ...]
+    package_version: str | None = None
 
 
 @dataclass(frozen=True)

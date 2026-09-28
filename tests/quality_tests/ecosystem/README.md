@@ -48,6 +48,7 @@ Aliases preserve original spelling and catalog ownership. Provenance preserves t
 
 - requested and canonical references;
 - requested and immutable resolved revisions;
+- package metadata version separately from the resolved provider revision;
 - manifest reference and SHA-256;
 - dependency edges with depth, identity, revision, disposition, and reason;
 - file inventory for the entire dependency closure.
@@ -87,6 +88,8 @@ locks/
 
 Response and object hashes are validated before reuse. Package paths combine a readable sanitized component with a digest, and workspace keys include manifest and payload hashes so a mutable source cannot reuse stale files merely by retaining its version label. `PackageWorkspace.clean(identity)` removes only that package's materialized revisions; shared response and object entries remain available to other packages.
 
+GitHub, GitLab, and Codeberg references are resolved through their cached provider APIs before package content is fetched. Mutable branch, tag, and default-branch references therefore produce a full commit in `resolved_revision`; the manifest `version` remains separate as `package_version`. Manifest and provider payload URLs are rewritten to that commit. Run one refresh or cached online resolution before the first offline replay so the provider revision response and pinned content are present; references that already contain a full commit do not require a revision lookup.
+
 ZIP extraction is atomic and bounded by file count and total uncompressed bytes. Absolute/parent/drive paths, backslashes, symbolic links, encrypted members, and case-insensitive target collisions are rejected before the staged directory is published.
 
 All default resolver tests use local fixtures and injected responses. The live smoke test is additionally marked `ecosystem_network` and skipped unless `MICROPYTHON_STUBS_ECOSYSTEM_NETWORK=1` is set explicitly.
@@ -105,7 +108,7 @@ pyproject.toml and checker configuration
 
 Stub sources are `local`, `pypi`, `pypi-pre`, and an explicit filesystem `path`. The runner provisions `typings/`, narrows the existing quality-test checker configuration to `source/`, and dispatches through the existing Pyright, mypy, Ruff, Pyrefly, ty, or Zuban adapters. Installed stubs are search inputs and are excluded from package-source analysis. Package modules are written as bytes and are never imported or executed.
 
-`QARunReport` preserves package identity, provenance, requested and resolved revisions, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. `to_json` emits schema version 1; `render_text` emits a concise summary and any setup/checker error. Workspace retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
+`QARunReport` preserves package identity, provenance, requested and resolved revisions, package version, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. `to_json` emits schema version 1; `render_text` emits a concise summary and any setup/checker error. Workspace retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
 
 ## Focused and batch commands
 

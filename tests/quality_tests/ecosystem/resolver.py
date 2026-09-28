@@ -15,7 +15,7 @@ from enum import Enum
 from pathlib import Path, PurePosixPath
 from threading import Lock
 from typing import Protocol
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import quote, urljoin, urlsplit
 import urllib.request
 import uuid
 import zipfile
@@ -122,6 +122,7 @@ class ResolutionResult:
 @dataclass(frozen=True)
 class _PackageOutcome:
     resolved_revision: str | None
+    package_version: str | None
     manifest_reference: str | None
     manifest_sha256: str | None
 
@@ -263,6 +264,7 @@ class MipResolver:
                 manifest_sha256=outcome.manifest_sha256,
                 dependencies=tuple(state.dependencies),
                 files=files,
+                package_version=outcome.package_version,
             )
             decision = decide_payload(files)
             record = PackageRecord(
@@ -310,29 +312,30 @@ class MipResolver:
 
         state.stack.append(package_key)
         try:
+            provider_revision = self._resolve_provider_revision(planned, mode)
+            fetch_reference = _resolved_fetch_reference(planned, provider_revision)
             if planned.kind is ReferenceKind.FILE:
-                response = self._fetch(planned.fetch_reference, state, mode)
+                response = self._fetch(fetch_reference, state, mode)
                 self._add_payload(
                     state,
                     identity,
                     planned.target_name or _reference_name(planned.logical_reference),
-                    planned.logical_reference,
+                    fetch_reference,
                     response.data,
                     depth,
                 )
-                outcome = _PackageOutcome(response.resolved_revision or planned.requested_revision, None, None)
+                outcome = _PackageOutcome(provider_revision or response.resolved_revision or planned.requested_revision, None, None, None)
             else:
-                response = self._fetch(planned.fetch_reference, state, mode)
+                response = self._fetch(fetch_reference, state, mode)
                 manifest_sha256 = hashlib.sha256(response.data).hexdigest()
                 manifest = _parse_manifest(response.data, planned.logical_reference)
                 manifest_version = manifest.get("version")
                 if manifest_version is not None and not isinstance(manifest_version, str):
                     raise ResolverError(ReasonCode.INVALID_MANIFEST, "manifest version must be a string")
-                provider_revision = planned.requested_revision if _provider_prefix(planned.logical_reference) else None
                 resolved_revision = response.resolved_revision or provider_revision or manifest_version or planned.requested_revision
-                self._resolve_manifest_files(manifest, planned, identity, depth, state, mode)
+                self._resolve_manifest_files(manifest, planned, provider_revision, identity, depth, state, mode)
                 self._resolve_dependencies(manifest, depth, state, mode)
-                outcome = _PackageOutcome(resolved_revision, planned.fetch_reference, manifest_sha256)
+                outcome = _PackageOutcome(resolved_revision, manifest_version, fetch_reference, manifest_sha256)
             state.resolved_packages[package_key] = outcome
             return outcome
         finally:
@@ -342,6 +345,7 @@ class MipResolver:
         self,
         manifest: dict[str, object],
         planned: PlannedReference,
+        provider_revision: str | None,
         identity: PackageIdentity,
         depth: int,
         state: _ResolutionState,
@@ -349,10 +353,15 @@ class MipResolver:
     ) -> None:
         for target, source in _manifest_pairs(manifest, "urls"):
             source_reference = _relative_reference(planned.logical_reference, source)
-            fetch_reference = _rewrite_provider(source_reference, planned.requested_revision)
             _validate_target(identity, target, source_reference, depth)
+            fetch_reference = self._source_fetch_reference(
+                source_reference,
+                planned.logical_reference,
+                provider_revision,
+                mode,
+            )
             response = self._fetch(fetch_reference, state, mode)
-            self._add_payload(state, identity, target, source_reference, response.data, depth)
+            self._add_payload(state, identity, target, fetch_reference, response.data, depth)
 
         for target, short_hash in _manifest_pairs(manifest, "hashes"):
             if re.fullmatch(r"[0-9a-fA-F]{8,64}", short_hash) is None:
@@ -364,6 +373,83 @@ class MipResolver:
             if not digest.startswith(short_hash.casefold()):
                 raise ResolverError(ReasonCode.INVALID_MANIFEST, f"Hash mismatch for {target}")
             self._add_payload(state, identity, target, source_reference, response.data, depth)
+
+    def _source_fetch_reference(
+        self,
+        source_reference: str,
+        package_reference: str,
+        package_revision: str | None,
+        mode: CacheMode,
+    ) -> str:
+        if _provider_prefix(source_reference) is None:
+            return source_reference
+        logical_reference, requested_revision = _split_revision(source_reference)
+        planned = PlannedReference(
+            requested_reference=source_reference,
+            logical_reference=logical_reference,
+            fetch_reference=_rewrite_provider(logical_reference, requested_revision),
+            requested_revision=requested_revision,
+            kind=ReferenceKind.FILE,
+        )
+        if requested_revision is None and _provider_repository(logical_reference) == _provider_repository(package_reference):
+            return _resolved_fetch_reference(planned, package_revision)
+        return _resolved_fetch_reference(planned, self._resolve_provider_revision(planned, mode))
+
+    def _resolve_provider_revision(self, planned: PlannedReference, mode: CacheMode) -> str | None:
+        repository = _provider_repository(planned.logical_reference)
+        if repository is None:
+            return None
+        provider, owner, name = repository
+        requested = planned.requested_revision
+        if requested is not None and re.fullmatch(r"[0-9a-fA-F]{40,64}", requested):
+            return requested.casefold()
+
+        if provider == "github":
+            reference = quote(requested or "HEAD", safe="")
+            document = self._fetch_provider_document(
+                f"https://api.github.com/repos/{quote(owner, safe='')}/{quote(name, safe='')}/commits/{reference}",
+                mode,
+            )
+            return _provider_commit_id(document, "sha", provider)
+
+        if provider == "gitlab":
+            project = quote(f"{owner}/{name}", safe="")
+            if requested is not None and requested.casefold() != "head":
+                reference = quote(requested, safe="")
+                document = self._fetch_provider_document(
+                    f"https://gitlab.com/api/v4/projects/{project}/repository/commits/{reference}",
+                    mode,
+                )
+            else:
+                document = self._fetch_provider_document(
+                    f"https://gitlab.com/api/v4/projects/{project}/repository/commits?per_page=1",
+                    mode,
+                )
+                if not isinstance(document, list) or not document:
+                    raise ResolverError(ReasonCode.UNAVAILABLE, "GitLab returned no default-branch commit")
+                document = document[0]
+            return _provider_commit_id(document, "id", provider)
+
+        if requested is None or requested.casefold() == "head":
+            repository_document = self._fetch_provider_document(
+                f"https://codeberg.org/api/v1/repos/{quote(owner, safe='')}/{quote(name, safe='')}",
+                mode,
+            )
+            if not isinstance(repository_document, dict) or not isinstance(repository_document.get("default_branch"), str):
+                raise ResolverError(ReasonCode.UNAVAILABLE, "Codeberg returned no default branch")
+            requested = repository_document["default_branch"]
+        document = self._fetch_provider_document(
+            f"https://codeberg.org/api/v1/repos/{quote(owner, safe='')}/{quote(name, safe='')}/git/commits/{quote(requested, safe='')}",
+            mode,
+        )
+        return _provider_commit_id(document, "sha", provider)
+
+    def _fetch_provider_document(self, reference: str, mode: CacheMode) -> object:
+        response = self.fetcher.fetch(reference, mode)
+        try:
+            return json.loads(response.data.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ResolverError(ReasonCode.UNAVAILABLE, f"Provider revision response is invalid: {reference}") from error
 
     def _resolve_dependencies(
         self,
@@ -756,11 +842,35 @@ def _rewrite_provider(reference: str, revision: str | None) -> str:
     owner, repository = parts[:2]
     path = "/".join(parts[2:])
     return _PROVIDER_URLS[provider].format(
-        owner=owner,
-        repository=repository,
-        revision=revision or "HEAD",
-        path=path,
+        owner=quote(owner, safe=""),
+        repository=quote(repository, safe=""),
+        revision=quote(revision or "HEAD", safe=""),
+        path=quote(path, safe="/"),
     )
+
+
+def _provider_repository(reference: str) -> tuple[str, str, str] | None:
+    provider = _provider_prefix(reference)
+    if provider is None:
+        return None
+    logical_reference, _ = _split_revision(reference)
+    parts = logical_reference.split(":", 1)[1].split("/")
+    if len(parts) < 2 or not all(parts[:2]):
+        raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, f"invalid {provider} reference: {reference}")
+    return provider, parts[0].casefold(), parts[1].casefold()
+
+
+def _resolved_fetch_reference(planned: PlannedReference, resolved_revision: str | None) -> str:
+    if _provider_prefix(planned.logical_reference) is not None and resolved_revision is not None:
+        return _rewrite_provider(planned.logical_reference, resolved_revision)
+    return planned.fetch_reference
+
+
+def _provider_commit_id(document: object, field: str, provider: str) -> str:
+    value = document.get(field) if isinstance(document, dict) else None
+    if not isinstance(value, str) or re.fullmatch(r"[0-9a-fA-F]{40,64}", value) is None:
+        raise ResolverError(ReasonCode.UNAVAILABLE, f"{provider} returned no immutable commit")
+    return value.casefold()
 
 
 def _is_http_reference(reference: str) -> bool:
@@ -875,6 +985,7 @@ def _workspace_metadata(record: PackageRecord) -> dict[str, object]:
         "requested_reference": record.resolution.requested_reference,
         "requested_revision": record.resolution.requested_revision,
         "resolved_revision": record.resolution.resolved_revision,
+        "package_version": record.resolution.package_version,
         "manifest_reference": record.resolution.manifest_reference,
         "manifest_sha256": record.resolution.manifest_sha256,
         "dependencies": [

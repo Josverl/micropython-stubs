@@ -80,6 +80,7 @@ def _resolution(classification: PortDecision, source: bytes = b"raise RuntimeErr
         manifest_sha256="c" * 64,
         dependencies=(),
         files=(python_file, mpy_file),
+        package_version="2.0",
     )
     record = PackageRecord(
         candidate=candidate,
@@ -193,6 +194,7 @@ def test_runner_isolates_source_and_stubs_without_executing_package(tmp_path: Pa
     data = json.loads(report.to_json())
     assert data["package_identity"] == "repository:github:example/driver"
     assert data["resolved_revision"] == "abc123"
+    assert data["package_version"] == "2.0"
     assert data["results"][0]["command"] == ["pyright", "check", "."]
     assert "pyright: PASS" in report.render_text()
 
