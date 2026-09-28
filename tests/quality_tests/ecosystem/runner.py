@@ -21,7 +21,15 @@ if __package__ == "ecosystem":
 else:
     from ..typecheck import filter_issues, invoke_typechecker
 
-from .model import FileKind, PackageRecord, PortClassification, ReasonCode, RecordDisposition
+from .model import FileKind, PackageRecord, PackageResolution, PortClassification, ReasonCode, RecordDisposition
+from .reporting import (
+    REPORT_SCHEMA_VERSION,
+    resolution_text,
+    resolution_to_dict,
+    sanitize_report_command,
+    sanitize_report_document,
+    sanitize_report_text,
+)
 from .resolver import ResolutionResult
 
 
@@ -146,6 +154,7 @@ class QARunReport:
     duration_seconds: float
     retained_workspace: Path | None
     package_version: str | None = None
+    package_resolution: PackageResolution | None = None
 
     @property
     def status(self) -> CheckerStatus:
@@ -155,9 +164,17 @@ class QARunReport:
                 return status
         return CheckerStatus.PASS
 
-    def to_dict(self) -> dict[str, object]:
-        return {
-            "schema_version": 1,
+    @property
+    def provisioning_status(self) -> str:
+        if self.stub_command:
+            return "completed"
+        if any(result.status is CheckerStatus.ERROR for result in self.results):
+            return "error"
+        return "not_run"
+
+    def to_dict(self, *, include_resolution: bool = True) -> dict[str, object]:
+        document: dict[str, object] = {
+            "schema_version": REPORT_SCHEMA_VERSION,
             "package_identity": self.package_identity,
             "provenance": list(self.provenance),
             "requested_reference": self.requested_reference,
@@ -167,27 +184,48 @@ class QARunReport:
             "portboard": self.portboard,
             "stub_source": self.stub_source.value,
             "stub_command": list(self.stub_command),
+            "typings": {
+                "status": self.provisioning_status,
+                "version": self.version,
+                "portboard": self.portboard,
+                "source": self.stub_source.value,
+                "command": list(self.stub_command),
+            },
             "status": self.status.value,
             "results": [result.to_dict() for result in self.results],
             "duration_seconds": self.duration_seconds,
-            "retained_workspace": str(self.retained_workspace) if self.retained_workspace else None,
+            "workspace_retained": self.retained_workspace is not None,
         }
+        if include_resolution:
+            document["resolution"] = resolution_to_dict(self.package_resolution) if self.package_resolution else None
+        return sanitize_report_document(document)
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True) + "\n"
 
-    def render_text(self) -> str:
-        lines = [f"{self.package_identity} [{self.version} {self.portboard} {self.stub_source.value}] {self.status.value.upper()}"]
+    def render_text(self, *, include_resolution: bool = True) -> str:
+        lines = [
+            f"QA run report v{REPORT_SCHEMA_VERSION}: {self.package_identity} [{self.version} {self.portboard}] {self.status.value.upper()}"
+        ]
+        if include_resolution:
+            if self.package_resolution is None:
+                lines.append("  resolution: not available")
+            else:
+                lines.extend(resolution_text(self.package_resolution, indent="  "))
+        lines.append(f"  typings: {self.stub_source.value} {self.provisioning_status}")
+        if self.stub_command:
+            lines.append(f"    command: {' '.join(sanitize_report_command(self.stub_command))}")
         for result in self.results:
             lines.append(
                 f"  {result.checker}: {result.status.value.upper()} "
                 f"({result.error_count} errors, {result.warning_count} warnings, {result.duration_seconds:.3f}s)"
             )
+            if result.command:
+                lines.append(f"    command: {' '.join(sanitize_report_command(result.command))}")
             if result.message:
                 lines.append(f"    {result.message.strip()}")
-        if self.retained_workspace is not None:
-            lines.append(f"  workspace: {self.retained_workspace}")
-        return "\n".join(lines)
+        lines.append(f"  workspace retained: {'yes' if self.retained_workspace is not None else 'no'}")
+        return sanitize_report_text("\n".join(lines))
 
 
 def plan_qa_matrix(
@@ -471,6 +509,7 @@ class QARunner:
             duration_seconds=duration,
             retained_workspace=retained_workspace,
             package_version=resolution.package_version if resolution else None,
+            package_resolution=resolution,
         )
 
 

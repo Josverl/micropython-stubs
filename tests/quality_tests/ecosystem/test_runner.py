@@ -67,7 +67,14 @@ def _resolution(classification: PortDecision, source: bytes = b"raise RuntimeErr
         source_family=SourceFamily.MIP,
         install_reference="github:example/driver",
         aliases=(PackageAlias(CatalogSource.DIRECT, "github:example/driver"),),
-        provenance=(CatalogProvenance(CatalogSource.DIRECT, "github:example/driver", identity.key),),
+        provenance=(
+            CatalogProvenance(
+                CatalogSource.DIRECT,
+                "github:example/driver",
+                identity.key,
+                metadata=(("author", "Fixture Author"), ("api_key", "metadata-secret")),
+            ),
+        ),
     )
     python_file = PackageFile(identity, "driver.py", "https://fixtures.invalid/driver.py", sha256="a" * 64, size=len(source))
     mpy_file = PackageFile(identity, "native.mpy", "https://fixtures.invalid/native.mpy", sha256="b" * 64, size=3)
@@ -192,11 +199,30 @@ def test_runner_isolates_source_and_stubs_without_executing_package(tmp_path: Pa
     assert report.retained_workspace is None
     assert not checker.workspaces[0].exists()
     data = json.loads(report.to_json())
+    assert data["schema_version"] == 2
     assert data["package_identity"] == "repository:github:example/driver"
     assert data["resolved_revision"] == "abc123"
     assert data["package_version"] == "2.0"
+    assert data["provenance"][0]["metadata"] == {
+        "api_key": "<redacted>",
+        "author": "Fixture Author",
+    }
+    assert data["resolution"]["manifest"]["sha256"] == "c" * 64
+    assert data["resolution"]["files"][0]["target"] == "driver.py"
+    assert data["resolution"]["files"][1]["kind"] == "mpy"
+    assert data["typings"] == {
+        "command": ["copy", "<path>", "<path>"],
+        "portboard": "rp2",
+        "source": "path",
+        "status": "completed",
+        "version": "v1.28.0",
+    }
+    assert data["workspace_retained"] is False
     assert data["results"][0]["command"] == ["pyright", "check", "."]
     assert "pyright: PASS" in report.render_text()
+    assert "typings: path completed" in report.render_text()
+    assert "command: copy <path> <path>" in report.render_text()
+    assert "command: pyright check ." in report.render_text()
 
 
 def test_runner_retains_failed_workspace_for_debugging(tmp_path: Path):
@@ -242,11 +268,14 @@ def test_runner_reports_provisioning_errors_and_retains_workspace(tmp_path: Path
 
     assert report.status is CheckerStatus.ERROR
     assert str(missing_stubs.resolve()) in report.results[0].message
-    assert report.results[0].message in report.render_text()
+    assert "Stub path does not exist: <path>" in report.render_text()
     retained_workspace = report.retained_workspace
     assert retained_workspace is not None
     assert (retained_workspace / "source" / "driver.py").is_file()
     assert checker.workspaces == []
+    for rendered in (report.to_json(), report.render_text()):
+        assert str(missing_stubs.resolve()) not in rendered
+        assert "<path>" in rendered
 
 
 def test_runner_executes_existing_pyright_with_local_stubs(tmp_path: Path):

@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from typing import Mapping
 
@@ -16,6 +17,8 @@ from .model import (
     CatalogProvenance,
     CatalogSource,
     ClassificationOverride,
+    DependencyDisposition,
+    DependencyEdge,
     PackageAlias,
     PackageCandidate,
     PackageIdentity,
@@ -147,8 +150,9 @@ class FakeResolver:
 
 
 class FakeRunner:
-    def __init__(self, failing: set[str] | None = None) -> None:
+    def __init__(self, failing: set[str] | None = None, skipped: set[str] | None = None) -> None:
         self.failing = failing or set()
+        self.skipped = skipped or set()
         self.identities: list[str] = []
 
     def run(
@@ -162,10 +166,11 @@ class FakeRunner:
         identity = resolution.record.candidate.identity.key
         self.identities.append(identity)
         failed = resolution.record.candidate.display_name in self.failing
+        skipped = resolution.record.candidate.display_name in self.skipped
         checker_result = QACheckerResult(
             checker=case.checkers[0],
             command=(case.checkers[0], "check"),
-            status=CheckerStatus.FAIL if failed else CheckerStatus.PASS,
+            status=CheckerStatus.SKIP if skipped else CheckerStatus.FAIL if failed else CheckerStatus.PASS,
             diagnostics=(),
             error_count=1 if failed else 0,
             warning_count=0,
@@ -189,16 +194,32 @@ class FakeRunner:
 
 def _resolved(record: PackageRecord) -> ResolutionResult:
     source = b"value = 1\n"
-    package_file = PackageFile(record.candidate.identity, "driver.py", "https://fixtures.invalid/driver.py", size=len(source))
+    package_file = PackageFile(
+        record.candidate.identity,
+        "driver.py",
+        "https://fixtures.invalid/driver.py",
+        sha256="a" * 64,
+        size=len(source),
+    )
     resolution = PackageResolution(
         requested_reference=record.candidate.install_reference,
         canonical_reference=record.candidate.install_reference,
         requested_revision=None,
         resolved_revision="fixture",
         manifest_reference="https://fixtures.invalid/package.json",
-        manifest_sha256=None,
-        dependencies=(),
+        manifest_sha256="b" * 64,
+        dependencies=(
+            DependencyEdge(
+                requested_reference="package:fixture-dependency",
+                requested_revision="1.0",
+                depth=1,
+                disposition=DependencyDisposition.RESOLVED,
+                identity=PackageIdentity.index("fixture-dependency"),
+                resolved_revision="d" * 40,
+            ),
+        ),
         files=(package_file,),
+        package_version="1.0",
     )
     resolved_record = PackageRecord(
         candidate=record.candidate,
@@ -234,6 +255,14 @@ def test_batch_orchestration_isolates_unavailable_and_type_failures():
     assert report.exit_code is OrchestrationExit.OPERATIONAL_FAILURE
     assert report.counts["unavailable"] == 1
     assert '"exit_code": 2' in report.to_json()
+    document = json.loads(report.to_json())
+    unavailable = next(result for result in document["results"] if result["outcome"] == "unavailable")
+    assert unavailable["resolution"] is None
+    assert unavailable["stages"] == {
+        "checker_execution": "not_run",
+        "resolution": "not_available",
+        "typings_provisioning": "not_run",
+    }
 
 
 def test_orchestration_exit_codes_distinguish_type_failures_and_intentional_skips():
@@ -245,6 +274,29 @@ def test_orchestration_exit_codes_distinguish_type_failures_and_intentional_skip
     assert type_failure.exit_code is OrchestrationExit.TYPE_CHECK_FAILURE
     assert skipped.exit_code is OrchestrationExit.SUCCESS
     assert skipped.results[0].outcome is PackageOutcome.SKIPPED
+    skipped_result = json.loads(skipped.to_json())["results"][0]
+    assert skipped_result["stages"] == {
+        "checker_execution": "not_run",
+        "resolution": "completed",
+        "typings_provisioning": "not_run",
+    }
+    assert "typings_provisioning=not_run" in skipped.render_text()
+
+
+def test_all_skipped_checker_results_report_checker_stage_not_run():
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner(skipped={"z-portable"})).run_batch(
+        _inventory(),
+        BatchSelection(package_query="z-portable"),
+        _request(),
+    )
+
+    result = json.loads(report.to_json())["results"][0]
+    assert result["outcome"] == "skipped"
+    assert result["stages"] == {
+        "checker_execution": "not_run",
+        "resolution": "completed",
+        "typings_provisioning": "completed",
+    }
 
 
 def test_catalog_diagnostics_make_partial_batch_operationally_incomplete():
@@ -297,6 +349,90 @@ def test_focused_orchestration_bypasses_catalog_and_uses_explicit_unknown_policy
     assert report.results[0].outcome is PackageOutcome.PASS
     assert report.exit_code is OrchestrationExit.SUCCESS
     assert "focused" in report.render_text()
+    document = json.loads(report.to_json())
+    assert document["schema_version"] == 2
+    assert document["discovery"]["requested_package"] == reference
+    assert document["discovery"]["selected_packages"] == ["repository:github:example/focused"]
+    assert document["cache_mode"] == "use_cache"
+    assert document["qa_matrix"] == {
+        "checkers": ["pyright"],
+        "portboards": ["esp32"],
+        "stub_path_configured": True,
+        "stub_source": "path",
+        "versions": ["v1.28.0"],
+    }
+    resolution = document["results"][0]["resolution"]
+    assert resolution["resolved_revision"] == "fixture"
+    assert resolution["package_version"] == "1.0"
+    assert resolution["manifest"] == {
+        "reference": "https://fixtures.invalid/package.json",
+        "sha256": "b" * 64,
+    }
+    assert resolution["dependencies"] == [
+        {
+            "depth": 1,
+            "disposition": "resolved",
+            "identity": "index:fixture-dependency",
+            "reason": None,
+            "requested_reference": "package:fixture-dependency",
+            "requested_revision": "1.0",
+            "resolved_revision": "d" * 40,
+        }
+    ]
+    assert resolution["files"][0] == {
+        "dependency_depth": 0,
+        "kind": "py",
+        "owner": "repository:github:example/focused",
+        "sha256": "a" * 64,
+        "size": 10,
+        "source": "https://fixtures.invalid/driver.py",
+        "target": "driver.py",
+    }
+    assert "closure: 1 dependencies, 1 files" in report.render_text()
+    assert "dependency[1]: package:fixture-dependency" in report.render_text()
+
+
+def test_reports_redact_discovery_credentials_and_sensitive_query_values():
+    reference = "https://report-user:report-password@example.invalid/package.json?token=report-token&ref=main"
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_focused(
+        reference,
+        _request(unknown_policy=UnknownPortPolicy.USE_REQUESTED),
+    )
+
+    for rendered in (report.to_json(), report.render_text()):
+        assert "report-user" not in rendered
+        assert "report-password" not in rendered
+        assert "report-token" not in rendered
+        assert "ref=main" in rendered
+
+
+def test_offline_report_records_cache_mode_and_complete_run_configuration():
+    request = QARequest(
+        versions=("v1.28.0",),
+        portboards=("rp2-rpi_pico",),
+        stub_source=StubSource.PYPI_PRE,
+        checkers=("pyright", "mypy"),
+        cache_mode=CacheMode.OFFLINE,
+        unknown_policy=UnknownPortPolicy.USE_REQUESTED,
+        retention=WorkspaceRetention.ON_FAILURE,
+        no_stub_cache=True,
+    )
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_focused("github:example/offline", request)
+
+    document = json.loads(report.to_json())
+    assert document["cache_mode"] == "offline"
+    assert document["configuration"] == {
+        "cache_mode": "offline",
+        "stub_cache_enabled": False,
+        "unknown_port_policy": "use_requested",
+        "workspace_retention": "on_failure",
+    }
+    assert document["qa_matrix"]["checkers"] == ["pyright", "mypy"]
+    assert "cache: offline" in report.render_text()
+    assert '"workspace_retention": "on_failure"' in report.render_text()
+    assert "typings: pypi-pre completed" in report.render_text()
 
 
 class FixtureCatalogFetcher:
@@ -525,7 +661,19 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
     assert selection.port == "esp32"
     assert selection.limit == 1
     assert request.cache_mode is CacheMode.REFRESH
-    assert '"mode": "batch"' in report_path.read_text(encoding="utf-8")
+    document = json.loads(report_path.read_text(encoding="utf-8"))
+    assert document["mode"] == "batch"
+    assert document["cache_mode"] == "refresh"
+    assert document["discovery"] == {
+        "catalogs": "mim",
+        "classification": "port_specific",
+        "discovered_packages": 4,
+        "limit": 1,
+        "package_query": "esp32",
+        "port": "esp32",
+        "requested_package": None,
+        "selected_packages": ["repository:github:example/a-esp32"],
+    }
 
 
 def test_cli_rejects_unbounded_or_conflicting_network_options(capsys):

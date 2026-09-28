@@ -108,7 +108,7 @@ pyproject.toml and checker configuration
 
 Stub sources are `local`, `pypi`, `pypi-pre`, and an explicit filesystem `path`. The runner provisions `typings/`, narrows the existing quality-test checker configuration to `source/`, and dispatches through the existing Pyright, mypy, Ruff, Pyrefly, ty, or Zuban adapters. Installed stubs are search inputs and are excluded from package-source analysis. Package modules are written as bytes and are never imported or executed.
 
-`QARunReport` preserves package identity, provenance, requested and resolved revisions, package version, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. `to_json` emits schema version 1; `render_text` emits a concise summary and any setup/checker error. Workspace retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
+`QARunReport` preserves package identity, provenance, requested and resolved revisions, package version, manifest hash, dependency and payload inventory, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. JSON and text renderers emit schema version 2 evidence. Serialized commands, provenance, references, diagnostics, and error messages redact URL credentials, sensitive query/metadata values, file URLs, and absolute host paths. Workspace retention is reported as a boolean; its machine-specific path remains available only on the in-memory report for local debugging. Retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
 
 ## Focused and batch commands
 
@@ -156,7 +156,7 @@ Package outcomes are `pass`, `type_check_failure`, `unsupported`, `unavailable`,
 | 1 | At least one type-check failure and no operational failure. |
 | 2 | Error catalog diagnostics, unsupported or unavailable packages, internal/setup failure, no selected package, or command usage error. |
 
-JSON reports use schema version 1 and retain each package's runner reports. Text reports show the same outcomes and aggregate counts. One package failure does not stop later packages.
+JSON reports use schema version 2. Both JSON and text record the focused or batch discovery selection, cache mode, requested version/port/checker matrix, run policies, immutable package revision and manifest hash, complete dependency/payload closure, typings provisioning, checker outcomes, stage status, and aggregate counts. Resolved closure evidence is stored once per package; each matrix entry retains only its provisioning and checker run. Skipped and unavailable packages explicitly report stages that did not run. One package failure does not stop later packages.
 
 Live pytest cases are marked `ecosystem_network` and excluded by repository defaults. Run them only with both the marker and environment opt-in:
 
@@ -167,7 +167,7 @@ uv run pytest -m ecosystem_network tests/quality_tests/ecosystem -n 0
 
 ## Pilot baseline
 
-`pilot_baseline.json` is the reviewed, path-independent baseline from the 2026-09-28 pilot. Raw CLI reports remain under the gitignored `tests/quality_tests/.ecosystem-cache/reports/` directory because they contain machine-specific workspace paths and mutable upstream details.
+`pilot_baseline.json` is the reviewed, path-independent baseline from the 2026-09-28 pilot. Raw CLI reports remain under the gitignored `tests/quality_tests/.ecosystem-cache/reports/` directory because durations and upstream outcomes are run-specific. Schema-v2 report renderers exclude credentials and machine-specific paths so a report can be retained as reproducibility evidence when needed.
 
 The fixture corpus exercises both catalog adapters plus every agreed edge case: portable, port-specific, and unknown classification; cross-catalog duplicates; dependency closures; malformed, unsafe, cyclic, colliding, or unavailable inputs; mixed `.py`/`.mpy`; and `.mpy`-only closures. The full offline gate produced 103 passes with the one live network smoke test deselected. Package source was parsed and copied for static analysis only; no package module was imported or executed.
 

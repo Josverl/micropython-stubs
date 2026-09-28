@@ -10,7 +10,17 @@ import time
 from typing import Protocol
 
 from .catalog import CatalogDiagnostic, CatalogInventory
-from .model import CatalogSource, PackageCandidate, PackageRecord, PortClassification, PortDecision, ReasonCode, RecordDisposition
+from .model import (
+    CatalogSource,
+    PackageCandidate,
+    PackageRecord,
+    PackageResolution,
+    PortClassification,
+    PortDecision,
+    ReasonCode,
+    RecordDisposition,
+)
+from .reporting import REPORT_SCHEMA_VERSION, resolution_text, resolution_to_dict, sanitize_report_document, sanitize_report_text
 from .resolver import CacheMode, ResolutionResult, ResolverError
 from .runner import (
     CheckerStatus,
@@ -95,6 +105,47 @@ class QARequest:
         object.__setattr__(self, "portboards", portboards)
         object.__setattr__(self, "checkers", checkers)
 
+    def matrix_dict(self) -> dict[str, object]:
+        return {
+            "versions": list(self.versions),
+            "portboards": list(self.portboards),
+            "stub_source": self.stub_source.value,
+            "stub_path_configured": self.stub_path is not None,
+            "checkers": list(self.checkers),
+        }
+
+    def configuration_dict(self) -> dict[str, object]:
+        return {
+            "cache_mode": self.cache_mode.value,
+            "unknown_port_policy": self.unknown_policy.value,
+            "workspace_retention": self.retention.value,
+            "stub_cache_enabled": not self.no_stub_cache,
+        }
+
+
+@dataclass(frozen=True)
+class DiscoveryEvidence:
+    selected_packages: tuple[str, ...]
+    requested_package: str | None = None
+    catalogs: CatalogSelection | None = None
+    package_query: str | None = None
+    classification: PortClassification | None = None
+    port: str | None = None
+    limit: int | None = None
+    discovered_packages: int | None = None
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "requested_package": self.requested_package,
+            "catalogs": self.catalogs.value if self.catalogs else None,
+            "package_query": self.package_query,
+            "classification": self.classification.value if self.classification else None,
+            "port": self.port,
+            "limit": self.limit,
+            "discovered_packages": self.discovered_packages,
+            "selected_packages": list(self.selected_packages),
+        }
+
 
 @dataclass(frozen=True)
 class PackageQAResult:
@@ -104,6 +155,29 @@ class PackageQAResult:
     reason: ReasonCode | None = None
     message: str = ""
     reports: tuple[QARunReport, ...] = ()
+    resolution: PackageResolution | None = None
+
+    @property
+    def stages(self) -> dict[str, str]:
+        provisioning = {report.provisioning_status for report in self.reports}
+        checker_statuses = {result.status for report in self.reports for result in report.results}
+        if "error" in provisioning:
+            provisioning_status = "error"
+        elif "completed" in provisioning:
+            provisioning_status = "completed"
+        else:
+            provisioning_status = "not_run"
+        if CheckerStatus.ERROR in checker_statuses:
+            checker_status = "error"
+        elif checker_statuses - {CheckerStatus.SKIP}:
+            checker_status = "completed"
+        else:
+            checker_status = "not_run"
+        return {
+            "resolution": "completed" if self.resolution else "not_available",
+            "typings_provisioning": provisioning_status,
+            "checker_execution": checker_status,
+        }
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -112,7 +186,9 @@ class PackageQAResult:
             "outcome": self.outcome.value,
             "reason": self.reason.value if self.reason else None,
             "message": self.message,
-            "reports": [report.to_dict() for report in self.reports],
+            "stages": self.stages,
+            "resolution": resolution_to_dict(self.resolution) if self.resolution else None,
+            "reports": [report.to_dict(include_resolution=False) for report in self.reports],
         }
 
 
@@ -122,6 +198,8 @@ class OrchestrationReport:
     results: tuple[PackageQAResult, ...]
     catalog_diagnostics: tuple[CatalogDiagnostic, ...]
     duration_seconds: float
+    discovery: DiscoveryEvidence
+    request: QARequest
 
     @property
     def counts(self) -> dict[str, int]:
@@ -138,32 +216,52 @@ class OrchestrationReport:
         return OrchestrationExit.SUCCESS
 
     def to_dict(self) -> dict[str, object]:
-        return {
-            "schema_version": 1,
+        document: dict[str, object] = {
+            "schema_version": REPORT_SCHEMA_VERSION,
             "mode": self.mode,
+            "discovery": self.discovery.to_dict(),
+            "cache_mode": self.request.cache_mode.value,
+            "qa_matrix": self.request.matrix_dict(),
+            "configuration": self.request.configuration_dict(),
             "exit_code": int(self.exit_code),
             "counts": self.counts,
             "results": [result.to_dict() for result in self.results],
             "catalog_diagnostics": [_catalog_diagnostic_to_dict(item) for item in self.catalog_diagnostics],
             "duration_seconds": self.duration_seconds,
         }
+        return sanitize_report_document(document)
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True) + "\n"
 
     def render_text(self) -> str:
-        lines = [f"ecosystem QA ({self.mode})"]
+        matrix = self.request.matrix_dict()
+        lines = [
+            f"ecosystem QA report v{REPORT_SCHEMA_VERSION} ({self.mode})",
+            f"cache: {self.request.cache_mode.value}",
+            f"discovery: {json.dumps(self.discovery.to_dict(), sort_keys=True)}",
+            f"matrix: {json.dumps(matrix, sort_keys=True)}",
+            f"configuration: {json.dumps(self.request.configuration_dict(), sort_keys=True)}",
+        ]
         for result in self.results:
             detail = f" [{result.reason.value}]" if result.reason else ""
             lines.append(f"  {result.package_identity}: {result.outcome.value}{detail}")
             if result.message:
                 lines.append(f"    {result.message.strip()}")
+            stages = ", ".join(f"{name}={status}" for name, status in result.stages.items())
+            lines.append(f"    stages: {stages}")
+            if result.resolution is None:
+                lines.append("    resolution: not available")
+            else:
+                lines.extend(resolution_text(result.resolution, indent="    "))
+            for run_report in result.reports:
+                lines.extend(f"    {line}" for line in run_report.render_text(include_resolution=False).splitlines())
         for diagnostic in self.catalog_diagnostics:
             lines.append(f"  {diagnostic.catalog.value}:{diagnostic.entry_key}: {diagnostic.disposition.value} [{diagnostic.reason.value}]")
             lines.append(f"    {diagnostic.detail.strip()}")
         counts = ", ".join(f"{name}={count}" for name, count in self.counts.items())
         lines.append(f"summary: {counts}; exit={int(self.exit_code)}; {self.duration_seconds:.3f}s")
-        return "\n".join(lines)
+        return sanitize_report_text("\n".join(lines))
 
 
 class PackageResolver(Protocol):
@@ -200,7 +298,8 @@ class EcosystemOrchestrator:
             result = self._run_resolution(resolution, request)
         except Exception as error:
             result = _exception_result(reference, reference, error)
-        return OrchestrationReport("focused", (result,), (), time.perf_counter() - started)
+        discovery = DiscoveryEvidence((result.package_identity,), requested_package=reference)
+        return OrchestrationReport("focused", (result,), (), time.perf_counter() - started, discovery, request)
 
     def run_batch(
         self,
@@ -210,7 +309,8 @@ class EcosystemOrchestrator:
     ) -> OrchestrationReport:
         started = time.perf_counter()
         results: list[PackageQAResult] = []
-        for record in select_inventory_records(inventory, selection):
+        selected_records = select_inventory_records(inventory, selection)
+        for record in selected_records:
             candidate = record.candidate
             try:
                 resolution = self.resolver.resolve_candidate(
@@ -221,7 +321,23 @@ class EcosystemOrchestrator:
                 results.append(self._run_resolution(resolution, request))
             except Exception as error:
                 results.append(_exception_result(candidate.identity.key, candidate.install_reference, error))
-        return OrchestrationReport("batch", tuple(results), inventory.diagnostics, time.perf_counter() - started)
+        discovery = DiscoveryEvidence(
+            selected_packages=tuple(record.candidate.identity.key for record in selected_records),
+            catalogs=selection.catalogs,
+            package_query=selection.package_query,
+            classification=selection.classification,
+            port=selection.port,
+            limit=selection.limit,
+            discovered_packages=len(inventory.records),
+        )
+        return OrchestrationReport(
+            "batch",
+            tuple(results),
+            inventory.diagnostics,
+            time.perf_counter() - started,
+            discovery,
+            request,
+        )
 
     def _run_resolution(self, resolution: ResolutionResult, request: QARequest) -> PackageQAResult:
         record = resolution.record
@@ -232,6 +348,7 @@ class EcosystemOrchestrator:
                 candidate.install_reference,
                 _record_outcome(record),
                 record.reason,
+                resolution=record.resolution,
             )
 
         plan = plan_qa_matrix(
@@ -250,6 +367,7 @@ class EcosystemOrchestrator:
                 candidate.install_reference,
                 PackageOutcome.SKIPPED,
                 plan.reason,
+                resolution=record.resolution,
             )
 
         reports = tuple(self.runner.run(resolution, case, retention=request.retention) for case in plan.cases)
@@ -269,6 +387,7 @@ class EcosystemOrchestrator:
             outcome,
             message="; ".join(dict.fromkeys(messages)),
             reports=reports,
+            resolution=record.resolution,
         )
 
 
