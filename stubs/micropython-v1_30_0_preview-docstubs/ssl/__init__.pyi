@@ -53,6 +53,11 @@ class SSLContext:
     Create a new SSLContext instance.  The *protocol* argument must be one of the ``PROTOCOL_*``
     constants.
     """
+
+    # Implemented by the C level attr handler, so not visible to createstubs.
+    # mp_available
+    verify_mode: int
+    """Certificate verification mode: `CERT_NONE`, `CERT_OPTIONAL` or `CERT_REQUIRED`."""
     def __init__(self, *args) -> None: ...
     @mp_available()  # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
