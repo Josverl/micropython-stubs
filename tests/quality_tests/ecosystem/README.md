@@ -91,6 +91,22 @@ ZIP extraction is atomic and bounded by file count and total uncompressed bytes.
 
 All default resolver tests use local fixtures and injected responses. The live smoke test is additionally marked `ecosystem_network` and skipped unless `MICROPYTHON_STUBS_ECOSYSTEM_NETWORK=1` is set explicitly.
 
+## Isolated package QA
+
+`runner.py` converts a resolved record into explicit `QACase` instances and checks each case in a fresh temporary workspace:
+
+```text
+source/       # resolved .py payload only
+typings/      # selected MicroPython stubs
+pyproject.toml and checker configuration
+```
+
+`.mpy` inventory entries are never copied into checker source. `plan_qa_matrix` tests portable packages against every requested port/board, limits port-specific packages to compatible selections, and skips an empty intersection with `no_compatible_port`. An unknown classification skips with its evidence reason unless the caller explicitly selects `use_requested`.
+
+Stub sources are `local`, `pypi`, `pypi-pre`, and an explicit filesystem `path`. The runner provisions `typings/`, narrows the existing quality-test checker configuration to `source/`, and dispatches through the existing Pyright, mypy, Ruff, Pyrefly, ty, or Zuban adapters. Installed stubs are search inputs and are excluded from package-source analysis. Package modules are written as bytes and are never imported or executed.
+
+`QARunReport` preserves package identity, provenance, requested and resolved revisions, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. `to_json` emits schema version 1; `render_text` emits a concise summary and any setup/checker error. Workspace retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
+
 ## Port classification
 
 Evidence is evaluated in this order; only the highest available level decides the classification:
@@ -144,6 +160,7 @@ limit_exceeded
 cache_miss
 cache_corrupt
 identity_conflict
+no_compatible_port
 ambiguous_port
 no_port_evidence
 ```

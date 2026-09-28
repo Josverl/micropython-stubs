@@ -60,6 +60,7 @@ class ReasonCode(str, Enum):
     CACHE_MISS = "cache_miss"
     CACHE_CORRUPT = "cache_corrupt"
     IDENTITY_CONFLICT = "identity_conflict"
+    NO_COMPATIBLE_PORT = "no_compatible_port"
     AMBIGUOUS_PORT = "ambiguous_port"
     NO_PORT_EVIDENCE = "no_port_evidence"
 
