@@ -9,9 +9,11 @@ import os
 import re
 import shutil
 import stat
+from _thread import LockType
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path, PurePosixPath
+from threading import Lock
 from typing import Protocol
 from urllib.parse import urljoin, urlsplit
 import urllib.request
@@ -48,6 +50,8 @@ _PROVIDER_URLS = {
     "gitlab": "https://gitlab.com/{owner}/{repository}/-/raw/{revision}/{path}",
     "codeberg": "https://codeberg.org/api/v1/repos/{owner}/{repository}/raw/{path}?ref={revision}",
 }
+_CACHE_THREAD_LOCKS: dict[str, LockType] = {}
+_CACHE_THREAD_LOCKS_GUARD = Lock()
 
 
 class CacheMode(str, Enum):
@@ -447,7 +451,7 @@ class PackageWorkspace:
         destination = package_root / revision_key
         lock_path = self.root / "locks" / f"package-{hashlib.sha256(record.candidate.identity.key.encode()).hexdigest()}.lock"
         lock_path.parent.mkdir(parents=True, exist_ok=True)
-        with fasteners.InterProcessLock(str(lock_path)):
+        with _cache_thread_lock(lock_path), fasteners.InterProcessLock(str(lock_path)):
             metadata = _workspace_metadata(record)
             if self._is_valid(destination, metadata):
                 return destination
@@ -478,7 +482,7 @@ class PackageWorkspace:
         package_root = self.package_root(identity)
         lock_path = self.root / "locks" / f"package-{hashlib.sha256(identity.key.encode()).hexdigest()}.lock"
         lock_path.parent.mkdir(parents=True, exist_ok=True)
-        with fasteners.InterProcessLock(str(lock_path)):
+        with _cache_thread_lock(lock_path), fasteners.InterProcessLock(str(lock_path)):
             _remove_path(package_root)
 
     def _store_object(self, payload: ResolvedPayload) -> Path:
@@ -492,7 +496,7 @@ class PackageWorkspace:
             return object_path
         object_path.parent.mkdir(parents=True, exist_ok=True)
         lock_path = self.root / "locks" / f"object-{digest}.lock"
-        with fasteners.InterProcessLock(str(lock_path)):
+        with _cache_thread_lock(lock_path), fasteners.InterProcessLock(str(lock_path)):
             if not object_path.is_file():
                 _atomic_write(object_path, payload.data)
         return object_path
@@ -650,7 +654,7 @@ class CachedFetcher:
         entry_path = self.root / "responses" / cache_key[:2] / cache_key
         lock_path = self.root / "locks" / f"response-{cache_key}.lock"
         lock_path.parent.mkdir(parents=True, exist_ok=True)
-        with fasteners.InterProcessLock(str(lock_path)):
+        with _cache_thread_lock(lock_path), fasteners.InterProcessLock(str(lock_path)):
             if mode is not CacheMode.REFRESH:
                 cached = self._read(entry_path, reference)
                 if cached is not None:
@@ -707,6 +711,16 @@ class CachedFetcher:
         }
         _atomic_write(entry_path / "body", response.data)
         _atomic_write(entry_path / "metadata.json", (json.dumps(metadata, indent=2, sort_keys=True) + "\n").encode())
+
+
+def _cache_thread_lock(lock_path: Path) -> LockType:
+    key = os.path.normcase(str(lock_path.resolve()))
+    with _CACHE_THREAD_LOCKS_GUARD:
+        lock = _CACHE_THREAD_LOCKS.get(key)
+        if lock is None:
+            lock = Lock()
+            _CACHE_THREAD_LOCKS[key] = lock
+        return lock
 
 
 def _atomic_write(path: Path, data: bytes) -> None:

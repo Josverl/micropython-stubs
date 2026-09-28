@@ -107,6 +107,61 @@ Stub sources are `local`, `pypi`, `pypi-pre`, and an explicit filesystem `path`.
 
 `QARunReport` preserves package identity, provenance, requested and resolved revisions, stub selection and provisioning command, checker commands, normalized diagnostics, counts, statuses, and timings. `to_json` emits schema version 1; `render_text` emits a concise summary and any setup/checker error. Workspace retention is `never`, `on_failure`, or `always` so failed inputs can be inspected without accumulating successful runs.
 
+## Focused and batch commands
+
+The command module requires either a direct package or an explicit catalog selection. A direct package bypasses catalog discovery:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --package github:howmanyoliversarethere/micropython-joystick-2-unit `
+  --version v1.28.0 `
+  --portboard rp2-rpi_pico `
+  --stub-source local `
+  --checker pyright `
+  --cache-mode use_cache `
+  --report json `
+  --report-file results/ecosystem-joystick.json
+```
+
+Repeat `--version`, `--portboard`, or `--checker` to build a matrix. Stub sources are `local`, `pypi`, `pypi-pre`, and `path`; the last requires `--stub-path`. `--retain on_failure` preserves failed QA workspaces, and `--no-stub-cache` forwards a cache bypass to uv stub provisioning.
+
+Batch mode accepts `awesome`, `mim`, or `both` and applies filters after normalized cross-catalog deduplication:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --catalog both `
+  --package-filter sensor `
+  --classification portable `
+  --port-filter rp2 `
+  --limit 25 `
+  --version v1.28.0 `
+  --portboard rp2-rpi_pico `
+  --stub-source pypi `
+  --checker pyright `
+  --refresh `
+  --workers 4 `
+  --rate-limit 2
+```
+
+`--workers` bounds concurrent MIM page fetches from 1 through 16. Package resolution and QA remain deterministically isolated, while `--rate-limit` spaces all upstream catalog and package request starts. `--refresh` replaces matching response-cache entries; `--cache-mode offline` forbids upstream requests and reports cache misses as unavailable. These modes cannot be combined.
+
+Package outcomes are `pass`, `type_check_failure`, `unsupported`, `unavailable`, `skipped`, and `error`. Exit codes are stable:
+
+| Exit | Meaning |
+| --- | --- |
+| 0 | All selected packages passed or were intentionally skipped. |
+| 1 | At least one type-check failure and no operational failure. |
+| 2 | Unsupported, unavailable, internal/setup failure, no selected package, or command usage error. |
+
+JSON reports use schema version 1 and retain each package's runner reports. Text reports show the same outcomes and aggregate counts. One package failure does not stop later packages.
+
+Live pytest cases are marked `ecosystem_network` and excluded by repository defaults. Run them only with both the marker and environment opt-in:
+
+```powershell
+$env:MICROPYTHON_STUBS_ECOSYSTEM_NETWORK = "1"
+uv run pytest -m ecosystem_network tests/quality_tests/ecosystem -n 0
+```
+
 ## Port classification
 
 Evidence is evaluated in this order; only the highest available level decides the classification:

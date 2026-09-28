@@ -1,10 +1,12 @@
 import hashlib
+from concurrent.futures import ThreadPoolExecutor
 from io import BytesIO
 import json
 import os
 import stat
 from dataclasses import dataclass
 from pathlib import Path
+from threading import Event, Lock
 import zipfile
 
 import pytest
@@ -35,6 +37,24 @@ class MemoryFetcher:
     def fetch(self, reference: str) -> FetchResponse:
         self.calls += 1
         return self.responses[reference]
+
+
+class BlockingFetcher:
+    def __init__(self, response: FetchResponse) -> None:
+        self.response = response
+        self.calls = 0
+        self.started = Event()
+        self.release = Event()
+        self._calls_lock = Lock()
+
+    def fetch(self, reference: str) -> FetchResponse:
+        _ = reference
+        with self._calls_lock:
+            self.calls += 1
+        self.started.set()
+        if not self.release.wait(timeout=2):
+            raise TimeoutError("fixture fetch was not released")
+        return self.response
 
 
 def test_plan_github_package_reference():
@@ -97,6 +117,22 @@ def test_cached_fetcher_supports_use_cache_refresh_and_offline(tmp_path: Path):
     assert second.from_cache and offline.from_cache
     assert refreshed.resolved_revision == "abc123"
     assert upstream.calls == 2
+
+
+def test_cached_fetcher_serializes_same_reference_across_threads(tmp_path: Path):
+    reference = "https://packages.example/package.json"
+    upstream = BlockingFetcher(FetchResponse(b'{"version":"1"}', reference))
+    fetcher = CachedFetcher(tmp_path, upstream)
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        first = executor.submit(fetcher.fetch, reference)
+        assert upstream.started.wait(timeout=2)
+        second = executor.submit(fetcher.fetch, reference)
+        upstream.release.set()
+        responses = (first.result(timeout=2), second.result(timeout=2))
+
+    assert upstream.calls == 1
+    assert {response.from_cache for response in responses} == {False, True}
 
 
 def test_cached_fetcher_reports_offline_miss(tmp_path: Path):

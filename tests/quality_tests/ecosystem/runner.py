@@ -196,6 +196,7 @@ def plan_qa_matrix(
     stub_source: StubSource,
     checkers: Iterable[str],
     stub_path: Path | None = None,
+    no_stub_cache: bool = False,
     unknown_policy: UnknownPortPolicy = UnknownPortPolicy.SKIP,
 ) -> QAMatrixPlan:
     """Build a deterministic version/port matrix from package classification."""
@@ -223,7 +224,7 @@ def plan_qa_matrix(
             return QAMatrixPlan((), RecordDisposition.SKIP, ReasonCode.NO_COMPATIBLE_PORT)
 
     cases = tuple(
-        QACase(StubSelection(version, portboard, stub_source, stub_path), checkers)
+        QACase(StubSelection(version, portboard, stub_source, stub_path, no_stub_cache), checkers)
         for version, portboard in product(versions, selected_portboards)
     )
     return QAMatrixPlan(cases, RecordDisposition.CHECK)
