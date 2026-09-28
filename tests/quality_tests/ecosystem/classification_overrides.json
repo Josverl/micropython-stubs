@@ -1,4 +1,26 @@
 {
   "schema_version": 1,
-  "packages": {}
+  "packages": {
+    "repository:github:bartoszadamczyk/pico-ir": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["rpi_pico"],
+      "rationale": "The maintainer README describes this as a complete IR library for Raspberry Pi Pico and makes no broader host claim.",
+      "reference": "https://github.com/bartoszadamczyk/pico-ir/blob/13cd0fd9ebc689d42e49a5be91370a64455c1e33/README.md#pico-ir"
+    },
+    "repository:github:peterhinch/micropython-micro-gui": {
+      "classification": "portable",
+      "ports": [],
+      "boards": [],
+      "rationale": "The maintainer README calls the library portable between hosts and records tests on ESP32 variants, Raspberry Pi Pico, and Pyboard.",
+      "reference": "https://github.com/peterhinch/micropython-micro-gui/blob/5728ad6a7260c63f8b4e9b26badfd2a07c77cf12/README.md#supported-displays"
+    },
+    "repository:github:raspberrypifoundation/picozero": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["rpi_pico"],
+      "rationale": "The Raspberry Pi Foundation README defines picozero as a library for Raspberry Pi Pico and says it is aligned with that board.",
+      "reference": "https://github.com/RaspberryPiFoundation/picozero/blob/0f5f07701c0057db2c11be710193cdf14ec68c29/README.rst#picozero"
+    }
+  }
 }

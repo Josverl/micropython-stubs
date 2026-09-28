@@ -240,12 +240,12 @@ Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache/runs
 Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache
 ```
 
-Read the top-level package `outcome` independently from `catalog_diagnostics`. A package can pass while the process exits 2 because discovery was incomplete. Exit 1 is reserved for checker failures when no operational failure occurred. Reports record catalog provenance, requested and resolved package references, stub provisioning, checker commands, diagnostics, counts, timings, and retained workspace paths.
+Read the top-level package `outcome` independently from `catalog_diagnostics`. A package can pass while the process exits 2 because discovery was incomplete. Exit 1 is reserved for checker failures when no operational failure occurred. Reports record catalog provenance, requested and resolved package references, stub provisioning, checker commands, diagnostics, counts, timings, and whether a workspace was retained. The retained path is available only in memory for local debugging.
 
 Classification overrides belong in `classification_overrides.json` only after review of explicit repository or package evidence. Include a rationale and durable reference, then run:
 
 ```powershell
-uv run pytest tests/quality_tests/ecosystem/test_model.py tests/quality_tests/ecosystem/test_runner.py -q -n 0
+uv run pytest tests/quality_tests/ecosystem/test_model.py tests/quality_tests/ecosystem/test_catalog.py tests/quality_tests/ecosystem/test_runner.py -q -n 0
 ```
 
 Ordinary pytest remains network-free because `ecosystem_network` is excluded in the repository defaults. Keep raw reports and caches uncommitted; update `pilot_baseline.json` only from a reviewed run, preserving factual aggregate data rather than local absolute paths or mirrored third-party content.
@@ -281,6 +281,17 @@ Equal-precedence port-specific evidence is combined, allowing a package to suppo
 ```
 
 Portable overrides cannot name ports or boards. Port-specific overrides must name at least one port or board. Unknown is a classifier result, not valid evidence or an override value.
+
+The initial reviewed corpus deliberately gives each source catalog both outcomes. `micropython-micro-gui` appears in Awesome MicroPython and MIM, and its maintainer explicitly describes it as portable between hosts. Awesome's `pico-ir` and MIM's `picozero` explicitly target Raspberry Pi Pico, so both use the conservative `rpi_pico` board scope. A shared MicroPython module such as `machine`, `network`, or `framebuf` is not evidence of a port or board by itself.
+
+Review and expiry policy:
+
+1. Resolve every catalog alias to its canonical identity and verify which catalogs currently contain it.
+2. Accept an override only from an explicit maintainer or official package statement. Portable evidence must claim portability or name multiple supported host families; port-specific evidence must name the supported port or board.
+3. Cite the exact upstream document using a provider URL pinned to a full commit and summarize the relevant claim in the rationale. Choose the narrowest scope the evidence supports.
+4. Re-review each entry during the annual ecosystem refresh and no later than 12 months after the last substantive Git change to that entry. Use Git history as the review record.
+5. Re-review immediately when a repository moves or is archived, a catalog changes the package identity, the cited document becomes unavailable, or current documentation or releases contradict the override.
+6. An entry expires when its review deadline passes or its evidence is unavailable or contradicted. Remove it so classification returns to `unknown`; add it again only after recording new commit-pinned evidence.
 
 ## Report vocabulary
 

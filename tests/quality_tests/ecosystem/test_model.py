@@ -1,6 +1,7 @@
 from dataclasses import replace
 import json
 from pathlib import Path
+import re
 
 import pytest
 
@@ -323,7 +324,22 @@ def test_port_specific_override_requires_scope(tmp_path):
 
 
 def test_committed_classification_overrides_validate():
-    assert load_classification_overrides(Path(__file__).with_name("classification_overrides.json")) == {}
+    overrides = load_classification_overrides(Path(__file__).with_name("classification_overrides.json"))
+
+    assert {identity.key for identity in overrides} == {
+        "repository:github:bartoszadamczyk/pico-ir",
+        "repository:github:peterhinch/micropython-micro-gui",
+        "repository:github:raspberrypifoundation/picozero",
+    }
+    assert {identity.key: (override.classification, override.ports, override.boards) for identity, override in overrides.items()} == {
+        "repository:github:bartoszadamczyk/pico-ir": (PortClassification.PORT_SPECIFIC, (), ("rpi_pico",)),
+        "repository:github:peterhinch/micropython-micro-gui": (PortClassification.PORTABLE, (), ()),
+        "repository:github:raspberrypifoundation/picozero": (PortClassification.PORT_SPECIFIC, (), ("rpi_pico",)),
+    }
+    for override in overrides.values():
+        assert override.rationale
+        assert override.reference is not None
+        assert re.fullmatch(r"https://github\.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/[^#]+(?:#.+)?", override.reference)
 
 
 def test_fixture_outcomes_use_normalized_contract_values():

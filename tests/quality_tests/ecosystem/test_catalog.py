@@ -4,7 +4,15 @@ from dataclasses import replace
 import json
 
 from .catalog import AwesomeCatalogAdapter, CatalogEntry, MimCatalogAdapter, build_inventory
-from .model import CatalogSource, PackageIdentity, PortClassification, ReasonCode, RecordDisposition, SourceFamily
+from .model import (
+    CatalogSource,
+    PackageIdentity,
+    PortClassification,
+    ReasonCode,
+    RecordDisposition,
+    SourceFamily,
+    load_classification_overrides,
+)
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -261,6 +269,73 @@ def test_inventory_filters_by_catalog_identity_and_classification():
     assert [record.candidate.identity for record in specific] == [identity]
     assert specific[0].classification is not None
     assert specific[0].classification.ports == ("esp32",)
+
+
+def test_reviewed_override_corpus_covers_both_classifications_in_each_catalog():
+    entries = [
+        CatalogEntry(
+            CatalogSource.AWESOME_MICROPYTHON,
+            "micro-gui",
+            "https://github.com/peterhinch/micropython-micro-gui",
+            "Portable GUI",
+            "GUI",
+            AWESOME_SOURCE,
+        ),
+        CatalogEntry(
+            CatalogSource.MIM,
+            "micropython-micro-gui",
+            "github:peterhinch/micropython-micro-gui",
+            "Portable GUI",
+            "gui",
+            "https://checkmim.com/packages/peterhinch+micropython-micro-gui",
+        ),
+        CatalogEntry(
+            CatalogSource.AWESOME_MICROPYTHON,
+            "pico-ir",
+            "https://github.com/bartoszadamczyk/pico-ir",
+            "IR library for Raspberry Pi Pico",
+            "IR",
+            AWESOME_SOURCE,
+        ),
+        CatalogEntry(
+            CatalogSource.MIM,
+            "picozero",
+            "github:raspberrypifoundation/picozero",
+            "Electronics components for Raspberry Pi Pico",
+            "hardware",
+            "https://checkmim.com/packages/raspberrypifoundation+picozero",
+        ),
+    ]
+    overrides = load_classification_overrides(Path(__file__).with_name("classification_overrides.json"))
+
+    inventory = build_inventory(entries, overrides=overrides)
+
+    for catalog in (CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM):
+        classifications = {
+            record.classification.classification
+            for record in inventory.filtered(catalog=catalog).records
+            if record.classification is not None
+        }
+        assert classifications == {PortClassification.PORTABLE, PortClassification.PORT_SPECIFIC}
+    specific = inventory.filtered(classification=PortClassification.PORT_SPECIFIC).records
+    assert {record.classification.boards for record in specific if record.classification} == {("rpi_pico",)}
+
+
+def test_common_machine_modules_do_not_imply_port_scope():
+    entry = CatalogEntry(
+        CatalogSource.AWESOME_MICROPYTHON,
+        "generic-machine-driver",
+        "https://github.com/example/generic-machine-driver",
+        "Uses machine.Pin and machine.I2C for GPIO and bus access.",
+        "Hardware",
+        AWESOME_SOURCE,
+    )
+
+    record = build_inventory([entry]).records[0]
+
+    assert record.classification is not None
+    assert record.classification.classification is PortClassification.UNKNOWN
+    assert record.classification.reason is ReasonCode.NO_PORT_EVIDENCE
 
 
 def test_inventory_reports_unsupported_references_with_stable_reason():
