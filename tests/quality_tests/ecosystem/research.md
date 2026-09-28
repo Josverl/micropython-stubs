@@ -1,7 +1,7 @@
 # Ecosystem package source research
 
-Research date: 2026-09-28  
-Beads epic: `micropython-stubs-ut0`  
+Research date: 2026-09-28
+Beads epic: `micropython-stubs-ut0`
 Research spike: `micropython-stubs-ut0.2`
 
 ## Decisions
