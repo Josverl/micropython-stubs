@@ -33,8 +33,9 @@ from ..runner import (
 
 
 class InspectingChecker:
-    def __init__(self, *, fail: bool = False) -> None:
+    def __init__(self, *, fail: bool = False, message: str = "fixture diagnostic") -> None:
         self.fail = fail
+        self.message = message
         self.workspaces: list[Path] = []
 
     def run(self, workspace: Path, *, checker: str, version: str, portboard: str) -> CheckerExecution:
@@ -49,7 +50,7 @@ class InspectingChecker:
         diagnostic = {
             "file": str(workspace / "source" / "driver.py"),
             "severity": "error" if self.fail else "information",
-            "message": "fixture diagnostic",
+            "message": self.message,
             "range": {"start": {"line": 0, "character": 0}, "end": {"line": 0, "character": 1}},
         }
         return CheckerExecution(
@@ -218,6 +219,7 @@ def test_runner_isolates_source_and_stubs_without_executing_package(tmp_path: Pa
         "version": "v1.28.0",
     }
     assert data["workspace_retained"] is False
+    assert data["retained_workspace"] is None
     assert data["results"][0]["command"] == ["pyright", "check", "."]
     assert "pyright: PASS" in report.render_text()
     assert "typings: path completed" in report.render_text()
@@ -238,6 +240,31 @@ def test_runner_retains_failed_workspace_for_debugging(tmp_path: Path):
     assert retained_workspace == checker.workspaces[0]
     assert retained_workspace.is_dir()
     assert report.results[0].diagnostics[0]["file"] == "source/driver.py"
+    data = json.loads(report.to_json())
+    assert data["retained_workspace"] == str(retained_workspace)
+    rendered = report.render_text()
+    assert f"workspace retained: {retained_workspace}" in rendered
+    assert "diagnostic: source/driver.py:1:1: error: fixture diagnostic" in rendered
+
+
+def test_failed_diagnostics_redact_credentials_while_preserving_retained_workspace(tmp_path: Path):
+    checker = InspectingChecker(
+        fail=True,
+        message="request failed: token=diagnostic-secret https://user:password@fixtures.invalid/source.py",
+    )
+    runner = _runner(tmp_path, checker)
+    case = QACase(StubSelection("v1.28.0", "rp2", StubSource.PATH, _stub_fixture(tmp_path)), ("pyright",))
+
+    report = runner.run(_resolution(_portable()), case, retention=WorkspaceRetention.ON_FAILURE)
+
+    retained_workspace = report.retained_workspace
+    assert retained_workspace is not None
+    assert json.loads(report.to_json())["retained_workspace"] == str(retained_workspace)
+    assert str(retained_workspace) in report.render_text()
+    for rendered in (report.to_json(), report.render_text()):
+        assert "diagnostic-secret" not in rendered
+        assert "password" not in rendered
+        assert "token=<redacted>" in rendered
 
 
 def test_runner_skips_uncheckable_resolution_without_workspace(tmp_path: Path):
@@ -273,6 +300,9 @@ def test_runner_reports_provisioning_errors_and_retains_workspace(tmp_path: Path
     assert retained_workspace is not None
     assert (retained_workspace / "source" / "driver.py").is_file()
     assert checker.workspaces == []
+    data = json.loads(report.to_json())
+    assert data["retained_workspace"] == str(retained_workspace)
+    assert f"workspace retained: {retained_workspace}" in report.render_text()
     for rendered in (report.to_json(), report.render_text()):
         assert str(missing_stubs.resolve()) not in rendered
         assert "<path>" in rendered

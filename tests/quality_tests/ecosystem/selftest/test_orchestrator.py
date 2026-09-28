@@ -150,9 +150,15 @@ class FakeResolver:
 
 
 class FakeRunner:
-    def __init__(self, failing: set[str] | None = None, skipped: set[str] | None = None) -> None:
+    def __init__(
+        self,
+        failing: set[str] | None = None,
+        skipped: set[str] | None = None,
+        retained_workspace: Path | None = None,
+    ) -> None:
         self.failing = failing or set()
         self.skipped = skipped or set()
+        self.retained_workspace = retained_workspace
         self.identities: list[str] = []
 
     def run(
@@ -188,7 +194,7 @@ class FakeRunner:
             stub_command=("fixture",),
             results=(checker_result,),
             duration_seconds=0.01,
-            retained_workspace=None,
+            retained_workspace=self.retained_workspace if failed else None,
         )
 
 
@@ -281,6 +287,22 @@ def test_orchestration_exit_codes_distinguish_type_failures_and_intentional_skip
         "typings_provisioning": "not_run",
     }
     assert "typings_provisioning=not_run" in skipped.render_text()
+
+
+def test_orchestration_preserves_intentionally_retained_workspace(tmp_path: Path):
+    retained_workspace = tmp_path / "runs" / "failed-package"
+    retained_workspace.mkdir(parents=True)
+    runner = FakeRunner(failing={"z-portable"}, retained_workspace=retained_workspace)
+
+    report = EcosystemOrchestrator(FakeResolver(), runner).run_batch(
+        _inventory(),
+        BatchSelection(package_query="z-portable"),
+        _request(),
+    )
+
+    run = json.loads(report.to_json())["results"][0]["reports"][0]
+    assert run["retained_workspace"] == str(retained_workspace)
+    assert f"workspace retained: {retained_workspace}" in report.render_text()
 
 
 def test_all_skipped_checker_results_report_checker_stage_not_run():

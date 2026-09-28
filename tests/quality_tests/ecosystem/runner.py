@@ -195,10 +195,12 @@ class QARunReport:
             "results": [result.to_dict() for result in self.results],
             "duration_seconds": self.duration_seconds,
             "workspace_retained": self.retained_workspace is not None,
+            "retained_workspace": str(self.retained_workspace) if self.retained_workspace is not None else None,
         }
         if include_resolution:
             document["resolution"] = resolution_to_dict(self.package_resolution) if self.package_resolution else None
-        return sanitize_report_document(document)
+        preserved_paths = (self.retained_workspace,) if self.retained_workspace is not None else ()
+        return sanitize_report_document(document, preserved_paths=preserved_paths)
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True) + "\n"
@@ -224,8 +226,12 @@ class QARunReport:
                 lines.append(f"    command: {' '.join(sanitize_report_command(result.command))}")
             if result.message:
                 lines.append(f"    {result.message.strip()}")
-        lines.append(f"  workspace retained: {'yes' if self.retained_workspace is not None else 'no'}")
-        return sanitize_report_text("\n".join(lines))
+            if result.status in {CheckerStatus.FAIL, CheckerStatus.ERROR}:
+                lines.extend(f"    diagnostic: {_diagnostic_text(diagnostic)}" for diagnostic in result.diagnostics)
+        workspace = str(self.retained_workspace) if self.retained_workspace is not None else "no"
+        lines.append(f"  workspace retained: {workspace}")
+        preserved_paths = (self.retained_workspace,) if self.retained_workspace is not None else ()
+        return sanitize_report_text("\n".join(lines), preserved_paths=preserved_paths)
 
 
 def plan_qa_matrix(
@@ -418,7 +424,7 @@ class QARunner:
 
         failed = any(result.status in {CheckerStatus.FAIL, CheckerStatus.ERROR} for result in results)
         retain = retention is WorkspaceRetention.ALWAYS or (retention is WorkspaceRetention.ON_FAILURE and failed)
-        retained_workspace = workspace if retain else None
+        retained_workspace = workspace.resolve() if retain else None
         if not retain:
             shutil.rmtree(workspace, ignore_errors=True)
         return self._report(
@@ -552,6 +558,24 @@ def _relative_diagnostic(diagnostic: dict[str, object], workspace: Path) -> dict
         except ValueError:
             normalized["file"] = file_value
     return normalized
+
+
+def _diagnostic_text(diagnostic: Mapping[str, object]) -> str:
+    file_name = " ".join(str(diagnostic.get("file") or "<unknown>").split())
+    location = file_name
+    range_value = diagnostic.get("range")
+    if isinstance(range_value, Mapping):
+        start = range_value.get("start")
+        if isinstance(start, Mapping):
+            line = start.get("line")
+            character = start.get("character")
+            if isinstance(line, int) and not isinstance(line, bool) and line >= 0:
+                location += f":{line + 1}"
+                if isinstance(character, int) and not isinstance(character, bool) and character >= 0:
+                    location += f":{character + 1}"
+    severity = " ".join(str(diagnostic.get("severity") or "unknown").split())
+    message = " ".join(str(diagnostic.get("message") or "(no message)").split())
+    return f"{location}: {severity}: {message}"
 
 
 def _integer_summary(summary: Mapping[str, object], key: str) -> int:

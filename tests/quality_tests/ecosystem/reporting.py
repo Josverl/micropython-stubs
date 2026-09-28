@@ -100,8 +100,12 @@ def resolution_text(resolution: PackageResolution, *, indent: str = "") -> list[
     return lines
 
 
-def sanitize_report_document(document: dict[str, object]) -> dict[str, object]:
-    return cast(dict[str, object], _sanitize_value(document))
+def sanitize_report_document(
+    document: dict[str, object],
+    *,
+    preserved_paths: Iterable[Path] = (),
+) -> dict[str, object]:
+    return cast(dict[str, object], _sanitize_value(document, preserved_paths=_safe_preserved_paths(preserved_paths)))
 
 
 def sanitize_report_command(command: Iterable[str]) -> tuple[str, ...]:
@@ -111,7 +115,12 @@ def sanitize_report_command(command: Iterable[str]) -> tuple[str, ...]:
     return tuple(str(argument) for argument in sanitized)
 
 
-def sanitize_report_text(text: str) -> str:
+def sanitize_report_text(text: str, *, preserved_paths: Iterable[Path] = ()) -> str:
+    paths = _safe_preserved_paths(preserved_paths)
+    path_placeholders = {f"REPORTPATH{index}PLACEHOLDER": path for index, path in enumerate(sorted(paths, key=len, reverse=True))}
+    for placeholder, path in path_placeholders.items():
+        text = text.replace(path, placeholder)
+
     urls: list[str] = []
 
     def replace_url(match: re.Match[str]) -> str:
@@ -124,25 +133,43 @@ def sanitize_report_text(text: str) -> str:
     sanitized = _POSIX_PATH_PATTERN.sub("<path>", sanitized)
     for index, url in enumerate(urls):
         sanitized = sanitized.replace(f"REPORTURL{index}PLACEHOLDER", url)
+    for placeholder, path in path_placeholders.items():
+        sanitized = sanitized.replace(placeholder, path)
     return sanitized
 
 
-def _sanitize_value(value: object, *, key: str | None = None) -> object:
+def _sanitize_value(
+    value: object,
+    *,
+    key: str | None = None,
+    preserved_paths: frozenset[str] = frozenset(),
+) -> object:
     if key is not None and _is_sensitive_name(key):
         return "<redacted>"
     if isinstance(value, str):
+        if value in preserved_paths:
+            return value
         if _is_absolute_path(value):
             return "<path>"
-        return sanitize_report_text(value)
+        return sanitize_report_text(value, preserved_paths=(Path(path) for path in preserved_paths))
     if isinstance(value, Path):
+        if str(value) in preserved_paths:
+            return str(value)
         return "<path>"
     if isinstance(value, Mapping):
-        return {str(item_key): _sanitize_value(item_value, key=str(item_key)) for item_key, item_value in value.items()}
+        return {
+            str(item_key): _sanitize_value(item_value, key=str(item_key), preserved_paths=preserved_paths)
+            for item_key, item_value in value.items()
+        }
     if isinstance(value, tuple):
-        return [_sanitize_value(item) for item in value]
+        return [_sanitize_value(item, preserved_paths=preserved_paths) for item in value]
     if isinstance(value, list):
-        return [_sanitize_value(item) for item in value]
+        return [_sanitize_value(item, preserved_paths=preserved_paths) for item in value]
     return value
+
+
+def _safe_preserved_paths(paths: Iterable[Path]) -> frozenset[str]:
+    return frozenset(path for item in paths if (path := str(item)) and _SENSITIVE_ASSIGNMENT_PATTERN.search(path) is None)
 
 
 def _sanitize_url(reference: str) -> str:

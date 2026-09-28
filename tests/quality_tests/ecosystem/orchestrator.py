@@ -215,6 +215,12 @@ class OrchestrationReport:
             return OrchestrationExit.TYPE_CHECK_FAILURE
         return OrchestrationExit.SUCCESS
 
+    @property
+    def retained_workspaces(self) -> tuple[Path, ...]:
+        return tuple(
+            report.retained_workspace for result in self.results for report in result.reports if report.retained_workspace is not None
+        )
+
     def to_dict(self) -> dict[str, object]:
         document: dict[str, object] = {
             "schema_version": REPORT_SCHEMA_VERSION,
@@ -229,7 +235,7 @@ class OrchestrationReport:
             "catalog_diagnostics": [_catalog_diagnostic_to_dict(item) for item in self.catalog_diagnostics],
             "duration_seconds": self.duration_seconds,
         }
-        return sanitize_report_document(document)
+        return sanitize_report_document(document, preserved_paths=self.retained_workspaces)
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), indent=2, sort_keys=True) + "\n"
@@ -261,7 +267,7 @@ class OrchestrationReport:
             lines.append(f"    {diagnostic.detail.strip()}")
         counts = ", ".join(f"{name}={count}" for name, count in self.counts.items())
         lines.append(f"summary: {counts}; exit={int(self.exit_code)}; {self.duration_seconds:.3f}s")
-        return sanitize_report_text("\n".join(lines))
+        return sanitize_report_text("\n".join(lines), preserved_paths=self.retained_workspaces)
 
 
 class PackageResolver(Protocol):
