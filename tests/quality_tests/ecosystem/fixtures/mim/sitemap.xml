@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://checkmim.com/</loc>
+  </url>
+  <url>
+    <loc>https://checkmim.com/about</loc>
+  </url>
+  <url>
+    <loc>https://checkmim.com/privacy</loc>
+  </url>
+  <url>
     <loc>https://checkmim.com/packages/howmanyoliversarethere+micropython-joystick-2-unit</loc>
     <lastmod>2026-09-27T07:00:16.395Z</lastmod>
   </url>

@@ -173,7 +173,7 @@ class AwesomeCatalogAdapter:
                             detail=f"Library list item has no package link: {detail}",
                         )
                     )
-                else:
+                elif not _is_awesome_non_package_reference(link[1]):
                     name, reference = link
                     entries.append(
                         CatalogEntry(
@@ -222,6 +222,8 @@ class MimCatalogAdapter:
             last_modified = _child_text(url_element, "lastmod") or None
             key = _mim_package_key(page_url)
             if key is None:
+                if _is_mim_non_package_url(page_url):
+                    continue
                 diagnostics.append(
                     CatalogDiagnostic(
                         catalog=CatalogSource.MIM,
@@ -470,6 +472,26 @@ def _mim_package_key(page_url: str) -> str | None:
     if len(parts) != 2 or parts[0] != "packages" or not parts[1]:
         return None
     return unquote(parts[1])
+
+
+def _is_awesome_non_package_reference(reference: str) -> bool:
+    parsed = urlsplit(reference)
+    host = (parsed.hostname or "").casefold()
+    path = parsed.path.rstrip("/").casefold()
+    return (
+        (host == "github.com" and (path == "/search" or path.startswith("/topics/")))
+        or (host == "gitlab.com" and (path == "/explore" or path.startswith("/explore/")))
+        or (host == "codeberg.org" and (path == "/explore" or path.startswith("/explore/")))
+        or (host == "pypi.org" and path == "/search")
+        or (host == "libraries.io" and path == "/search")
+        or host == "docs.micropython.org"
+        or (host == "micropython.org" and path == "/webrepl")
+    )
+
+
+def _is_mim_non_package_url(page_url: str) -> bool:
+    parsed = urlsplit(page_url)
+    return parsed.scheme == "https" and parsed.hostname == "checkmim.com" and parsed.path.rstrip("/") in {"", "/about", "/privacy"}
 
 
 def _normalize_catalog_entry(entry: CatalogEntry) -> _NormalizedCatalogEntry:

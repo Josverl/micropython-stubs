@@ -26,6 +26,7 @@ def test_awesome_adapter_reads_only_primary_library_links():
     assert all(entry.observed_at == "2026-09-28T00:00:00Z" for entry in result.entries)
     assert "https://example.invalid/joystick-docs" not in {entry.reference for entry in result.entries}
     assert "https://example.invalid/community" not in {entry.reference for entry in result.entries}
+    assert all(entry.category != "Directories and bundled tools" for entry in result.entries)
     assert result.diagnostics == ()
 
 
@@ -61,6 +62,19 @@ def test_mim_adapter_discovers_package_pages_from_sitemap():
     ]
     assert all(location.last_modified for location in result.locations)
     assert result.diagnostics == ()
+
+
+def test_mim_adapter_reports_unrecognized_non_package_sitemap_url():
+    result = MimCatalogAdapter().parse_sitemap(
+        """<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://checkmim.com/unrecognized</loc></url>
+</urlset>"""
+    )
+
+    assert result.locations == ()
+    assert len(result.diagnostics) == 1
+    assert result.diagnostics[0].reason is ReasonCode.INVALID_CATALOG_ENTRY
+    assert result.diagnostics[0].reference == "https://checkmim.com/unrecognized"
 
 
 def test_mim_adapter_parses_community_package_page():
