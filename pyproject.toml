@@ -33,6 +33,7 @@ test = [
 # for quality reporting
 "pytest",
 "pytest-xdist",
+"markdown-it-py>=3,<4",
 "fasteners",
 "python-dotenv",
 "pydocstyle",
@@ -240,5 +241,9 @@ ignore = [
     "PYI014", # Only simple default values allowed for arguments - we want actual defaults
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
 ]
+
+
+
+
 
 

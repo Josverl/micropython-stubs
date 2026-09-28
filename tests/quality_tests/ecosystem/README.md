@@ -13,6 +13,19 @@ This directory defines the normalized records shared by catalog ingestion, packa
 
 Catalog adapters and resolvers must not import or execute third-party modules.
 
+## Catalog ingestion
+
+`catalog.py` is deliberately transport-free. Callers fetch or cache source documents; adapters only parse supplied text:
+
+- `AwesomeCatalogAdapter.parse` reads the first link from each top-level list item in the Markdown `Libraries` section. Secondary documentation links and later sections are excluded.
+- `MimCatalogAdapter.parse_sitemap` discovers package detail pages and their `lastmod` values.
+- `MimCatalogAdapter.parse_package_page` reads `SoftwareSourceCode` JSON-LD plus the rendered `mpremote mip install` command.
+- `build_inventory` normalizes references, defers `micropython-lib`, deduplicates aliases, applies reviewed classification overrides, and returns stable package records and diagnostics.
+
+Provider owner/repository spelling is canonicalized in the primary install reference while original catalog URLs and references remain aliases. Unsupported or malformed entries become diagnostics with stable reason codes; one bad entry does not abort the catalog.
+
+`CatalogInventory.filtered` selects records by source catalog, canonical package identity, and known port classification without downloading package content. `to_dict` and `to_json` emit schema version 1 with deterministic package/diagnostic order. Adapter actions are `resolve_mip` and `resolve_single_file`; deferred sources have no resolver action.
+
 ## Package identity
 
 Canonical keys have one of these forms:

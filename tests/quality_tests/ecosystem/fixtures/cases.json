@@ -5,14 +5,14 @@
       "id": "awesome-community-root",
       "fixture": "awesome/readme.md.txt",
       "entry": "micropython-joystick-2-unit",
-      "expected_reference": "github:HowManyOliversAreThere/micropython-joystick-2-unit",
+      "expected_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
       "expected_action": "resolve_mip"
     },
     {
       "id": "awesome-deep-file",
       "fixture": "awesome/readme.md.txt",
       "entry": "IoTy extension",
-      "expected_reference": "github:QuirkyCort/IoTy/public/extensions/example.py@main",
+      "expected_reference": "github:quirkycort/ioty/public/extensions/example.py@main",
       "expected_action": "resolve_single_file"
     },
     {

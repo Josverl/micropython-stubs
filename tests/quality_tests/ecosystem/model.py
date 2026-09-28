@@ -187,6 +187,7 @@ class CatalogProvenance:
     entry_url: str
     entry_key: str
     observed_at: str | None = None
+    metadata: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -433,7 +434,7 @@ def _merge_candidate_group(identity: PackageIdentity, records: list[PackageCandi
         provenance=tuple(
             sorted(
                 provenance,
-                key=lambda item: (item.catalog.value, item.entry_url, item.entry_key, item.observed_at or ""),
+                key=lambda item: (item.catalog.value, item.entry_url, item.entry_key, item.observed_at or "", item.metadata),
             )
         ),
     )
