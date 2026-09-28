@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-28",
+  "environment": {
+    "checker": "pyright",
+    "micropython_version": "v1.28.0",
+    "portboard": "rp2-rpi_pico",
+    "stub_source": "local"
+  },
+  "catalog_snapshot": {
+    "cached_body_bytes": 12531076,
+    "cached_responses": 318,
+    "classifications": {
+      "port_specific": 90,
+      "portable": 0,
+      "unknown": 892
+    },
+    "diagnostic_breakdown": {
+      "awesome_non_package_links": 7,
+      "mim_deprecated_without_install_reference": 4,
+      "mim_non_package_sitemap_urls": 3
+    },
+    "diagnostics": 14,
+    "normalized_records": 982
+  },
+  "fixture_corpus": [
+    {
+      "case": "portable classification",
+      "evidence": "test_runner.py::test_matrix_portable_uses_all_requested_ports_deterministically",
+      "outcome": "requested ports selected"
+    },
+    {
+      "case": "port-specific classification",
+      "evidence": "test_runner.py::test_matrix_port_specific_filters_ports_and_boards",
+      "outcome": "incompatible ports excluded"
+    },
+    {
+      "case": "unknown classification",
+      "evidence": "test_runner.py::test_matrix_unknown_requires_explicit_policy",
+      "outcome": "skipped unless explicitly requested"
+    },
+    {
+      "case": "cross-catalog duplicate",
+      "evidence": "test_catalog.py::test_inventory_normalizes_and_deduplicates_cross_catalog_packages",
+      "outcome": "one identity retains both provenance records"
+    },
+    {
+      "case": "dependency-bearing closure",
+      "evidence": "test_resolver.py::test_nested_dependencies_are_inventoried_in_one_closure",
+      "outcome": "root and dependency Python files selected"
+    },
+    {
+      "case": "malformed, unsafe, cyclic, or colliding manifest",
+      "evidence": "test_resolver.py::test_resolver_reports_invalid_manifest_paths_and_collisions",
+      "outcome": "stable error reason without package execution"
+    },
+    {
+      "case": "unavailable catalog page",
+      "evidence": "test_orchestrator.py::test_catalog_loader_isolates_one_unavailable_mim_page",
+      "outcome": "diagnostic retained while other records continue"
+    },
+    {
+      "case": "mixed .py and .mpy closure",
+      "evidence": "test_resolver.py::test_resolve_mixed_and_mpy_only_payloads",
+      "outcome": "only .py payload selected for checking"
+    },
+    {
+      "case": ".mpy-only closure",
+      "evidence": "test_resolver.py::test_mpy_only_package_is_not_materialized",
+      "outcome": "skipped with mpy_only"
+    }
+  ],
+  "runs": [
+    {
+      "cache_mode": "refresh",
+      "checker": {
+        "errors": 0,
+        "files_analyzed": 1,
+        "status": "pass"
+      },
+      "id": "direct-joystick",
+      "mode": "focused",
+      "orchestration_seconds": 7.613,
+      "outcome": "pass",
+      "process_exit": 0,
+      "resolution": {
+        "dependencies": 0,
+        "identity": "repository:github:howmanyoliversarethere/micropython-joystick-2-unit",
+        "mpy_files": 0,
+        "python_files": 1,
+        "requested_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
+        "resolved_version": "1.2"
+      },
+      "typings": [
+        "micropython-stdlib-stubs",
+        "micropython-v1_28_0-rp2-rpi_pico-stubs"
+      ],
+      "wall_seconds": 10.67
+    },
+    {
+      "cache_mode": "refresh",
+      "catalogs": [
+        "awesome_micropython",
+        "mim"
+      ],
+      "checker": {
+        "errors": 0,
+        "files_analyzed": 1,
+        "status": "pass"
+      },
+      "diagnostics": 14,
+      "id": "batch-joystick",
+      "limit": 1,
+      "mode": "batch",
+      "orchestration_seconds": 7.473,
+      "outcome": "pass_with_catalog_diagnostics",
+      "package_filter": "joystick-2-unit",
+      "process_exit": 2,
+      "provenance": [
+        "awesome_micropython",
+        "mim"
+      ],
+      "rate_limit": 4,
+      "wall_seconds": 97.557,
+      "workers": 4
+    },
+    {
+      "cache_mode": "offline",
+      "catalogs": [
+        "awesome_micropython",
+        "mim"
+      ],
+      "diagnostics": 14,
+      "id": "batch-joystick-offline",
+      "mode": "batch",
+      "network_requests_allowed": 0,
+      "orchestration_seconds": 7.298,
+      "outcome": "pass_with_catalog_diagnostics",
+      "process_exit": 2,
+      "wall_seconds": 10.63
+    }
+  ],
+  "follow_up_beads": [
+    {
+      "id": "micropython-stubs-ut0.10",
+      "title": "Ignore intentional non-package catalog entries"
+    },
+    {
+      "id": "micropython-stubs-ut0.11",
+      "title": "Handle deprecated MIM pages without install references"
+    },
+    {
+      "id": "micropython-stubs-ut0.12",
+      "title": "Capture immutable revisions for mutable provider references"
+    },
+    {
+      "id": "micropython-stubs-ut0.13",
+      "title": "Add reproducibility evidence to ecosystem QA reports"
+    },
+    {
+      "id": "micropython-stubs-ut0.14",
+      "title": "Seed reviewed ecosystem compatibility evidence"
+    }
+  ],
+  "cadence_decision": {
+    "decision": "manual",
+    "revisit_after": "catalog diagnostic follow-ups are resolved and two refresh runs have stable cost",
+    "rationale": "The bounded refresh made 318 cached responses, transferred 12.5 MB, took 97.6 seconds, and exposed 14 catalog-shape diagnostics. Keep broad network validation out of scheduled CI until those patterns and ongoing upstream cost are understood."
+  }
+}

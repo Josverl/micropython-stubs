@@ -151,7 +151,7 @@ Package outcomes are `pass`, `type_check_failure`, `unsupported`, `unavailable`,
 | --- | --- |
 | 0 | All selected packages passed or were intentionally skipped. |
 | 1 | At least one type-check failure and no operational failure. |
-| 2 | Unsupported, unavailable, internal/setup failure, no selected package, or command usage error. |
+| 2 | Catalog diagnostics, unsupported or unavailable packages, internal/setup failure, no selected package, or command usage error. |
 
 JSON reports use schema version 1 and retain each package's runner reports. Text reports show the same outcomes and aggregate counts. One package failure does not stop later packages.
 
@@ -161,6 +161,91 @@ Live pytest cases are marked `ecosystem_network` and excluded by repository defa
 $env:MICROPYTHON_STUBS_ECOSYSTEM_NETWORK = "1"
 uv run pytest -m ecosystem_network tests/quality_tests/ecosystem -n 0
 ```
+
+## Pilot baseline
+
+`pilot_baseline.json` is the reviewed, path-independent baseline from the 2026-09-28 pilot. Raw CLI reports remain under the gitignored `tests/quality_tests/.ecosystem-cache/reports/` directory because they contain machine-specific workspace paths and mutable upstream details.
+
+The fixture corpus exercises both catalog adapters plus every agreed edge case: portable, port-specific, and unknown classification; cross-catalog duplicates; dependency closures; malformed, unsafe, cyclic, colliding, or unavailable inputs; mixed `.py`/`.mpy`; and `.mpy`-only closures. The full offline gate produced 103 passes with the one live network smoke test deselected. Package source was parsed and copied for static analysis only; no package module was imported or executed.
+
+The live pilot used MicroPython v1.28.0 RP2 Pico stubs and Pyright:
+
+| Run | Selected result | Catalog diagnostics | Process exit | Wall time |
+| --- | --- | ---: | ---: | ---: |
+| Direct joystick refresh | pass | 0 | 0 | 10.670 s |
+| Both catalogs, joystick filter, refresh | pass | 14 | 2 | 97.557 s |
+| Same batch, offline replay | pass | 14 | 2 | 10.630 s |
+
+The batch selected one canonical joystick package with both Awesome MicroPython and MIM provenance, proving cross-catalog deduplication. Its checker passed one Python source file with no diagnostics. The process still returned 2 because the full catalog snapshot contained seven Awesome non-package links, four deprecated MIM entries without install references, and three non-package MIM sitemap URLs. These unsupported shapes are tracked by `micropython-stubs-ut0.10` and `micropython-stubs-ut0.11`; they are not stub defects and do not change the selected package's pass result.
+
+The pilot found no actionable stub defect in the selected package. Separate follow-ups cover immutable provider revisions (`micropython-stubs-ut0.12`), complete reproducibility evidence in generated reports (`micropython-stubs-ut0.13`), and the reviewed compatibility evidence needed to reduce 892 unknown classifications (`micropython-stubs-ut0.14`).
+
+The refreshed cache contained 318 responses and 12,531,076 body bytes. No failed workspace was retained. Broad validation remains a manual, review-triggered operation for now: the first bounded refresh took 97.6 seconds and MIM publishes neither a bulk API nor rate-limit terms. Reconsider scheduled CI only after the catalog-shape follow-ups are resolved and two refresh runs demonstrate stable runtime and network cost.
+
+## Operations and maintenance
+
+Prerequisites are the repository `uv` environment, the selected checker, and matching stubs. The commands below use checked-in local packages, so only catalog and package inputs require network access:
+
+```powershell
+uv sync
+uv run pyright --version
+Test-Path publish/micropython-stdlib-stubs
+Test-Path publish/micropython-v1_28_0-rp2-rpi_pico-stubs
+```
+
+Reproduce the direct pilot:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --package github:howmanyoliversarethere/micropython-joystick-2-unit `
+  --version v1.28.0 `
+  --portboard rp2-rpi_pico `
+  --stub-source local `
+  --checker pyright `
+  --refresh `
+  --retain on_failure `
+  --report json `
+  --report-file tests/quality_tests/.ecosystem-cache/reports/direct-joystick.json
+```
+
+Reproduce the bounded, deduplicated batch:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --catalog both `
+  --package-filter joystick-2-unit `
+  --limit 1 `
+  --version v1.28.0 `
+  --portboard rp2-rpi_pico `
+  --stub-source local `
+  --checker pyright `
+  --unknown-policy use_requested `
+  --refresh `
+  --workers 4 `
+  --rate-limit 4 `
+  --retain on_failure `
+  --report json `
+  --report-file tests/quality_tests/.ecosystem-cache/reports/batch-joystick.json
+```
+
+After one successful refresh, replace `--refresh` with `--cache-mode offline` to guarantee zero upstream requests. An absent response becomes `unavailable [cache_miss]`; offline mode never falls back to the network. Use `use_cache` for normal manual runs, and reserve refresh for an intentional snapshot update.
+
+The cache and temporary QA workspaces live below `tests/quality_tests/.ecosystem-cache/`. Successful workspaces are removed automatically. `--retain on_failure` keeps failed workspaces under `runs/` for inspection, while `--retain always` keeps every workspace. Remove retained runs without discarding downloaded responses, or reset the entire cache:
+
+```powershell
+Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache/runs
+Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache
+```
+
+Read the top-level package `outcome` independently from `catalog_diagnostics`. A package can pass while the process exits 2 because discovery was incomplete. Exit 1 is reserved for checker failures when no operational failure occurred. Reports record catalog provenance, requested and resolved package references, stub provisioning, checker commands, diagnostics, counts, timings, and retained workspace paths.
+
+Classification overrides belong in `classification_overrides.json` only after review of explicit repository or package evidence. Include a rationale and durable reference, then run:
+
+```powershell
+uv run pytest tests/quality_tests/ecosystem/test_model.py tests/quality_tests/ecosystem/test_runner.py -q -n 0
+```
+
+Ordinary pytest remains network-free because `ecosystem_network` is excluded in the repository defaults. Keep raw reports and caches uncommitted; update `pilot_baseline.json` only from a reviewed run, preserving factual aggregate data rather than local absolute paths or mirrored third-party content.
 
 ## Port classification
 
