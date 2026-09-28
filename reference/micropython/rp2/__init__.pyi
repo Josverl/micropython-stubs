@@ -62,7 +62,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., _PIO_ASM_Program]:
+  ) -> Callable[[Callable[[], object]], _PIO_ASM_Program]:
     """
     Assemble a PIO program.
 
