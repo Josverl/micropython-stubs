@@ -164,7 +164,10 @@ addopts = "--verbose --capture=no --numprocesses=auto"
 # -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
 # -n --numprocesses=numprocesses - number of parallel workers (pytest-xdist)
 
-markers = ["snippets: test snippets to check the stub quality"]
+markers = [
+    "snippets: test snippets to check the stub quality",
+    "ecosystem_network: opt-in live ecosystem package smoke tests",
+]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.

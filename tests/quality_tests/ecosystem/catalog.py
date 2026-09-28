@@ -474,7 +474,7 @@ def _mim_package_key(page_url: str) -> str | None:
 
 def _normalize_catalog_entry(entry: CatalogEntry) -> _NormalizedCatalogEntry:
     official = _is_micropython_lib_reference(entry.repository_url or entry.reference)
-    identity, install_reference, source_family = _normalize_reference(entry.reference, official)
+    identity, install_reference, source_family = normalize_package_reference(entry.reference, official=official)
     if entry.catalog is CatalogSource.MIM and _is_bare_package_name(entry.reference):
         identity = PackageIdentity.index(entry.reference)
 
@@ -502,7 +502,12 @@ def _normalize_catalog_entry(entry: CatalogEntry) -> _NormalizedCatalogEntry:
     return _NormalizedCatalogEntry(candidate, _classification_evidence(entry), disposition, reason)
 
 
-def _normalize_reference(reference: str, official: bool) -> tuple[PackageIdentity, str, SourceFamily]:
+def normalize_package_reference(
+    reference: str,
+    *,
+    official: bool = False,
+) -> tuple[PackageIdentity, str, SourceFamily]:
+    """Normalize a supported package reference for catalog or focused use."""
     reference = reference.strip()
     if not reference:
         raise ValueError("package reference is empty")

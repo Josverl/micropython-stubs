@@ -57,6 +57,8 @@ class ReasonCode(str, Enum):
     DEPENDENCY_CYCLE = "dependency_cycle"
     TARGET_COLLISION = "target_collision"
     LIMIT_EXCEEDED = "limit_exceeded"
+    CACHE_MISS = "cache_miss"
+    CACHE_CORRUPT = "cache_corrupt"
     IDENTITY_CONFLICT = "identity_conflict"
     AMBIGUOUS_PORT = "ambiguous_port"
     NO_PORT_EVIDENCE = "no_port_evidence"

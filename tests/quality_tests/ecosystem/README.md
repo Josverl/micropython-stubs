@@ -63,6 +63,34 @@ Payload policy is closure-based:
 
 Therefore a bytecode-only root with a source dependency is checkable because its resolved closure contains Python source.
 
+## MIP resolver and cache
+
+`resolver.py` resolves provider, HTTP(S), package-index, and direct `.py`/`.mpy` references. Manifest `urls`, `hashes`, and `deps` are followed recursively into one bounded closure. Resolution reads bytes and JSON only; package modules and manifest-supplied code are never imported or executed.
+
+Fetch transport is injected. `UrlFetcher` supports bounded HTTPS responses and local files restricted to configured roots. `CachedFetcher` provides three explicit modes:
+
+| Mode | Behavior |
+| --- | --- |
+| `use_cache` | Reuse a valid response entry, otherwise fetch and cache it. |
+| `refresh` | Bypass the response entry, fetch again, and replace it atomically. |
+| `offline` | Read a valid response entry only; report `cache_miss` rather than use the network. |
+
+The gitignored `tests/quality_tests/.ecosystem-cache/` layout is:
+
+```text
+responses/<prefix>/<request-sha256>/{body,metadata.json}
+objects/sha256/<prefix>/<content-sha256>
+packages/<sanitized-name>-<identity-digest>/<revision>-<closure-digest>/{source,metadata.json}
+locks/
+.staging/
+```
+
+Response and object hashes are validated before reuse. Package paths combine a readable sanitized component with a digest, and workspace keys include manifest and payload hashes so a mutable source cannot reuse stale files merely by retaining its version label. `PackageWorkspace.clean(identity)` removes only that package's materialized revisions; shared response and object entries remain available to other packages.
+
+ZIP extraction is atomic and bounded by file count and total uncompressed bytes. Absolute/parent/drive paths, backslashes, symbolic links, encrypted members, and case-insensitive target collisions are rejected before the staged directory is published.
+
+All default resolver tests use local fixtures and injected responses. The live smoke test is additionally marked `ecosystem_network` and skipped unless `MICROPYTHON_STUBS_ECOSYSTEM_NETWORK=1` is set explicitly.
+
 ## Port classification
 
 Evidence is evaluated in this order; only the highest available level decides the classification:
@@ -113,6 +141,8 @@ unsafe_path
 dependency_cycle
 target_collision
 limit_exceeded
+cache_miss
+cache_corrupt
 identity_conflict
 ambiguous_port
 no_port_evidence
