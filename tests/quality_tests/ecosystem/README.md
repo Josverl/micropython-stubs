@@ -158,6 +158,10 @@ Package outcomes are `pass`, `type_check_failure`, `unsupported`, `unavailable`,
 
 JSON reports use schema version 2. Both JSON and text record the focused or batch discovery selection, cache mode, requested version/port/checker matrix, run policies, immutable package revision and manifest hash, complete dependency/payload closure, typings provisioning, checker outcomes, stage status, and aggregate counts. Resolved closure evidence is stored once per package; each matrix entry retains only its provisioning and checker run. Skipped and unavailable packages explicitly report stages that did not run. One package failure does not stop later packages.
 
+Report files are replaced atomically by default. Use `--report json --report-file <path> --report-mode aggregate` to retain repeated focused or batch invocations in one aggregate schema-v1 document. Runs remain in invocation order; `run_count`, package outcome `counts`, and `exit_code` are derived from the stored schema-v2 runs, with operational failure taking precedence over type-check failure. A prior single schema-v2 JSON report is promoted on the first aggregate write. Corrupt, incompatible, or internally inconsistent input is rejected without changing the existing file.
+
+Aggregation requires both JSON output and a report file. Text output has deliberately simple deterministic behavior: it always replaces the destination, and `--report-mode aggregate` with `--report text` is rejected.
+
 Live pytest cases are marked `ecosystem_network` and excluded by repository defaults. Run them only with both the marker and environment opt-in:
 
 ```powershell

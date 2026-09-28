@@ -598,6 +598,7 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.stub_source == "pypi-pre"
     assert arguments.cache_mode == "offline"
     assert arguments.report == "json"
+    assert arguments.report_mode == "replace"
 
 
 def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
@@ -749,6 +750,133 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
         "requested_package": None,
         "selected_packages": ["repository:github:example/a-esp32"],
     }
+
+
+def test_cli_aggregates_repeated_json_runs_and_can_replace_them(tmp_path: Path):
+    loader = RecordingCliLoader()
+    orchestrator = RecordingCliOrchestrator()
+    report_path = tmp_path / "reports" / "ecosystem.json"
+    common = [
+        "--version",
+        "v1.28.0",
+        "--stub-source",
+        "path",
+        "--stub-path",
+        ".",
+        "--cache-mode",
+        "offline",
+        "--report",
+        "json",
+        "--report-file",
+        str(report_path),
+        "--report-mode",
+        "aggregate",
+    ]
+
+    def runtime_factory(_arguments):
+        return CliRuntime(loader, orchestrator)
+
+    assert main(["--package", "github:example/first", *common], runtime_factory=runtime_factory) == 0
+    assert main(["--catalog", "mim", *common], runtime_factory=runtime_factory) == 2
+
+    document = json.loads(report_path.read_text(encoding="utf-8"))
+    assert document["schema_version"] == 1
+    assert document["report_type"] == "ecosystem_qa_aggregate"
+    assert document["run_schema_version"] == 2
+    assert document["run_count"] == 2
+    assert [run["mode"] for run in document["runs"]] == ["focused", "batch"]
+    assert document["counts"] == {
+        outcome: sum(run["counts"][outcome] for run in document["runs"])
+        for outcome in ("pass", "type_check_failure", "unsupported", "unavailable", "skipped", "error")
+    }
+    assert document["exit_code"] == 2
+    assert report_path.read_text(encoding="utf-8") == json.dumps(document, indent=2, sort_keys=True) + "\n"
+
+    replacement = [argument for argument in common if argument not in {"--report-mode", "aggregate"}]
+    assert main(["--package", "github:example/replacement", *replacement], runtime_factory=runtime_factory) == 0
+    replaced = json.loads(report_path.read_text(encoding="utf-8"))
+    assert replaced["schema_version"] == 2
+    assert replaced["mode"] == "focused"
+    assert "runs" not in replaced
+
+    assert main(["--catalog", "mim", *common], runtime_factory=runtime_factory) == 2
+    promoted = json.loads(report_path.read_text(encoding="utf-8"))
+    assert promoted["run_count"] == 2
+    assert [run["mode"] for run in promoted["runs"]] == ["focused", "batch"]
+
+
+@pytest.mark.parametrize(
+    ("existing", "expected_error"),
+    [
+        ("{not-json\n", "valid JSON"),
+        ('{"schema_version": 99}\n', "compatible ecosystem QA report"),
+        (
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "report_type": "ecosystem_qa_aggregate",
+                    "run_schema_version": 2,
+                    "run_count": 0,
+                    "counts": {},
+                    "exit_code": 0,
+                    "runs": [],
+                }
+            ),
+            "runs must be a non-empty list",
+        ),
+    ],
+)
+def test_cli_aggregate_rejects_invalid_existing_report_atomically(
+    tmp_path: Path,
+    capsys,
+    existing: str,
+    expected_error: str,
+):
+    report_path = tmp_path / "ecosystem.json"
+    report_path.write_text(existing, encoding="utf-8")
+    original = report_path.read_bytes()
+
+    exit_code = main(
+        [
+            "--package",
+            "github:example/driver",
+            "--version",
+            "v1.28.0",
+            "--report",
+            "json",
+            "--report-file",
+            str(report_path),
+            "--report-mode",
+            "aggregate",
+        ],
+        runtime_factory=lambda _arguments: CliRuntime(RecordingCliLoader(), RecordingCliOrchestrator()),
+    )
+
+    assert exit_code == 2
+    assert report_path.read_bytes() == original
+    assert expected_error in capsys.readouterr().err
+
+
+def test_cli_aggregate_requires_json_report_file(tmp_path: Path, capsys):
+    report_path = tmp_path / "ecosystem.txt"
+
+    exit_code = main(
+        [
+            "--package",
+            "github:example/driver",
+            "--version",
+            "v1.28.0",
+            "--report-file",
+            str(report_path),
+            "--report-mode",
+            "aggregate",
+        ],
+        runtime_factory=lambda _arguments: CliRuntime(RecordingCliLoader(), RecordingCliOrchestrator()),
+    )
+
+    assert exit_code == 2
+    assert not report_path.exists()
+    assert "requires --report json" in capsys.readouterr().err
 
 
 def test_cli_rejects_unbounded_or_conflicting_network_options(capsys):

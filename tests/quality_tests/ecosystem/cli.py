@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+import os
 from pathlib import Path
 import sys
+import tempfile
 from typing import Callable, Mapping, Protocol, Sequence
 
+from .aggregate import AggregateReport
 from .catalog import CatalogInventory
 from .catalog_loader import CatalogLoadOptions, MAX_CATALOG_WORKERS, NetworkCatalogLoader, RateLimitedFetcher
 from .model import ClassificationOverride, PackageIdentity, PortClassification, load_classification_overrides
@@ -101,6 +104,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser.add_argument("--report", choices=("text", "json"), default="text")
     parser.add_argument("--report-file", type=Path, help="Write the selected report format to this path")
+    parser.add_argument(
+        "--report-mode",
+        choices=("replace", "aggregate"),
+        default="replace",
+        help="Report-file behavior; aggregate combines compatible JSON runs (default: replace; text supports replace only)",
+    )
     return parser
 
 
@@ -131,7 +140,7 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
                 limit=arguments.limit,
             )
             report = runtime.orchestrator.run_batch(inventory, selection, request)
-        _write_report(report, arguments.report, arguments.report_file)
+        _write_report(report, arguments.report, arguments.report_file, arguments.report_mode)
         return int(report.exit_code)
     except (OSError, RuntimeError, ValueError) as error:
         print(f"ecosystem QA error: {error}", file=sys.stderr)
@@ -150,6 +159,10 @@ def _validate_arguments(arguments: argparse.Namespace) -> None:
     batch_filters = (arguments.package_filter, arguments.classification, arguments.port_filter, arguments.limit)
     if arguments.package is not None and any(value is not None for value in batch_filters):
         raise ValueError("batch filters require --catalog")
+    if arguments.report_mode == "aggregate" and arguments.report != "json":
+        raise ValueError("--report-mode aggregate requires --report json")
+    if arguments.report_mode == "aggregate" and arguments.report_file is None:
+        raise ValueError("--report-mode aggregate requires --report-file")
 
 
 def _qa_request(arguments: argparse.Namespace) -> QARequest:
@@ -190,13 +203,38 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     return CliRuntime(catalog_loader, EcosystemOrchestrator(resolver, runner))
 
 
-def _write_report(report: OrchestrationReport, report_format: str, destination: Path | None) -> None:
+def _write_report(report: OrchestrationReport, report_format: str, destination: Path | None, report_mode: str) -> None:
     content = report.to_json() if report_format == "json" else report.render_text() + "\n"
     if destination is None:
         print(content, end="")
         return
+    if report_mode == "aggregate":
+        aggregate = AggregateReport.from_path(destination) if destination.exists() else AggregateReport()
+        content = aggregate.append(report.to_dict()).to_json()
+    _atomic_write_text(destination, content)
+
+
+def _atomic_write_text(destination: Path, content: str) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(content, encoding="utf-8")
+    temporary_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            newline="\n",
+            dir=destination.parent,
+            prefix=f".{destination.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as temporary:
+            temporary.write(content)
+            temporary.flush()
+            os.fsync(temporary.fileno())
+            temporary_path = Path(temporary.name)
+        os.replace(temporary_path, destination)
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)
 
 
 def _absolute_from_project(path: Path, project_root: Path) -> Path:
