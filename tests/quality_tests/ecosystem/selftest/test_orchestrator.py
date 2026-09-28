@@ -578,6 +578,59 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.report == "json"
 
 
+def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
+    loader = RecordingCliLoader()
+    orchestrator = RecordingCliOrchestrator()
+
+    exit_code = main(
+        ["--version", "v1.28.0", "--stub-source", "path", "--stub-path", "."],
+        runtime_factory=lambda _arguments: CliRuntime(loader, orchestrator),
+    )
+
+    assert exit_code == 2
+    assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.USE_CACHE)]
+    selection, request = orchestrator.batch[0]
+    assert selection.catalogs is CatalogSelection.MIM
+    assert request.portboards == ("esp32-esp32_generic",)
+    assert request.checkers == ("pyright",)
+    assert request.retention is WorkspaceRetention.ON_FAILURE
+
+
+@pytest.mark.parametrize("checker", ["ty", "zuban"])
+def test_cli_rejects_xfail_checkers(checker: str):
+    with pytest.raises(SystemExit):
+        build_parser().parse_args(
+            [
+                "--catalog",
+                "mim",
+                "--version",
+                "v1.28.0",
+                "--portboard",
+                "esp32-esp32_generic",
+                "--checker",
+                checker,
+            ]
+        )
+
+
+@pytest.mark.parametrize("checker", ["pyright", "mypy", "ruff", "pyrefly"])
+def test_cli_accepts_stable_checkers(checker: str):
+    arguments = build_parser().parse_args(
+        [
+            "--catalog",
+            "mim",
+            "--version",
+            "v1.28.0",
+            "--portboard",
+            "esp32-esp32_generic",
+            "--checker",
+            checker,
+        ]
+    )
+
+    assert arguments.checker == [checker]
+
+
 def test_focused_cli_bypasses_catalog_and_emits_json(capsys):
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()

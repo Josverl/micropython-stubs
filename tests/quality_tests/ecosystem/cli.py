@@ -44,28 +44,52 @@ class CliRuntime:
 
 RuntimeFactory = Callable[[argparse.Namespace], CliRuntime]
 
+DEFAULT_CATALOG = CatalogSelection.MIM.value
+DEFAULT_PORTBOARD = "esp32-esp32_generic"
+DEFAULT_CHECKER = "pyright"
+STABLE_CHECKERS = ("pyright", "mypy", "ruff", "pyrefly")
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ecosystem-qa",
         description="Validate MicroPython stubs against focused or catalog ecosystem packages.",
     )
-    source = parser.add_mutually_exclusive_group(required=True)
+    source = parser.add_mutually_exclusive_group()
     source.add_argument("--package", help="Direct MIP package reference; bypasses catalog discovery")
-    source.add_argument("--catalog", choices=[item.value for item in CatalogSelection], help="Batch catalog source")
+    source.add_argument(
+        "--catalog",
+        choices=[item.value for item in CatalogSelection],
+        default=DEFAULT_CATALOG,
+        help=f"Batch catalog source (default: {DEFAULT_CATALOG})",
+    )
 
     parser.add_argument("--version", dest="versions", action="append", required=True, help="MicroPython version; repeatable")
-    parser.add_argument("--portboard", action="append", required=True, help="Port or port-board stub target; repeatable")
+    parser.add_argument(
+        "--portboard",
+        action="append",
+        help=f"Port or port-board stub target; repeatable (default: {DEFAULT_PORTBOARD})",
+    )
     parser.add_argument("--stub-source", choices=[item.value for item in StubSource], default=StubSource.LOCAL.value)
     parser.add_argument("--stub-path", type=Path, help="Stub tree used with --stub-source path")
-    parser.add_argument("--checker", action="append", help="Checker name; repeatable (default: pyright)")
+    parser.add_argument(
+        "--checker",
+        action="append",
+        choices=STABLE_CHECKERS,
+        help=f"Checker name; repeatable (default: {DEFAULT_CHECKER})",
+    )
     parser.add_argument("--no-stub-cache", action="store_true", help="Disable uv's cache while provisioning stubs")
 
     parser.add_argument("--cache-mode", choices=[item.value for item in CacheMode], default=CacheMode.USE_CACHE.value)
     parser.add_argument("--refresh", action="store_true", help="Refresh catalog and package response cache entries")
     parser.add_argument("--cache-dir", type=Path, default=Path("tests/quality_tests/.ecosystem-cache"))
     parser.add_argument("--workspace-dir", type=Path, default=Path("tests/quality_tests/.ecosystem-cache/runs"))
-    parser.add_argument("--retain", choices=[item.value for item in WorkspaceRetention], default=WorkspaceRetention.NEVER.value)
+    parser.add_argument(
+        "--retain",
+        choices=[item.value for item in WorkspaceRetention],
+        default=WorkspaceRetention.ON_FAILURE.value,
+        help=f"Workspace retention policy (default: {WorkspaceRetention.ON_FAILURE.value})",
+    )
     parser.add_argument("--unknown-policy", choices=[item.value for item in UnknownPortPolicy])
 
     parser.add_argument("--package-filter", help="Case-insensitive batch package substring")
@@ -138,10 +162,10 @@ def _qa_request(arguments: argparse.Namespace) -> QARequest:
         unknown_policy = UnknownPortPolicy.SKIP
     return QARequest(
         versions=tuple(arguments.versions),
-        portboards=tuple(arguments.portboard),
+        portboards=tuple(arguments.portboard or (DEFAULT_PORTBOARD,)),
         stub_source=StubSource(arguments.stub_source),
         stub_path=arguments.stub_path,
-        checkers=tuple(arguments.checker or ("pyright",)),
+        checkers=tuple(arguments.checker or (DEFAULT_CHECKER,)),
         cache_mode=cache_mode,
         unknown_policy=unknown_policy,
         retention=WorkspaceRetention(arguments.retain),
