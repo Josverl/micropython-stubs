@@ -151,7 +151,7 @@ Package outcomes are `pass`, `type_check_failure`, `unsupported`, `unavailable`,
 | --- | --- |
 | 0 | All selected packages passed or were intentionally skipped. |
 | 1 | At least one type-check failure and no operational failure. |
-| 2 | Catalog diagnostics, unsupported or unavailable packages, internal/setup failure, no selected package, or command usage error. |
+| 2 | Error catalog diagnostics, unsupported or unavailable packages, internal/setup failure, no selected package, or command usage error. |
 
 JSON reports use schema version 1 and retain each package's runner reports. Text reports show the same outcomes and aggregate counts. One package failure does not stop later packages.
 
@@ -286,6 +286,7 @@ Record dispositions are `discovered`, `check`, `skip`, `error`, and `deferred`. 
 ```text
 mpy_only
 no_python_source
+deprecated_package
 deferred_internal_manifest
 unsupported_reference
 unsupported_source

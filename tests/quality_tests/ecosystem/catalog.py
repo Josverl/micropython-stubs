@@ -245,6 +245,24 @@ class MimCatalogAdapter:
         parser.feed(document)
         package_data = _software_source_code(parser.json_ld_documents)
         install_reference = _mip_install_reference(parser.code_blocks)
+        if package_data is not None and install_reference is None and _is_deprecated_package(package_data):
+            name = package_data.get("name")
+            if isinstance(name, str) and name.strip():
+                repository_url = package_data.get("codeRepository")
+                return CatalogParseResult(
+                    (),
+                    (
+                        CatalogDiagnostic(
+                            catalog=CatalogSource.MIM,
+                            entry_key=location.key,
+                            source_url=location.page_url,
+                            disposition=RecordDisposition.SKIP,
+                            reason=ReasonCode.DEPRECATED_PACKAGE,
+                            detail=f"MIM package {name.strip()} is deprecated and has no install reference",
+                            reference=repository_url if isinstance(repository_url, str) else None,
+                        ),
+                    ),
+                )
         if package_data is None or install_reference is None:
             missing = []
             if package_data is None:
@@ -440,6 +458,17 @@ def _software_source_code(documents: list[object]) -> dict[str, object] | None:
         if isinstance(document, dict) and document.get("@type") == "SoftwareSourceCode":
             return document
     return None
+
+
+def _is_deprecated_package(package_data: dict[str, object]) -> bool:
+    keywords = package_data.get("keywords")
+    if isinstance(keywords, str):
+        values = keywords.split(",")
+    elif isinstance(keywords, list):
+        values = [value for value in keywords if isinstance(value, str)]
+    else:
+        return False
+    return any(value.strip().casefold() == "deprecated" for value in values)
 
 
 def _mip_install_reference(code_blocks: list[str]) -> str | None:

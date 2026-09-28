@@ -187,6 +187,7 @@ def test_reason_code_values_are_stable_report_keys():
     assert ReasonCode.INVALID_MANIFEST.value == "invalid_manifest"
     assert ReasonCode.UNAVAILABLE.value == "unavailable"
     assert ReasonCode.AMBIGUOUS_PORT.value == "ambiguous_port"
+    assert ReasonCode.DEPRECATED_PACKAGE.value == "deprecated_package"
 
 
 def test_explicit_metadata_takes_precedence_over_static_signals():

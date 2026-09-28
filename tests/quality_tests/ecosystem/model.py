@@ -46,6 +46,7 @@ class RecordDisposition(str, Enum):
 class ReasonCode(str, Enum):
     MPY_ONLY = "mpy_only"
     NO_PYTHON_SOURCE = "no_python_source"
+    DEPRECATED_PACKAGE = "deprecated_package"
     DEFERRED_INTERNAL_MANIFEST = "deferred_internal_manifest"
     UNSUPPORTED_REFERENCE = "unsupported_reference"
     UNSUPPORTED_SOURCE = "unsupported_source"

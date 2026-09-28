@@ -125,6 +125,47 @@ def test_mim_adapter_reports_pages_without_package_data():
     assert result.diagnostics[0].reason is ReasonCode.INVALID_CATALOG_ENTRY
 
 
+def test_mim_adapter_skips_deprecated_page_without_install_reference():
+    adapter = MimCatalogAdapter()
+    location = adapter.parse_sitemap(
+        """<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://checkmim.com/packages/retired-package</loc></url>
+</urlset>"""
+    ).locations[0]
+
+    result = adapter.parse_package_page(
+        location,
+        (FIXTURES / "mim" / "deprecated-package.html").read_text(encoding="utf-8"),
+    )
+
+    assert result.entries == ()
+    assert len(result.diagnostics) == 1
+    diagnostic = result.diagnostics[0]
+    assert diagnostic.catalog is CatalogSource.MIM
+    assert diagnostic.entry_key == "retired-package"
+    assert diagnostic.source_url == "https://checkmim.com/packages/retired-package"
+    assert diagnostic.disposition is RecordDisposition.SKIP
+    assert diagnostic.reason is ReasonCode.DEPRECATED_PACKAGE
+
+
+def test_mim_adapter_reports_active_page_without_install_reference():
+    adapter = MimCatalogAdapter()
+    location = adapter.parse_sitemap(
+        """<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://checkmim.com/packages/active-package</loc></url>
+</urlset>"""
+    ).locations[0]
+    document = """<script type="application/ld+json">
+{"@type":"SoftwareSourceCode","name":"active-package","codeRepository":"https://github.com/example/active-package"}
+</script><code>mpremote mip install </code>"""
+
+    result = adapter.parse_package_page(location, document)
+
+    assert result.entries == ()
+    assert result.diagnostics[0].disposition is RecordDisposition.ERROR
+    assert result.diagnostics[0].reason is ReasonCode.INVALID_CATALOG_ENTRY
+
+
 def test_mim_adapter_reports_malformed_sitemap():
     result = MimCatalogAdapter().parse_sitemap("<urlset><url>")
 

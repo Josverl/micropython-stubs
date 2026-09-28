@@ -130,11 +130,8 @@ class OrchestrationReport:
     @property
     def exit_code(self) -> OrchestrationExit:
         outcomes = {result.outcome for result in self.results}
-        if (
-            not outcomes
-            or self.catalog_diagnostics
-            or outcomes & {PackageOutcome.UNSUPPORTED, PackageOutcome.UNAVAILABLE, PackageOutcome.ERROR}
-        ):
+        has_catalog_errors = any(diagnostic.disposition is RecordDisposition.ERROR for diagnostic in self.catalog_diagnostics)
+        if not outcomes or has_catalog_errors or outcomes & {PackageOutcome.UNSUPPORTED, PackageOutcome.UNAVAILABLE, PackageOutcome.ERROR}:
             return OrchestrationExit.OPERATIONAL_FAILURE
         if PackageOutcome.TYPE_CHECK_FAILURE in outcomes:
             return OrchestrationExit.TYPE_CHECK_FAILURE
@@ -162,7 +159,7 @@ class OrchestrationReport:
             if result.message:
                 lines.append(f"    {result.message.strip()}")
         for diagnostic in self.catalog_diagnostics:
-            lines.append(f"  {diagnostic.catalog.value}:{diagnostic.entry_key}: error [{diagnostic.reason.value}]")
+            lines.append(f"  {diagnostic.catalog.value}:{diagnostic.entry_key}: {diagnostic.disposition.value} [{diagnostic.reason.value}]")
             lines.append(f"    {diagnostic.detail.strip()}")
         counts = ", ".join(f"{name}={count}" for name, count in self.counts.items())
         lines.append(f"summary: {counts}; exit={int(self.exit_code)}; {self.duration_seconds:.3f}s")

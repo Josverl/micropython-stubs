@@ -265,6 +265,24 @@ def test_catalog_diagnostics_make_partial_batch_operationally_incomplete():
     assert "mim:missing-package: error [unavailable]" in report.render_text()
 
 
+def test_skipped_catalog_diagnostics_do_not_fail_successful_batch():
+    diagnostic = CatalogDiagnostic(
+        catalog=CatalogSource.MIM,
+        entry_key="retired-package",
+        source_url="https://checkmim.com/packages/retired-package",
+        disposition=RecordDisposition.SKIP,
+        reason=ReasonCode.DEPRECATED_PACKAGE,
+        detail="fixture package is deprecated",
+    )
+    inventory = CatalogInventory((_record("z-portable", CatalogSource.MIM, PortClassification.PORTABLE),), (diagnostic,))
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_batch(inventory, BatchSelection(), _request())
+
+    assert report.results[0].outcome is PackageOutcome.PASS
+    assert report.exit_code is OrchestrationExit.SUCCESS
+    assert "mim:retired-package: skip [deprecated_package]" in report.render_text()
+
+
 def test_focused_orchestration_bypasses_catalog_and_uses_explicit_unknown_policy():
     resolver = FakeResolver()
     runner = FakeRunner()
