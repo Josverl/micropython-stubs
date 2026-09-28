@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from .model import (
+from ..model import (
     CatalogProvenance,
     CatalogSource,
     PackageAlias,
@@ -16,8 +16,8 @@ from .model import (
     RecordDisposition,
     SourceFamily,
 )
-from .resolver import ResolutionResult, ResolvedPayload
-from .runner import (
+from ..resolver import ResolutionResult, ResolvedPayload
+from ..runner import (
     CheckerExecution,
     CheckerStatus,
     ExistingCheckerBackend,
@@ -118,8 +118,8 @@ def _stub_fixture(tmp_path: Path) -> Path:
 def _runner(tmp_path: Path, checker: InspectingChecker) -> QARunner:
     return QARunner(
         workspace_root=tmp_path / "runs",
-        config_root=Path(__file__).parent.parent / "_configs",
-        stub_provisioner=UvStubProvisioner(Path(__file__).parents[3]),
+        config_root=Path(__file__).parents[2] / "_configs",
+        stub_provisioner=UvStubProvisioner(Path(__file__).parents[4]),
         checker_backend=checker,
     )
 
@@ -279,10 +279,10 @@ def test_runner_reports_provisioning_errors_and_retains_workspace(tmp_path: Path
 
 
 def test_runner_executes_existing_pyright_with_local_stubs(tmp_path: Path):
-    project_root = Path(__file__).parents[3]
+    project_root = Path(__file__).parents[4]
     runner = QARunner(
         workspace_root=tmp_path / "runs",
-        config_root=Path(__file__).parent.parent / "_configs",
+        config_root=Path(__file__).parents[2] / "_configs",
         stub_provisioner=UvStubProvisioner(project_root),
         checker_backend=ExistingCheckerBackend(),
     )

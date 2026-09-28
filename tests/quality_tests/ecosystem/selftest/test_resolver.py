@@ -11,8 +11,8 @@ import zipfile
 
 import pytest
 
-from .model import ReasonCode, RecordDisposition
-from .resolver import (
+from ..model import ReasonCode, RecordDisposition
+from ..resolver import (
     ArchiveLimits,
     CacheMode,
     CachedFetcher,
@@ -26,7 +26,7 @@ from .resolver import (
 )
 
 
-FIXTURES = Path(__file__).parent / "fixtures" / "mip"
+FIXTURES = Path(__file__).parent.parent / "fixtures" / "mip"
 
 
 @dataclass

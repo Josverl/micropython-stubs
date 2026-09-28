@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from .model import (
+from ..model import (
     CatalogProvenance,
     CatalogSource,
     ClassificationOverride,
@@ -324,7 +324,7 @@ def test_port_specific_override_requires_scope(tmp_path):
 
 
 def test_committed_classification_overrides_validate():
-    overrides = load_classification_overrides(Path(__file__).with_name("classification_overrides.json"))
+    overrides = load_classification_overrides(Path(__file__).parent.parent / "classification_overrides.json")
 
     assert {identity.key for identity in overrides} == {
         "repository:github:bartoszadamczyk/pico-ir",
@@ -343,7 +343,7 @@ def test_committed_classification_overrides_validate():
 
 
 def test_fixture_outcomes_use_normalized_contract_values():
-    document = json.loads((Path(__file__).parent / "fixtures" / "cases.json").read_text(encoding="utf-8"))
+    document = json.loads((Path(__file__).parent.parent / "fixtures" / "cases.json").read_text(encoding="utf-8"))
     actions = {"resolve_mip", "resolve_single_file"}
 
     for group in ("catalog_cases", "manifest_cases"):

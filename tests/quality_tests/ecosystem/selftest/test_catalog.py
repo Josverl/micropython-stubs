@@ -3,8 +3,8 @@ from pathlib import Path
 from dataclasses import replace
 import json
 
-from .catalog import AwesomeCatalogAdapter, CatalogEntry, MimCatalogAdapter, build_inventory
-from .model import (
+from ..catalog import AwesomeCatalogAdapter, CatalogEntry, MimCatalogAdapter, build_inventory
+from ..model import (
     CatalogSource,
     PackageIdentity,
     PortClassification,
@@ -15,7 +15,7 @@ from .model import (
 )
 
 
-FIXTURES = Path(__file__).parent / "fixtures"
+FIXTURES = Path(__file__).parent.parent / "fixtures"
 AWESOME_SOURCE = "https://raw.githubusercontent.com/mcauser/awesome-micropython/master/readme.md"
 
 
@@ -306,7 +306,7 @@ def test_reviewed_override_corpus_covers_both_classifications_in_each_catalog():
             "https://checkmim.com/packages/raspberrypifoundation+picozero",
         ),
     ]
-    overrides = load_classification_overrides(Path(__file__).with_name("classification_overrides.json"))
+    overrides = load_classification_overrides(Path(__file__).parent.parent / "classification_overrides.json")
 
     inventory = build_inventory(entries, overrides=overrides)
 

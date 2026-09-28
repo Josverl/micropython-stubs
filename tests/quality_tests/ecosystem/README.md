@@ -245,7 +245,7 @@ Read the top-level package `outcome` independently from `catalog_diagnostics`. A
 Classification overrides belong in `classification_overrides.json` only after review of explicit repository or package evidence. Include a rationale and durable reference, then run:
 
 ```powershell
-uv run pytest tests/quality_tests/ecosystem/test_model.py tests/quality_tests/ecosystem/test_catalog.py tests/quality_tests/ecosystem/test_runner.py -q -n 0
+uv run pytest tests/quality_tests/ecosystem/selftest/test_model.py tests/quality_tests/ecosystem/selftest/test_catalog.py tests/quality_tests/ecosystem/selftest/test_runner.py -q -n 0
 ```
 
 Ordinary pytest remains network-free because `ecosystem_network` is excluded in the repository defaults. Keep raw reports and caches uncommitted; update `pilot_baseline.json` only from a reviewed run, preserving factual aggregate data rather than local absolute paths or mirrored third-party content.

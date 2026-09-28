@@ -4,16 +4,16 @@ from typing import Mapping
 
 import pytest
 
-from .catalog import CatalogDiagnostic, CatalogInventory
-from .catalog_loader import (
+from ..catalog import CatalogDiagnostic, CatalogInventory
+from ..catalog_loader import (
     AWESOME_CATALOG_URL,
     MIM_SITEMAP_URL,
     CatalogLoadOptions,
     NetworkCatalogLoader,
     RateLimitedFetcher,
 )
-from .cli import CliRuntime, build_parser, main
-from .model import (
+from ..cli import CliRuntime, build_parser, main
+from ..model import (
     CatalogProvenance,
     CatalogSource,
     ClassificationOverride,
@@ -31,7 +31,7 @@ from .model import (
     RecordDisposition,
     SourceFamily,
 )
-from .orchestrator import (
+from ..orchestrator import (
     BatchSelection,
     CatalogSelection,
     EcosystemOrchestrator,
@@ -41,8 +41,8 @@ from .orchestrator import (
     QARequest,
     select_inventory_records,
 )
-from .resolver import CacheMode, FetchResponse, ResolutionResult, ResolvedPayload, ResolverError
-from .runner import (
+from ..resolver import CacheMode, FetchResponse, ResolutionResult, ResolvedPayload, ResolverError
+from ..runner import (
     CheckerStatus,
     QACase,
     QACheckerResult,
@@ -450,7 +450,7 @@ class FixtureCatalogFetcher:
 
 
 def _catalog_responses() -> dict[str, bytes]:
-    fixtures = Path(__file__).parent / "fixtures"
+    fixtures = Path(__file__).parent.parent / "fixtures"
     joystick_page = "https://checkmim.com/packages/howmanyoliversarethere+micropython-joystick-2-unit"
     official_page = "https://checkmim.com/packages/ntptime"
     return {
