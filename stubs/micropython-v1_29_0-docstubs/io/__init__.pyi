@@ -84,6 +84,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import FileIO, PathLike, TextIOWrapper, AnyReadableBuf, AnyWritableBuf
 from _mpy_shed import IOBase_mp
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
+from array import array
 
 _T = TypeVar("_T")
 AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)

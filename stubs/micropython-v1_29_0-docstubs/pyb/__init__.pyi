@@ -33,6 +33,7 @@ from pyb.Timer import Timer
 from pyb.UART import UART
 from pyb.USB_HID import USB_HID
 from pyb.USB_VCP import USB_VCP
+from array import array
 from collections.abc import Sequence
 from vfs import AbstractBlockDev
 
