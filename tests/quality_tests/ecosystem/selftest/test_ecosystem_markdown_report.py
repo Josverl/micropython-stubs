@@ -1,7 +1,7 @@
 from ..markdown_report import render_markdown_reports
 
 
-def _document() -> dict[str, object]:
+def _document(*, pyright_status: str = "pass", pyright_command: list[str] | None = None) -> dict[str, object]:
     return {
         "schema_version": 2,
         "mode": "batch",
@@ -27,8 +27,8 @@ def _document() -> dict[str, object]:
                         "results": [
                             {
                                 "checker": "pyright",
-                                "status": "pass",
-                                "command": ["pyright", "--outputjson"],
+                                "status": pyright_status,
+                                "command": pyright_command or ["pyright", "--outputjson"],
                                 "diagnostics": [],
                                 "error_count": 0,
                                 "warning_count": 0,
@@ -86,3 +86,11 @@ def test_render_markdown_reports_creates_overview_and_every_checker_detail() -> 
     pyright = reports.checker_details["pyright"]
     assert "| Passed | 1 |" in pyright
     assert "No diagnostics were reported." in pyright
+
+
+def test_rendered_module_command_omits_python_executable_prefix() -> None:
+    reports = render_markdown_reports(_document(pyright_status="fail", pyright_command=["<path>", "-m", "pyright", "--outputjson"]))
+
+    pyright = reports.checker_details["pyright"]
+    assert "**Command:** `pyright --outputjson`" in pyright
+    assert "&lt;path&gt; -m pyright" not in pyright

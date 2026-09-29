@@ -261,7 +261,7 @@ def _render_checker_detail(checker: str, rows: list[_ReportRow], overview_filena
             ]
         )
         if run.command:
-            lines.extend(["", f"**Command:** `{_escape_markdown(' '.join(run.command))}`"])
+            lines.extend(["", f"**Command:** `{_escape_markdown(_display_command(run.command))}`"])
         if run.message:
             lines.extend(["", "**Execution message:**", "", _fenced_text(run.message)])
         unique_diagnostics = [line for line in diagnostic_lines[run.key] if line not in shared_diagnostics]
@@ -395,6 +395,12 @@ def _strings(value: object) -> tuple[str, ...]:
     if not isinstance(value, Sequence) or isinstance(value, (str, bytes)):
         return ()
     return tuple(str(item) for item in value)
+
+
+def _display_command(command: Sequence[str]) -> str:
+    if len(command) >= 3 and command[1] == "-m":
+        command = command[2:]
+    return " ".join(command)
 
 
 def _integer(value: object) -> int:
