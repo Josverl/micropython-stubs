@@ -200,6 +200,7 @@ workspace retained: D:\...\ecosystem-qa-...
 JSON stores the same path in `retained_workspace`; successful unretained runs store `null`. A retained workspace contains:
 
 ```text
+README.md     UTC creation time, catalog/index entry, source repository, and resolved revision
 source/       resolved package .py files
 typings/      selected MicroPython stubs
 pyproject.toml and checker configuration

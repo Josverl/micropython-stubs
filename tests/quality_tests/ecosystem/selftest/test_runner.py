@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import re
 
 from ..model import (
     CatalogProvenance,
@@ -60,18 +61,24 @@ class InspectingChecker:
         )
 
 
-def _resolution(classification: PortDecision, source: bytes = b"raise RuntimeError('must not execute')\n") -> ResolutionResult:
+def _resolution(
+    classification: PortDecision,
+    source: bytes = b"raise RuntimeError('must not execute')\n",
+    *,
+    catalog: CatalogSource = CatalogSource.DIRECT,
+    entry_url: str = "github:example/driver",
+) -> ResolutionResult:
     identity = PackageIdentity.repository("github", "example", "driver")
     candidate = PackageCandidate(
         identity=identity,
         display_name="driver",
         source_family=SourceFamily.MIP,
         install_reference="github:example/driver",
-        aliases=(PackageAlias(CatalogSource.DIRECT, "github:example/driver"),),
+        aliases=(PackageAlias(catalog, "github:example/driver"),),
         provenance=(
             CatalogProvenance(
-                CatalogSource.DIRECT,
-                "github:example/driver",
+                catalog,
+                entry_url,
                 identity.key,
                 metadata=(("author", "Fixture Author"), ("api_key", "metadata-secret")),
             ),
@@ -232,19 +239,45 @@ def test_runner_retains_failed_workspace_for_debugging(tmp_path: Path):
     runner = _runner(tmp_path, checker)
     case = QACase(StubSelection("v1.28.0", "rp2", StubSource.PATH, _stub_fixture(tmp_path)), ("pyright",))
 
-    report = runner.run(_resolution(_portable()), case, retention=WorkspaceRetention.ON_FAILURE)
+    resolution = _resolution(
+        _portable(),
+        catalog=CatalogSource.MIM,
+        entry_url="https://checkmim.com/packages/driver?token=index-secret",
+    )
+    report = runner.run(resolution, case, retention=WorkspaceRetention.ON_FAILURE)
 
     assert report.status is CheckerStatus.FAIL
     retained_workspace = report.retained_workspace
     assert retained_workspace is not None
     assert retained_workspace == checker.workspaces[0]
     assert retained_workspace.is_dir()
+    readme = (retained_workspace / "README.md").read_text(encoding="utf-8")
+    assert "# Ecosystem QA workspace" in readme
+    assert re.search(r"- Generated \(UTC\): `\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z`", readme)
+    assert "- Package: `repository:github:example/driver`" in readme
+    assert "- Source reference: `github:example/driver`" in readme
+    assert "- Source repository: https://github.com/example/driver" in readme
+    assert "- Resolved revision: `abc123`" in readme
+    assert "- `mim`: https://checkmim.com/packages/driver?token=%3Credacted%3E" in readme
+    assert "index-secret" not in readme
     assert report.results[0].diagnostics[0]["file"] == "source/driver.py"
     data = json.loads(report.to_json())
     assert data["retained_workspace"] == str(retained_workspace)
     rendered = report.render_text()
     assert f"workspace retained: {retained_workspace}" in rendered
     assert "diagnostic: source/driver.py:1:1: error: fixture diagnostic" in rendered
+
+
+def test_runner_always_retains_successful_workspace_with_readme(tmp_path: Path):
+    checker = InspectingChecker()
+    runner = _runner(tmp_path, checker)
+    case = QACase(StubSelection("v1.28.0", "rp2", StubSource.PATH, _stub_fixture(tmp_path)), ("pyright",))
+
+    report = runner.run(_resolution(_portable()), case, retention=WorkspaceRetention.ALWAYS)
+
+    assert report.status is CheckerStatus.PASS
+    assert report.retained_workspace is not None
+    assert (report.retained_workspace / "README.md").is_file()
 
 
 def test_failed_diagnostics_redact_credentials_while_preserving_retained_workspace(tmp_path: Path):
@@ -298,6 +331,7 @@ def test_runner_reports_provisioning_errors_and_retains_workspace(tmp_path: Path
     assert "Stub path does not exist: <path>" in report.render_text()
     retained_workspace = report.retained_workspace
     assert retained_workspace is not None
+    assert (retained_workspace / "README.md").is_file()
     assert (retained_workspace / "source" / "driver.py").is_file()
     assert checker.workspaces == []
     data = json.loads(report.to_json())

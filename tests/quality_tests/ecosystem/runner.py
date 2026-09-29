@@ -9,6 +9,7 @@ import sys
 import tempfile
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from enum import Enum
 from itertools import product
 from pathlib import Path, PurePosixPath
@@ -21,7 +22,7 @@ if __package__ == "ecosystem":
 else:
     from ..typecheck import filter_issues, invoke_typechecker
 
-from .model import FileKind, PackageRecord, PackageResolution, PortClassification, ReasonCode, RecordDisposition
+from .model import FileKind, IdentityKind, PackageRecord, PackageResolution, PortClassification, ReasonCode, RecordDisposition
 from .reporting import (
     REPORT_SCHEMA_VERSION,
     resolution_text,
@@ -31,6 +32,13 @@ from .reporting import (
     sanitize_report_text,
 )
 from .resolver import ResolutionResult
+
+
+_REPOSITORY_WEB_ROOTS = {
+    "codeberg": "https://codeberg.org",
+    "github": "https://github.com",
+    "gitlab": "https://gitlab.com",
+}
 
 
 class StubSource(str, Enum):
@@ -399,6 +407,7 @@ class QARunner:
         stub_command: tuple[str, ...] = ()
         results: list[QACheckerResult] = []
         try:
+            (workspace / "README.md").write_text(_workspace_readme(record), encoding="utf-8")
             self._prepare_workspace(workspace, resolution)
             stub_command = self.stub_provisioner.provision(case.stubs, workspace / "typings").command
             for checker in case.checkers:
@@ -522,6 +531,46 @@ class QARunner:
 def _matches_classification(portboard: str, ports: tuple[str, ...], boards: tuple[str, ...]) -> bool:
     port, separator, board = portboard.casefold().partition("-")
     return portboard.casefold() in ports or port in ports or (separator and (board in boards or portboard.casefold() in boards))
+
+
+def _workspace_readme(record: PackageRecord) -> str:
+    resolution = record.resolution
+    generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    source_reference = resolution.canonical_reference if resolution is not None else record.candidate.install_reference
+    resolved_revision = resolution.resolved_revision if resolution is not None else None
+    lines = [
+        "# Ecosystem QA workspace",
+        "",
+        f"- Generated (UTC): `{generated_at}`",
+        f"- Package: `{record.candidate.identity.key}`",
+        f"- Source reference: `{source_reference}`",
+    ]
+    repository_url = _repository_url(record) or "not determined"
+    lines.append(f"- Source repository: {repository_url}")
+    lines.extend(
+        (
+            f"- Resolved revision: `{resolved_revision or '-'}`",
+            "",
+            "## Index provenance",
+            "",
+        )
+    )
+    for item in record.candidate.provenance:
+        observed = f" (observed `{item.observed_at}`)" if item.observed_at else ""
+        lines.append(f"- `{item.catalog.value}`: {item.entry_url}{observed}")
+    return sanitize_report_text("\n".join(lines)) + "\n"
+
+
+def _repository_url(record: PackageRecord) -> str | None:
+    identity = record.candidate.identity
+    if identity.kind is not IdentityKind.REPOSITORY:
+        return None
+    provider, separator, location = identity.value.partition(":")
+    root = _REPOSITORY_WEB_ROOTS.get(provider)
+    parts = location.split("/")
+    if not separator or root is None or len(parts) < 2:
+        return None
+    return f"{root}/{parts[0]}/{parts[1]}"
 
 
 def _safe_workspace_target(root: Path, target: str) -> Path:
