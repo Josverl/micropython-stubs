@@ -243,7 +243,7 @@ def plan_qa_matrix(
     checkers: Iterable[str],
     stub_path: Path | None = None,
     no_stub_cache: bool = False,
-    unknown_policy: UnknownPortPolicy = UnknownPortPolicy.SKIP,
+    unknown_policy: UnknownPortPolicy = UnknownPortPolicy.USE_REQUESTED,
 ) -> QAMatrixPlan:
     """Build a deterministic version/port matrix from package classification."""
     versions = tuple(sorted(set(versions)))

@@ -93,7 +93,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=WorkspaceRetention.ON_FAILURE.value,
         help=f"Workspace retention policy (default: {WorkspaceRetention.ON_FAILURE.value})",
     )
-    parser.add_argument("--unknown-policy", choices=[item.value for item in UnknownPortPolicy])
+    parser.add_argument(
+        "--unknown-policy",
+        choices=[item.value for item in UnknownPortPolicy],
+        help=f"Handling for unknown or ambiguous compatibility (default: {UnknownPortPolicy.USE_REQUESTED.value})",
+    )
 
     parser.add_argument("--package-filter", help="Case-insensitive batch package substring")
     parser.add_argument("--classification", choices=[item.value for item in PortClassification])
@@ -169,10 +173,8 @@ def _qa_request(arguments: argparse.Namespace) -> QARequest:
     cache_mode = CacheMode.REFRESH if arguments.refresh else CacheMode(arguments.cache_mode)
     if arguments.unknown_policy is not None:
         unknown_policy = UnknownPortPolicy(arguments.unknown_policy)
-    elif arguments.package is not None:
-        unknown_policy = UnknownPortPolicy.USE_REQUESTED
     else:
-        unknown_policy = UnknownPortPolicy.SKIP
+        unknown_policy = UnknownPortPolicy.USE_REQUESTED
     return QARequest(
         versions=tuple(arguments.versions),
         portboards=tuple(arguments.portboard or (DEFAULT_PORTBOARD,)),

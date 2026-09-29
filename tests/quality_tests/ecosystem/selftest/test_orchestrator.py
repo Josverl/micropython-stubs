@@ -247,6 +247,18 @@ def _request(*, unknown_policy: UnknownPortPolicy = UnknownPortPolicy.SKIP) -> Q
     )
 
 
+def test_qa_request_uses_requested_ports_for_unknown_packages_by_default():
+    request = QARequest(
+        versions=("v1.28.0",),
+        portboards=("esp32-esp32_generic",),
+        stub_source=StubSource.PATH,
+        stub_path=Path(__file__).parent,
+        checkers=("pyright",),
+    )
+
+    assert request.unknown_policy is UnknownPortPolicy.USE_REQUESTED
+
+
 def test_batch_orchestration_isolates_unavailable_and_type_failures():
     resolver = FakeResolver()
     runner = FakeRunner(failing={"z-portable"})
@@ -616,6 +628,7 @@ def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
     assert selection.catalogs is CatalogSelection.MIM
     assert request.portboards == ("esp32-esp32_generic",)
     assert request.checkers == ("pyright",)
+    assert request.unknown_policy is UnknownPortPolicy.USE_REQUESTED
     assert request.retention is WorkspaceRetention.ON_FAILURE
 
 
@@ -722,6 +735,8 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
             "2",
             "--rate-limit",
             "3",
+            "--unknown-policy",
+            "skip",
             "--report",
             "json",
             "--report-file",
@@ -737,6 +752,7 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
     assert selection.port == "esp32"
     assert selection.limit == 1
     assert request.cache_mode is CacheMode.REFRESH
+    assert request.unknown_policy is UnknownPortPolicy.SKIP
     document = json.loads(report_path.read_text(encoding="utf-8"))
     assert document["mode"] == "batch"
     assert document["cache_mode"] == "refresh"

@@ -45,7 +45,7 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Workspace retention | `on_failure` |
 | Report | Text on standard output |
 | Report-file mode | `replace` |
-| Unknown port policy | `skip` for catalog runs; `use_requested` for focused runs |
+| Unknown port policy | `use_requested` |
 | MIM fetch controls | 4 workers, 2 request starts per second |
 
 Selectable stable checkers are `pyright`, `mypy`, `ruff`, and `pyrefly`. Repeat `--version`, `--portboard`, or `--checker` to build a matrix. The currently unstable `ty` and `zuban` adapters are intentionally not CLI choices.
@@ -104,7 +104,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --checker mypy
 ```
 
-For a catalog package with unknown or ambiguous compatibility, the default is to skip it. Use `--unknown-policy use_requested` only when you intentionally want to test it against the requested target.
+Packages with unknown or ambiguous compatibility are tested against the requested targets. With no `--portboard`, that target is `esp32-esp32_generic`. Use `--unknown-policy skip` to omit those packages instead. Packages with known port evidence still skip with `no_compatible_port` when none of the requested targets are compatible.
 
 ### Select a stub source
 
@@ -272,7 +272,7 @@ The next online run recreates required directories and downloads.
 | `cache_miss` in offline mode | Rerun the same selection with `use_cache` or `--refresh`, then retry offline. |
 | `Local stub package is unavailable` | Choose a version/portboard present under `publish/`, or use `pypi`, `pypi-pre`, or `path`. |
 | `no_compatible_port` | Select a target supported by the package evidence. |
-| `no_port_evidence` or `ambiguous_port` | Review the evidence; use `--unknown-policy use_requested` only for an intentional probe. |
+| `no_port_evidence` or `ambiguous_port` | The requested target is used by default; review the evidence or use `--unknown-policy skip` to omit the package. |
 | Package passes but the process exits 2 | Inspect top-level catalog diagnostics for a separate discovery failure. |
 | MIM requests are slow or rate-limited | Reuse the cache, lower `--workers`, lower `--rate-limit`, or narrow future runs to a focused package. |
 | Aggregate file is rejected | Keep the original as evidence and write to a new path, or deliberately replace it without aggregate mode. |

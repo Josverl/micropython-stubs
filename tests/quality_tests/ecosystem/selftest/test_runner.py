@@ -154,7 +154,7 @@ def test_matrix_port_specific_filters_ports_and_boards(tmp_path: Path):
     assert [case.stubs.portboard for case in plan.cases] == ["esp32-generic", "rp2-rpi_pico"]
 
 
-def test_matrix_unknown_requires_explicit_policy(tmp_path: Path):
+def test_matrix_unknown_uses_requested_port_by_default_and_allows_skip(tmp_path: Path):
     unknown = PortDecision(PortClassification.UNKNOWN, (), (), (), ReasonCode.NO_PORT_EVIDENCE)
     arguments = {
         "versions": ["v1.28.0"],
@@ -164,12 +164,12 @@ def test_matrix_unknown_requires_explicit_policy(tmp_path: Path):
         "checkers": ["pyright"],
     }
 
-    skipped = plan_qa_matrix(_resolution(unknown).record, **arguments)
-    explicit = plan_qa_matrix(_resolution(unknown).record, unknown_policy=UnknownPortPolicy.USE_REQUESTED, **arguments)
+    selected = plan_qa_matrix(_resolution(unknown).record, **arguments)
+    skipped = plan_qa_matrix(_resolution(unknown).record, unknown_policy=UnknownPortPolicy.SKIP, **arguments)
 
+    assert [case.stubs.portboard for case in selected.cases] == ["rp2"]
     assert skipped.disposition is RecordDisposition.SKIP
     assert skipped.reason is ReasonCode.NO_PORT_EVIDENCE
-    assert [case.stubs.portboard for case in explicit.cases] == ["rp2"]
 
 
 def test_matrix_skips_when_no_requested_port_is_compatible(tmp_path: Path):

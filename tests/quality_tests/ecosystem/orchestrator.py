@@ -87,7 +87,7 @@ class QARequest:
     checkers: tuple[str, ...]
     stub_path: Path | None = None
     cache_mode: CacheMode = CacheMode.USE_CACHE
-    unknown_policy: UnknownPortPolicy = UnknownPortPolicy.SKIP
+    unknown_policy: UnknownPortPolicy = UnknownPortPolicy.USE_REQUESTED
     retention: WorkspaceRetention = WorkspaceRetention.NEVER
     no_stub_cache: bool = False
 
