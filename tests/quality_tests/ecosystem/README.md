@@ -42,6 +42,7 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Checker | `pyright` |
 | Stub source | `local` |
 | Cache mode | `use_cache` |
+| `micropython-lib` revision | `HEAD` |
 | Workspace retention | `on_failure` |
 | Console summary | Text on standard output |
 | Report files | Disabled; `--report` writes JSON and Markdown |
@@ -67,6 +68,34 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --report
 ```
 
+Official `micropython-lib` references select an internal `manifest.py` package path. Pin the repository independently from the stub version:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --package github:micropython/micropython-lib/micropython/net/ntptime `
+  --micropython-lib-revision v1.29.0 `
+  --version v1.29.0 `
+  --report
+```
+
+An `@revision` suffix on the package reference takes precedence over `--micropython-lib-revision`. Tags, branches, `HEAD`, and full commits are accepted; mutable names are resolved to a commit before the archive is read.
+
+### Run the official repository catalog
+
+Select `micropython-lib` to discover packages directly from one repository snapshot:
+
+```powershell
+uv run python -m tests.quality_tests.ecosystem.cli `
+  --catalog micropython-lib `
+  --micropython-lib-revision v1.29.0 `
+  --package-filter ntptime `
+  --limit 1 `
+  --version v1.29.0 `
+  --report
+```
+
+This source is separate from `both`, which remains the Awesome MicroPython plus MIM selection. Official records discovered through more than one catalog are deduplicated by repository package path while retaining each provenance entry.
+
 ### Run a bounded MIM batch
 
 Omitting `--package` uses MIM. Filters are applied after catalog normalization and deduplication:
@@ -79,7 +108,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --report
 ```
 
-`--limit` bounds selected packages, not catalog discovery requests. For wider discovery, select `--catalog awesome` or `--catalog both`. Useful batch filters are `--package-filter`, `--classification`, and `--port-filter`.
+`--limit` bounds selected packages, not catalog discovery requests. For wider discovery, select `--catalog awesome`, `--catalog mim`, `--catalog both`, or `--catalog micropython-lib`. Useful batch filters are `--package-filter`, `--classification`, and `--port-filter`.
 
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
@@ -153,6 +182,8 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --version v1.29.0 `
   --cache-mode offline
 ```
+
+For `micropython-lib`, cache entries include both tag/branch-to-commit resolution and the commit archive. Reuse the same package reference and `--micropython-lib-revision` during offline replay.
 
 `--refresh` and `--cache-mode offline` cannot be combined. For MIM, use `--workers 1` through `16` and `--rate-limit <requests-per-second>` to control upstream traffic.
 
@@ -299,7 +330,7 @@ Run the complete offline harness suite:
 uv run pytest tests/quality_tests/ecosystem -q
 ```
 
-Opt into the live network smoke test only when external traffic is intended:
+Opt into live network smoke tests only when external traffic is intended. The official repository test fetches `v1.29.0`, parses its complete catalog, and resolves every package closure:
 
 ```powershell
 $env:MICROPYTHON_STUBS_ECOSYSTEM_NETWORK = "1"
@@ -313,6 +344,7 @@ Implementation details live beside this guide instead of in the tester workflow:
 
 - [model.py](model.py): normalized identities, resolutions, classifications, and reason codes
 - [catalog.py](catalog.py) and [catalog_loader.py](catalog_loader.py): catalog parsing, normalization, and transport
+- [micropython_lib.py](micropython_lib.py): non-executing internal-manifest snapshot adapter
 - [resolver.py](resolver.py): bounded package/dependency resolution and cache behavior
 - [runner.py](runner.py) and [orchestrator.py](orchestrator.py): isolated QA execution and report construction
 - [aggregate.py](aggregate.py): cumulative report validation and metadata

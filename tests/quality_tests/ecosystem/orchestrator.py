@@ -37,6 +37,7 @@ from .runner import (
 class CatalogSelection(str, Enum):
     AWESOME = "awesome"
     MIM = "mim"
+    MICROPYTHON_LIB = "micropython-lib"
     BOTH = "both"
 
     @property
@@ -45,6 +46,8 @@ class CatalogSelection(str, Enum):
             return frozenset({CatalogSource.AWESOME_MICROPYTHON})
         if self is CatalogSelection.MIM:
             return frozenset({CatalogSource.MIM})
+        if self is CatalogSelection.MICROPYTHON_LIB:
+            return frozenset({CatalogSource.MICROPYTHON_LIB})
         return frozenset({CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM})
 
 

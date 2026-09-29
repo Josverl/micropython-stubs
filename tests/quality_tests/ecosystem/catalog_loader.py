@@ -18,6 +18,7 @@ from .catalog import (
     MimPackageLocation,
     build_inventory,
 )
+from .micropython_lib import MicropythonLibCatalogAdapter, MicropythonLibManifestError, fetch_micropython_lib_snapshot
 from .model import CatalogSource, ClassificationOverride, PackageIdentity, ReasonCode, RecordDisposition
 from .orchestrator import CatalogSelection
 from .progress import NullProgressReporter, ProgressReporter
@@ -69,6 +70,11 @@ class RateLimitedFetcher:
 class CatalogLoadOptions:
     catalogs: CatalogSelection = CatalogSelection.BOTH
     cache_mode: CacheMode = CacheMode.USE_CACHE
+    micropython_lib_revision: str = "HEAD"
+
+    def __post_init__(self) -> None:
+        if not self.micropython_lib_revision.strip():
+            raise ValueError("micropython-lib revision must not be empty")
 
 
 class NetworkCatalogLoader:
@@ -104,6 +110,10 @@ class NetworkCatalogLoader:
                 diagnostics.extend(result.diagnostics)
             if CatalogSource.MIM in options.catalogs.sources:
                 result = self._load_mim(options.cache_mode)
+                entries.extend(result.entries)
+                diagnostics.extend(result.diagnostics)
+            if CatalogSource.MICROPYTHON_LIB in options.catalogs.sources:
+                result = self._load_micropython_lib(options.cache_mode, options.micropython_lib_revision)
                 entries.extend(result.entries)
                 diagnostics.extend(result.diagnostics)
             return build_inventory(entries, diagnostics, overrides)
@@ -163,9 +173,25 @@ class NetworkCatalogLoader:
         except Exception as error:
             return CatalogParseResult((), (_load_diagnostic(CatalogSource.MIM, location.key, location.page_url, error),))
 
+    def _load_micropython_lib(self, mode: CacheMode, requested_revision: str) -> CatalogParseResult:
+        source_url = "https://github.com/micropython/micropython-lib"
+        try:
+            snapshot = fetch_micropython_lib_snapshot(
+                lambda reference: self.fetcher.fetch(reference, mode).data,
+                requested_revision,
+            )
+            return MicropythonLibCatalogAdapter().parse(snapshot)
+        except Exception as error:
+            return CatalogParseResult(
+                (),
+                (_load_diagnostic(CatalogSource.MICROPYTHON_LIB, requested_revision, source_url, error),),
+            )
+        finally:
+            self.progress.advance_catalog("micropython-lib")
+
 
 def _load_diagnostic(catalog: CatalogSource, key: str, source_url: str, error: Exception) -> CatalogDiagnostic:
-    if isinstance(error, ResolverError):
+    if isinstance(error, (MicropythonLibManifestError, ResolverError)):
         reason = error.reason
     elif isinstance(error, UnicodeDecodeError):
         reason = ReasonCode.INVALID_CATALOG_ENTRY

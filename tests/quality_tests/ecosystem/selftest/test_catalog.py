@@ -237,15 +237,15 @@ def test_inventory_deduplicates_within_catalog_and_retains_provenance():
     }
 
 
-def test_inventory_defers_micropython_lib_without_losing_candidates():
+def test_inventory_activates_micropython_lib_without_losing_candidates():
     entries, diagnostics = _fixture_catalog_entries()
 
     inventory = build_inventory(entries, diagnostics)
-    deferred = [record for record in inventory.records if record.disposition is RecordDisposition.DEFERRED]
+    official = [record for record in inventory.records if record.candidate.source_family is SourceFamily.MICROPYTHON_LIB]
 
-    assert len(deferred) == 2
-    assert all(record.candidate.source_family is SourceFamily.MICROPYTHON_LIB for record in deferred)
-    assert all(record.reason is ReasonCode.DEFERRED_INTERNAL_MANIFEST for record in deferred)
+    assert len(official) == 2
+    assert all(record.disposition is RecordDisposition.DISCOVERED for record in official)
+    assert all(record.reason is None for record in official)
 
 
 def test_inventory_filters_by_catalog_identity_and_classification():

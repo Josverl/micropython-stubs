@@ -64,12 +64,17 @@ def build_parser() -> argparse.ArgumentParser:
         description="Validate MicroPython stubs against focused or catalog ecosystem packages.",
     )
     source = parser.add_mutually_exclusive_group()
-    source.add_argument("--package", help="Direct MIP package reference; bypasses catalog discovery")
+    source.add_argument("--package", help="Direct package reference; bypasses catalog discovery")
     source.add_argument(
         "--catalog",
         choices=[item.value for item in CatalogSelection],
         default=DEFAULT_CATALOG,
         help=f"Batch catalog source (default: {DEFAULT_CATALOG})",
+    )
+    parser.add_argument(
+        "--micropython-lib-revision",
+        default="HEAD",
+        help="micropython-lib tag or commit used for focused and batch resolution (default: HEAD)",
     )
 
     parser.add_argument("--version", dest="versions", action="append", required=True, help="MicroPython version; repeatable")
@@ -149,7 +154,7 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
                     project_root / "tests" / "quality_tests" / "ecosystem" / "classification_overrides.json"
                 )
                 inventory = runtime.catalog_loader.load(
-                    CatalogLoadOptions(catalog, request.cache_mode),
+                    CatalogLoadOptions(catalog, request.cache_mode, arguments.micropython_lib_revision),
                     overrides=overrides,
                 )
                 selection = BatchSelection(
@@ -187,6 +192,8 @@ def _validate_arguments(arguments: argparse.Namespace) -> None:
         raise ValueError("batch filters require --catalog")
     if arguments.report_mode == "aggregate" and not arguments.report:
         raise ValueError("--report-mode aggregate requires --report")
+    if not arguments.micropython_lib_revision.strip():
+        raise ValueError("--micropython-lib-revision must not be empty")
 
 
 def _qa_request(arguments: argparse.Namespace) -> QARequest:
@@ -216,7 +223,7 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     upstream = RateLimitedFetcher(UrlFetcher(destination_policy=DestinationPolicy()), arguments.rate_limit)
     fetcher = CachedFetcher(cache_dir, upstream)
     catalog_loader = NetworkCatalogLoader(fetcher, max_workers=arguments.workers, progress=progress)
-    resolver = MipResolver(fetcher)
+    resolver = MipResolver(fetcher, micropython_lib_revision=arguments.micropython_lib_revision)
     runner = QARunner(
         workspace_root=workspace_dir,
         config_root=project_root / "tests" / "quality_tests" / "_configs",

@@ -687,6 +687,31 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.report_mode == "replace"
 
 
+def test_cli_passes_selected_micropython_lib_revision_to_catalog_loader():
+    loader = RecordingCliLoader()
+    orchestrator = RecordingCliOrchestrator()
+
+    exit_code = main(
+        [
+            "--catalog",
+            "micropython-lib",
+            "--micropython-lib-revision",
+            "v1.29.0",
+            "--version",
+            "v1.29.0",
+            "--stub-source",
+            "path",
+            "--stub-path",
+            ".",
+        ],
+        runtime_factory=lambda _arguments: CliRuntime(loader, orchestrator),
+    )
+
+    assert exit_code == 2
+    assert loader.options == [CatalogLoadOptions(CatalogSelection.MICROPYTHON_LIB, CacheMode.USE_CACHE, "v1.29.0")]
+    assert orchestrator.batch[0][0].catalogs is CatalogSelection.MICROPYTHON_LIB
+
+
 def test_cli_no_progress_flag_disables_the_shared_runtime_reporter():
     arguments = build_parser().parse_args(["--version", "v1.28.0", "--no-progress"])
 

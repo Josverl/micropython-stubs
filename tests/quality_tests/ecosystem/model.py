@@ -19,6 +19,7 @@ class IdentityKind(str, Enum):
 class CatalogSource(str, Enum):
     AWESOME_MICROPYTHON = "awesome_micropython"
     MIM = "mim"
+    MICROPYTHON_LIB = "micropython_lib"
     DIRECT = "direct"
 
 

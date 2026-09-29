@@ -525,15 +525,19 @@ def _is_mim_non_package_url(page_url: str) -> bool:
 
 def _normalize_catalog_entry(entry: CatalogEntry) -> _NormalizedCatalogEntry:
     official = _is_micropython_lib_reference(entry.repository_url or entry.reference)
-    identity, install_reference, source_family = normalize_package_reference(entry.reference, official=official)
-    if entry.catalog is CatalogSource.MIM and _is_bare_package_name(entry.reference):
+    normalization_reference = entry.repository_url if official and entry.repository_url else entry.reference
+    identity, install_reference, source_family = normalize_package_reference(normalization_reference, official=official)
+    if entry.catalog is CatalogSource.MIM and _is_bare_package_name(entry.reference) and not official:
         identity = PackageIdentity.index(entry.reference)
 
-    disposition = RecordDisposition.DEFERRED if official else RecordDisposition.DISCOVERED
-    reason = ReasonCode.DEFERRED_INTERNAL_MANIFEST if official else None
+    disposition = RecordDisposition.DISCOVERED
+    reason = None
     aliases = tuple(
         PackageAlias(entry.catalog, reference)
-        for reference in sorted({entry.reference, install_reference}, key=lambda value: (value.casefold(), value))
+        for reference in sorted(
+            {entry.reference, normalization_reference, install_reference},
+            key=lambda value: (value.casefold(), value),
+        )
     )
     provenance = CatalogProvenance(
         catalog=entry.catalog,
@@ -562,6 +566,7 @@ def normalize_package_reference(
     reference = reference.strip()
     if not reference:
         raise ValueError("package reference is empty")
+    official = official or _is_micropython_lib_reference(reference)
     if _is_bare_package_name(reference):
         return PackageIdentity.index(reference), reference, SourceFamily.MIP
 
@@ -673,6 +678,27 @@ _PORT_ALIASES = {
 
 def _classification_evidence(entry: CatalogEntry) -> tuple[PortEvidence, ...]:
     metadata = dict(entry.metadata)
+    if entry.catalog is CatalogSource.MICROPYTHON_LIB:
+        library = metadata.get("library")
+        if library == "unix-ffi":
+            return (
+                PortEvidence(
+                    source=PortEvidenceSource.MANIFEST_PATH,
+                    classification=PortClassification.PORT_SPECIFIC,
+                    detail="micropython-lib unix-ffi package path",
+                    ports=("unix",),
+                    reference=entry.source_url,
+                ),
+            )
+        if library in {"python-stdlib", "python-ecosys"}:
+            return (
+                PortEvidence(
+                    source=PortEvidenceSource.MANIFEST_PATH,
+                    classification=PortClassification.PORTABLE,
+                    detail=f"micropython-lib {library} package path",
+                    reference=entry.source_url,
+                ),
+            )
     keywords = metadata.get("keywords", "")
     keyword_ports = _ports_in_text(keywords)
     has_keyword_scope = bool(re.search(r"\b(?:only|specific(?:ally)?|for|supports?)\b", keywords.casefold()))

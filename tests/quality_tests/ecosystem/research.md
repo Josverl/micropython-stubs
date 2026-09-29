@@ -8,7 +8,7 @@ Research spike: `micropython-stubs-ut0.2`
 
 1. Keep catalog discovery separate from package resolution. Awesome MicroPython and MIM produce catalog records; a MIP resolver turns supported references into an installable Python-file inventory.
 2. Use a manifest-neutral record between source adapters and the QA runner. MIP `package.json` details must not leak into the checker/workspace layer.
-3. The initial implementation resolves community MIP packages from Awesome MicroPython and MIM. It may inventory official `micropython-lib` entries exposed by either catalog, but reports their resolution as deferred. Internal-manifest support belongs to `micropython-stubs-ut0.9`.
+3. Resolve official `micropython-lib` packages from an immutable repository snapshot with a constrained internal-manifest adapter. Official entries from the snapshot, Awesome MicroPython, and MIM share repository-path identity and retain all catalog provenance when deduplicated.
 4. Force source-package resolution (`py` / `mpy=False`) because the QA target is `.py` source. Record mixed `.py`/`.mpy` payloads, and skip a resolved closure only when it contains no `.py` file.
 5. Treat catalog pages, manifests, archives, and source files as untrusted data. Never import package modules. Validate paths, bound recursion and downloads, detect cycles and target collisions, and materialize a package atomically below a git-ignored root.
 6. Reuse the existing isolated-workspace, stub-installation, checker-configuration, and checker-execution code in `tests/quality_tests`; do not make the ecosystem layer another checker implementation.
@@ -32,7 +32,7 @@ A dated inventory of the `Libraries` section found 801 HTTP links (800 distinct)
 - explicit `package.json`, directory, or single-file links;
 - GitHub, GitLab, and Codeberg repositories;
 - deep links into monorepositories;
-- official `micropython-lib` links, which are catalogued but deferred;
+- official `micropython-lib` links, which are normalized to the internal-manifest source adapter;
 - C/native-only, application, example, archived, moved, or unavailable repositories;
 - descriptions with port hints such as ESP32, ESP8266, RP2, Pyboard, or Pycom.
 
@@ -69,7 +69,7 @@ Its source link differs in letter case from the install command and from the Awe
 
 MIM declares site content all rights reserved and publishes no bulk-API terms or rate limit. Keep only factual metadata, links, hashes, and extraction evidence; do not mirror full pages or README text in committed fixtures. Cache detail results by sitemap `lastmod`, identify the client, use low bounded concurrency, honor `Retry-After`, and stop/reduce traffic on 429 or repeated 5xx responses.
 
-Official MIM entries such as `ntptime` use a bare index reference and point into `micropython-lib`. The initial adapter should emit the catalog record with `source_family=micropython-lib` and a deferred-resolution reason. It must not silently treat these as community MIP manifests.
+Official MIM entries such as `ntptime` use a bare index reference and point into `micropython-lib`. Normalize them from the source-repository URL to `source_family=micropython-lib`; do not silently treat their internal `manifest.py` as a community MIP `package.json`.
 
 ## MIP package semantics
 
@@ -113,6 +113,43 @@ The official installer is a compatibility oracle, not the implementation to invo
 
 Mutable `HEAD`, branch, and `latest` references must be resolved to immutable evidence for each run. Reports should contain the requested ref, resolved commit/version, manifest hash, and file hashes. Reproduction should prefer the immutable form.
 
+## `micropython-lib` internal manifests
+
+Authoritative behavior comes from MicroPython's [manifest documentation](https://docs.micropython.org/en/latest/reference/manifest.html), `repos/micropython/tools/manifestfile.py`, and `repos/micropython-lib/tools/build.py`.
+
+There are three relevant entry points:
+
+- firmware builds pass `FROZEN_MANIFEST` or `MICROPY_FROZEN_MANIFEST` through `tools/makemanifest.py` in freeze mode;
+- `micropython-lib/tools/build.py` discovers every `manifest.py` below `micropython`, `python-stdlib`, and `python-ecosys`, then invokes `ManifestFile(MODE_COMPILE, ...)` to publish source and bytecode package-index payloads; it currently excludes `unix-ffi`;
+- `tools/manifestfile.py` can run directly in freeze, compile, or pyproject mode, with `--unix-ffi` prepending that library to dependency search order.
+
+The full DSL is executable Python. `ManifestFile.include()` evaluates source with `exec()` and exposes `metadata`, `include`, `require`, `add_library`, `package`, `module`, `c_module`, and `options`. Freeze modes additionally expose `freeze`, `freeze_as_str`, `freeze_as_mpy`, and `freeze_mpy`. Consequently upstream manifests may contain assignments, imports, conditionals, loops, computed arguments, and arbitrary Python behavior.
+
+Key evaluator semantics are:
+
+- `include(path, **options)` accepts a file, directory, or iterable; relative paths use the including manifest's directory, directories imply `manifest.py`, keyword options are exposed through `options`, and a visited-path set prevents repeated recursive inclusion;
+- `require(name, version=None, library=None, **options)` recursively locates a same-named manifest. Explicit `library` selects a registered library; otherwise global search order applies to the entire traversal. The default is `micropython`, `python-stdlib`, then `python-ecosys`; `--unix-ffi` prepends `unix-ffi`;
+- the accepted `version` argument is not used to select or validate a dependency revision. The selected repository snapshot determines dependency content;
+- `module(path, base_path=".")` adds one Python module, while `package(path, files=None, base_path=".")` recursively adds `.py` files or an explicit relative file list. `base_path` may use parent-relative paths or path variables;
+- `metadata()` carries version, description, license, author, stdlib, and PyPI mapping data. In compile and pyproject modes it must precede dependency or file declarations. The repository build writes `latest` from the current snapshot and preserves the first published manifest version as an immutable versioned package;
+- `$(MPY_DIR)`, `$(MPY_LIB_DIR)`, `$(PORT_DIR)`, and `$(BOARD_DIR)` are absolute-path substitutions supplied by the caller;
+- port and board conditions are not a separate declarative field. Firmware builds select a port/board root manifest, supply `PORT_DIR` and `BOARD_DIR`, and may branch in Python using caller-provided `options`; the `micropython-lib` package-index builder supplies only `MPY_LIB_DIR`;
+- `freeze*` declarations control text, source-to-bytecode, or existing-bytecode freezing; `c_module()` contributes native module directories only to firmware-oriented modes.
+
+Static AST inspection of release-tag snapshots found the following package-manifest subset:
+
+| Tag | Commit | Manifests | Calls | Dynamic arguments or non-expression top-level nodes |
+| --- | --- | ---: | --- | ---: |
+| `v1.27.0` | `6ae440a8a144233e6e703f6759b7e7a0afaa37a4` | 159 | metadata 159, module 94, package 63, require 152 | 0 |
+| `v1.28.0` | `8380c7bb8f9e5e5260e9539156742925e00366b2` | 159 | metadata 159, module 93, package 64, require 152 | 0 |
+| `v1.29.0` | `ee4bb8ff139e24c42b739935fbd8ec7c4d061e02` | 161 | metadata 161, module 95, package 64, require 152 | 0 |
+
+All inspected package manifests are a sequence of literal `metadata`, `require`, `module`, and `package` calls. The QA adapter therefore parses only that observed subset with `ast.parse()` and `ast.literal_eval()`; it never calls `exec()`, imports target modules, or invokes upstream build scripts. It supports root-confined parent-relative `base_path`, deterministic dependency closure, global library precedence, cycle and target-collision detection, and explicit file/depth/expanded-byte limits.
+
+Assignments, computed arguments, conditions, `include`, `add_library`, `options`, `freeze*`, `c_module`, path-variable expansion, and other executable semantics are rejected as `invalid_manifest`. This is intentional: broad compatibility with executable build manifests would violate the untrusted-source boundary. Add syntax only after it appears in selected package snapshots and can be modeled without execution.
+
+Catalog and focused runs accept a tag, branch, `HEAD`, or full commit through `--micropython-lib-revision`. Non-commit references are resolved through the GitHub commit endpoint, and the archive, manifest URLs, source URLs, hashes, and report evidence all use the resulting 40-character commit. A revision embedded in a focused provider reference takes precedence over the CLI default. Cached commit and archive responses support deterministic offline replay.
+
 ## Port classification evidence
 
 MIP `package.json` has no standard port or board field. Catalog descriptions and MIM tags are hints, not authoritative compatibility declarations. The next design task should preserve evidence and classify in this order:
@@ -140,9 +177,9 @@ The ecosystem runner should provide downloaded `.py` files as the workspace sour
 
 Committed fixtures are minimal, synthetic representations of public formats. They contain links and factual metadata, not mirrored third-party source or README bodies. `fixtures/cases.json` is the fixture inventory and expected disposition.
 
-The initial fixture set covers:
+The fixture set covers:
 
-- Awesome repository-root, deep-file, non-GitHub, and deferred `micropython-lib` links;
+- Awesome repository-root, deep-file, non-GitHub, and official `micropython-lib` links;
 - MIM community and official sitemap/detail records;
 - the supplied `github:howmanyoliversarethere/micropython-joystick-2-unit` manifest shape;
 - relative and provider URLs, nested dependencies, mixed `.py`/`.mpy`, `.mpy`-only, and malformed manifests.
@@ -177,7 +214,7 @@ Store downloaded bytes once in the content-addressed object pool. Build each per
 
 Catalog cache metadata should retain the request URL, fetched-at time, ETag, Last-Modified, response status, SHA-256, adapter schema version, and, for MIM, sitemap `lastmod`. Refresh with conditional requests. Follow a small bounded number of HTTPS redirects while recording the redirect chain and final URL; this preserves evidence for moved repositories without silently changing package identity.
 
-Deterministic tests use only `fixtures/` with an injected fetch transport. Normal pytest runs must not access the network. Live catalog/package checks require both an `ecosystem_live` marker and an explicit option such as `--ecosystem-live`; refreshing mutable refs should require a further explicit `--ecosystem-refresh` action. Offline CLI mode should fail with a structured cache-miss result rather than fall back to the network.
+Deterministic tests use only `fixtures/` with an injected fetch transport. Normal pytest runs must not access the network. Live catalog/package checks use the `ecosystem_network` marker and require `MICROPYTHON_STUBS_ECOSYSTEM_NETWORK=1`; mutable references are refreshed only when explicitly requested. Offline CLI mode fails with a structured cache-miss result rather than falling back to the network.
 
 ## Refresh and failure policy
 
@@ -196,4 +233,7 @@ Deterministic tests use only `fixtures/` with an injected fetch transport. Norma
 - <https://docs.micropython.org/en/latest/reference/packages.html>
 - <https://micropython.org/pi/v2/index.json>
 - `repos/micropython/tools/mpremote/mpremote/mip.py`
+- `repos/micropython/tools/manifestfile.py`
+- `repos/micropython/docs/reference/manifest.rst`
 - `repos/micropython/lib/micropython-lib/tools/build.py`
+- `repos/micropython-lib/tools/build.py`

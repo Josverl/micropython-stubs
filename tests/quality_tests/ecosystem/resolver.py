@@ -25,6 +25,7 @@ import zipfile
 import fasteners
 
 from .catalog import normalize_package_reference
+from .micropython_lib import MicropythonLibLimits, MicropythonLibManifestError, fetch_micropython_lib_snapshot
 from .model import (
     CatalogProvenance,
     CatalogSource,
@@ -37,6 +38,7 @@ from .model import (
     PackageModelError,
     PackageRecord,
     PackageResolution,
+    PortClassification,
     PortDecision,
     ReasonCode,
     RecordDisposition,
@@ -253,11 +255,13 @@ class MipResolver:
         index_url: str = DEFAULT_PACKAGE_INDEX,
         limits: ResolverLimits = ResolverLimits(),
         workspace: PackageWorkspace | None = None,
+        micropython_lib_revision: str = "HEAD",
     ) -> None:
         self.fetcher = fetcher
         self.index_url = index_url.rstrip("/")
         self.limits = limits
         self.workspace = workspace
+        self.micropython_lib_revision = micropython_lib_revision
 
     def resolve_reference(
         self,
@@ -291,17 +295,10 @@ class MipResolver:
         classification: PortDecision | None = None,
         mode: CacheMode = CacheMode.USE_CACHE,
     ) -> ResolutionResult:
-        classification = classification or classify_ports([])
         if candidate.source_family is SourceFamily.MICROPYTHON_LIB:
-            return ResolutionResult(
-                PackageRecord(
-                    candidate=candidate,
-                    classification=classification,
-                    disposition=RecordDisposition.DEFERRED,
-                    reason=ReasonCode.DEFERRED_INTERNAL_MANIFEST,
-                )
-            )
+            return self._resolve_micropython_lib_candidate(candidate, classification, mode)
 
+        classification = classification or classify_ports([])
         state = _ResolutionState()
         try:
             outcome = self._resolve_package(
@@ -344,6 +341,107 @@ class MipResolver:
                 PackageRecord(
                     candidate=candidate,
                     classification=classification,
+                    disposition=RecordDisposition.ERROR,
+                    reason=error.reason,
+                )
+            )
+
+    def _resolve_micropython_lib_candidate(
+        self,
+        candidate: PackageCandidate,
+        classification: PortDecision | None,
+        mode: CacheMode,
+    ) -> ResolutionResult:
+        try:
+            logical_reference, embedded_revision = _split_revision(candidate.install_reference)
+            requested_revision = embedded_revision or self.micropython_lib_revision
+            repository_reference = "github:micropython/micropython-lib"
+            if logical_reference.startswith(f"{repository_reference}/"):
+                package_reference = logical_reference.removeprefix(f"{repository_reference}/")
+            elif logical_reference == repository_reference:
+                raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, "micropython-lib reference must identify a package")
+            else:
+                package_reference = logical_reference
+
+            snapshot = fetch_micropython_lib_snapshot(
+                lambda reference: self.fetcher.fetch(reference, mode).data,
+                requested_revision,
+                limits=MicropythonLibLimits(
+                    max_depth=self.limits.max_depth,
+                    max_files=self.limits.max_files,
+                    max_total_bytes=self.limits.max_total_bytes,
+                ),
+            )
+            resolved_revision = snapshot.resolved_revision
+            source_resolution = snapshot.resolve(package_reference)
+            state = _ResolutionState()
+            for source_file in source_resolution.files:
+                identity = PackageIdentity.repository(
+                    "github",
+                    "micropython",
+                    "micropython-lib",
+                    source_file.owner_path,
+                )
+                self._add_payload(
+                    state,
+                    identity,
+                    source_file.target,
+                    snapshot.raw_reference(source_file.source_path),
+                    source_file.data,
+                    source_file.depth,
+                )
+
+            dependencies = tuple(
+                DependencyEdge(
+                    requested_reference=f"github:micropython/micropython-lib/{item.package_path}",
+                    requested_revision=item.requested_version,
+                    depth=item.depth,
+                    disposition=DependencyDisposition.RESOLVED,
+                    identity=PackageIdentity.repository("github", "micropython", "micropython-lib", item.package_path),
+                    resolved_revision=resolved_revision,
+                )
+                for item in source_resolution.dependencies
+            )
+            manifest_reference = snapshot.raw_reference(source_resolution.package.manifest_path)
+            manifest_data = snapshot.files[source_resolution.package.manifest_path]
+            payloads = tuple(sorted(state.payloads.values(), key=lambda item: (item.file.dependency_depth, item.file.target)))
+            resolution = PackageResolution(
+                requested_reference=candidate.install_reference,
+                canonical_reference=logical_reference,
+                requested_revision=requested_revision,
+                resolved_revision=resolved_revision,
+                manifest_reference=manifest_reference,
+                manifest_sha256=hashlib.sha256(manifest_data).hexdigest(),
+                dependencies=dependencies,
+                files=tuple(item.file for item in payloads),
+                package_version=source_resolution.package.version,
+            )
+            decision = decide_payload(resolution.files)
+            selected_classification = classification or source_resolution.classification
+            if (
+                selected_classification.classification is PortClassification.UNKNOWN
+                and not selected_classification.evidence
+                and source_resolution.classification.classification is not PortClassification.UNKNOWN
+            ):
+                selected_classification = source_resolution.classification
+            record = PackageRecord(
+                candidate=candidate,
+                resolution=resolution,
+                classification=selected_classification,
+                disposition=decision.disposition,
+                reason=decision.reason,
+            )
+            workspace_path = (
+                self.workspace.materialize(record, payloads)
+                if self.workspace is not None and record.disposition is RecordDisposition.CHECK
+                else None
+            )
+            return ResolutionResult(record, payloads, workspace_path)
+        except (MicropythonLibManifestError, ResolverError) as error:
+            return ResolutionResult(
+                PackageRecord(
+                    candidate=candidate,
+                    classification=classification or classify_ports([]),
                     disposition=RecordDisposition.ERROR,
                     reason=error.reason,
                 )
