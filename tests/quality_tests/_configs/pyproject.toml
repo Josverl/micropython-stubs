@@ -20,7 +20,7 @@ reportUnnecessaryTypeIgnoreComment = "error"
 
 # Assume legacy behavior where bytearray and memoryview are considered subtypes of bytes.
 disableBytesTypePromotions = false
-
+reportSelfClsParameterName = "warning"
 
 
 # ###################################################################
