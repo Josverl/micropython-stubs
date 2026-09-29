@@ -532,9 +532,9 @@ class BLE:
 
     def gap_advertise(
         self,
-        interval_us: int,
-        adv_data: AnyReadableBuf | None = None,
+        interval_us: int | None,
         /,
+        adv_data: AnyReadableBuf | None = None,
         *,
         resp_data: AnyReadableBuf | None = None,
         connectable: bool = True,
@@ -557,7 +557,7 @@ class BLE:
 
     def gap_scan(
         self,
-        duration_ms: int,
+        duration_ms: int | None,
         interval_us: int = 1280000,
         window_us: int = 11250,
         active: bool = False,
