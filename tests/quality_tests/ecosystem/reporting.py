@@ -13,7 +13,7 @@ from .model import PackageResolution
 REPORT_SCHEMA_VERSION = 2
 
 _URL_PATTERN = re.compile(r"(?i)\b(?:file|https?)://[^\s<>\"']+")
-_WINDOWS_PATH_PATTERN = re.compile(r"(?<![\w:])[A-Za-z]:[\\/][^\r\n]*")
+_WINDOWS_PATH_PATTERN = re.compile(r"(?<![\w:])[A-Za-z]:[\\/][^\s,;:]*")
 _POSIX_PATH_PATTERN = re.compile(r"(?<![:\w])/(?:[^/\s]+/)+[^\s,;]*")
 _SENSITIVE_ASSIGNMENT_PATTERN = re.compile(
     r"(?i)\b(token|secret|password|passwd|credential|signature|api[_-]?key|access[_-]?key|authorization|auth)=([^\s&]+)"
@@ -29,6 +29,7 @@ _SENSITIVE_NAMES = frozenset(
         "password",
         "passwd",
         "secret",
+        "sig",
         "signature",
         "token",
     }

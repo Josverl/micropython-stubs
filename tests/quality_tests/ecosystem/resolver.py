@@ -3,18 +3,20 @@
 from __future__ import annotations
 
 import hashlib
+import ipaddress
 from io import BytesIO
 import json
 import os
 import re
 import shutil
+import socket
 import stat
 from _thread import LockType
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path, PurePosixPath
 from threading import Lock
-from typing import Protocol
+from typing import Callable, Iterable, Protocol
 from urllib.parse import quote, urljoin, urlsplit
 import urllib.request
 import uuid
@@ -81,6 +83,62 @@ class FetchResponse:
 
 class Fetcher(Protocol):
     def fetch(self, reference: str) -> FetchResponse: ...
+
+
+AddressResolver = Callable[[str, int], Iterable[str]]
+
+
+def _resolve_host_addresses(hostname: str, port: int) -> tuple[str, ...]:
+    try:
+        address_info = socket.getaddrinfo(hostname, port, type=socket.SOCK_STREAM)
+    except socket.gaierror as error:
+        raise ResolverError(ReasonCode.UNAVAILABLE, f"Unable to resolve fetch destination {hostname}: {error}") from error
+    return tuple(sorted({str(item[4][0]) for item in address_info}))
+
+
+@dataclass(frozen=True)
+class DestinationPolicy:
+    """Constrain remote fetches to approved hosts and public network addresses."""
+
+    allowed_hosts: frozenset[str] | None = None
+    allow_non_global_hosts: frozenset[str] = frozenset()
+    resolver: AddressResolver = _resolve_host_addresses
+
+    def __post_init__(self) -> None:
+        if self.allowed_hosts is not None:
+            object.__setattr__(self, "allowed_hosts", frozenset(_normalize_hostname(host) for host in self.allowed_hosts))
+        object.__setattr__(
+            self,
+            "allow_non_global_hosts",
+            frozenset(_normalize_hostname(host) for host in self.allow_non_global_hosts),
+        )
+
+    def validate(self, reference: str) -> None:
+        parsed = urlsplit(reference)
+        if parsed.scheme not in {"http", "https"} or parsed.hostname is None:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, f"Unsupported fetch destination: {reference}")
+        hostname = _normalize_hostname(parsed.hostname)
+        if self.allowed_hosts is not None and hostname not in self.allowed_hosts:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, f"Fetch destination host is not allowed: {hostname}")
+        try:
+            port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        except ValueError as error:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, f"Invalid fetch destination port: {reference}") from error
+        addresses = tuple(self.resolver(hostname, port))
+        if not addresses:
+            raise ResolverError(ReasonCode.UNAVAILABLE, f"Fetch destination did not resolve to an address: {hostname}")
+        if hostname in self.allow_non_global_hosts:
+            return
+        for value in addresses:
+            try:
+                address = ipaddress.ip_address(value.split("%", 1)[0])
+            except ValueError as error:
+                raise ResolverError(ReasonCode.UNAVAILABLE, f"Fetch destination resolved to an invalid address: {value}") from error
+            if not address.is_global or address.is_multicast:
+                raise ResolverError(
+                    ReasonCode.UNSUPPORTED_REFERENCE,
+                    f"Fetch destination resolved to a non-public address: {hostname} ({address})",
+                )
 
 
 @dataclass(frozen=True)
@@ -671,6 +729,22 @@ def safe_extract_zip(
             shutil.rmtree(stage, ignore_errors=True)
 
 
+def _normalize_hostname(hostname: str) -> str:
+    normalized = hostname.rstrip(".").casefold()
+    if not normalized:
+        raise ValueError("destination hostname must not be empty")
+    return normalized
+
+
+class _PolicyRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def __init__(self, validate: Callable[[str], None]) -> None:
+        self.validate = validate
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        self.validate(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 class UrlFetcher:
     """Fetch bounded HTTP(S) or explicitly rooted local files."""
 
@@ -678,26 +752,36 @@ class UrlFetcher:
         self,
         *,
         local_roots: tuple[Path, ...] = (),
+        destination_policy: DestinationPolicy | None = None,
         allow_http: bool = False,
         max_bytes: int = 8 * 1024 * 1024,
         timeout: float = 30.0,
     ) -> None:
         self.local_roots = tuple(root.resolve() for root in local_roots)
+        self.destination_policy = destination_policy or DestinationPolicy()
         self.allow_http = allow_http
         self.max_bytes = max_bytes
         self.timeout = timeout
+
+    def _validate_remote_reference(self, reference: str) -> None:
+        parsed = urlsplit(reference)
+        if parsed.scheme not in {"http", "https"}:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, f"Redirected to unsupported URL: {reference}")
+        if parsed.scheme == "http" and not self.allow_http:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, "plain HTTP fetching is disabled")
+        if parsed.username is not None or parsed.password is not None:
+            raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, "authenticated URLs are not allowed")
+        self.destination_policy.validate(reference)
 
     def fetch(self, reference: str) -> FetchResponse:
         parsed = urlsplit(reference)
         is_windows_path = re.match(r"^[A-Za-z]:[\\/]", reference) is not None
         if parsed.scheme in {"http", "https"}:
-            if parsed.scheme == "http" and not self.allow_http:
-                raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, "plain HTTP fetching is disabled")
-            if parsed.username is not None or parsed.password is not None:
-                raise ResolverError(ReasonCode.UNSUPPORTED_REFERENCE, "authenticated URLs are not allowed")
+            self._validate_remote_reference(reference)
             request = urllib.request.Request(reference, headers={"User-Agent": "micropython-stubs-ecosystem-qa/1"})
+            opener = urllib.request.build_opener(_PolicyRedirectHandler(self._validate_remote_reference))
             try:
-                with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                with opener.open(request, timeout=self.timeout) as response:
                     data = response.read(self.max_bytes + 1)
                     final_url = response.geturl()
                     resolved_revision = response.headers.get("X-Resolved-Revision")

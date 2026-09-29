@@ -673,13 +673,15 @@ _PORT_ALIASES = {
 
 def _classification_evidence(entry: CatalogEntry) -> tuple[PortEvidence, ...]:
     metadata = dict(entry.metadata)
-    keyword_ports = _ports_in_text(metadata.get("keywords", ""))
-    if keyword_ports:
+    keywords = metadata.get("keywords", "")
+    keyword_ports = _ports_in_text(keywords)
+    has_keyword_scope = bool(re.search(r"\b(?:only|specific(?:ally)?|for|supports?)\b", keywords.casefold()))
+    if keyword_ports and has_keyword_scope:
         return (
             PortEvidence(
                 source=PortEvidenceSource.EXPLICIT_METADATA,
                 classification=PortClassification.PORT_SPECIFIC,
-                detail=f"Catalog keywords: {metadata['keywords']}",
+                detail=f"Catalog keywords: {keywords}",
                 ports=keyword_ports,
                 reference=entry.source_url,
             ),

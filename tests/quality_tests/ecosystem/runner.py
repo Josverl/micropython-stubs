@@ -348,7 +348,11 @@ class ExistingCheckerBackend:
     """Adapter for the quality suite's existing normalized checker functions."""
 
     def run(self, workspace: Path, *, checker: str, version: str, portboard: str) -> CheckerExecution:
-        report = invoke_typechecker(workspace, version, linter=checker)
+        try:
+            targets = ("source",) if checker == "pyrefly" else ()
+            report = invoke_typechecker(workspace, version, linter=checker, targets=targets)
+        except Exception as error:
+            raise RuntimeError(f"{checker} execution failed: {error}") from error
         diagnostics_value = report.get("generalDiagnostics")
         summary_value = report.get("summary")
         if not isinstance(diagnostics_value, list) or not isinstance(summary_value, dict):
@@ -356,7 +360,7 @@ class ExistingCheckerBackend:
         diagnostics = [dict(item) for item in diagnostics_value if isinstance(item, dict)]
         diagnostics = filter_issues(diagnostics, version, portboard=portboard, linter=checker)
         return CheckerExecution(
-            command=_checker_command(checker, workspace),
+            command=_checker_command(checker, workspace, targets=targets),
             diagnostics=tuple(_relative_diagnostic(item, workspace) for item in diagnostics),
             summary=dict(summary_value),
         )
@@ -583,12 +587,12 @@ def _safe_workspace_target(root: Path, target: str) -> Path:
     return destination
 
 
-def _checker_command(checker: str, workspace: Path) -> tuple[str, ...]:
+def _checker_command(checker: str, workspace: Path, *, targets: tuple[str, ...] = ()) -> tuple[str, ...]:
     commands = {
         "pyright": (sys.executable, "-m", "pyright", "--project", str(workspace), "--outputjson"),
         "mypy": (sys.executable, "-m", "mypy", "--warn-unused-ignores", "--no-error-summary", "."),
         "ruff": (sys.executable, "-m", "ruff", "check", "--output-format=json", "."),
-        "pyrefly": (sys.executable, "-m", "pyrefly", "check", "--output-format=json"),
+        "pyrefly": (sys.executable, "-m", "pyrefly", "check", "--output-format=json", *targets),
         "ty": (sys.executable, "-m", "ty", "check"),
         "zuban": ("zuban", "check", "."),
     }

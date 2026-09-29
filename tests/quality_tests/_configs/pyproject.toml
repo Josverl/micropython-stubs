@@ -1,6 +1,7 @@
 
 # ###################################################################
 # pyright options:
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 
 [tool.pyright]
 include = ["."]
@@ -10,12 +11,17 @@ exclude = [".*", "__*", "**/typings"]
 typeCheckingMode = "basic"
 stubPath = "typings"
 typeshedPath = "typings"
-pythonVersion = "3.9"
+pythonVersion = "3.10"
 pythonPlatform = "Linux"
 useLibraryCodeForTypes = false
 
 reportMissingModuleSource = "none"
 reportUnnecessaryTypeIgnoreComment = "error"
+
+# Assume legacy behavior where bytearray and memoryview are considered subtypes of bytes.
+disableBytesTypePromotions = false
+
+
 
 # ###################################################################
 # mypy global options:
@@ -50,7 +56,7 @@ mypy_path = ["typings", "typings/stdlib"]
 files = ["*.py"]
 exclude = ["typings[\\/].*"]
 platform = "linux"
-python_version = "3.9"
+python_version = "3.10"
 follow_imports = "silent"
 follow_imports_for_stubs = true
 check_untyped_defs = true
@@ -71,17 +77,30 @@ extend-select = [
     "PYI", # flake8-pyi - stub file specific checks
 ]
 extend-ignore = [
-    "F401", # unused import
-    "F403", # import *
-    "F405", # may be undefined, or defined from star imports
-
-    "F811", # redefenition
-    "F821", # undefined name (can occur in stubs)
-    "F841", # Local variable `data` is assigned to but never used
+    "E401", # multiple imports
     "E402", # module level import not at top of file - common in test snippets
+
+    "E711", # Comparison to `None` should be `cond is None`
+    "E712", # Avoid equality comparisons to `True`; use `pull_up:` for truth checks
+    "E713", # test for membership should be 'not in'
+    "E721", # Use `is` and `is not` for type comparisons, or `isinstance()` for isinstance checks
     "E722", # Bare except
     "E731", # do not assign a lambda expression, use a def
     "E741", # Ambiguous variable name
+
+    "F401", # unused import
+    "F403", # import *
+    "F405", # may be undefined, or defined from star imports
+    "F541", # f-string without any placeholders
+
+    "F701", # Multiple statements on one line ;
+    "F702", # Multiple statements on one line :
+
+    "F811", # redefenition
+    "F821", # undefined name (can occur in stubs)
+    "F841", # Local variable `foo` is assigned to but never used
+
+
     "PYI002",
     "PYI010",
     "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
@@ -100,8 +119,7 @@ extend-ignore = [
 project-includes = ["**/*.py"]
 project-excludes = ["**/typings/**", "**/__pycache__/**"]
 search-path = ["typings"]
-typeshed-path = "typings"
-python-version = "3.9"
+python-version = "3.10"
 python-platform = "linux"
 skip-interpreter-query = true
 untyped-def-behavior = "check-and-infer-return-type"
@@ -110,7 +128,7 @@ permissive-ignores = true
 # ###################################################################
 # ty options:
 [tool.ty.environment]
-python-version = "3.9"
+python-version = "3.10"
 python-platform = "linux"
 extra-paths = ["typings"]
 

@@ -218,7 +218,7 @@ def run_typechecker(
     return info_msg, errorcount
 
 
-def invoke_typechecker(snip_path: Path, version: str, *, linter: str) -> dict:
+def invoke_typechecker(snip_path: Path, version: str, *, linter: str, targets: tuple[str, ...] = ()) -> dict:
     """Run one supported checker and return its normalized diagnostic report."""
     if linter == "pyright":
         return check_with_pyright(snip_path)
@@ -234,7 +234,7 @@ def invoke_typechecker(snip_path: Path, version: str, *, linter: str) -> dict:
     if linter == "ruff":
         return check_with_ruff(snip_path)
     if linter == "pyrefly":
-        return check_with_pyrefly(snip_path)
+        return check_with_pyrefly(snip_path, targets=targets)
     if linter == "ty":
         return check_with_ty(snip_path)
     if linter == "zuban":

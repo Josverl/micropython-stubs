@@ -43,12 +43,14 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Stub source | `local` |
 | Cache mode | `use_cache` |
 | Workspace retention | `on_failure` |
-| Report | Text on standard output |
-| Report-file mode | `replace` |
+| Console summary | Text on standard output |
+| Report files | Disabled; `--report` writes JSON and Markdown |
+| Report output | `results/` |
+| Report mode | `replace` |
 | Unknown port policy | `use_requested` |
 | MIM fetch controls | 4 workers, 2 request starts per second |
 
-Interactive runs show nested Rich progress for catalog fetching and package testing. Progress is written to standard error so text and JSON reports remain clean. It is automatically hidden when standard error is redirected; use `--no-progress` to disable it explicitly.
+Interactive runs show nested Rich progress for catalog fetching and package testing. Progress is written to standard error so the console summary remains clean. It is automatically hidden when standard error is redirected; use `--no-progress` to disable it explicitly.
 
 Selectable stable checkers are `pyright`, `mypy`, `ruff`, and `pyrefly`. Repeat `--version`, `--portboard`, or `--checker` to build a matrix. The currently unstable `ty` and `zuban` adapters are intentionally not CLI choices.
 
@@ -62,8 +64,7 @@ Use `--package` for the quickest investigation of a known MIP, provider, package
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
   --version v1.29.0 `
-  --report json `
-  --report-file tests/quality_tests/.ecosystem-cache/reports/joystick.json
+  --report
 ```
 
 ### Run a bounded MIM batch
@@ -75,8 +76,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --version v1.29.0 `
   --package-filter sensor `
   --limit 5 `
-  --report json `
-  --report-file tests/quality_tests/.ecosystem-cache/reports/mim-sensors.json
+  --report
 ```
 
 `--limit` bounds selected packages, not catalog discovery requests. For wider discovery, select `--catalog awesome` or `--catalog both`. Useful batch filters are `--package-filter`, `--classification`, and `--port-filter`.
@@ -181,6 +181,16 @@ A package can pass while a batch exits 2 because a separate catalog entry failed
 
 JSON run reports use schema version 2. They include discovery choices, the QA matrix, immutable resolution evidence, package files and dependencies, stub provisioning, checker commands, normalized diagnostics, stage status, counts, timings, and retained workspace evidence.
 
+Pass `--report` to write the complete report bundle to `results/`:
+
+| File | Contents |
+| --- | --- |
+| `ecosystem.json` | Complete machine-readable schema-v2 report. |
+| `ecosystem.md` | Version-grouped package and checker overview with status links. |
+| `ecosystem_<checker>.md` | Checker run summary and normalized diagnostic details. |
+
+Every requested checker receives a detail file, including a passing checker with no diagnostics. Use `--report-output <directory>` to write the same fixed filenames elsewhere. Relative output paths are resolved from the repository root.
+
 Text reports print failed checker diagnostics in this form when position data is available:
 
 ```text
@@ -209,7 +219,7 @@ pyproject.toml and checker configuration
 Inspect the paths reported by a JSON run in PowerShell:
 
 ```powershell
-$ReportPath = "tests/quality_tests/.ecosystem-cache/reports/joystick.json"
+$ReportPath = "results/ecosystem.json"
 $Report = Get-Content $ReportPath -Raw | ConvertFrom-Json
 $Report.results.reports.retained_workspace | Where-Object { $_ }
 ```
@@ -220,31 +230,31 @@ Use `--retain always` to inspect passing workspaces or `--retain never` when no 
 
 ## Aggregate runs
 
-`--report-mode aggregate` combines repeated JSON invocations into one report file. It requires `--report json` and `--report-file`:
+`--report-mode aggregate` combines repeated invocations in one report bundle. It requires `--report`. The JSON retains each run in invocation order, while the Markdown overview and checker details are regenerated from the complete aggregate:
 
 ```powershell
-$Aggregate = "tests/quality_tests/.ecosystem-cache/reports/checkers.json"
+$ReportOutput = "results/checker-comparison"
 
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
   --version v1.29.0 `
   --checker pyright `
-  --report json `
-  --report-file $Aggregate `
+  --report `
+  --report-output $ReportOutput `
   --report-mode aggregate
 
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
   --version v1.29.0 `
   --checker mypy `
-  --report json `
-  --report-file $Aggregate `
+  --report `
+  --report-output $ReportOutput `
   --report-mode aggregate
 ```
 
 Aggregate reports use schema version 1 and retain each schema-v2 run in invocation order. `run_count` and package outcome `counts` are summed from those runs; aggregate `exit_code` uses the most severe stored exit. A prior single schema-v2 report is promoted on the first aggregate write.
 
-Invalid, incompatible, or internally inconsistent existing files fail without changing the file. Text reports always replace their destination and cannot use aggregate mode. Omit `--report-mode aggregate`, or pass `--report-mode replace`, to replace any existing report atomically.
+Invalid, incompatible, or internally inconsistent existing JSON fails without changing that file. Omit `--report-mode aggregate`, or pass `--report-mode replace`, to replace the existing bundle. Replacement also removes stale `ecosystem_<checker>.md` files that do not belong to the new checker matrix.
 
 ## Cleanup
 
@@ -257,7 +267,7 @@ Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache/runs -ErrorActi
 Remove generated reports only:
 
 ```powershell
-Remove-Item -Recurse -Force tests/quality_tests/.ecosystem-cache/reports -ErrorAction SilentlyContinue
+Remove-Item -Force results/ecosystem.json, results/ecosystem*.md -ErrorAction SilentlyContinue
 ```
 
 Reset the complete ecosystem cache:

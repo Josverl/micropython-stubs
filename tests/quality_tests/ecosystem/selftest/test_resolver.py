@@ -7,6 +7,7 @@ import stat
 from dataclasses import dataclass
 from pathlib import Path
 from threading import Event, Lock
+import urllib.request
 import zipfile
 
 import pytest
@@ -16,6 +17,7 @@ from ..resolver import (
     ArchiveLimits,
     CacheMode,
     CachedFetcher,
+    DestinationPolicy,
     FetchResponse,
     MipResolver,
     PackageWorkspace,
@@ -190,6 +192,68 @@ def test_url_fetcher_restricts_local_paths_to_configured_roots(tmp_path: Path):
         fetcher.fetch(str(outside_file))
 
     assert raised.value.reason is ReasonCode.UNSUPPORTED_REFERENCE
+
+
+@pytest.mark.parametrize("address", ["10.0.0.8", "127.0.0.1", "169.254.169.254", "224.0.0.1", "::1"])
+def test_destination_policy_rejects_non_public_resolved_addresses(address: str):
+    policy = DestinationPolicy(resolver=lambda hostname, port: (address,))
+
+    with pytest.raises(ResolverError) as raised:
+        policy.validate("https://packages.example/package.json")
+
+    assert raised.value.reason is ReasonCode.UNSUPPORTED_REFERENCE
+    assert "non-public address" in str(raised.value)
+
+
+def test_destination_policy_is_configurable_by_host():
+    policy = DestinationPolicy(
+        allowed_hosts=frozenset({"packages.example"}),
+        allow_non_global_hosts=frozenset({"packages.example"}),
+        resolver=lambda hostname, port: ("127.0.0.1",),
+    )
+
+    policy.validate("https://packages.example/package.json")
+    with pytest.raises(ResolverError, match="host is not allowed"):
+        policy.validate("https://other.example/package.json")
+
+
+def test_url_fetcher_validates_initial_destination_before_opening(monkeypatch: pytest.MonkeyPatch):
+    def unexpected_build_opener(*handlers: urllib.request.BaseHandler):
+        _ = handlers
+        raise AssertionError("network opener was constructed for an unsafe destination")
+
+    monkeypatch.setattr(urllib.request, "build_opener", unexpected_build_opener)
+    policy = DestinationPolicy(resolver=lambda hostname, port: ("10.0.0.8",))
+
+    with pytest.raises(ResolverError, match="non-public address"):
+        UrlFetcher(destination_policy=policy).fetch("https://packages.example/package.json")
+
+
+def test_url_fetcher_validates_redirect_destination_before_following(monkeypatch: pytest.MonkeyPatch):
+    class RedirectingOpener:
+        def __init__(self, redirect_handler: urllib.request.HTTPRedirectHandler) -> None:
+            self.redirect_handler = redirect_handler
+
+        def open(self, request: urllib.request.Request, timeout: float):
+            _ = timeout
+            self.redirect_handler.redirect_request(
+                request,
+                None,
+                302,
+                "Found",
+                {},
+                "https://127.0.0.1/internal",
+            )
+            raise AssertionError("unsafe redirect was followed")
+
+    def build_opener(redirect_handler: urllib.request.HTTPRedirectHandler) -> RedirectingOpener:
+        return RedirectingOpener(redirect_handler)
+
+    monkeypatch.setattr(urllib.request, "build_opener", build_opener)
+    policy = DestinationPolicy(resolver=lambda hostname, port: ("93.184.216.34",) if hostname == "packages.example" else (hostname,))
+
+    with pytest.raises(ResolverError, match="non-public address"):
+        UrlFetcher(destination_policy=policy).fetch("https://packages.example/package.json")
 
 
 def _fixture_bytes(relative_path: str) -> bytes:

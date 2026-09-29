@@ -672,7 +672,8 @@ def test_cli_parser_exposes_focused_package_controls():
             "--cache-mode",
             "offline",
             "--report",
-            "json",
+            "--report-output",
+            "custom-results",
         ]
     )
 
@@ -681,7 +682,8 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.portboard == ["rp2-rpi_pico"]
     assert arguments.stub_source == "pypi-pre"
     assert arguments.cache_mode == "offline"
-    assert arguments.report == "json"
+    assert arguments.report is True
+    assert arguments.report_output == Path("custom-results")
     assert arguments.report_mode == "replace"
 
 
@@ -750,10 +752,12 @@ def test_cli_accepts_stable_checkers(checker: str):
     assert arguments.checker == [checker]
 
 
-def test_focused_cli_bypasses_catalog_and_emits_json(capsys):
+def test_focused_cli_bypasses_catalog_and_writes_report_bundle(tmp_path: Path, capsys):
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
     reference = "github:howmanyoliversarethere/micropython-joystick-2-unit"
+    stale_detail = tmp_path / "ecosystem_mypy.md"
+    stale_detail.write_text("stale", encoding="utf-8")
 
     def runtime_factory(_arguments):
         _ = _arguments
@@ -772,7 +776,8 @@ def test_focused_cli_bypasses_catalog_and_emits_json(capsys):
             "--stub-path",
             ".",
             "--report",
-            "json",
+            "--report-output",
+            str(tmp_path),
         ],
         runtime_factory=runtime_factory,
     )
@@ -781,10 +786,16 @@ def test_focused_cli_bypasses_catalog_and_emits_json(capsys):
     assert loader.options == []
     assert orchestrator.focused[0][0] == reference
     assert orchestrator.focused[0][1].unknown_policy is UnknownPortPolicy.USE_REQUESTED
-    assert '"mode": "focused"' in capsys.readouterr().out
+    assert "ecosystem QA report v2 (focused)" in capsys.readouterr().out
+    assert json.loads((tmp_path / "ecosystem.json").read_text(encoding="utf-8"))["mode"] == "focused"
+    overview = (tmp_path / "ecosystem.md").read_text(encoding="utf-8")
+    assert "# Ecosystem type checker report" in overview
+    assert "ecosystem_pyright.md" in overview
+    assert (tmp_path / "ecosystem_pyright.md").is_file()
+    assert not stale_detail.exists()
 
 
-def test_cli_keeps_rich_progress_out_of_json_stdout(capsys):
+def test_cli_keeps_rich_progress_out_of_reports(tmp_path: Path, capsys):
     progress_output = StringIO()
     progress = RichProgressReporter(
         console=Console(file=progress_output, force_terminal=True, color_system=None, width=100),
@@ -807,20 +818,22 @@ def test_cli_keeps_rich_progress_out_of_json_stdout(capsys):
             "--stub-path",
             ".",
             "--report",
-            "json",
+            "--report-output",
+            str(tmp_path),
         ],
         runtime_factory=lambda _arguments: runtime,
     )
 
     assert exit_code == 0
-    assert json.loads(capsys.readouterr().out)["mode"] == "focused"
+    assert "Testing packages" not in capsys.readouterr().out
+    assert json.loads((tmp_path / "ecosystem.json").read_text(encoding="utf-8"))["mode"] == "focused"
     assert "Testing packages" in progress_output.getvalue()
 
 
 def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
-    report_path = tmp_path / "reports" / "ecosystem.json"
+    report_output = tmp_path / "reports"
 
     def runtime_factory(_arguments):
         _ = _arguments
@@ -854,9 +867,8 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
             "--unknown-policy",
             "skip",
             "--report",
-            "json",
-            "--report-file",
-            str(report_path),
+            "--report-output",
+            str(report_output),
         ],
         runtime_factory=runtime_factory,
     )
@@ -869,7 +881,7 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
     assert selection.limit == 1
     assert request.cache_mode is CacheMode.REFRESH
     assert request.unknown_policy is UnknownPortPolicy.SKIP
-    document = json.loads(report_path.read_text(encoding="utf-8"))
+    document = json.loads((report_output / "ecosystem.json").read_text(encoding="utf-8"))
     assert document["mode"] == "batch"
     assert document["cache_mode"] == "refresh"
     assert document["discovery"] == {
@@ -887,7 +899,8 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
 def test_cli_aggregates_repeated_json_runs_and_can_replace_them(tmp_path: Path):
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
-    report_path = tmp_path / "reports" / "ecosystem.json"
+    report_output = tmp_path / "reports"
+    report_path = report_output / "ecosystem.json"
     common = [
         "--version",
         "v1.28.0",
@@ -898,9 +911,8 @@ def test_cli_aggregates_repeated_json_runs_and_can_replace_them(tmp_path: Path):
         "--cache-mode",
         "offline",
         "--report",
-        "json",
-        "--report-file",
-        str(report_path),
+        "--report-output",
+        str(report_output),
         "--report-mode",
         "aggregate",
     ]
@@ -923,6 +935,8 @@ def test_cli_aggregates_repeated_json_runs_and_can_replace_them(tmp_path: Path):
     }
     assert document["exit_code"] == 2
     assert report_path.read_text(encoding="utf-8") == json.dumps(document, indent=2, sort_keys=True) + "\n"
+    assert "| Runs | 2 |" in (report_output / "ecosystem.md").read_text(encoding="utf-8")
+    assert (report_output / "ecosystem_pyright.md").is_file()
 
     replacement = [argument for argument in common if argument not in {"--report-mode", "aggregate"}]
     assert main(["--package", "github:example/replacement", *replacement], runtime_factory=runtime_factory) == 0
@@ -975,9 +989,8 @@ def test_cli_aggregate_rejects_invalid_existing_report_atomically(
             "--version",
             "v1.28.0",
             "--report",
-            "json",
-            "--report-file",
-            str(report_path),
+            "--report-output",
+            str(tmp_path),
             "--report-mode",
             "aggregate",
         ],
@@ -989,17 +1002,15 @@ def test_cli_aggregate_rejects_invalid_existing_report_atomically(
     assert expected_error in capsys.readouterr().err
 
 
-def test_cli_aggregate_requires_json_report_file(tmp_path: Path, capsys):
-    report_path = tmp_path / "ecosystem.txt"
-
+def test_cli_aggregate_requires_report(tmp_path: Path, capsys):
     exit_code = main(
         [
             "--package",
             "github:example/driver",
             "--version",
             "v1.28.0",
-            "--report-file",
-            str(report_path),
+            "--report-output",
+            str(tmp_path),
             "--report-mode",
             "aggregate",
         ],
@@ -1007,8 +1018,8 @@ def test_cli_aggregate_requires_json_report_file(tmp_path: Path, capsys):
     )
 
     assert exit_code == 2
-    assert not report_path.exists()
-    assert "requires --report json" in capsys.readouterr().err
+    assert not (tmp_path / "ecosystem.json").exists()
+    assert "requires --report" in capsys.readouterr().err
 
 
 def test_cli_rejects_unbounded_or_conflicting_network_options(capsys):

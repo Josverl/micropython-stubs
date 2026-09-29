@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import re
 
+from .. import runner as runner_module
 from ..model import (
     CatalogProvenance,
     CatalogSource,
@@ -367,3 +368,44 @@ def test_runner_executes_existing_pyright_with_local_stubs(tmp_path: Path):
     assert report.results[0].files_analyzed == 1
     assert report.results[0].diagnostics == ()
     assert report.retained_workspace is None
+
+
+def test_runner_executes_pyrefly_inside_ignored_workspace(tmp_path: Path):
+    project_root = Path(__file__).parents[4]
+    ignored_root = tmp_path / "ignored"
+    (tmp_path / ".gitignore").write_text("ignored/\n", encoding="utf-8")
+    runner = QARunner(
+        workspace_root=ignored_root / "runs",
+        config_root=Path(__file__).parents[2] / "_configs",
+        stub_provisioner=UvStubProvisioner(project_root),
+        checker_backend=ExistingCheckerBackend(),
+    )
+    case = QACase(StubSelection("v1.28.0", "rp2", StubSource.PATH, _stub_fixture(tmp_path)), ("pyrefly",))
+    source = b'value: int = "not an int"\n'
+
+    report = runner.run(_resolution(_portable(), source), case)
+
+    assert report.status is CheckerStatus.FAIL, report.to_json()
+    assert report.results[0].error_count == 1
+    assert report.results[0].diagnostics[0]["file"] == "source/driver.py"
+    assert report.results[0].command[-1] == "source"
+
+
+def test_runner_marks_existing_checker_execution_failure_as_error(tmp_path: Path, monkeypatch) -> None:
+    def fail_checker(*_args, **_kwargs):
+        raise RuntimeError("Ruff produced no JSON output")
+
+    monkeypatch.setattr(runner_module, "invoke_typechecker", fail_checker)
+    runner = QARunner(
+        workspace_root=tmp_path / "runs",
+        config_root=Path(__file__).parents[2] / "_configs",
+        stub_provisioner=UvStubProvisioner(Path(__file__).parents[4]),
+        checker_backend=ExistingCheckerBackend(),
+    )
+    case = QACase(StubSelection("v1.28.0", "rp2", StubSource.PATH, _stub_fixture(tmp_path)), ("ruff",))
+
+    report = runner.run(_resolution(_portable()), case)
+
+    assert report.status is CheckerStatus.ERROR
+    assert report.results[0].status is CheckerStatus.ERROR
+    assert report.results[0].message == "ruff execution failed: Ruff produced no JSON output"

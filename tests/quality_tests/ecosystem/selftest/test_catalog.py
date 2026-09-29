@@ -271,6 +271,37 @@ def test_inventory_filters_by_catalog_identity_and_classification():
     assert specific[0].classification.ports == ("esp32",)
 
 
+def test_inventory_requires_scope_language_for_keyword_port_classification():
+    generic_tag = CatalogEntry(
+        catalog=CatalogSource.MIM,
+        name="Portable sensor client",
+        reference="github:example/portable-sensor",
+        description="A portable sensor client",
+        category="esp32",
+        source_url="https://checkmim.com/packages/example+portable-sensor",
+        metadata=(("keywords", "micropython, esp32"),),
+    )
+    scoped_tag = replace(
+        generic_tag,
+        name="ESP32 sensor client",
+        reference="github:example/esp32-sensor",
+        source_url="https://checkmim.com/packages/example+esp32-sensor",
+        metadata=(("keywords", "micropython, esp32 only"),),
+    )
+
+    inventory = build_inventory([generic_tag, scoped_tag])
+    records = {record.candidate.display_name: record for record in inventory.records}
+
+    generic_classification = records[generic_tag.name].classification
+    assert generic_classification is not None
+    assert generic_classification.classification is PortClassification.UNKNOWN
+    assert generic_classification.reason is ReasonCode.NO_PORT_EVIDENCE
+    scoped_classification = records[scoped_tag.name].classification
+    assert scoped_classification is not None
+    assert scoped_classification.classification is PortClassification.PORT_SPECIFIC
+    assert scoped_classification.ports == ("esp32",)
+
+
 def test_reviewed_override_corpus_covers_both_classifications_in_each_catalog():
     entries = [
         CatalogEntry(

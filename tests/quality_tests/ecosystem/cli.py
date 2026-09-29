@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass, field
+import json
 import os
 from pathlib import Path
 import sys
@@ -13,10 +14,11 @@ from typing import Callable, Mapping, Protocol, Sequence
 from .aggregate import AggregateReport
 from .catalog import CatalogInventory
 from .catalog_loader import CatalogLoadOptions, MAX_CATALOG_WORKERS, NetworkCatalogLoader, RateLimitedFetcher
+from .markdown_report import render_markdown_reports
 from .model import ClassificationOverride, PackageIdentity, PortClassification, load_classification_overrides
 from .orchestrator import BatchSelection, CatalogSelection, EcosystemOrchestrator, OrchestrationReport, QARequest
 from .progress import NullProgressReporter, ProgressReporter, RichProgressReporter
-from .resolver import CacheMode, CachedFetcher, MipResolver, UrlFetcher
+from .resolver import CacheMode, CachedFetcher, DestinationPolicy, MipResolver, UrlFetcher
 from .runner import ExistingCheckerBackend, QARunner, StubSource, UnknownPortPolicy, UvStubProvisioner, WorkspaceRetention
 
 
@@ -52,6 +54,7 @@ RuntimeFactory = Callable[[argparse.Namespace], CliRuntime]
 DEFAULT_CATALOG = CatalogSelection.MIM.value
 DEFAULT_PORTBOARD = "esp32-esp32_generic"
 DEFAULT_CHECKER = "pyright"
+DEFAULT_REPORT_OUTPUT = Path("results")
 STABLE_CHECKERS = ("pyright", "mypy", "ruff", "pyrefly")
 
 
@@ -109,13 +112,22 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--workers", type=int, default=4, help=f"MIM page fetch workers (1-{MAX_CATALOG_WORKERS})")
     parser.add_argument("--rate-limit", type=float, default=2.0, help="Upstream request starts per second (greater than 0, at most 100)")
 
-    parser.add_argument("--report", choices=("text", "json"), default="text")
-    parser.add_argument("--report-file", type=Path, help="Write the selected report format to this path")
+    parser.add_argument(
+        "--report",
+        action="store_true",
+        help="Write JSON and Markdown ecosystem reports, including one detail report per checker",
+    )
+    parser.add_argument(
+        "--report-output",
+        type=Path,
+        default=DEFAULT_REPORT_OUTPUT,
+        help=f"Report output directory (default: {DEFAULT_REPORT_OUTPUT.as_posix()})",
+    )
     parser.add_argument(
         "--report-mode",
         choices=("replace", "aggregate"),
         default="replace",
-        help="Report-file behavior; aggregate combines compatible JSON runs (default: replace; text supports replace only)",
+        help="JSON report behavior; aggregate combines compatible runs and regenerates Markdown (default: replace)",
     )
     return parser
 
@@ -148,7 +160,13 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
                     limit=arguments.limit,
                 )
                 report = runtime.orchestrator.run_batch(inventory, selection, request)
-        _write_report(report, arguments.report, arguments.report_file, arguments.report_mode)
+        if arguments.report:
+            _write_reports(
+                report,
+                _absolute_from_project(arguments.report_output, _project_root()),
+                arguments.report_mode,
+            )
+        print(report.render_text())
         return int(report.exit_code)
     except (OSError, RuntimeError, ValueError) as error:
         print(f"ecosystem QA error: {error}", file=sys.stderr)
@@ -167,10 +185,8 @@ def _validate_arguments(arguments: argparse.Namespace) -> None:
     batch_filters = (arguments.package_filter, arguments.classification, arguments.port_filter, arguments.limit)
     if arguments.package is not None and any(value is not None for value in batch_filters):
         raise ValueError("batch filters require --catalog")
-    if arguments.report_mode == "aggregate" and arguments.report != "json":
-        raise ValueError("--report-mode aggregate requires --report json")
-    if arguments.report_mode == "aggregate" and arguments.report_file is None:
-        raise ValueError("--report-mode aggregate requires --report-file")
+    if arguments.report_mode == "aggregate" and not arguments.report:
+        raise ValueError("--report-mode aggregate requires --report")
 
 
 def _qa_request(arguments: argparse.Namespace) -> QARequest:
@@ -197,7 +213,7 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     cache_dir = _absolute_from_project(arguments.cache_dir, project_root)
     workspace_dir = _absolute_from_project(arguments.workspace_dir, project_root)
     progress = RichProgressReporter(enabled=False if arguments.no_progress else None)
-    upstream = RateLimitedFetcher(UrlFetcher(), arguments.rate_limit)
+    upstream = RateLimitedFetcher(UrlFetcher(destination_policy=DestinationPolicy()), arguments.rate_limit)
     fetcher = CachedFetcher(cache_dir, upstream)
     catalog_loader = NetworkCatalogLoader(fetcher, max_workers=arguments.workers, progress=progress)
     resolver = MipResolver(fetcher)
@@ -210,15 +226,24 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     return CliRuntime(catalog_loader, EcosystemOrchestrator(resolver, runner, progress=progress), progress)
 
 
-def _write_report(report: OrchestrationReport, report_format: str, destination: Path | None, report_mode: str) -> None:
-    content = report.to_json() if report_format == "json" else report.render_text() + "\n"
-    if destination is None:
-        print(content, end="")
-        return
+def _write_reports(report: OrchestrationReport, destination: Path, report_mode: str) -> None:
+    json_path = destination / "ecosystem.json"
     if report_mode == "aggregate":
-        aggregate = AggregateReport.from_path(destination) if destination.exists() else AggregateReport()
-        content = aggregate.append(report.to_dict()).to_json()
-    _atomic_write_text(destination, content)
+        aggregate = AggregateReport.from_path(json_path) if json_path.exists() else AggregateReport()
+        report_document = aggregate.append(report.to_dict()).to_dict()
+    else:
+        report_document = report.to_dict()
+
+    markdown = render_markdown_reports(report_document)
+    json_content = json.dumps(report_document, indent=2, sort_keys=True) + "\n"
+    _atomic_write_text(json_path, json_content)
+    _atomic_write_text(destination / "ecosystem.md", markdown.overview)
+    for checker, content in markdown.checker_details.items():
+        _atomic_write_text(destination / markdown.detail_filenames[checker], content)
+    expected_details = {destination / filename for filename in markdown.detail_filenames.values()}
+    for existing_detail in destination.glob("ecosystem_*.md"):
+        if existing_detail not in expected_details:
+            existing_detail.unlink()
 
 
 def _atomic_write_text(destination: Path, content: str) -> None:
