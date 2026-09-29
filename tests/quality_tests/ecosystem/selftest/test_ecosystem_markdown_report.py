@@ -1,3 +1,5 @@
+import pytest
+
 from ..markdown_report import render_markdown_reports
 
 
@@ -94,3 +96,50 @@ def test_rendered_module_command_omits_python_executable_prefix() -> None:
     pyright = reports.checker_details["pyright"]
     assert "**Command:** `pyright --outputjson`" in pyright
     assert "&lt;path&gt; -m pyright" not in pyright
+
+
+@pytest.mark.parametrize(
+    ("occurrence_count", "expected_rendered_count", "is_shared"),
+    [(20, 20, False), (21, 1, True)],
+)
+def test_checker_report_hoists_diagnostics_above_threshold(occurrence_count: int, expected_rendered_count: int, is_shared: bool) -> None:
+    diagnostic = {
+        "file": "source/shared.py",
+        "severity": "error",
+        "rule": "assignment",
+        "message": "Incompatible assignment",
+        "range": {"start": {"line": 4, "character": 2}},
+    }
+    document = _document()
+    document["results"] = [
+        {
+            "package_identity": f"index:package-{index}",
+            "outcome": "type_check_failure",
+            "reports": [
+                {
+                    "version": "v1.29.0",
+                    "portboard": "rp2-rpi_pico",
+                    "results": [
+                        {
+                            "checker": "mypy",
+                            "status": "fail",
+                            "command": ["mypy", "source"],
+                            "diagnostics": [diagnostic],
+                            "error_count": 1,
+                            "warning_count": 0,
+                            "files_analyzed": 1,
+                            "message": "",
+                        }
+                    ],
+                }
+            ],
+        }
+        for index in range(occurrence_count)
+    ]
+
+    markdown = render_markdown_reports(document).checker_details["mypy"]
+    rendered_diagnostic = '"source/shared.py"(5,3): error [assignment]: Incompatible assignment'
+
+    assert markdown.count(rendered_diagnostic) == expected_rendered_count
+    assert ("## Shared diagnostics" in markdown) is is_shared
+    assert (f"Reported by {occurrence_count} runs" in markdown) is is_shared

@@ -17,6 +17,7 @@ _STATUS_COLORS = {
     "SKIP": "#6e7781",
     "ERROR": "#cf222e",
 }
+_SHARED_DIAGNOSTIC_THRESHOLD = 20
 
 
 @dataclass(frozen=True)
@@ -246,7 +247,7 @@ def _render_checker_detail(checker: str, rows: list[_ReportRow], overview_filena
     detailed_runs = [run for run in checker_runs if run.has_detail]
     diagnostic_lines = {run.key: tuple(_diagnostic_text(item) for item in run.diagnostics) for run in detailed_runs}
     occurrence_counts = Counter(line for lines_for_run in diagnostic_lines.values() for line in set(lines_for_run))
-    shared_diagnostics = {line: count for line, count in occurrence_counts.items() if count > 1}
+    shared_diagnostics = {line: count for line, count in occurrence_counts.items() if count > _SHARED_DIAGNOSTIC_THRESHOLD}
 
     for run in detailed_runs:
         lines.extend(
