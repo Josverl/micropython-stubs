@@ -13,6 +13,7 @@ from .catalog import CatalogDiagnostic, CatalogInventory
 from .model import (
     CatalogSource,
     PackageCandidate,
+    PackageIdentity,
     PackageRecord,
     PackageResolution,
     PortClassification,
@@ -49,6 +50,27 @@ class CatalogSelection(str, Enum):
         if self is CatalogSelection.MICROPYTHON_LIB:
             return frozenset({CatalogSource.MICROPYTHON_LIB})
         return frozenset({CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM})
+
+
+PACKAGE_TEST_EXCLUSIONS: frozenset[PackageIdentity] = frozenset(
+    PackageIdentity.repository(
+        "github",
+        "micropython",
+        "micropython-lib",
+        f"micropython/bluetooth/{name}",
+    )
+    for name in (
+        "micropython-stubber",
+        "typing",
+    
+        "aioble-central",
+        "aioble-client",
+        "aioble-l2cap",
+        "aioble-peripheral",
+        "aioble-security",
+        "aioble-server",
+    )
+)
 
 
 @dataclass(frozen=True)
@@ -372,6 +394,14 @@ class EcosystemOrchestrator:
     def _run_resolution(self, resolution: ResolutionResult, request: QARequest) -> PackageQAResult:
         record = resolution.record
         candidate = record.candidate
+        if candidate.identity in PACKAGE_TEST_EXCLUSIONS:
+            return PackageQAResult(
+                candidate.identity.key,
+                candidate.install_reference,
+                PackageOutcome.SKIPPED,
+                ReasonCode.NON_STANDALONE_PACKAGE,
+                resolution=record.resolution,
+            )
         if record.disposition is not RecordDisposition.CHECK:
             return PackageQAResult(
                 candidate.identity.key,

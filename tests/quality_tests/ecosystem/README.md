@@ -96,6 +96,8 @@ uv run python -m tests.quality_tests.ecosystem.cli `
 
 This source is separate from `both`, which remains the Awesome MicroPython plus MIM selection. Official records discovered through more than one catalog are deduplicated by repository package path while retaining each provenance entry.
 
+The shared `PACKAGE_TEST_EXCLUSIONS` set in `orchestrator.py` automatically skips packages that are not valid standalone QA targets. The six `aioble-*` component manifests are listed there and appear as `skipped` with reason `non_standalone_package`; the aggregate `aioble` package is still checked with those components in its dependency closure. This applies to every catalog and focused run without additional CLI options.
+
 ### Run a bounded MIM batch
 
 Omitting `--package` uses MIM. Filters are applied after catalog normalization and deduplication:

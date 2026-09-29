@@ -79,6 +79,22 @@ def _record(
     return PackageRecord(candidate=candidate, classification=decision)
 
 
+def _aioble_component_record(name: str, catalog: CatalogSource = CatalogSource.MICROPYTHON_LIB) -> PackageRecord:
+    package_path = f"micropython/bluetooth/{name}"
+    identity = PackageIdentity.repository("github", "micropython", "micropython-lib", package_path)
+    install_reference = f"github:micropython/micropython-lib/{package_path}"
+    candidate = PackageCandidate(
+        identity=identity,
+        display_name=name,
+        source_family=SourceFamily.MICROPYTHON_LIB,
+        install_reference=install_reference,
+        aliases=(PackageAlias(catalog, install_reference),),
+        provenance=(CatalogProvenance(catalog, f"https://catalog.invalid/{name}", identity.key),),
+    )
+    decision = PortDecision(PortClassification.UNKNOWN, (), (), (), ReasonCode.NO_PORT_EVIDENCE)
+    return PackageRecord(candidate=candidate, classification=decision)
+
+
 def _inventory() -> CatalogInventory:
     return CatalogInventory(
         (
@@ -118,6 +134,61 @@ def test_batch_selection_rejects_invalid_limits_and_empty_filters():
         BatchSelection(package_query=" ")
     with pytest.raises(ValueError, match="port filter"):
         BatchSelection(port="")
+
+
+@pytest.mark.parametrize(
+    "name",
+    (
+        "aioble-central",
+        "aioble-client",
+        "aioble-l2cap",
+        "aioble-peripheral",
+        "aioble-security",
+        "aioble-server",
+    ),
+)
+def test_non_standalone_aioble_components_are_globally_skipped_in_batch(name: str):
+    runner = FakeRunner()
+    report = EcosystemOrchestrator(FakeResolver(), runner).run_batch(
+        CatalogInventory((_aioble_component_record(name),), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        _request(unknown_policy=UnknownPortPolicy.USE_REQUESTED),
+    )
+
+    assert report.results[0].outcome is PackageOutcome.SKIPPED
+    assert report.results[0].reason is not None
+    assert report.results[0].reason.value == "non_standalone_package"
+    assert not runner.identities
+
+
+def test_non_standalone_aioble_component_is_globally_skipped_when_focused():
+    class FocusedAiobleResolver(FakeResolver):
+        def resolve_reference(self, reference: str, *, mode: CacheMode = CacheMode.USE_CACHE) -> ResolutionResult:
+            _ = reference, mode
+            return _resolved(_aioble_component_record("aioble-central", CatalogSource.DIRECT))
+
+    runner = FakeRunner()
+    report = EcosystemOrchestrator(FocusedAiobleResolver(), runner).run_focused(
+        "github:micropython/micropython-lib/micropython/bluetooth/aioble-central",
+        _request(unknown_policy=UnknownPortPolicy.USE_REQUESTED),
+    )
+
+    assert report.results[0].outcome is PackageOutcome.SKIPPED
+    assert report.results[0].reason is not None
+    assert report.results[0].reason.value == "non_standalone_package"
+    assert not runner.identities
+
+
+def test_aggregate_aioble_package_remains_checkable():
+    runner = FakeRunner()
+    report = EcosystemOrchestrator(FakeResolver(), runner).run_batch(
+        CatalogInventory((_aioble_component_record("aioble"),), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        _request(unknown_policy=UnknownPortPolicy.USE_REQUESTED),
+    )
+
+    assert report.results[0].outcome is PackageOutcome.PASS
+    assert runner.identities == ["repository:github:micropython/micropython-lib/micropython/bluetooth/aioble"]
 
 
 class FakeResolver:
