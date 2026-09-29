@@ -148,7 +148,7 @@ All inspected package manifests are a sequence of literal `metadata`, `require`,
 
 Assignments, computed arguments, conditions, `include`, `add_library`, `options`, `freeze*`, `c_module`, path-variable expansion, and other executable semantics are rejected as `invalid_manifest`. This is intentional: broad compatibility with executable build manifests would violate the untrusted-source boundary. Add syntax only after it appears in selected package snapshots and can be modeled without execution.
 
-Catalog and focused runs accept a tag, branch, `HEAD`, or full commit through `--micropython-lib-revision`. Non-commit references are resolved through the GitHub commit endpoint, and the archive, manifest URLs, source URLs, hashes, and report evidence all use the resulting 40-character commit. A revision embedded in a focused provider reference takes precedence over the CLI default. Cached commit and archive responses support deterministic offline replay.
+Catalog and focused runs derive the `micropython-lib` tag from `--version`. The tag is resolved through the GitHub commit endpoint, and the archive, manifest URLs, source URLs, hashes, and report evidence all use the resulting 40-character commit. Cached commit and archive responses support deterministic offline replay.
 
 ## Port classification evidence
 

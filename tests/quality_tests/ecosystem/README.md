@@ -38,22 +38,22 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Setting | Default |
 | --- | --- |
 | Catalog | `mim` when `--package` is absent |
-| Port and board | `esp32-esp32_generic` |
+| Port and board | `esp32-esp32_generic`; `unix` for `micropython-lib/unix-ffi` packages |
 | Checker | `pyright` |
 | Stub source | `local` |
 | Cache mode | `use_cache` |
-| `micropython-lib` revision | `HEAD` |
+| `micropython-lib` source | Tag matching `--version` |
 | Workspace retention | `on_failure` |
 | Console summary | Text on standard output |
 | Report files | Disabled; `--report` writes JSON and Markdown |
 | Report output | `results/` |
 | Report mode | `replace` |
 | Unknown port policy | `use_requested` |
-| MIM fetch controls | 4 workers, 2 request starts per second |
+| MIM fetching | 4 workers, 2 request starts per second |
 
 Interactive runs show nested Rich progress for catalog fetching and package testing. Progress is written to standard error so the console summary remains clean. It is automatically hidden when standard error is redirected; use `--no-progress` to disable it explicitly.
 
-Selectable stable checkers are `pyright`, `mypy`, `ruff`, and `pyrefly`. Repeat `--version`, `--portboard`, or `--checker` to build a matrix. The currently unstable `ty` and `zuban` adapters are intentionally not CLI choices.
+Selectable stable checkers are `pyright`, `mypy`, `ruff`, and `pyrefly`. Repeat `--portboard` or `--checker` to build a matrix. The currently unstable `ty` and `zuban` adapters are intentionally not CLI choices.
 
 ## Common runs
 
@@ -68,17 +68,14 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --report
 ```
 
-Official `micropython-lib` references select an internal `manifest.py` package path. Pin the repository independently from the stub version:
+Official `micropython-lib` references select an internal `manifest.py` package path. `--version` selects both the stubs and the matching repository tag:
 
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:micropython/micropython-lib/micropython/net/ntptime `
-  --micropython-lib-revision v1.29.0 `
   --version v1.29.0 `
   --report
 ```
-
-An `@revision` suffix on the package reference takes precedence over `--micropython-lib-revision`. Tags, branches, `HEAD`, and full commits are accepted; mutable names are resolved to a commit before the archive is read.
 
 ### Run the official repository catalog
 
@@ -87,9 +84,7 @@ Select `micropython-lib` to discover packages directly from one repository snaps
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --catalog micropython-lib `
-  --micropython-lib-revision v1.29.0 `
   --package-filter ntptime `
-  --limit 1 `
   --version v1.29.0 `
   --report
 ```
@@ -98,7 +93,7 @@ This source is separate from `both`, which remains the Awesome MicroPython plus 
 
 The shared `PACKAGE_TEST_EXCLUSIONS` set in `orchestrator.py` automatically skips packages that are not valid standalone QA targets. The six `aioble-*` component manifests are listed there and appear as `skipped` with reason `non_standalone_package`; the aggregate `aioble` package is still checked with those components in its dependency closure. This applies to every catalog and focused run without additional CLI options.
 
-### Run a bounded MIM batch
+### Run a filtered MIM batch
 
 Omitting `--package` uses MIM. Filters are applied after catalog normalization and deduplication:
 
@@ -106,11 +101,10 @@ Omitting `--package` uses MIM. Filters are applied after catalog normalization a
 uv run python -m tests.quality_tests.ecosystem.cli `
   --version v1.29.0 `
   --package-filter sensor `
-  --limit 5 `
   --report
 ```
 
-`--limit` bounds selected packages, not catalog discovery requests. For wider discovery, select `--catalog awesome`, `--catalog mim`, `--catalog both`, or `--catalog micropython-lib`. Useful batch filters are `--package-filter`, `--classification`, and `--port-filter`.
+All records matching the filters are selected. Choose `--catalog awesome`, `--catalog mim`, `--catalog both`, or `--catalog micropython-lib`; useful filters are `--package-filter`, `--classification`, and `--port-filter`.
 
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
@@ -118,7 +112,6 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --package-filter joystick `
   --classification portable `
   --port-filter rp2 `
-  --limit 10 `
   --version v1.29.0 `
   --portboard rp2-rpi_pico
 ```
@@ -139,6 +132,8 @@ uv run python -m tests.quality_tests.ecosystem.cli `
 
 Packages with unknown or ambiguous compatibility are tested against the requested targets. With no `--portboard`, that target is `esp32-esp32_generic`. Use `--unknown-policy skip` to omit those packages instead. Packages with known port evidence still skip with `no_compatible_port` when none of the requested targets are compatible.
 
+When `--portboard` is omitted, packages below `micropython-lib/unix-ffi` automatically use the `unix` stub target instead of the general ESP32 default. Supplying `--portboard` explicitly disables this substitution and keeps normal compatibility filtering.
+
 ### Select a stub source
 
 The default `local` source installs matching packages from `publish/`. Alternatives are:
@@ -147,7 +142,6 @@ The default `local` source installs matching packages from `publish/`. Alternati
 | --- | --- |
 | `--stub-source pypi` | Latest matching stable package from PyPI |
 | `--stub-source pypi-pre` | Matching package including prereleases |
-| `--stub-source path --stub-path <directory>` | Copy one explicit stub tree |
 
 For example:
 
@@ -155,8 +149,7 @@ For example:
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
   --version v1.29.0 `
-  --stub-source path `
-  --stub-path publish/micropython-v1_28_0-esp32-esp32_generic-stubs
+  --stub-source pypi-pre
 ```
 
 Add `--no-stub-cache` only when uv must ignore its package cache during stub provisioning.
@@ -185,9 +178,9 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --cache-mode offline
 ```
 
-For `micropython-lib`, cache entries include both tag/branch-to-commit resolution and the commit archive. Reuse the same package reference and `--micropython-lib-revision` during offline replay.
+For `micropython-lib`, cache entries include both tag-to-commit resolution and the commit archive. Reuse the same package reference and `--version` during offline replay.
 
-`--refresh` and `--cache-mode offline` cannot be combined. For MIM, use `--workers 1` through `16` and `--rate-limit <requests-per-second>` to control upstream traffic.
+`--refresh` and `--cache-mode offline` cannot be combined. MIM fetching uses the fixed concurrency and request rate shown in the defaults table.
 
 ## Read the result
 
@@ -320,7 +313,7 @@ The next online run recreates required directories and downloads.
 | `no_compatible_port` | Select a target supported by the package evidence. |
 | `no_port_evidence` or `ambiguous_port` | The requested target is used by default; review the evidence or use `--unknown-policy skip` to omit the package. |
 | Package passes but the process exits 2 | Inspect top-level catalog diagnostics for a separate discovery failure. |
-| MIM requests are slow or rate-limited | Reuse the cache, lower `--workers`, lower `--rate-limit`, or narrow future runs to a focused package. |
+| MIM requests are slow or rate-limited | Reuse the cache or narrow future runs to a focused package. |
 | Aggregate file is rejected | Keep the original as evidence and write to a new path, or deliberately replace it without aggregate mode. |
 | A failed workspace is missing | Confirm retention was `on_failure` or `always`; `never` removes it. |
 

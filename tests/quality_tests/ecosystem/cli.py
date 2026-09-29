@@ -13,7 +13,7 @@ from typing import Callable, Mapping, Protocol, Sequence
 
 from .aggregate import AggregateReport
 from .catalog import CatalogInventory
-from .catalog_loader import CatalogLoadOptions, MAX_CATALOG_WORKERS, NetworkCatalogLoader, RateLimitedFetcher
+from .catalog_loader import CatalogLoadOptions, NetworkCatalogLoader, RateLimitedFetcher
 from .markdown_report import render_markdown_reports
 from .model import ClassificationOverride, PackageIdentity, PortClassification, load_classification_overrides
 from .orchestrator import BatchSelection, CatalogSelection, EcosystemOrchestrator, OrchestrationReport, QARequest
@@ -55,7 +55,11 @@ DEFAULT_CATALOG = CatalogSelection.MIM.value
 DEFAULT_PORTBOARD = "esp32-esp32_generic"
 DEFAULT_CHECKER = "pyright"
 DEFAULT_REPORT_OUTPUT = Path("results")
+DEFAULT_PACKAGE_LIMIT: int | None = None
+DEFAULT_CATALOG_WORKERS = 4
+DEFAULT_RATE_LIMIT = 2.0
 STABLE_CHECKERS = ("pyright", "mypy", "ruff", "pyrefly")
+CLI_STUB_SOURCES = (StubSource.LOCAL.value, StubSource.PYPI.value, StubSource.PYPI_PRE.value)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -72,19 +76,16 @@ def build_parser() -> argparse.ArgumentParser:
         help=f"Batch catalog source (default: {DEFAULT_CATALOG})",
     )
     parser.add_argument(
-        "--micropython-lib-revision",
-        default="HEAD",
-        help="micropython-lib tag or commit used for focused and batch resolution (default: HEAD)",
+        "--version",
+        required=True,
+        help="MicroPython version used for stubs and micropython-lib source",
     )
-
-    parser.add_argument("--version", dest="versions", action="append", required=True, help="MicroPython version; repeatable")
     parser.add_argument(
         "--portboard",
         action="append",
         help=f"Port or port-board stub target; repeatable (default: {DEFAULT_PORTBOARD})",
     )
-    parser.add_argument("--stub-source", choices=[item.value for item in StubSource], default=StubSource.LOCAL.value)
-    parser.add_argument("--stub-path", type=Path, help="Stub tree used with --stub-source path")
+    parser.add_argument("--stub-source", choices=CLI_STUB_SOURCES, default=StubSource.LOCAL.value)
     parser.add_argument(
         "--checker",
         action="append",
@@ -113,9 +114,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--package-filter", help="Case-insensitive batch package substring")
     parser.add_argument("--classification", choices=[item.value for item in PortClassification])
     parser.add_argument("--port-filter", help="Batch compatibility filter for a port or port-board")
-    parser.add_argument("--limit", type=int, help="Maximum number of selected batch packages")
-    parser.add_argument("--workers", type=int, default=4, help=f"MIM page fetch workers (1-{MAX_CATALOG_WORKERS})")
-    parser.add_argument("--rate-limit", type=float, default=2.0, help="Upstream request starts per second (greater than 0, at most 100)")
 
     parser.add_argument(
         "--report",
@@ -154,7 +152,7 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
                     project_root / "tests" / "quality_tests" / "ecosystem" / "classification_overrides.json"
                 )
                 inventory = runtime.catalog_loader.load(
-                    CatalogLoadOptions(catalog, request.cache_mode, arguments.micropython_lib_revision),
+                    CatalogLoadOptions(catalog, request.cache_mode, _micropython_lib_tag(arguments.version)),
                     overrides=overrides,
                 )
                 selection = BatchSelection(
@@ -162,7 +160,7 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
                     package_query=arguments.package_filter,
                     classification=PortClassification(arguments.classification) if arguments.classification else None,
                     port=arguments.port_filter,
-                    limit=arguments.limit,
+                    limit=DEFAULT_PACKAGE_LIMIT,
                 )
                 report = runtime.orchestrator.run_batch(inventory, selection, request)
         if arguments.report:
@@ -179,21 +177,15 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
 
 
 def _validate_arguments(arguments: argparse.Namespace) -> None:
-    if not 1 <= arguments.workers <= MAX_CATALOG_WORKERS:
-        raise ValueError(f"workers must be between 1 and {MAX_CATALOG_WORKERS}")
-    if arguments.rate_limit <= 0 or arguments.rate_limit > 100:
-        raise ValueError("rate limit must be greater than 0 and at most 100")
-    if arguments.limit is not None and arguments.limit < 1:
-        raise ValueError("limit must be at least 1")
     if arguments.refresh and arguments.cache_mode == CacheMode.OFFLINE.value:
         raise ValueError("--refresh cannot be combined with --cache-mode offline")
-    batch_filters = (arguments.package_filter, arguments.classification, arguments.port_filter, arguments.limit)
+    batch_filters = (arguments.package_filter, arguments.classification, arguments.port_filter)
     if arguments.package is not None and any(value is not None for value in batch_filters):
         raise ValueError("batch filters require --catalog")
     if arguments.report_mode == "aggregate" and not arguments.report:
         raise ValueError("--report-mode aggregate requires --report")
-    if not arguments.micropython_lib_revision.strip():
-        raise ValueError("--micropython-lib-revision must not be empty")
+    if not arguments.version.strip():
+        raise ValueError("--version must not be empty")
 
 
 def _qa_request(arguments: argparse.Namespace) -> QARequest:
@@ -203,15 +195,15 @@ def _qa_request(arguments: argparse.Namespace) -> QARequest:
     else:
         unknown_policy = UnknownPortPolicy.USE_REQUESTED
     return QARequest(
-        versions=tuple(arguments.versions),
+        versions=(arguments.version,),
         portboards=tuple(arguments.portboard or (DEFAULT_PORTBOARD,)),
         stub_source=StubSource(arguments.stub_source),
-        stub_path=arguments.stub_path,
         checkers=tuple(arguments.checker or (DEFAULT_CHECKER,)),
         cache_mode=cache_mode,
         unknown_policy=unknown_policy,
         retention=WorkspaceRetention(arguments.retain),
         no_stub_cache=arguments.no_stub_cache,
+        portboards_explicit=arguments.portboard is not None,
     )
 
 
@@ -220,10 +212,10 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     cache_dir = _absolute_from_project(arguments.cache_dir, project_root)
     workspace_dir = _absolute_from_project(arguments.workspace_dir, project_root)
     progress = RichProgressReporter(enabled=False if arguments.no_progress else None)
-    upstream = RateLimitedFetcher(UrlFetcher(destination_policy=DestinationPolicy()), arguments.rate_limit)
+    upstream = RateLimitedFetcher(UrlFetcher(destination_policy=DestinationPolicy()), DEFAULT_RATE_LIMIT)
     fetcher = CachedFetcher(cache_dir, upstream)
-    catalog_loader = NetworkCatalogLoader(fetcher, max_workers=arguments.workers, progress=progress)
-    resolver = MipResolver(fetcher, micropython_lib_revision=arguments.micropython_lib_revision)
+    catalog_loader = NetworkCatalogLoader(fetcher, max_workers=DEFAULT_CATALOG_WORKERS, progress=progress)
+    resolver = MipResolver(fetcher, micropython_lib_revision=_micropython_lib_tag(arguments.version))
     runner = QARunner(
         workspace_root=workspace_dir,
         config_root=project_root / "tests" / "quality_tests" / "_configs",
@@ -278,6 +270,11 @@ def _atomic_write_text(destination: Path, content: str) -> None:
 
 def _absolute_from_project(path: Path, project_root: Path) -> Path:
     return path.resolve() if path.is_absolute() else (project_root / path).resolve()
+
+
+def _micropython_lib_tag(version: str) -> str:
+    version = version.strip()
+    return version if version.casefold().startswith("v") else f"v{version}"
 
 
 def _project_root() -> Path:

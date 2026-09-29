@@ -14,7 +14,15 @@ from ..catalog_loader import (
     NetworkCatalogLoader,
     RateLimitedFetcher,
 )
-from ..cli import CliRuntime, _build_runtime, build_parser, main
+from ..cli import (
+    DEFAULT_CATALOG_WORKERS,
+    DEFAULT_PACKAGE_LIMIT,
+    DEFAULT_RATE_LIMIT,
+    CliRuntime,
+    _build_runtime,
+    build_parser,
+    main,
+)
 from ..model import (
     CatalogProvenance,
     CatalogSource,
@@ -92,6 +100,22 @@ def _aioble_component_record(name: str, catalog: CatalogSource = CatalogSource.M
         provenance=(CatalogProvenance(catalog, f"https://catalog.invalid/{name}", identity.key),),
     )
     decision = PortDecision(PortClassification.UNKNOWN, (), (), (), ReasonCode.NO_PORT_EVIDENCE)
+    return PackageRecord(candidate=candidate, classification=decision)
+
+
+def _unix_ffi_record() -> PackageRecord:
+    package_path = "unix-ffi/fixture-unix"
+    identity = PackageIdentity.repository("github", "micropython", "micropython-lib", package_path)
+    install_reference = f"github:micropython/micropython-lib/{package_path}"
+    candidate = PackageCandidate(
+        identity=identity,
+        display_name="fixture-unix",
+        source_family=SourceFamily.MICROPYTHON_LIB,
+        install_reference=install_reference,
+        aliases=(PackageAlias(CatalogSource.MICROPYTHON_LIB, install_reference),),
+        provenance=(CatalogProvenance(CatalogSource.MICROPYTHON_LIB, "https://catalog.invalid/fixture-unix", identity.key),),
+    )
+    decision = PortDecision(PortClassification.PORT_SPECIFIC, ("unix",), (), (), None)
     return PackageRecord(candidate=candidate, classification=decision)
 
 
@@ -331,6 +355,45 @@ def test_qa_request_uses_requested_ports_for_unknown_packages_by_default():
     )
 
     assert request.unknown_policy is UnknownPortPolicy.USE_REQUESTED
+
+
+def test_unix_ffi_uses_unix_when_cli_portboard_is_implicit():
+    request = QARequest(
+        versions=("v1.29.0",),
+        portboards=("esp32-esp32_generic",),
+        stub_source=StubSource.LOCAL,
+        checkers=("pyright",),
+        portboards_explicit=False,
+    )
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_batch(
+        CatalogInventory((_unix_ffi_record(),), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        request,
+    )
+
+    assert report.results[0].outcome is PackageOutcome.PASS
+    assert [item.portboard for item in report.results[0].reports] == ["unix"]
+
+
+def test_unix_ffi_respects_explicit_incompatible_portboard():
+    request = QARequest(
+        versions=("v1.29.0",),
+        portboards=("esp32-esp32_generic",),
+        stub_source=StubSource.LOCAL,
+        checkers=("pyright",),
+        portboards_explicit=True,
+    )
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_batch(
+        CatalogInventory((_unix_ffi_record(),), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        request,
+    )
+
+    assert report.results[0].outcome is PackageOutcome.SKIPPED
+    assert report.results[0].reason is ReasonCode.NO_COMPATIBLE_PORT
+    assert not report.results[0].reports
 
 
 def test_batch_orchestration_isolates_unavailable_and_type_failures():
@@ -749,7 +812,8 @@ def test_cli_parser_exposes_focused_package_controls():
     )
 
     assert arguments.package == reference
-    assert arguments.versions == ["v1.28.0"]
+    assert arguments.version == "v1.28.0"
+    assert not hasattr(arguments, "micropython_lib_revision")
     assert arguments.portboard == ["rp2-rpi_pico"]
     assert arguments.stub_source == "pypi-pre"
     assert arguments.cache_mode == "offline"
@@ -758,7 +822,7 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.report_mode == "replace"
 
 
-def test_cli_passes_selected_micropython_lib_revision_to_catalog_loader():
+def test_cli_uses_version_for_micropython_lib_catalog():
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
 
@@ -766,14 +830,8 @@ def test_cli_passes_selected_micropython_lib_revision_to_catalog_loader():
         [
             "--catalog",
             "micropython-lib",
-            "--micropython-lib-revision",
-            "v1.29.0",
             "--version",
-            "v1.29.0",
-            "--stub-source",
-            "path",
-            "--stub-path",
-            ".",
+            "1.29.0",
         ],
         runtime_factory=lambda _arguments: CliRuntime(loader, orchestrator),
     )
@@ -783,8 +841,24 @@ def test_cli_passes_selected_micropython_lib_revision_to_catalog_loader():
     assert orchestrator.batch[0][0].catalogs is CatalogSelection.MICROPYTHON_LIB
 
 
+@pytest.mark.parametrize(
+    ("option", "value"),
+    [
+        ("--micropython-lib-revision", "main"),
+        ("--stub-path", "."),
+        ("--stub-source", "path"),
+        ("--limit", "1"),
+        ("--workers", "2"),
+        ("--rate-limit", "3"),
+    ],
+)
+def test_cli_rejects_removed_options(option: str, value: str):
+    with pytest.raises(SystemExit):
+        build_parser().parse_args(["--version", "v1.29.0", option, value])
+
+
 def test_cli_no_progress_flag_disables_the_shared_runtime_reporter():
-    arguments = build_parser().parse_args(["--version", "v1.28.0", "--no-progress"])
+    arguments = build_parser().parse_args(["--version", "1.28.0", "--no-progress"])
 
     runtime = _build_runtime(arguments)
 
@@ -792,6 +866,10 @@ def test_cli_no_progress_flag_disables_the_shared_runtime_reporter():
     assert runtime.progress.enabled is False
     assert getattr(runtime.catalog_loader, "progress") is runtime.progress
     assert getattr(runtime.orchestrator, "progress") is runtime.progress
+    assert getattr(runtime.orchestrator.resolver, "micropython_lib_revision") == "v1.28.0"
+    assert getattr(runtime.catalog_loader, "max_workers") == DEFAULT_CATALOG_WORKERS
+    limiter = getattr(getattr(runtime.catalog_loader, "fetcher"), "upstream")
+    assert getattr(limiter, "interval") == pytest.approx(1 / DEFAULT_RATE_LIMIT)
 
 
 def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
@@ -799,15 +877,16 @@ def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
     orchestrator = RecordingCliOrchestrator()
 
     exit_code = main(
-        ["--version", "v1.28.0", "--stub-source", "path", "--stub-path", "."],
+        ["--version", "v1.28.0"],
         runtime_factory=lambda _arguments: CliRuntime(loader, orchestrator),
     )
 
     assert exit_code == 2
-    assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.USE_CACHE)]
+    assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.USE_CACHE, "v1.28.0")]
     selection, request = orchestrator.batch[0]
     assert selection.catalogs is CatalogSelection.MIM
     assert request.portboards == ("esp32-esp32_generic",)
+    assert request.portboards_explicit is False
     assert request.checkers == ("pyright",)
     assert request.unknown_policy is UnknownPortPolicy.USE_REQUESTED
     assert request.retention is WorkspaceRetention.ON_FAILURE
@@ -867,10 +946,6 @@ def test_focused_cli_bypasses_catalog_and_writes_report_bundle(tmp_path: Path, c
             "v1.28.0",
             "--portboard",
             "rp2",
-            "--stub-source",
-            "path",
-            "--stub-path",
-            ".",
             "--report",
             "--report-output",
             str(tmp_path),
@@ -909,10 +984,6 @@ def test_cli_keeps_rich_progress_out_of_reports(tmp_path: Path, capsys):
             "github:howmanyoliversarethere/micropython-joystick-2-unit",
             "--version",
             "v1.28.0",
-            "--stub-source",
-            "path",
-            "--stub-path",
-            ".",
             "--report",
             "--report-output",
             str(tmp_path),
@@ -943,23 +1014,13 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
             "v1.28.0",
             "--portboard",
             "esp32",
-            "--stub-source",
-            "path",
-            "--stub-path",
-            ".",
             "--package-filter",
             "esp32",
             "--classification",
             "port_specific",
             "--port-filter",
             "esp32",
-            "--limit",
-            "1",
             "--refresh",
-            "--workers",
-            "2",
-            "--rate-limit",
-            "3",
             "--unknown-policy",
             "skip",
             "--report",
@@ -970,13 +1031,14 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
     )
 
     assert exit_code == 2
-    assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.REFRESH)]
+    assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.REFRESH, "v1.28.0")]
     selection, request = orchestrator.batch[0]
     assert selection.classification is PortClassification.PORT_SPECIFIC
     assert selection.port == "esp32"
-    assert selection.limit == 1
+    assert selection.limit is DEFAULT_PACKAGE_LIMIT
     assert request.cache_mode is CacheMode.REFRESH
     assert request.unknown_policy is UnknownPortPolicy.SKIP
+    assert request.portboards_explicit is True
     document = json.loads((report_output / "ecosystem.json").read_text(encoding="utf-8"))
     assert document["mode"] == "batch"
     assert document["cache_mode"] == "refresh"
@@ -984,7 +1046,7 @@ def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):
         "catalogs": "mim",
         "classification": "port_specific",
         "discovered_packages": 4,
-        "limit": 1,
+        "limit": DEFAULT_PACKAGE_LIMIT,
         "package_query": "esp32",
         "port": "esp32",
         "requested_package": None,
@@ -1000,10 +1062,6 @@ def test_cli_aggregates_repeated_json_runs_and_can_replace_them(tmp_path: Path):
     common = [
         "--version",
         "v1.28.0",
-        "--stub-source",
-        "path",
-        "--stub-path",
-        ".",
         "--cache-mode",
         "offline",
         "--report",
@@ -1118,13 +1176,12 @@ def test_cli_aggregate_requires_report(tmp_path: Path, capsys):
     assert "requires --report" in capsys.readouterr().err
 
 
-def test_cli_rejects_unbounded_or_conflicting_network_options(capsys):
+def test_cli_rejects_conflicting_cache_options(capsys):
     def runtime_factory(arguments):
         _ = arguments
         return CliRuntime(RecordingCliLoader(), RecordingCliOrchestrator())
 
     base = ["--catalog", "awesome", "--version", "v1.28.0", "--portboard", "rp2"]
 
-    assert main([*base, "--workers", "17"], runtime_factory=runtime_factory) == 2
     assert main([*base, "--cache-mode", "offline", "--refresh"], runtime_factory=runtime_factory) == 2
     assert "ecosystem QA error" in capsys.readouterr().err

@@ -62,7 +62,6 @@ PACKAGE_TEST_EXCLUSIONS: frozenset[PackageIdentity] = frozenset(
     for name in (
         "micropython-stubber",
         "typing",
-    
         "aioble-central",
         "aioble-client",
         "aioble-l2cap",
@@ -71,6 +70,7 @@ PACKAGE_TEST_EXCLUSIONS: frozenset[PackageIdentity] = frozenset(
         "aioble-server",
     )
 )
+_MICROPYTHON_LIB_UNIX_FFI_PREFIX = f"{PackageIdentity.repository('github', 'micropython', 'micropython-lib', 'unix-ffi').key}/"
 
 
 @dataclass(frozen=True)
@@ -116,6 +116,7 @@ class QARequest:
     unknown_policy: UnknownPortPolicy = UnknownPortPolicy.USE_REQUESTED
     retention: WorkspaceRetention = WorkspaceRetention.NEVER
     no_stub_cache: bool = False
+    portboards_explicit: bool = True
 
     def __post_init__(self) -> None:
         versions = tuple(sorted(set(value.strip() for value in self.versions if value.strip())))
@@ -124,9 +125,9 @@ class QARequest:
         if not versions or not portboards or not checkers:
             raise ValueError("versions, portboards, and checkers must not be empty")
         if self.stub_source is StubSource.PATH and self.stub_path is None:
-            raise ValueError("path stub source requires --stub-path")
+            raise ValueError("path stub source requires a stub path")
         if self.stub_source is not StubSource.PATH and self.stub_path is not None:
-            raise ValueError("--stub-path is only valid for path stub source")
+            raise ValueError("stub path is only valid for path source")
         object.__setattr__(self, "versions", versions)
         object.__setattr__(self, "portboards", portboards)
         object.__setattr__(self, "checkers", checkers)
@@ -414,7 +415,7 @@ class EcosystemOrchestrator:
         plan = plan_qa_matrix(
             record,
             versions=request.versions,
-            available_portboards=request.portboards,
+            available_portboards=_effective_portboards(record, request),
             stub_source=request.stub_source,
             stub_path=request.stub_path,
             no_stub_cache=request.no_stub_cache,
@@ -463,6 +464,12 @@ def select_inventory_records(inventory: CatalogInventory, selection: BatchSelect
     )
     selected = tuple(sorted(records, key=lambda record: record.candidate.identity.key))
     return selected[: selection.limit] if selection.limit is not None else selected
+
+
+def _effective_portboards(record: PackageRecord, request: QARequest) -> tuple[str, ...]:
+    if not request.portboards_explicit and record.candidate.identity.key.startswith(_MICROPYTHON_LIB_UNIX_FFI_PREFIX):
+        return ("unix",)
+    return request.portboards
 
 
 def _matches_catalog(record: PackageRecord, sources: frozenset[CatalogSource]) -> bool:
