@@ -9,6 +9,9 @@ on:
         required: false
         default: ''
 
+concurrency:
+  job-discriminator: ${{ github.run_id }}
+
 permissions:
   contents: read
   issues: read
