@@ -166,7 +166,6 @@ def test_batch_selection_rejects_invalid_limits_and_empty_filters():
         # Just test a few
         "aioble-central",
         "aioble-client",
-
     ),
 )
 def test_non_standalone_aioble_components_are_globally_skipped_in_batch(name: str):
@@ -217,11 +216,34 @@ class FakeResolver:
     def __init__(self) -> None:
         self.focused_references: list[str] = []
         self.candidates: list[str] = []
+        self.groups: list[tuple[str, tuple[str, ...]]] = []
 
     def resolve_reference(self, reference: str, *, mode: CacheMode = CacheMode.USE_CACHE) -> ResolutionResult:
         _ = mode
         self.focused_references.append(reference)
         return _resolved(_record("focused", CatalogSource.DIRECT, PortClassification.UNKNOWN))
+
+    def resolve_group(
+        self,
+        name: str,
+        references: tuple[str, ...],
+        *,
+        classification: PortDecision | None = None,
+        mode: CacheMode = CacheMode.USE_CACHE,
+    ) -> ResolutionResult:
+        _ = mode
+        self.groups.append((name, references))
+        group_reference = f"group:{name}"
+        candidate = PackageCandidate(
+            identity=PackageIdentity.index(f"group-{name}"),
+            display_name=name,
+            source_family=SourceFamily.MIP,
+            install_reference=group_reference,
+            aliases=(PackageAlias(CatalogSource.DIRECT, group_reference),),
+            provenance=(CatalogProvenance(CatalogSource.DIRECT, group_reference, group_reference),),
+        )
+        default_classification = _record(name, CatalogSource.DIRECT, PortClassification.UNKNOWN).classification
+        return _resolved(PackageRecord(candidate=candidate, classification=classification or default_classification))
 
     def resolve_candidate(
         self,
@@ -416,6 +438,37 @@ def test_batch_orchestration_isolates_unavailable_and_type_failures():
         "resolution": "not_available",
         "typings_provisioning": "not_run",
     }
+
+
+def test_batch_orchestration_replaces_group_members_with_one_package_group():
+    resolver = FakeResolver()
+    inventory = CatalogInventory(
+        (
+            _record("umqtt.robust", CatalogSource.MIM, PortClassification.PORTABLE),
+            _record("umqtt.simple", CatalogSource.MIM, PortClassification.PORTABLE),
+        ),
+        (),
+    )
+
+    report = EcosystemOrchestrator(resolver, FakeRunner()).run_batch(inventory, BatchSelection(), _request())
+
+    assert resolver.groups == [("umqtt", ("umqtt.robust", "umqtt.simple"))]
+    assert not resolver.candidates
+    assert len(report.results) == 1
+    assert report.results[0].package_identity == "index:group-umqtt"
+
+
+def test_focused_orchestration_resolves_package_group_by_name():
+    resolver = FakeResolver()
+
+    report = EcosystemOrchestrator(resolver, FakeRunner()).run_focused(
+        "umqtt",
+        _request(unknown_policy=UnknownPortPolicy.USE_REQUESTED),
+    )
+
+    assert resolver.groups == [("umqtt", ("umqtt.robust", "umqtt.simple"))]
+    assert not resolver.focused_references
+    assert report.results[0].outcome is PackageOutcome.PASS
 
 
 def test_orchestration_reports_batch_and_focused_package_progress():

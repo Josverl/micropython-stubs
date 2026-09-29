@@ -306,6 +306,30 @@ def test_resolve_direct_python_url(tmp_path: Path):
     assert [file.target for file in result.record.resolution.files] == ["driver.py"]
 
 
+def test_resolve_group_combines_package_manifests(tmp_path: Path):
+    index_root = "https://micropython.org/pi/v2"
+    first_manifest = f"{index_root}/package/py/first/latest.json"
+    second_manifest = f"{index_root}/package/py/second/latest.json"
+    resolver = _resolver(
+        tmp_path,
+        {
+            first_manifest: json.dumps({"urls": [["first.py", "https://fixtures.invalid/first.py"]]}).encode(),
+            second_manifest: json.dumps({"urls": [["second.py", "https://fixtures.invalid/second.py"]]}).encode(),
+            "https://fixtures.invalid/first.py": b"first = 1\n",
+            "https://fixtures.invalid/second.py": b"second = 2\n",
+        },
+    )
+
+    result = resolver.resolve_group("combined", ("first", "second"))
+
+    assert result.record.disposition is RecordDisposition.CHECK
+    assert result.record.resolution is not None
+    assert result.record.candidate.install_reference == "group:combined"
+    assert [dependency.requested_reference for dependency in result.record.resolution.dependencies] == ["first", "second"]
+    assert [file.target for file in result.record.resolution.files] == ["first.py", "second.py"]
+    assert [payload.data for payload in result.payloads] == [b"first = 1\n", b"second = 2\n"]
+
+
 def test_requested_provider_revision_is_not_replaced_by_manifest_version(tmp_path: Path):
     revision = "a" * 40
     revision_url = "https://api.github.com/repos/example/package/commits/v1"

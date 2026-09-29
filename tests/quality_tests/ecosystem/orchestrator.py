@@ -56,7 +56,6 @@ PACKAGE_TEST_EXCLUSIONS = frozenset(
     {
         "micropython-stubber",
         "typing",
-        # Components covered by their aggregate package.
         "aioble-core",
         "aioble-central",
         "aioble-client",
@@ -69,13 +68,20 @@ PACKAGE_TEST_EXCLUSIONS = frozenset(
         "hashlib-sha256",
         "hashlib-sha384",
         "hashlib-sha512",
-        "usb-device-cdc",
         "usb-device-hid",
-        "usb-device-keyboard",
         "usb-device-midi",
         "usb-device-mouse",
     }
 )
+
+PACKAGE_TEST_GROUPS: dict[str, tuple[str, ...]] = {
+    "umqtt": ("umqtt.robust", "umqtt.simple"),
+    "usb-device": ("usb-device", "usb-device-cdc"),
+    "usb-device-keyboard": ("usb-device", "usb-device-keyboard"),
+    "lora": ("lora", "lora-async", "lora-stm32wl5"),
+}
+
+PACKAGE_TEST_EXCLUSIONS |= frozenset(package for packages in PACKAGE_TEST_GROUPS.values() for package in packages)
 
 
 _MICROPYTHON_LIB_UNIX_FFI_PREFIX = f"{PackageIdentity.repository('github', 'micropython', 'micropython-lib', 'unix-ffi').key}/"
@@ -96,6 +102,26 @@ class BatchSelection:
             raise ValueError("port filter must not be empty")
         if self.limit is not None and self.limit < 1:
             raise ValueError("limit must be at least 1")
+
+
+@dataclass(frozen=True)
+class _BatchTarget:
+    name: str
+    record: PackageRecord | None = None
+    references: tuple[str, ...] = ()
+    classification: PortDecision | None = None
+
+    @property
+    def key(self) -> str:
+        if self.record is not None:
+            return self.record.candidate.identity.key
+        return PackageIdentity.index(f"group-{self.name}").key
+
+    @property
+    def reference(self) -> str:
+        if self.record is not None:
+            return self.record.candidate.install_reference
+        return f"group:{self.name}"
 
 
 class PackageOutcome(str, Enum):
@@ -308,6 +334,15 @@ class OrchestrationReport:
 class PackageResolver(Protocol):
     def resolve_reference(self, reference: str, *, mode: CacheMode = CacheMode.USE_CACHE) -> ResolutionResult: ...
 
+    def resolve_group(
+        self,
+        name: str,
+        references: tuple[str, ...],
+        *,
+        classification: PortDecision | None = None,
+        mode: CacheMode = CacheMode.USE_CACHE,
+    ) -> ResolutionResult: ...
+
     def resolve_candidate(
         self,
         candidate: PackageCandidate,
@@ -344,7 +379,12 @@ class EcosystemOrchestrator:
         self.progress.start_testing(1)
         self.progress.start_package(reference)
         try:
-            resolution = self.resolver.resolve_reference(reference, mode=request.cache_mode)
+            group_name = reference.strip().casefold()
+            group = PACKAGE_TEST_GROUPS.get(group_name)
+            if group is None:
+                resolution = self.resolver.resolve_reference(reference, mode=request.cache_mode)
+            else:
+                resolution = self.resolver.resolve_group(group_name, group, mode=request.cache_mode)
             result = self._run_resolution(resolution, request)
         except Exception as error:
             result = _exception_result(reference, reference, error)
@@ -363,27 +403,35 @@ class EcosystemOrchestrator:
         started = time.perf_counter()
         results: list[PackageQAResult] = []
         selected_records = select_inventory_records(inventory, selection)
-        self.progress.start_testing(len(selected_records))
+        targets = _group_batch_targets(selected_records)
+        self.progress.start_testing(len(targets))
         try:
-            for record in selected_records:
-                candidate = record.candidate
-                package = candidate.identity.key
+            for target in targets:
+                package = target.key
                 self.progress.start_package(package)
                 try:
-                    resolution = self.resolver.resolve_candidate(
-                        candidate,
-                        classification=record.classification,
-                        mode=request.cache_mode,
-                    )
+                    if target.record is None:
+                        resolution = self.resolver.resolve_group(
+                            target.name,
+                            target.references,
+                            classification=target.classification,
+                            mode=request.cache_mode,
+                        )
+                    else:
+                        resolution = self.resolver.resolve_candidate(
+                            target.record.candidate,
+                            classification=target.record.classification,
+                            mode=request.cache_mode,
+                        )
                     results.append(self._run_resolution(resolution, request))
                 except Exception as error:
-                    results.append(_exception_result(package, candidate.install_reference, error))
+                    results.append(_exception_result(package, target.reference, error))
                 finally:
                     self.progress.finish_package(package)
         finally:
             self.progress.finish_testing()
         discovery = DiscoveryEvidence(
-            selected_packages=tuple(record.candidate.identity.key for record in selected_records),
+            selected_packages=tuple(target.key for target in targets),
             catalogs=selection.catalogs,
             package_query=selection.package_query,
             classification=selection.classification,
@@ -403,7 +451,7 @@ class EcosystemOrchestrator:
     def _run_resolution(self, resolution: ResolutionResult, request: QARequest) -> PackageQAResult:
         record = resolution.record
         candidate = record.candidate
-        if candidate.display_name.casefold() in PACKAGE_TEST_EXCLUSIONS:
+        if not candidate.install_reference.startswith("group:") and candidate.display_name.casefold() in PACKAGE_TEST_EXCLUSIONS:
             return PackageQAResult(
                 candidate.identity.key,
                 candidate.install_reference,
@@ -472,6 +520,39 @@ def select_inventory_records(inventory: CatalogInventory, selection: BatchSelect
     )
     selected = tuple(sorted(records, key=lambda record: record.candidate.identity.key))
     return selected[: selection.limit] if selection.limit is not None else selected
+
+
+def _group_batch_targets(records: tuple[PackageRecord, ...]) -> tuple[_BatchTarget, ...]:
+    records_by_name = {record.candidate.display_name.casefold(): record for record in records}
+    grouped_names: set[str] = set()
+    targets: list[_BatchTarget] = []
+    for group_name, references in PACKAGE_TEST_GROUPS.items():
+        member_records = tuple(records_by_name.get(reference.casefold()) for reference in references)
+        if any(record is None for record in member_records):
+            continue
+        complete_records = tuple(record for record in member_records if record is not None)
+        grouped_names.update(reference.casefold() for reference in references)
+        targets.append(
+            _BatchTarget(
+                group_name,
+                references=references,
+                classification=_group_classification(complete_records),
+            )
+        )
+    targets.extend(
+        _BatchTarget(record.candidate.display_name, record=record)
+        for record in records
+        if record.candidate.display_name.casefold() not in grouped_names
+    )
+    return tuple(sorted(targets, key=lambda target: target.key))
+
+
+def _group_classification(records: tuple[PackageRecord, ...]) -> PortDecision | None:
+    decisions = tuple(record.classification for record in records if record.classification is not None)
+    for classification in (PortClassification.PORT_SPECIFIC, PortClassification.PORTABLE):
+        if decision := next((decision for decision in decisions if decision.classification is classification), None):
+            return decision
+    return decisions[0] if decisions else None
 
 
 def _effective_portboards(record: PackageRecord, request: QARequest) -> tuple[str, ...]:

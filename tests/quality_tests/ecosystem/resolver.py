@@ -288,6 +288,85 @@ class MipResolver:
         )
         return self.resolve_candidate(candidate, mode=mode)
 
+    def resolve_group(
+        self,
+        name: str,
+        references: tuple[str, ...],
+        *,
+        classification: PortDecision | None = None,
+        mode: CacheMode = CacheMode.USE_CACHE,
+    ) -> ResolutionResult:
+        group_name = name.strip().casefold()
+        group_references = tuple(dict.fromkeys(reference.strip() for reference in references if reference.strip()))
+        if not group_name or not group_references:
+            raise ValueError("package group name and references must not be empty")
+
+        group_reference = f"group:{group_name}"
+        candidate = PackageCandidate(
+            identity=PackageIdentity.index(f"group-{group_name}"),
+            display_name=group_name,
+            source_family=SourceFamily.MIP,
+            install_reference=group_reference,
+            aliases=(PackageAlias(CatalogSource.DIRECT, group_reference),),
+            provenance=(CatalogProvenance(CatalogSource.DIRECT, group_reference, group_reference),),
+        )
+        selected_classification = classification or classify_ports([])
+        state = _ResolutionState()
+        try:
+            for reference in group_references:
+                try:
+                    identity, canonical_reference, _ = normalize_package_reference(reference)
+                except (ValueError, PackageModelError) as error:
+                    reason = error.reason if isinstance(error, PackageModelError) else ReasonCode.UNSUPPORTED_REFERENCE
+                    raise ResolverError(reason, f"Invalid package group member {reference}: {error}") from error
+                planned = plan_mip_reference(canonical_reference, index_url=self.index_url)
+                outcome = self._resolve_package(canonical_reference, None, identity, 1, state, mode)
+                state.dependencies.append(
+                    DependencyEdge(
+                        requested_reference=canonical_reference,
+                        requested_revision=planned.requested_revision,
+                        depth=1,
+                        disposition=DependencyDisposition.RESOLVED,
+                        identity=identity,
+                        resolved_revision=outcome.resolved_revision,
+                    )
+                )
+
+            payloads = tuple(sorted(state.payloads.values(), key=lambda payload: payload.file.target))
+            resolution = PackageResolution(
+                requested_reference=group_reference,
+                canonical_reference=group_reference,
+                requested_revision=None,
+                resolved_revision=None,
+                manifest_reference=None,
+                manifest_sha256=None,
+                dependencies=tuple(state.dependencies),
+                files=tuple(payload.file for payload in payloads),
+            )
+            decision = decide_payload(resolution.files)
+            record = PackageRecord(
+                candidate=candidate,
+                resolution=resolution,
+                classification=selected_classification,
+                disposition=decision.disposition,
+                reason=decision.reason,
+            )
+            workspace_path = (
+                self.workspace.materialize(record, payloads)
+                if self.workspace is not None and record.disposition is RecordDisposition.CHECK
+                else None
+            )
+            return ResolutionResult(record, payloads, workspace_path)
+        except ResolverError as error:
+            return ResolutionResult(
+                PackageRecord(
+                    candidate=candidate,
+                    classification=selected_classification,
+                    disposition=RecordDisposition.ERROR,
+                    reason=error.reason,
+                )
+            )
+
     def resolve_candidate(
         self,
         candidate: PackageCandidate,
