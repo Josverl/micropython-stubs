@@ -27,7 +27,6 @@ from rp2.StateMachine import StateMachine
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
 from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program
 from rp2.asm_pio_rp2040 import *
 from typing import Callable, List, Literal, Union, overload
 from vfs import AbstractBlockDev
@@ -53,7 +52,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., _PIO_ASM_Program]:
+) -> Callable[[Callable[[], object]], _PIO_ASM_Program]:
     """
     Assemble a PIO program.
 
