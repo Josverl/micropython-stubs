@@ -29,7 +29,9 @@ stubber = [
 
 test = [
 "micropython-stubber",
+"rich>=13",
 "rich-click",
+"typing-extensions>=4",
 # for quality reporting
 "pytest",
 "pytest-xdist",

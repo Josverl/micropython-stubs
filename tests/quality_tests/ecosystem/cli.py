@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import os
 from pathlib import Path
 import sys
@@ -15,6 +15,7 @@ from .catalog import CatalogInventory
 from .catalog_loader import CatalogLoadOptions, MAX_CATALOG_WORKERS, NetworkCatalogLoader, RateLimitedFetcher
 from .model import ClassificationOverride, PackageIdentity, PortClassification, load_classification_overrides
 from .orchestrator import BatchSelection, CatalogSelection, EcosystemOrchestrator, OrchestrationReport, QARequest
+from .progress import NullProgressReporter, ProgressReporter, RichProgressReporter
 from .resolver import CacheMode, CachedFetcher, MipResolver, UrlFetcher
 from .runner import ExistingCheckerBackend, QARunner, StubSource, UnknownPortPolicy, UvStubProvisioner, WorkspaceRetention
 
@@ -43,6 +44,7 @@ class CliOrchestrator(Protocol):
 class CliRuntime:
     catalog_loader: CliCatalogLoader
     orchestrator: CliOrchestrator
+    progress: ProgressReporter = field(default_factory=NullProgressReporter)
 
 
 RuntimeFactory = Callable[[argparse.Namespace], CliRuntime]
@@ -87,6 +89,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--refresh", action="store_true", help="Refresh catalog and package response cache entries")
     parser.add_argument("--cache-dir", type=Path, default=Path("tests/quality_tests/.ecosystem-cache"))
     parser.add_argument("--workspace-dir", type=Path, default=Path("tests/quality_tests/.ecosystem-cache/runs"))
+    parser.add_argument("--no-progress", action="store_true", help="Disable interactive progress reporting")
     parser.add_argument(
         "--retain",
         choices=[item.value for item in WorkspaceRetention],
@@ -124,26 +127,27 @@ def main(argv: Sequence[str] | None = None, *, runtime_factory: RuntimeFactory |
         _validate_arguments(arguments)
         runtime = (runtime_factory or _build_runtime)(arguments)
         request = _qa_request(arguments)
-        if arguments.package is not None:
-            report = runtime.orchestrator.run_focused(arguments.package, request)
-        else:
-            catalog = CatalogSelection(arguments.catalog)
-            project_root = _project_root()
-            overrides = load_classification_overrides(
-                project_root / "tests" / "quality_tests" / "ecosystem" / "classification_overrides.json"
-            )
-            inventory = runtime.catalog_loader.load(
-                CatalogLoadOptions(catalog, request.cache_mode),
-                overrides=overrides,
-            )
-            selection = BatchSelection(
-                catalogs=catalog,
-                package_query=arguments.package_filter,
-                classification=PortClassification(arguments.classification) if arguments.classification else None,
-                port=arguments.port_filter,
-                limit=arguments.limit,
-            )
-            report = runtime.orchestrator.run_batch(inventory, selection, request)
+        with runtime.progress:
+            if arguments.package is not None:
+                report = runtime.orchestrator.run_focused(arguments.package, request)
+            else:
+                catalog = CatalogSelection(arguments.catalog)
+                project_root = _project_root()
+                overrides = load_classification_overrides(
+                    project_root / "tests" / "quality_tests" / "ecosystem" / "classification_overrides.json"
+                )
+                inventory = runtime.catalog_loader.load(
+                    CatalogLoadOptions(catalog, request.cache_mode),
+                    overrides=overrides,
+                )
+                selection = BatchSelection(
+                    catalogs=catalog,
+                    package_query=arguments.package_filter,
+                    classification=PortClassification(arguments.classification) if arguments.classification else None,
+                    port=arguments.port_filter,
+                    limit=arguments.limit,
+                )
+                report = runtime.orchestrator.run_batch(inventory, selection, request)
         _write_report(report, arguments.report, arguments.report_file, arguments.report_mode)
         return int(report.exit_code)
     except (OSError, RuntimeError, ValueError) as error:
@@ -192,9 +196,10 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
     project_root = _project_root()
     cache_dir = _absolute_from_project(arguments.cache_dir, project_root)
     workspace_dir = _absolute_from_project(arguments.workspace_dir, project_root)
+    progress = RichProgressReporter(enabled=False if arguments.no_progress else None)
     upstream = RateLimitedFetcher(UrlFetcher(), arguments.rate_limit)
     fetcher = CachedFetcher(cache_dir, upstream)
-    catalog_loader = NetworkCatalogLoader(fetcher, max_workers=arguments.workers)
+    catalog_loader = NetworkCatalogLoader(fetcher, max_workers=arguments.workers, progress=progress)
     resolver = MipResolver(fetcher)
     runner = QARunner(
         workspace_root=workspace_dir,
@@ -202,7 +207,7 @@ def _build_runtime(arguments: argparse.Namespace) -> CliRuntime:
         stub_provisioner=UvStubProvisioner(project_root),
         checker_backend=ExistingCheckerBackend(),
     )
-    return CliRuntime(catalog_loader, EcosystemOrchestrator(resolver, runner))
+    return CliRuntime(catalog_loader, EcosystemOrchestrator(resolver, runner, progress=progress), progress)
 
 
 def _write_report(report: OrchestrationReport, report_format: str, destination: Path | None, report_mode: str) -> None:

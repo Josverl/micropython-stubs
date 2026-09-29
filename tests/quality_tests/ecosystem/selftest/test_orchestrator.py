@@ -1,8 +1,10 @@
 import json
+from io import StringIO
 from pathlib import Path
 from typing import Mapping
 
 import pytest
+from rich.console import Console
 
 from ..catalog import CatalogDiagnostic, CatalogInventory
 from ..catalog_loader import (
@@ -12,7 +14,7 @@ from ..catalog_loader import (
     NetworkCatalogLoader,
     RateLimitedFetcher,
 )
-from ..cli import CliRuntime, build_parser, main
+from ..cli import CliRuntime, _build_runtime, build_parser, main
 from ..model import (
     CatalogProvenance,
     CatalogSource,
@@ -41,6 +43,7 @@ from ..orchestrator import (
     QARequest,
     select_inventory_records,
 )
+from ..progress import NullProgressReporter, RichProgressReporter
 from ..resolver import CacheMode, FetchResponse, ResolutionResult, ResolvedPayload, ResolverError
 from ..runner import (
     CheckerStatus,
@@ -283,6 +286,31 @@ def test_batch_orchestration_isolates_unavailable_and_type_failures():
     }
 
 
+def test_orchestration_reports_batch_and_focused_package_progress():
+    batch_progress = RecordingProgressReporter()
+    batch = EcosystemOrchestrator(FakeResolver(), FakeRunner(), progress=batch_progress)
+
+    batch.run_batch(_inventory(), BatchSelection(), _request())
+
+    selected = [record.candidate.identity.key for record in select_inventory_records(_inventory(), BatchSelection())]
+    assert batch_progress.events[0] == ("testing_started", len(selected))
+    assert [value for event, value in batch_progress.events if event == "package_started"] == selected
+    assert [value for event, value in batch_progress.events if event == "package_finished"] == selected
+    assert batch_progress.events[-1] == ("testing_finished", None)
+
+    focused_progress = RecordingProgressReporter()
+    reference = "github:howmanyoliversarethere/micropython-joystick-2-unit"
+
+    EcosystemOrchestrator(FakeResolver(), FakeRunner(), progress=focused_progress).run_focused(reference, _request())
+
+    assert focused_progress.events == [
+        ("testing_started", 1),
+        ("package_started", reference),
+        ("package_finished", reference),
+        ("testing_finished", None),
+    ]
+
+
 def test_orchestration_exit_codes_distinguish_type_failures_and_intentional_skips():
     orchestrator = EcosystemOrchestrator(FakeResolver(), FakeRunner(failing={"z-portable"}))
 
@@ -483,6 +511,35 @@ class FixtureCatalogFetcher:
         return FetchResponse(data, reference)
 
 
+class RecordingProgressReporter(NullProgressReporter):
+    def __init__(self) -> None:
+        self.events: list[tuple[str, object]] = []
+
+    def start_catalog(self, catalog: str) -> None:
+        self.events.append(("catalog_started", catalog))
+
+    def set_catalog_total(self, total: int) -> None:
+        self.events.append(("catalog_total", total))
+
+    def advance_catalog(self, item: str) -> None:
+        self.events.append(("catalog_advanced", item))
+
+    def finish_catalog(self) -> None:
+        self.events.append(("catalog_finished", None))
+
+    def start_testing(self, total: int) -> None:
+        self.events.append(("testing_started", total))
+
+    def start_package(self, package: str) -> None:
+        self.events.append(("package_started", package))
+
+    def finish_package(self, package: str) -> None:
+        self.events.append(("package_finished", package))
+
+    def finish_testing(self) -> None:
+        self.events.append(("testing_finished", None))
+
+
 def _catalog_responses() -> dict[str, bytes]:
     fixtures = Path(__file__).parent.parent / "fixtures"
     joystick_page = "https://checkmim.com/packages/howmanyoliversarethere+micropython-joystick-2-unit"
@@ -519,6 +576,21 @@ def test_catalog_loader_isolates_one_unavailable_mim_page():
     assert any("joystick-2-unit" in record.candidate.identity.key for record in inventory.records)
     assert inventory.diagnostics[0].reason is ReasonCode.UNAVAILABLE
     assert inventory.diagnostics[0].entry_key == "ntptime"
+
+
+def test_catalog_loader_reports_mim_sitemap_and_page_progress():
+    progress = RecordingProgressReporter()
+
+    NetworkCatalogLoader(FixtureCatalogFetcher(_catalog_responses()), max_workers=2, progress=progress).load(
+        CatalogLoadOptions(CatalogSelection.MIM)
+    )
+
+    assert progress.events[0] == ("catalog_started", "mim")
+    assert ("catalog_total", 3) in progress.events
+    advanced = [value for event, value in progress.events if event == "catalog_advanced"]
+    assert advanced[0] == "MIM sitemap"
+    assert set(advanced[1:]) == {"howmanyoliversarethere+micropython-joystick-2-unit", "ntptime"}
+    assert progress.events[-1] == ("catalog_finished", None)
 
 
 class RecordingFetcher:
@@ -613,6 +685,17 @@ def test_cli_parser_exposes_focused_package_controls():
     assert arguments.report_mode == "replace"
 
 
+def test_cli_no_progress_flag_disables_the_shared_runtime_reporter():
+    arguments = build_parser().parse_args(["--version", "v1.28.0", "--no-progress"])
+
+    runtime = _build_runtime(arguments)
+
+    assert isinstance(runtime.progress, RichProgressReporter)
+    assert runtime.progress.enabled is False
+    assert getattr(runtime.catalog_loader, "progress") is runtime.progress
+    assert getattr(runtime.orchestrator, "progress") is runtime.progress
+
+
 def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
@@ -699,6 +782,39 @@ def test_focused_cli_bypasses_catalog_and_emits_json(capsys):
     assert orchestrator.focused[0][0] == reference
     assert orchestrator.focused[0][1].unknown_policy is UnknownPortPolicy.USE_REQUESTED
     assert '"mode": "focused"' in capsys.readouterr().out
+
+
+def test_cli_keeps_rich_progress_out_of_json_stdout(capsys):
+    progress_output = StringIO()
+    progress = RichProgressReporter(
+        console=Console(file=progress_output, force_terminal=True, color_system=None, width=100),
+        enabled=True,
+    )
+    runtime = CliRuntime(
+        RecordingCliLoader(),
+        EcosystemOrchestrator(FakeResolver(), FakeRunner(), progress=progress),
+        progress,
+    )
+
+    exit_code = main(
+        [
+            "--package",
+            "github:howmanyoliversarethere/micropython-joystick-2-unit",
+            "--version",
+            "v1.28.0",
+            "--stub-source",
+            "path",
+            "--stub-path",
+            ".",
+            "--report",
+            "json",
+        ],
+        runtime_factory=lambda _arguments: runtime,
+    )
+
+    assert exit_code == 0
+    assert json.loads(capsys.readouterr().out)["mode"] == "focused"
+    assert "Testing packages" in progress_output.getvalue()
 
 
 def test_batch_cli_forwards_filters_refresh_and_report_path(tmp_path: Path):

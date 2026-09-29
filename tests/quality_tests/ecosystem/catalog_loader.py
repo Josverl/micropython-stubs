@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from threading import Lock
 import time
@@ -20,6 +20,7 @@ from .catalog import (
 )
 from .model import CatalogSource, ClassificationOverride, PackageIdentity, ReasonCode, RecordDisposition
 from .orchestrator import CatalogSelection
+from .progress import NullProgressReporter, ProgressReporter
 from .resolver import CacheMode, FetchResponse, Fetcher, ResolverError
 
 
@@ -71,11 +72,19 @@ class CatalogLoadOptions:
 
 
 class NetworkCatalogLoader:
-    def __init__(self, fetcher: CachedCatalogFetcher, *, max_workers: int = 4) -> None:
+    def __init__(
+        self,
+        fetcher: CachedCatalogFetcher,
+        *,
+        max_workers: int = 4,
+        progress: ProgressReporter | None = None,
+    ) -> None:
         if not 1 <= max_workers <= MAX_CATALOG_WORKERS:
             raise ValueError(f"catalog workers must be between 1 and {MAX_CATALOG_WORKERS}")
         self.fetcher = fetcher
         self.max_workers = max_workers
+        self.progress = progress or NullProgressReporter()
+        self._catalog_total = 0
 
     def load(
         self,
@@ -85,15 +94,21 @@ class NetworkCatalogLoader:
     ) -> CatalogInventory:
         entries: list[CatalogEntry] = []
         diagnostics: list[CatalogDiagnostic] = []
-        if CatalogSource.AWESOME_MICROPYTHON in options.catalogs.sources:
-            result = self._load_awesome(options.cache_mode)
-            entries.extend(result.entries)
-            diagnostics.extend(result.diagnostics)
-        if CatalogSource.MIM in options.catalogs.sources:
-            result = self._load_mim(options.cache_mode)
-            entries.extend(result.entries)
-            diagnostics.extend(result.diagnostics)
-        return build_inventory(entries, diagnostics, overrides)
+        self.progress.start_catalog(options.catalogs.value)
+        self._catalog_total = len(options.catalogs.sources)
+        self.progress.set_catalog_total(self._catalog_total)
+        try:
+            if CatalogSource.AWESOME_MICROPYTHON in options.catalogs.sources:
+                result = self._load_awesome(options.cache_mode)
+                entries.extend(result.entries)
+                diagnostics.extend(result.diagnostics)
+            if CatalogSource.MIM in options.catalogs.sources:
+                result = self._load_mim(options.cache_mode)
+                entries.extend(result.entries)
+                diagnostics.extend(result.diagnostics)
+            return build_inventory(entries, diagnostics, overrides)
+        finally:
+            self.progress.finish_catalog()
 
     def _load_awesome(self, mode: CacheMode) -> CatalogParseResult:
         adapter = AwesomeCatalogAdapter(AWESOME_CATALOG_URL)
@@ -102,6 +117,8 @@ class NetworkCatalogLoader:
             return adapter.parse(document)
         except Exception as error:
             return CatalogParseResult((), (_load_diagnostic(CatalogSource.AWESOME_MICROPYTHON, "catalog", AWESOME_CATALOG_URL, error),))
+        finally:
+            self.progress.advance_catalog("Awesome MicroPython")
 
     def _load_mim(self, mode: CacheMode) -> CatalogParseResult:
         adapter = MimCatalogAdapter(MIM_SITEMAP_URL)
@@ -110,13 +127,26 @@ class NetworkCatalogLoader:
             discovery = adapter.parse_sitemap(sitemap)
         except Exception as error:
             return CatalogParseResult((), (_load_diagnostic(CatalogSource.MIM, "sitemap", MIM_SITEMAP_URL, error),))
+        finally:
+            self.progress.advance_catalog("MIM sitemap")
 
         entries: list[CatalogEntry] = []
         diagnostics = list(discovery.diagnostics)
+        self._catalog_total += len(discovery.locations)
+        self.progress.set_catalog_total(self._catalog_total)
         with ThreadPoolExecutor(max_workers=self.max_workers, thread_name_prefix="ecosystem-catalog") as executor:
-            futures = [executor.submit(self._load_mim_page, adapter, location, mode) for location in discovery.locations]
-            for future in futures:
+            futures = {
+                executor.submit(self._load_mim_page, adapter, location, mode): (index, location)
+                for index, location in enumerate(discovery.locations)
+            }
+            results: dict[int, CatalogParseResult] = {}
+            for future in as_completed(futures):
+                index, location = futures[future]
                 result = future.result()
+                results[index] = result
+                self.progress.advance_catalog(location.key)
+            for index in range(len(discovery.locations)):
+                result = results[index]
                 entries.extend(result.entries)
                 diagnostics.extend(result.diagnostics)
         return CatalogParseResult(tuple(entries), tuple(diagnostics))

@@ -48,6 +48,8 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Unknown port policy | `use_requested` |
 | MIM fetch controls | 4 workers, 2 request starts per second |
 
+Interactive runs show nested Rich progress for catalog fetching and package testing. Progress is written to standard error so text and JSON reports remain clean. It is automatically hidden when standard error is redirected; use `--no-progress` to disable it explicitly.
+
 Selectable stable checkers are `pyright`, `mypy`, `ruff`, and `pyrefly`. Repeat `--version`, `--portboard`, or `--checker` to build a matrix. The currently unstable `ty` and `zuban` adapters are intentionally not CLI choices.
 
 ## Common runs

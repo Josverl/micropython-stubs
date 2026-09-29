@@ -20,6 +20,7 @@ from .model import (
     ReasonCode,
     RecordDisposition,
 )
+from .progress import NullProgressReporter, ProgressReporter
 from .reporting import REPORT_SCHEMA_VERSION, resolution_text, resolution_to_dict, sanitize_report_document, sanitize_report_text
 from .resolver import CacheMode, ResolutionResult, ResolverError
 from .runner import (
@@ -293,17 +294,29 @@ class PackageRunner(Protocol):
 
 
 class EcosystemOrchestrator:
-    def __init__(self, resolver: PackageResolver, runner: PackageRunner) -> None:
+    def __init__(
+        self,
+        resolver: PackageResolver,
+        runner: PackageRunner,
+        *,
+        progress: ProgressReporter | None = None,
+    ) -> None:
         self.resolver = resolver
         self.runner = runner
+        self.progress = progress or NullProgressReporter()
 
     def run_focused(self, reference: str, request: QARequest) -> OrchestrationReport:
         started = time.perf_counter()
+        self.progress.start_testing(1)
+        self.progress.start_package(reference)
         try:
             resolution = self.resolver.resolve_reference(reference, mode=request.cache_mode)
             result = self._run_resolution(resolution, request)
         except Exception as error:
             result = _exception_result(reference, reference, error)
+        finally:
+            self.progress.finish_package(reference)
+            self.progress.finish_testing()
         discovery = DiscoveryEvidence((result.package_identity,), requested_package=reference)
         return OrchestrationReport("focused", (result,), (), time.perf_counter() - started, discovery, request)
 
@@ -316,17 +329,25 @@ class EcosystemOrchestrator:
         started = time.perf_counter()
         results: list[PackageQAResult] = []
         selected_records = select_inventory_records(inventory, selection)
-        for record in selected_records:
-            candidate = record.candidate
-            try:
-                resolution = self.resolver.resolve_candidate(
-                    candidate,
-                    classification=record.classification,
-                    mode=request.cache_mode,
-                )
-                results.append(self._run_resolution(resolution, request))
-            except Exception as error:
-                results.append(_exception_result(candidate.identity.key, candidate.install_reference, error))
+        self.progress.start_testing(len(selected_records))
+        try:
+            for record in selected_records:
+                candidate = record.candidate
+                package = candidate.identity.key
+                self.progress.start_package(package)
+                try:
+                    resolution = self.resolver.resolve_candidate(
+                        candidate,
+                        classification=record.classification,
+                        mode=request.cache_mode,
+                    )
+                    results.append(self._run_resolution(resolution, request))
+                except Exception as error:
+                    results.append(_exception_result(package, candidate.install_reference, error))
+                finally:
+                    self.progress.finish_package(package)
+        finally:
+            self.progress.finish_testing()
         discovery = DiscoveryEvidence(
             selected_packages=tuple(record.candidate.identity.key for record in selected_records),
             catalogs=selection.catalogs,
