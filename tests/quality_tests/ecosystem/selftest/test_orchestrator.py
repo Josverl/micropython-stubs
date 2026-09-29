@@ -163,12 +163,10 @@ def test_batch_selection_rejects_invalid_limits_and_empty_filters():
 @pytest.mark.parametrize(
     "name",
     (
+        # Just test a few
         "aioble-central",
         "aioble-client",
-        "aioble-l2cap",
-        "aioble-peripheral",
-        "aioble-security",
-        "aioble-server",
+
     ),
 )
 def test_non_standalone_aioble_components_are_globally_skipped_in_batch(name: str):

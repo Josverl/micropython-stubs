@@ -52,24 +52,32 @@ class CatalogSelection(str, Enum):
         return frozenset({CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM})
 
 
-PACKAGE_TEST_EXCLUSIONS: frozenset[PackageIdentity] = frozenset(
-    PackageIdentity.repository(
-        "github",
-        "micropython",
-        "micropython-lib",
-        f"micropython/bluetooth/{name}",
-    )
-    for name in (
+PACKAGE_TEST_EXCLUSIONS = frozenset(
+    {
         "micropython-stubber",
         "typing",
+        # Components covered by their aggregate package.
+        "aioble-core",
         "aioble-central",
         "aioble-client",
         "aioble-l2cap",
         "aioble-peripheral",
         "aioble-security",
         "aioble-server",
-    )
+        "hashlib-core",
+        "hashlib-sha224",
+        "hashlib-sha256",
+        "hashlib-sha384",
+        "hashlib-sha512",
+        "usb-device-cdc",
+        "usb-device-hid",
+        "usb-device-keyboard",
+        "usb-device-midi",
+        "usb-device-mouse",
+    }
 )
+
+
 _MICROPYTHON_LIB_UNIX_FFI_PREFIX = f"{PackageIdentity.repository('github', 'micropython', 'micropython-lib', 'unix-ffi').key}/"
 
 
@@ -395,7 +403,7 @@ class EcosystemOrchestrator:
     def _run_resolution(self, resolution: ResolutionResult, request: QARequest) -> PackageQAResult:
         record = resolution.record
         candidate = record.candidate
-        if candidate.identity in PACKAGE_TEST_EXCLUSIONS:
+        if candidate.display_name.casefold() in PACKAGE_TEST_EXCLUSIONS:
             return PackageQAResult(
                 candidate.identity.key,
                 candidate.install_reference,
