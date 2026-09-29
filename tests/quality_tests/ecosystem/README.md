@@ -18,10 +18,10 @@ Run one package with the practical defaults:
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0
+  --version v1.29.0
 ```
 
-This focused command bypasses catalog discovery. It uses the checked-in v1.28.0 ESP32 generic stubs and Pyright, prints a text report, and retains the workspace only if the run fails. An uncached first run requires network access to resolve and cache the package.
+This focused command bypasses catalog discovery. It uses the checked-in v1.29.0 ESP32 generic stubs and Pyright, prints a text report, and retains the workspace only if the run fails. An uncached first run requires network access to resolve and cache the package.
 
 Run the offline regression suite at any time:
 
@@ -61,7 +61,7 @@ Use `--package` for the quickest investigation of a known MIP, provider, package
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --report json `
   --report-file tests/quality_tests/.ecosystem-cache/reports/joystick.json
 ```
@@ -72,7 +72,7 @@ Omitting `--package` uses MIM. Filters are applied after catalog normalization a
 
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --package-filter sensor `
   --limit 5 `
   --report json `
@@ -88,7 +88,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --classification portable `
   --port-filter rp2 `
   --limit 10 `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --portboard rp2-rpi_pico
 ```
 
@@ -99,7 +99,7 @@ Repeated options form the Cartesian QA matrix after package compatibility filter
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --portboard esp32-esp32_generic `
   --portboard rp2-rpi_pico `
   --checker pyright `
@@ -123,7 +123,7 @@ For example:
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --stub-source path `
   --stub-path publish/micropython-v1_28_0-esp32-esp32_generic-stubs
 ```
@@ -145,12 +145,12 @@ Warm the cache with the normal command or `--refresh`, then rerun the same selec
 ```powershell
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --refresh
 
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --cache-mode offline
 ```
 
@@ -226,7 +226,7 @@ $Aggregate = "tests/quality_tests/.ecosystem-cache/reports/checkers.json"
 
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --checker pyright `
   --report json `
   --report-file $Aggregate `
@@ -234,7 +234,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
 
 uv run python -m tests.quality_tests.ecosystem.cli `
   --package github:howmanyoliversarethere/micropython-joystick-2-unit `
-  --version v1.28.0 `
+  --version v1.29.0 `
   --checker mypy `
   --report json `
   --report-file $Aggregate `
