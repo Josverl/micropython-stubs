@@ -20,7 +20,9 @@ print(sys.implementation)
 
 
 # Micropython Extensions
-exc = Exception
+exc = Exception("boom")
+sys.print_exception(exc)
+sys.print_exception(exc, sys.stdout)
 
 port = sys.platform
 if port in ["unix", "windows"]:
