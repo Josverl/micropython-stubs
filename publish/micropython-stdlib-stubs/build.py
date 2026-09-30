@@ -417,7 +417,7 @@ def patch_sys_implementation(dist_stdlib_path: Path):
 
 
 def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
-    """Expose compiler-provided names through the custom stdlib builtins module."""
+    """Expose MicroPython-specific names through the custom stdlib builtins module."""
     builtins_stub = dist_stdlib_path / "stdlib/builtins.pyi"
     source_stub = reference_path / "_mpy_shed/_mpy_builtins.pyi"
     if not builtins_stub.exists():
@@ -433,12 +433,25 @@ def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
         raise RuntimeError(f"MicroPython builtins declaration block not found: {source_stub}")
 
     declarations = match.group("declarations").rstrip()
+    changed = False
     if declarations not in content:
         marker = "class object:"
         if marker not in content:
             raise RuntimeError("Could not locate object class in stdlib/builtins.pyi")
-        builtins_stub.write_text(content.replace(marker, f"{declarations}\n\n{marker}", 1), encoding="utf-8")
-        log.info("Patched stdlib/builtins.pyi for MicroPython compiler-provided builtins")
+        content = content.replace(marker, f"{declarations}\n\n{marker}", 1)
+        changed = True
+
+    bytes_format = "    def format(self, *args: object, **kwargs: object) -> bytes: ..."
+    if bytes_format not in content:
+        marker = "class bytes(Sequence[int]):"
+        if marker not in content:
+            raise RuntimeError("Could not locate bytes class in stdlib/builtins.pyi")
+        content = content.replace(marker, f"{marker}\n{bytes_format}", 1)
+        changed = True
+
+    if changed:
+        builtins_stub.write_text(content, encoding="utf-8")
+        log.info("Patched stdlib/builtins.pyi for MicroPython-specific builtins")
 
 
 def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
