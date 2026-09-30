@@ -20,8 +20,13 @@ reportUnnecessaryTypeIgnoreComment = "error"
 
 # Assume legacy behavior where bytearray and memoryview are considered subtypes of bytes.
 disableBytesTypePromotions = false
-reportSelfClsParameterName = "warning"
+reportSelfClsParameterName = false
 
+
+# ... of "None" values
+reportOptionalCall = "warning"
+reportOptionalSubscript = "warning"
+reportOptionalMemberAccess = "warning"
 
 # ###################################################################
 # mypy global options:
@@ -38,7 +43,12 @@ follow_imports = "silent"
 follow_imports_for_stubs = true
 no_site_packages = true
 check_untyped_defs = true
-disable_error_code = ["no-redef", "assignment", "var-annotated"]
+disable_error_code = [
+    "no-redef",
+    "assignment",
+    "var-annotated",
+    "str-bytes-safe",
+]
 
 # snippets may re-use the same variable names
 allow_redefinition = true
@@ -47,6 +57,8 @@ allow_redefinition = true
 warn_unused_ignores = true  # allows to verify the absense of methods/classes in stubs 
 # warn_unused_configs = true
 # show_error_context = true
+
+
 
 # ###################################################################
 # zuban options:
@@ -83,6 +95,7 @@ extend-ignore = [
     "E711", # Comparison to `None` should be `cond is None`
     "E712", # Avoid equality comparisons to `True`; use `pull_up:` for truth checks
     "E713", # test for membership should be 'not in'
+    "E714", # Test for object identity should be `is not`
     "E721", # Use `is` and `is not` for type comparisons, or `isinstance()` for isinstance checks
     "E722", # Bare except
     "E731", # do not assign a lambda expression, use a def
@@ -100,7 +113,6 @@ extend-ignore = [
     "F821", # undefined name (can occur in stubs)
     "F841", # Local variable `foo` is assigned to but never used
 
-
     "PYI002",
     "PYI010",
     "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
@@ -111,6 +123,7 @@ extend-ignore = [
     "PYI044", # `from __future__ import annotations` - used in generated stubs
     "PYI048", # Function body must contain exactly one statement - docstrings count
     "PYI052",
+    "PYI056", # Calling `.append()` on `__all__` may not be supported
 
 ]
 # ###################################################################
