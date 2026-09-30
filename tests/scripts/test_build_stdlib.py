@@ -53,3 +53,37 @@ def test_patch_micropython_builtins_adds_bytes_format(tmp_path: Path):
     mod.patch_micropython_builtins(reference_path, dist_stdlib_path)
 
     assert builtins_stub.read_text(encoding="utf-8").count("    def format(self, *args: object, **kwargs: object) -> bytes: ...") == 1
+
+
+def test_patch_micropython_io_restores_stream_inheritance(tmp_path: Path):
+    mod = _load_build_module()
+    io_stub = tmp_path / "stdlib" / "io.pyi"
+    io_stub.parent.mkdir(parents=True)
+    io_stub.write_text(
+        "from _io import (\n"
+        "    BytesIO as BytesIO,\n"
+        ")\n"
+        "from _io import (\n"
+        "    StringIO as StringIO,\n"
+        ")\n\n"
+        "class StringIO:\n"
+        "    ...\n\n"
+        "class BytesIO:\n"
+        "    ...\n",
+        encoding="utf-8",
+    )
+
+    mod.patch_micropython_io(tmp_path)
+    mod.patch_micropython_io(tmp_path)
+
+    content = io_stub.read_text(encoding="utf-8")
+    assert content.count("class StringIO(IOBase_mp):") == 1
+    assert content.count("class BytesIO(IOBase_mp):") == 1
+    assert content.count("    def getvalue(self) -> str: ...") == 1
+    assert content.count("    def getvalue(self) -> bytes: ...") == 1
+    assert content.count("    def read(self, size: int | None = -1, /) -> str: ...") == 1
+    assert content.count("    def read(self, size: int | None = -1, /) -> bytes: ...") == 1
+    assert content.count("    def write(self, s: str, /) -> int: ...") == 1
+    assert content.count("    def write(self, b: AnyReadableBuf, /) -> int: ...") == 1
+    assert "StringIO as StringIO" not in content
+    assert "BytesIO as BytesIO" not in content

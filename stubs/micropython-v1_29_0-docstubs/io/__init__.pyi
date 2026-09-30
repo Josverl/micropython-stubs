@@ -191,6 +191,15 @@ class StringIO(IOBase_mp):
              This constructor is a MicroPython extension.
         """
 
+    def getvalue(self) -> str:
+        """
+        Get the current contents of the underlying buffer which holds data.
+        """
+        ...
+
+    def read(self, size: int | None = -1, /) -> str: ...
+    def write(self, s: str, /) -> int: ...
+
 class BytesIO(IOBase_mp):
     """
     Bytes stream from a bytes array (wrapper).
@@ -254,6 +263,9 @@ class BytesIO(IOBase_mp):
         Get the current contents of the underlying buffer which holds data.
         """
         ...
+
+    def read(self, size: int | None = -1, /) -> bytes: ...
+    def write(self, b: AnyReadableBuf, /) -> int: ...
 
 @overload
 def open(name: _OpenFile, /, **kwargs) -> TextIOWrapper:

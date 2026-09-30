@@ -454,6 +454,56 @@ def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
         log.info("Patched stdlib/builtins.pyi for MicroPython-specific builtins")
 
 
+def patch_micropython_io(dist_stdlib_path: Path):
+    """Restore stream inheritance lost when docstub-only classes are merged."""
+    io_stub = dist_stdlib_path / "stdlib/io.pyi"
+    if not io_stub.exists():
+        log.warning(f"Could not patch MicroPython io, file not found: {io_stub}")
+        return
+
+    content = io_stub.read_text(encoding="utf-8")
+    replacements = {
+        "class StringIO:": "class StringIO(IOBase_mp):",
+        "class BytesIO:": "class BytesIO(IOBase_mp):",
+    }
+    changed = False
+    for declaration, replacement in replacements.items():
+        if replacement in content:
+            continue
+        if declaration not in content:
+            raise RuntimeError(f"Could not locate {declaration} in stdlib/io.pyi")
+        content = content.replace(declaration, replacement, 1)
+        changed = True
+
+    methods = {
+        "class StringIO(IOBase_mp):": (
+            "    def getvalue(self) -> str: ...\n"
+            "    def read(self, size: int | None = -1, /) -> str: ...\n"
+            "    def write(self, s: str, /) -> int: ..."
+        ),
+        "class BytesIO(IOBase_mp):": (
+            "    def getvalue(self) -> bytes: ...\n"
+            "    def read(self, size: int | None = -1, /) -> bytes: ...\n"
+            "    def write(self, b: AnyReadableBuf, /) -> int: ..."
+        ),
+    }
+    for declaration, method in methods.items():
+        if method in content:
+            continue
+        content = content.replace(declaration, f"{declaration}\n{method}", 1)
+        changed = True
+
+    for class_name in ("StringIO", "BytesIO"):
+        reexport = f"from _io import (\n    {class_name} as {class_name},\n)\n"
+        if reexport in content:
+            content = content.replace(reexport, "", 1)
+            changed = True
+
+    if changed:
+        io_stub.write_text(content, encoding="utf-8")
+        log.info("Patched stdlib/io.pyi to restore MicroPython stream inheritance")
+
+
 def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
     """Ensure asyncio resolves Task/Future from MicroPython's private _asyncio module."""
     stdlib_path = dist_stdlib_path / "stdlib"
@@ -483,6 +533,7 @@ def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
 def apply_micropython_patches(reference_path: Path, dist_stdlib_path: Path):
     """Apply deterministic MicroPython-specific patches after stdlib generation."""
     patch_micropython_builtins(reference_path, dist_stdlib_path)
+    patch_micropython_io(dist_stdlib_path)
     patch_sys_implementation(dist_stdlib_path)
     patch_asyncio_support(reference_path, dist_stdlib_path)
 
