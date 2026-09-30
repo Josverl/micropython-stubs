@@ -1328,7 +1328,7 @@ class _NotImplementedType(Any):
     # for NotImplemented() much better
     __call__: NotImplemented  # type: ignore[valid-type]  # pyright: ignore[reportInvalidTypeForm]
 
-# NotImplemented: _NotImplementedType
+NotImplemented: _NotImplementedType
 
 def abs(x: SupportsAbs[_T], /) -> _T: ...
 def all(iterable: Iterable[object], /) -> bool: ...
@@ -1965,7 +1965,7 @@ class OSError(Exception):
         winerror: int
 
 # EnvironmentError = OSError
-# IOError = OSError
+IOError = OSError
 if sys.platform == "win32":
     WindowsError = OSError
 

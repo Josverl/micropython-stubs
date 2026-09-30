@@ -81,6 +81,11 @@ STDLIB_MODULES_TO_REMOVE = [
     "json/tool.pyi",
     "json/scanner.pyi",
 ]
+# These builtins can differ per MicroPython port, so preserve the supported union.
+MICROPYTHON_BUILTINS_TO_KEEP = {
+    "IOError",
+    "NotImplemented",
+}
 
 
 TYPE_IGNORES = [
@@ -207,6 +212,8 @@ def update_module_vars(module: Path, keep: set):
     """
     if module.is_dir():
         module = module / "__init__.pyi"
+    if module.stem == "builtins":
+        keep.update(MICROPYTHON_BUILTINS_TO_KEEP)
     with open(module, "r", encoding="utf-8") as f:
         lines = f.readlines()
     with open(module, "w", encoding="utf-8") as f:
