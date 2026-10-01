@@ -36,12 +36,11 @@ repository are already active; confirm the installation with `bd hooks list`.
 - Search for an existing issue before creating a replacement. Continue the
    original issue when possible; use `bd supersede <old> --with <new>` when a
    duplicate already exists.
-- After any successful Beads mutation, run `bd dolt push` before handoff.
-- Never use `bd dolt push --force`. If pull, merge, or push reports a conflict
+- Never use `bd dolt push --force`. 
+- If pull, merge, or push reports a conflict
    or failure, stop and report the exact error; do not claim the state is synced.
 - Git branch merges and rebases do not synchronize Beads. Beads state travels
    only through the Dolt remote at `refs/dolt/data`.
-
 ## Quick Reference
 
 ```bash
@@ -49,7 +48,6 @@ bd ready              # Find available work
 bd show <id>          # View issue details
 bd update <id> --claim  # Claim work atomically
 bd close <id>         # Complete work
-bd dolt push          # Push beads data to remote
 ```
 
 ## Non-Interactive Shell Commands
