@@ -328,11 +328,35 @@ def test_committed_classification_overrides_validate():
 
     assert {identity.key for identity in overrides} == {
         "repository:github:bartoszadamczyk/pico-ir",
+        "repository:github:micropython/micropython-lib/micropython/bluetooth/aioble",
+        "repository:github:micropython/micropython-lib/micropython/drivers/display/lcd160cr",
+        "repository:github:micropython/micropython-lib/micropython/lora/lora-stm32wl5",
+        "repository:github:micropython/micropython-lib/micropython/usb/usb-device",
         "repository:github:peterhinch/micropython-micro-gui",
         "repository:github:raspberrypifoundation/picozero",
     }
     assert {identity.key: (override.classification, override.ports, override.boards) for identity, override in overrides.items()} == {
         "repository:github:bartoszadamczyk/pico-ir": (PortClassification.PORT_SPECIFIC, (), ("rpi_pico",)),
+        "repository:github:micropython/micropython-lib/micropython/bluetooth/aioble": (
+            PortClassification.PORT_SPECIFIC,
+            ("rp2",),
+            ("arduino_nano_rp2040_connect",),
+        ),
+        "repository:github:micropython/micropython-lib/micropython/drivers/display/lcd160cr": (
+            PortClassification.PORT_SPECIFIC,
+            (),
+            ("pybv11",),
+        ),
+        "repository:github:micropython/micropython-lib/micropython/lora/lora-stm32wl5": (
+            PortClassification.PORT_SPECIFIC,
+            (),
+            ("nucleo_wl55",),
+        ),
+        "repository:github:micropython/micropython-lib/micropython/usb/usb-device": (
+            PortClassification.PORT_SPECIFIC,
+            (),
+            ("arduino_nano_rp2040_connect", "esp32_generic_s3"),
+        ),
         "repository:github:peterhinch/micropython-micro-gui": (PortClassification.PORTABLE, (), ()),
         "repository:github:raspberrypifoundation/picozero": (PortClassification.PORT_SPECIFIC, (), ("rpi_pico",)),
     }

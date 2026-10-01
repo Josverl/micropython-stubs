@@ -556,8 +556,19 @@ def _group_classification(records: tuple[PackageRecord, ...]) -> PortDecision | 
 
 
 def _effective_portboards(record: PackageRecord, request: QARequest) -> tuple[str, ...]:
-    if not request.portboards_explicit and record.candidate.identity.key.startswith(_MICROPYTHON_LIB_UNIX_FFI_PREFIX):
+    if request.portboards_explicit:
+        return request.portboards
+    if record.candidate.identity.key.startswith(_MICROPYTHON_LIB_UNIX_FFI_PREFIX):
         return ("unix",)
+    decision = record.classification
+    if (
+        decision is not None
+        and decision.classification is PortClassification.PORT_SPECIFIC
+        and not any(_matches_port(record, portboard) for portboard in request.portboards)
+        and len(decision.ports) == 1
+        and len(decision.boards) == 1
+    ):
+        return (f"{decision.ports[0]}-{decision.boards[0]}",)
     return request.portboards
 
 

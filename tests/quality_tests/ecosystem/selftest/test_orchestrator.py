@@ -416,6 +416,65 @@ def test_unix_ffi_respects_explicit_incompatible_portboard():
     assert not report.results[0].reports
 
 
+def test_implicit_default_uses_single_reviewed_portboard_for_aioble():
+    request = QARequest(
+        versions=("v1.29.0",),
+        portboards=("esp32-esp32_generic_s3",),
+        stub_source=StubSource.LOCAL,
+        checkers=("pyright",),
+        portboards_explicit=False,
+    )
+    record = _aioble_component_record("aioble")
+    record = PackageRecord(
+        candidate=record.candidate,
+        classification=PortDecision(
+            PortClassification.PORT_SPECIFIC,
+            ("rp2",),
+            ("arduino_nano_rp2040_connect",),
+            (),
+        ),
+    )
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_batch(
+        CatalogInventory((record,), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        request,
+    )
+
+    assert report.results[0].outcome is PackageOutcome.PASS
+    assert [item.portboard for item in report.results[0].reports] == ["rp2-arduino_nano_rp2040_connect"]
+
+
+def test_explicit_incompatible_portboard_does_not_substitute_reviewed_aioble_target():
+    request = QARequest(
+        versions=("v1.29.0",),
+        portboards=("esp32-esp32_generic_s3",),
+        stub_source=StubSource.LOCAL,
+        checkers=("pyright",),
+        portboards_explicit=True,
+    )
+    record = _aioble_component_record("aioble")
+    record = PackageRecord(
+        candidate=record.candidate,
+        classification=PortDecision(
+            PortClassification.PORT_SPECIFIC,
+            ("rp2",),
+            ("arduino_nano_rp2040_connect",),
+            (),
+        ),
+    )
+
+    report = EcosystemOrchestrator(FakeResolver(), FakeRunner()).run_batch(
+        CatalogInventory((record,), ()),
+        BatchSelection(catalogs=CatalogSelection.MICROPYTHON_LIB),
+        request,
+    )
+
+    assert report.results[0].outcome is PackageOutcome.SKIPPED
+    assert report.results[0].reason is ReasonCode.NO_COMPATIBLE_PORT
+    assert not report.results[0].reports
+
+
 def test_batch_orchestration_isolates_unavailable_and_type_failures():
     resolver = FakeResolver()
     runner = FakeRunner(failing={"z-portable"})
@@ -923,7 +982,7 @@ def test_cli_no_progress_flag_disables_the_shared_runtime_reporter():
     assert getattr(limiter, "interval") == pytest.approx(1 / DEFAULT_RATE_LIMIT)
 
 
-def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
+def test_cli_defaults_to_mim_esp32_s3_pyright_and_failure_retention():
     loader = RecordingCliLoader()
     orchestrator = RecordingCliOrchestrator()
 
@@ -936,7 +995,7 @@ def test_cli_defaults_to_mim_esp32_pyright_and_failure_retention():
     assert loader.options == [CatalogLoadOptions(CatalogSelection.MIM, CacheMode.USE_CACHE, "v1.28.0")]
     selection, request = orchestrator.batch[0]
     assert selection.catalogs is CatalogSelection.MIM
-    assert request.portboards == ("esp32-esp32_generic",)
+    assert request.portboards == ("esp32-esp32_generic_s3",)
     assert request.portboards_explicit is False
     assert request.checkers == ("pyright",)
     assert request.unknown_policy is UnknownPortPolicy.USE_REQUESTED

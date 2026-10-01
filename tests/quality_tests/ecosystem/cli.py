@@ -52,7 +52,7 @@ class CliRuntime:
 RuntimeFactory = Callable[[argparse.Namespace], CliRuntime]
 
 DEFAULT_CATALOG = CatalogSelection.MIM.value
-DEFAULT_PORTBOARD = "esp32-esp32_generic"
+DEFAULT_PORTBOARD = "esp32-esp32_generic_s3"
 DEFAULT_CHECKER = "pyright"
 DEFAULT_REPORT_OUTPUT = Path("results")
 DEFAULT_PACKAGE_LIMIT: int | None = None

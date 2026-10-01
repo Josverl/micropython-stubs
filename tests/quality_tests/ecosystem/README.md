@@ -21,7 +21,7 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --version v1.29.0
 ```
 
-This focused command bypasses catalog discovery. It uses the checked-in v1.29.0 ESP32 generic stubs and Pyright, prints a text report, and retains the workspace only if the run fails. An uncached first run requires network access to resolve and cache the package.
+This focused command bypasses catalog discovery. It uses the checked-in v1.29.0 ESP32-S3 generic stubs and Pyright, prints a text report, and retains the workspace only if the run fails. An uncached first run requires network access to resolve and cache the package.
 
 Run the offline regression suite at any time:
 
@@ -38,7 +38,7 @@ The suite uses local fixtures. The live network smoke test is excluded unless ex
 | Setting | Default |
 | --- | --- |
 | Catalog | `mim` when `--package` is absent |
-| Port and board | `esp32-esp32_generic`; `unix` for `micropython-lib/unix-ffi` packages |
+| Port and board | `esp32-esp32_generic_s3`; `unix` for `micropython-lib/unix-ffi` packages |
 | Checker | `pyright` |
 | Stub source | `local` |
 | Cache mode | `use_cache` |
@@ -130,9 +130,9 @@ uv run python -m tests.quality_tests.ecosystem.cli `
   --checker mypy
 ```
 
-Packages with unknown or ambiguous compatibility are tested against the requested targets. With no `--portboard`, that target is `esp32-esp32_generic`. Use `--unknown-policy skip` to omit those packages instead. Packages with known port evidence still skip with `no_compatible_port` when none of the requested targets are compatible.
+Packages with unknown or ambiguous compatibility are tested against the requested targets. With no `--portboard`, that target is `esp32-esp32_generic_s3`. Use `--unknown-policy skip` to omit those packages instead. Packages with known port evidence still skip with `no_compatible_port` when none of the requested targets are compatible.
 
-When `--portboard` is omitted, packages below `micropython-lib/unix-ffi` automatically use the `unix` stub target instead of the general ESP32 default. Supplying `--portboard` explicitly disables this substitution and keeps normal compatibility filtering.
+When `--portboard` is omitted, a port-specific package that identifies exactly one port and one board automatically uses that reviewed target if the general default is incompatible. This selects `rp2-arduino_nano_rp2040_connect` for the aggregate `aioble` package. Packages below `micropython-lib/unix-ffi` similarly use the `unix` target. Supplying `--portboard` explicitly disables these substitutions and keeps normal compatibility filtering.
 
 ### Select a stub source
 
