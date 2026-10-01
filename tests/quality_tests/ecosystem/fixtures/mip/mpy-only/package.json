@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "urls": [
+    ["native_only.mpy", "https://fixtures.invalid/native_only.mpy"]
+  ],
+  "deps": []
+}

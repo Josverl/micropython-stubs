@@ -32,7 +32,6 @@ This repository uses **Beads (bd)** for issue tracking.
 - Run `bd dolt pull` before relying on issue status or mutating Beads
 - Search for an existing issue before creating another; use
   `bd supersede <old> --with <new>` for an existing duplicate
-- Run `bd dolt push` after every successful Beads mutation and before handoff
 - Never force a Dolt push; stop and report pull, merge, or push conflicts
 - Git merges and rebases do not sync Beads; Beads uses `refs/dolt/data`
 - This repository authorizes Beads-only pull/push. Source Git commits, pulls,

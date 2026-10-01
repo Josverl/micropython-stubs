@@ -23,7 +23,9 @@ This module allows compression and decompression of binary data with the
 # origin module:: repos/micropython/docs/library/deflate.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import Self, TypeVar, TypeAlias, Awaitable
+from _mpy_shed import mp_available
+from types import TracebackType
 
 AUTO: Incomplete
 """Supported values for the *format* parameter."""
@@ -78,3 +80,13 @@ class DeflateIO:
     directions.
     """
     def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    @mp_available()  # force push
+    def __enter__(self) -> Self: ...
+    @mp_available()  # force push
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        tb: TracebackType | None,
+        /,
+    ) -> None: ...

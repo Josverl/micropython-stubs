@@ -1,4 +1,2 @@
-# array module
-# Allow the use of micro-module notation
-
-from array import *  # type: ignore
+# This umodule is a MicroPython reference to array
+from array import array as array

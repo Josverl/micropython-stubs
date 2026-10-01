@@ -31,6 +31,14 @@ assert header.EI_MAG == b"\x7fELF"
 assert header.EI_DATA == 1, "Oops, wrong endianness. Could retry with uctypes.BIG_ENDIAN."
 print("machine:", hex(header.e_machine))
 
+# Array aggregates support indexed reads and writes.
+array = uctypes.struct(
+    uctypes.addressof(buf),
+    (0 | uctypes.ARRAY, 4 | uctypes.UINT8),
+)
+value = array[0]
+array[0] = value
+
 
 # ------------------------------------------------------------------------------------
 # Example 2: In-memory data structure, with pointers

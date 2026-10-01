@@ -1,2 +1,2 @@
 # This umodule is a MicroPython reference to websocket
-from websocket import *
+from websocket import websocket as websocket

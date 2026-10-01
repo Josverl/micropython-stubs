@@ -13,7 +13,7 @@ from __future__ import annotations
 from typing import Callable, Dict, List, NoReturn, Tuple, overload
 
 from _mpy_shed import IOBase_mp, _mp_implementation, mp_available
-from _typeshed import Incomplete
+from _typeshed import Incomplete, SupportsWrite
 
 argv: List
 """A mutable list of arguments the current program was started with."""
@@ -97,7 +97,7 @@ ps2: str
 Mutable attributes holding strings, which are used for the REPL prompt.  The defaults
 give the standard Python prompt of ``>>>`` and ``...``.
 """
-stderr: Incomplete 
+stderr: Incomplete
 """Standard error `stream`."""
 stdin: Incomplete
 """Standard input `stream`."""
@@ -151,7 +151,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     ...
 
 @mp_available
-def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
+def print_exception(exc: Exception | BaseException, file: IOBase_mp | SupportsWrite[str] = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
