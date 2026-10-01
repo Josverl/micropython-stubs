@@ -18,15 +18,23 @@ useLibraryCodeForTypes = false
 reportMissingModuleSource = "none"
 reportUnnecessaryTypeIgnoreComment = "error"
 
+# Reduce diagnostics typical for MicroPython code optimised for embedded systems
 # Assume legacy behavior where bytearray and memoryview are considered subtypes of bytes.
 disableBytesTypePromotions = false
 reportSelfClsParameterName = false
-
+reportWildcardImportFromLibrary = "none"
 
 # ... of "None" values
-reportOptionalCall = "warning"
-reportOptionalSubscript = "warning"
-reportOptionalMemberAccess = "warning"
+reportOptionalCall = "none"
+reportOptionalSubscript = "none"
+reportOptionalMemberAccess = "none"
+reportOptionalIterable = "none"
+reportOptionalOperand = "none"
+
+# reportInvalidStringEscapeSequence = "none"
+
+reportAttributeAccessIssue = "warning"
+reportRedeclaration = "warning"
 
 # ###################################################################
 # mypy global options:
@@ -42,21 +50,23 @@ exclude = [
 follow_imports = "silent"
 follow_imports_for_stubs = true
 no_site_packages = true
-check_untyped_defs = true
+# other optional settings
+warn_unused_ignores = true  # allows to verify the absense of methods/classes in stubs 
+# Reduce diagnostics typical for MicroPython code optimised for embedded systems
+check_untyped_defs = false
 disable_error_code = [
     "no-redef",
     "assignment",
     "var-annotated",
     "str-bytes-safe",
+    "union-attr", 
+    "import-not-found", 
+    "has-type", 
+    "name-match",
 ]
-
 # snippets may re-use the same variable names
 allow_redefinition = true
 
-# other optional settings
-warn_unused_ignores = true  # allows to verify the absense of methods/classes in stubs 
-# warn_unused_configs = true
-# show_error_context = true
 
 
 
