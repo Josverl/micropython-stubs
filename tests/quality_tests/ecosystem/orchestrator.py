@@ -39,7 +39,7 @@ class CatalogSelection(str, Enum):
     AWESOME = "awesome"
     MIM = "mim"
     MICROPYTHON_LIB = "micropython-lib"
-    BOTH = "both"
+    ALL = "all"
 
     @property
     def sources(self) -> frozenset[CatalogSource]:
@@ -49,7 +49,7 @@ class CatalogSelection(str, Enum):
             return frozenset({CatalogSource.MIM})
         if self is CatalogSelection.MICROPYTHON_LIB:
             return frozenset({CatalogSource.MICROPYTHON_LIB})
-        return frozenset({CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM})
+        return frozenset({CatalogSource.MICROPYTHON_LIB, CatalogSource.AWESOME_MICROPYTHON, CatalogSource.MIM})
 
 
 PACKAGE_TEST_EXCLUSIONS = frozenset(
@@ -89,7 +89,7 @@ _MICROPYTHON_LIB_UNIX_FFI_PREFIX = f"{PackageIdentity.repository('github', 'micr
 
 @dataclass(frozen=True)
 class BatchSelection:
-    catalogs: CatalogSelection = CatalogSelection.BOTH
+    catalogs: CatalogSelection = CatalogSelection.ALL
     package_query: str | None = None
     classification: PortClassification | None = None
     port: str | None = None
