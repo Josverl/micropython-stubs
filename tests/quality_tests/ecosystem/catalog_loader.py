@@ -68,7 +68,7 @@ class RateLimitedFetcher:
 
 @dataclass(frozen=True)
 class CatalogLoadOptions:
-    catalogs: CatalogSelection = CatalogSelection.BOTH
+    catalogs: CatalogSelection = CatalogSelection.ALL
     cache_mode: CacheMode = CacheMode.USE_CACHE
     micropython_lib_revision: str = "HEAD"
 
