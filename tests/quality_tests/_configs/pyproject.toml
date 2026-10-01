@@ -8,7 +8,7 @@ include = ["."]
 ignore = ["**/typings"]
 exclude = [".*", "__*", "**/typings"]
 
-typeCheckingMode = "basic"
+typeCheckingMode = "standard"
 stubPath = "typings"
 typeshedPath = "typings"
 pythonVersion = "3.10"
