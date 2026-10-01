@@ -1965,7 +1965,7 @@ class OSError(Exception):
     if sys.platform == "win32":
         winerror: int
 
-# EnvironmentError = OSError
+EnvironmentError = OSError
 IOError = OSError
 if sys.platform == "win32":
     WindowsError = OSError
