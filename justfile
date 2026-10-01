@@ -140,3 +140,8 @@ release version commit :
     git tag {{version}} {{commit}}
     git push origin {{version}}
     gh release create {{version}} --title "MicroPython Stubs {{version}}" --draft --generate-notes
+
+# run community test 
+ct cat="micropython-lib": 
+    uv run python -m tests.quality_tests.ecosystem.cli --catalog {{cat}} --report --version 1.29.0 --checker pyright --checker mypy --cache-mode offline
+
