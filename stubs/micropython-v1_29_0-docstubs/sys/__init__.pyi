@@ -9,7 +9,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 # source version: v1.29.0
 # origin module:: repos/micropython/docs/library/sys.rst
 from __future__ import annotations
-from _typeshed import Incomplete, SupportsWrite
+from _typeshed import SupportsWrite, Incomplete
 from typing import Callable, NoReturn, Dict, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import IOBase_mp, _mp_implementation, mp_available

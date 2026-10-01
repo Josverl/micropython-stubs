@@ -84,7 +84,6 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import FileIO, PathLike, TextIOWrapper, AnyReadableBuf, AnyWritableBuf
 from _mpy_shed import IOBase_mp
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
-from array import array
 
 _T = TypeVar("_T")
 AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
@@ -191,15 +190,6 @@ class StringIO(IOBase_mp):
              This constructor is a MicroPython extension.
         """
 
-    def getvalue(self) -> str:
-        """
-        Get the current contents of the underlying buffer which holds data.
-        """
-        ...
-
-    def read(self, size: int | None = -1, /) -> str: ...
-    def write(self, s: str, /) -> int: ...
-
 class BytesIO(IOBase_mp):
     """
     Bytes stream from a bytes array (wrapper).
@@ -263,9 +253,6 @@ class BytesIO(IOBase_mp):
         Get the current contents of the underlying buffer which holds data.
         """
         ...
-
-    def read(self, size: int | None = -1, /) -> bytes: ...
-    def write(self, b: AnyReadableBuf, /) -> int: ...
 
 @overload
 def open(name: _OpenFile, /, **kwargs) -> TextIOWrapper:
