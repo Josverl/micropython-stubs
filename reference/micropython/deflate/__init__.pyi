@@ -25,6 +25,7 @@ from __future__ import annotations
 
 from types import TracebackType
 
+from _mpy_shed import mp_available
 from _typeshed import Incomplete
 from typing_extensions import Self
 
@@ -88,7 +89,9 @@ class DeflateIO:
     def readline(self, /) -> bytes: ...
     def write(self, buf: Incomplete, /) -> int: ...
     def close(self) -> None: ...
+    @mp_available()  # force push
     def __enter__(self) -> Self: ...
+    @mp_available()  # force push
     def __exit__(
         self,
         exc_type: type[BaseException] | None,
