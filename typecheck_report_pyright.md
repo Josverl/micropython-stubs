@@ -17,19 +17,6 @@ assert 1 == 0
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
 
-<a id="typecheck-detail-pyright-5313c9f7e03e"></a>
-## v1.28.0 esp32 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
 <a id="typecheck-detail-pyright-44b74672b0e6"></a>
 ## v1.28.0 esp32-esp32_generic_c6 espnow - FAIL
 
@@ -45,19 +32,6 @@ assert 1 == 0
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
 
-<a id="typecheck-detail-pyright-0d147449ab85"></a>
-## v1.28.0 esp32-esp32_generic_c6 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
 <a id="typecheck-detail-pyright-421be3f954b0"></a>
 ## v1.28.0 esp32-esp32_generic_s3 espnow - FAIL
 
@@ -69,58 +43,6 @@ pyright found 1 errors and 0 warnings in 8 files.
 assert 1 == 0
 
   Attribute "peers_table" is unknown
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-d2648bdabab5"></a>
-## v1.28.0 esp32-esp32_generic_s3 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-6128ab2c941d"></a>
-## v1.28.0 esp8266 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-b8baf368ed8a"></a>
-## v1.28.0 rp2-rpi_pico2_w networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-fe8fdebae595"></a>
-## v1.28.0 rp2-rpi_pico_w networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
 ```
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
@@ -164,19 +86,6 @@ assert 1 == 0
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
 
-<a id="typecheck-detail-pyright-1171d6c03212"></a>
-## v1.27.0 esp32 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
 <a id="typecheck-detail-pyright-7483e16d975b"></a>
 ## v1.27.0 esp32-esp32_generic_c6 espnow - FAIL
 
@@ -188,19 +97,6 @@ pyright found 1 errors and 0 warnings in 8 files.
 assert 1 == 0
 
   Attribute "peers_table" is unknown
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-12fdaba458c1"></a>
-## v1.27.0 esp32-esp32_generic_c6 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
 ```
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
@@ -220,61 +116,8 @@ assert 1 == 0
 
 1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
 
-<a id="typecheck-detail-pyright-3f8436d7c2a8"></a>
-## v1.27.0 esp32-esp32_generic_s3 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-f75d203219e0"></a>
-## v1.27.0 esp8266 networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-ba7d86d2eee0"></a>
-## v1.27.0 rp2-rpi_pico2_w networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
-<a id="typecheck-detail-pyright-4e154065a691"></a>
-## v1.27.0 rp2-rpi_pico_w networking - FAIL
-
-**Test specification:**
-> pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-networking-pyright]
-
-```text
-pyright found 1 errors and 0 warnings in 13 files.
-assert 1 == 0
-```
-
-1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics).
-
 ## Shared diagnostics
 
 ```text
-"check_espnow.py"(53,8): Cannot access attribute "peers_table" for class "ESPNow" (Reported by 6 tests)
-"check_socket.py"(19,12): "assert_type" mismatch: expected "bytes" but received "Unknown" (Reported by 12 tests)
+"check_espnow.py"(55,8): Cannot access attribute "peers_table" for class "ESPNow" (Reported by 6 tests)
 ```
