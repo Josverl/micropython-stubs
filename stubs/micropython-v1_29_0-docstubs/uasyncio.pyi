@@ -1,4 +1,20 @@
-# asyncio module
-# Allow the use of micro-module notation
-
-from asyncio import *  # type: ignore
+# This umodule is a MicroPython reference to asyncio
+from asyncio import Event as Event
+from asyncio import Lock as Lock
+from asyncio import Loop as Loop
+from asyncio import Server as Server
+from asyncio import Stream as Stream
+from asyncio import Task as Task
+from asyncio import ThreadSafeFlag as ThreadSafeFlag
+from asyncio import create_task as create_task
+from asyncio import current_task as current_task
+from asyncio import gather as gather
+from asyncio import get_event_loop as get_event_loop
+from asyncio import new_event_loop as new_event_loop
+from asyncio import open_connection as open_connection
+from asyncio import run as run
+from asyncio import sleep as sleep
+from asyncio import sleep_ms as sleep_ms
+from asyncio import start_server as start_server
+from asyncio import wait_for as wait_for
+from asyncio import wait_for_ms as wait_for_ms

@@ -1,4 +1,5 @@
-# hashlib module
-# Allow the use of micro-module notation
-
-from hashlib import *  # type: ignore
+# This umodule is a MicroPython reference to hashlib
+from hashlib import hash as hash
+from hashlib import md5 as md5
+from hashlib import sha1 as sha1
+from hashlib import sha256 as sha256

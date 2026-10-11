@@ -77,10 +77,6 @@ class _PIOInstr(Protocol):
     def __getitem__(self, delay: int, /) -> Self: ...
 
 if TYPE_CHECKING:
-    # defined functions are all methods of the (frozen) class PIOASMEmit:
-    # but also have a self method
-    from rp2 import PIOASMEmit, _PIO_ASM_Program
-
     # constants defined for PIO assembly
     # TODO: Make Final - or make const always return Final
 

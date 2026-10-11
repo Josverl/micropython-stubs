@@ -518,7 +518,9 @@ class SSLContext:
 
     options: Options
     verify_flags: VerifyFlags
+    # mp_available
     verify_mode: VerifyMode
+    """Certificate verification mode: `CERT_NONE`, `CERT_OPTIONAL` or `CERT_REQUIRED`."""
     @property
     def protocol(self) -> _SSLMethod: ...  # type: ignore[override]
     hostname_checks_common_name: bool
