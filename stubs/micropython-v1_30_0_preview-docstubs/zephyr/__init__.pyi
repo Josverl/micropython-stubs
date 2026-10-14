@@ -14,6 +14,8 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from zephyr.DiskAccess import DiskAccess
 from zephyr.Display import Display
 from zephyr.FlashArea import FlashArea
+from zephyr.PinCtrl import PinCtrl
+from zephyr.PinMux import PinMux
 from zephyr.zsensor import zsensor
 from DiskAccess import *
 from FlashArea import *

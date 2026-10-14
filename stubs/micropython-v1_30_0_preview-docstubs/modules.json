@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_30_0_preview",
         "nodename": "micropython",
         "version": "v1.30.0-preview",
-        "release": "v1.30.0-preview-119-ga550d906a",
+        "release": "v1.30.0-preview-127-g4a1fa4a56",
         "sysname": "micropython"
     },
     "stubber": {
@@ -515,6 +515,14 @@
         {
             "file": "zephyr/FlashArea.pyi",
             "module": "FlashArea"
+        },
+        {
+            "file": "zephyr/PinCtrl.pyi",
+            "module": "PinCtrl"
+        },
+        {
+            "file": "zephyr/PinMux.pyi",
+            "module": "PinMux"
         },
         {
             "file": "zephyr/__init__.pyi",
