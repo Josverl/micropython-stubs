@@ -771,6 +771,8 @@ def gpio_deep_sleep_hold(enable: bool, /) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
     deep-sleep mode for held pads. *enable* should be a boolean value.
+
+    ``Note:`` This is only available on ESP32, ESP32-C2, ESP32-C3, ESP32-S2, and ESP32-S3.
     """
     ...
 
