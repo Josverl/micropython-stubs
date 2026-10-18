@@ -32,11 +32,11 @@ assert 1394 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-asyncio-zuban]
 
 ```text
-zuban found 1479 errors and 0 warnings in 64 files.
-assert 1479 == 0
+zuban found 1474 errors and 0 warnings in 64 files.
+assert 1474 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0c84fc0b8920"></a>
 ## v1.29.0 esp32 bluetooth - XFAIL
@@ -45,11 +45,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-bluetooth-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3273e6b60212"></a>
 ## v1.29.0 esp32 esp32 - XFAIL
@@ -58,11 +58,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 65 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 65 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-93a71b4768a5"></a>
 ## v1.29.0 esp32 espnow - XFAIL
@@ -71,11 +71,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-espnow-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0f256041e8f3"></a>
 ## v1.29.0 esp32 machine - XFAIL
@@ -84,11 +84,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-machine-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-461ab1174a4a"></a>
 ## v1.29.0 esp32 micropython - XFAIL
@@ -97,11 +97,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-micropython-zuban]
 
 ```text
-zuban found 1491 errors and 0 warnings in 64 files.
-assert 1491 == 0
+zuban found 1481 errors and 0 warnings in 64 files.
+assert 1481 == 0
 ```
 
-1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cb9a7ed70102"></a>
 ## v1.29.0 esp32 networking - XFAIL
@@ -110,11 +110,11 @@ assert 1491 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-networking-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e0544c2555c6"></a>
 ## v1.29.0 esp32 stdlib - XFAIL
@@ -123,11 +123,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-stdlib-zuban]
 
 ```text
-zuban found 1484 errors and 0 warnings in 67 files.
-assert 1484 == 0
+zuban found 1479 errors and 0 warnings in 67 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2a8436aa15d9"></a>
 ## v1.29.0 esp32-esp32_generic_c6 asyncio - XFAIL
@@ -136,11 +136,11 @@ assert 1484 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-asyncio-zuban]
 
 ```text
-zuban found 1479 errors and 0 warnings in 64 files.
-assert 1479 == 0
+zuban found 1474 errors and 0 warnings in 64 files.
+assert 1474 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f14f360ae35f"></a>
 ## v1.29.0 esp32-esp32_generic_c6 bluetooth - XFAIL
@@ -149,11 +149,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-bluetooth-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-1f12a0a4e5d1"></a>
 ## v1.29.0 esp32-esp32_generic_c6 esp32 - XFAIL
@@ -162,11 +162,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-esp32-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 67 files.
-assert 1480 == 0
+zuban found 1478 errors and 0 warnings in 67 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-5d4572238d6e"></a>
 ## v1.29.0 esp32-esp32_generic_c6 espnow - XFAIL
@@ -175,11 +175,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-espnow-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-6e4e81ce3634"></a>
 ## v1.29.0 esp32-esp32_generic_c6 machine - XFAIL
@@ -188,11 +188,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-machine-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3f5bb4c76bb0"></a>
 ## v1.29.0 esp32-esp32_generic_c6 micropython - XFAIL
@@ -201,11 +201,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-micropython-zuban]
 
 ```text
-zuban found 1491 errors and 0 warnings in 64 files.
-assert 1491 == 0
+zuban found 1481 errors and 0 warnings in 64 files.
+assert 1481 == 0
 ```
 
-1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a552e0bf377e"></a>
 ## v1.29.0 esp32-esp32_generic_c6 networking - XFAIL
@@ -214,11 +214,11 @@ assert 1491 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-networking-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a428b98e8d0b"></a>
 ## v1.29.0 esp32-esp32_generic_c6 stdlib - XFAIL
@@ -227,11 +227,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_c6-stdlib-zuban]
 
 ```text
-zuban found 1484 errors and 0 warnings in 67 files.
-assert 1484 == 0
+zuban found 1479 errors and 0 warnings in 67 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-14cba949dbac"></a>
 ## v1.29.0 esp32-esp32_generic_s3 asyncio - XFAIL
@@ -240,11 +240,11 @@ assert 1484 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-asyncio-zuban]
 
 ```text
-zuban found 1479 errors and 0 warnings in 64 files.
-assert 1479 == 0
+zuban found 1474 errors and 0 warnings in 64 files.
+assert 1474 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-7fdebb598482"></a>
 ## v1.29.0 esp32-esp32_generic_s3 bluetooth - XFAIL
@@ -253,11 +253,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-bluetooth-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-989af76684c2"></a>
 ## v1.29.0 esp32-esp32_generic_s3 esp32 - XFAIL
@@ -266,11 +266,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-esp32-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 66 files.
-assert 1480 == 0
+zuban found 1476 errors and 0 warnings in 66 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-695f60dd6c44"></a>
 ## v1.29.0 esp32-esp32_generic_s3 espnow - XFAIL
@@ -279,11 +279,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-espnow-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cb231f65107a"></a>
 ## v1.29.0 esp32-esp32_generic_s3 machine - XFAIL
@@ -292,11 +292,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-machine-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-ba219b867d0e"></a>
 ## v1.29.0 esp32-esp32_generic_s3 micropython - XFAIL
@@ -305,11 +305,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-micropython-zuban]
 
 ```text
-zuban found 1491 errors and 0 warnings in 64 files.
-assert 1491 == 0
+zuban found 1481 errors and 0 warnings in 64 files.
+assert 1481 == 0
 ```
 
-1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-d93c55005444"></a>
 ## v1.29.0 esp32-esp32_generic_s3 networking - XFAIL
@@ -318,11 +318,11 @@ assert 1491 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-networking-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a1c02992239e"></a>
 ## v1.29.0 esp32-esp32_generic_s3 stdlib - XFAIL
@@ -331,11 +331,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp32-esp32_generic_s3-stdlib-zuban]
 
 ```text
-zuban found 1484 errors and 0 warnings in 67 files.
-assert 1484 == 0
+zuban found 1479 errors and 0 warnings in 67 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2e169a35efd1"></a>
 ## v1.29.0 esp8266 esp8266 - XFAIL
@@ -344,11 +344,11 @@ assert 1484 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp8266-esp8266-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-4426bcd0eaca"></a>
 ## v1.29.0 esp8266 machine - XFAIL
@@ -357,11 +357,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp8266-machine-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-340f3b7a73fa"></a>
 ## v1.29.0 esp8266 micropython - XFAIL
@@ -370,11 +370,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp8266-micropython-zuban]
 
 ```text
-zuban found 1471 errors and 0 warnings in 61 files.
-assert 1471 == 0
+zuban found 1463 errors and 0 warnings in 61 files.
+assert 1463 == 0
 ```
 
-1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1463 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-8aa078f4bc81"></a>
 ## v1.29.0 esp8266 networking - XFAIL
@@ -383,11 +383,11 @@ assert 1471 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp8266-networking-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9ee5e4f5842c"></a>
 ## v1.29.0 esp8266 stdlib - XFAIL
@@ -396,11 +396,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-esp8266-stdlib-zuban]
 
 ```text
-zuban found 1464 errors and 0 warnings in 64 files.
-assert 1464 == 0
+zuban found 1461 errors and 0 warnings in 64 files.
+assert 1461 == 0
 ```
 
-1464 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0893cbd5af79"></a>
 ## v1.29.0 rp2 asm_pio - XFAIL
@@ -409,11 +409,11 @@ assert 1464 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-asm_pio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-03db235ecc73"></a>
 ## v1.29.0 rp2 asyncio - XFAIL
@@ -422,11 +422,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-asyncio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-52d085bf0eef"></a>
 ## v1.29.0 rp2 machine - XFAIL
@@ -435,11 +435,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-machine-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-787fcea18029"></a>
 ## v1.29.0 rp2 micropython - XFAIL
@@ -448,11 +448,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-micropython-zuban]
 
 ```text
-zuban found 1493 errors and 0 warnings in 63 files.
-assert 1493 == 0
+zuban found 1483 errors and 0 warnings in 63 files.
+assert 1483 == 0
 ```
 
-1493 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f50e61aa1002"></a>
 ## v1.29.0 rp2 rp2 - XFAIL
@@ -461,11 +461,11 @@ assert 1493 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rp2-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-6443ad734d11"></a>
 ## v1.29.0 rp2 stdlib - XFAIL
@@ -474,11 +474,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-stdlib-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 66 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 66 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9f7c71e2eccd"></a>
 ## v1.29.0 rp2-rpi_pico asm_pio - XFAIL
@@ -526,11 +526,11 @@ assert 1446 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico-micropython-zuban]
 
 ```text
-zuban found 1459 errors and 0 warnings in 63 files.
-assert 1459 == 0
+zuban found 1454 errors and 0 warnings in 63 files.
+assert 1454 == 0
 ```
 
-1459 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1454 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a5d61dea5bbb"></a>
 ## v1.29.0 rp2-rpi_pico rp2 - XFAIL
@@ -604,11 +604,11 @@ assert 1446 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2-micropython-zuban]
 
 ```text
-zuban found 1459 errors and 0 warnings in 63 files.
-assert 1459 == 0
+zuban found 1454 errors and 0 warnings in 63 files.
+assert 1454 == 0
 ```
 
-1459 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1454 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-479fb4b50687"></a>
 ## v1.29.0 rp2-rpi_pico2 rp2 - XFAIL
@@ -643,11 +643,11 @@ assert 1452 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-aioble-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 63 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 63 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cfb6b5091b55"></a>
 ## v1.29.0 rp2-rpi_pico2_w asm_pio - XFAIL
@@ -656,11 +656,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-asm_pio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-42698395dcde"></a>
 ## v1.29.0 rp2-rpi_pico2_w asyncio - XFAIL
@@ -669,11 +669,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-asyncio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-96a488261465"></a>
 ## v1.29.0 rp2-rpi_pico2_w bluetooth - XFAIL
@@ -682,11 +682,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-bluetooth-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-fa3b8104617d"></a>
 ## v1.29.0 rp2-rpi_pico2_w machine - XFAIL
@@ -695,11 +695,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-machine-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-5df1bfef7dcd"></a>
 ## v1.29.0 rp2-rpi_pico2_w micropython - XFAIL
@@ -708,11 +708,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-micropython-zuban]
 
 ```text
-zuban found 1493 errors and 0 warnings in 63 files.
-assert 1493 == 0
+zuban found 1483 errors and 0 warnings in 63 files.
+assert 1483 == 0
 ```
 
-1493 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-d88afde133fd"></a>
 ## v1.29.0 rp2-rpi_pico2_w networking - XFAIL
@@ -721,11 +721,11 @@ assert 1493 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-networking-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-dac47cfc2b4e"></a>
 ## v1.29.0 rp2-rpi_pico2_w rp2 - XFAIL
@@ -734,11 +734,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-rp2-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-be5c23de5987"></a>
 ## v1.29.0 rp2-rpi_pico2_w stdlib - XFAIL
@@ -747,11 +747,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico2_w-stdlib-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 66 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 66 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3cc7a4be24ba"></a>
 ## v1.29.0 rp2-rpi_pico_w aioble - XFAIL
@@ -760,11 +760,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-aioble-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 63 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 63 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9c03f445da3f"></a>
 ## v1.29.0 rp2-rpi_pico_w asm_pio - XFAIL
@@ -773,11 +773,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-asm_pio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f9337b44060a"></a>
 ## v1.29.0 rp2-rpi_pico_w asyncio - XFAIL
@@ -786,11 +786,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-asyncio-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a75715d548d4"></a>
 ## v1.29.0 rp2-rpi_pico_w bluetooth - XFAIL
@@ -799,11 +799,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-bluetooth-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-b51da807a06d"></a>
 ## v1.29.0 rp2-rpi_pico_w machine - XFAIL
@@ -812,11 +812,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-machine-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-746d48a779ac"></a>
 ## v1.29.0 rp2-rpi_pico_w micropython - XFAIL
@@ -825,11 +825,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-micropython-zuban]
 
 ```text
-zuban found 1493 errors and 0 warnings in 63 files.
-assert 1493 == 0
+zuban found 1483 errors and 0 warnings in 63 files.
+assert 1483 == 0
 ```
 
-1493 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9ee6368cf56a"></a>
 ## v1.29.0 rp2-rpi_pico_w networking - XFAIL
@@ -838,11 +838,11 @@ assert 1493 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-networking-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1480 == 0
+zuban found 1475 errors and 0 warnings in 62 files.
+assert 1475 == 0
 ```
 
-1480 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1475 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-08e96d5007f2"></a>
 ## v1.29.0 rp2-rpi_pico_w rp2 - XFAIL
@@ -851,11 +851,11 @@ assert 1480 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-rp2-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 63 files.
-assert 1481 == 0
+zuban found 1476 errors and 0 warnings in 63 files.
+assert 1476 == 0
 ```
 
-1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9279f7f05325"></a>
 ## v1.29.0 rp2-rpi_pico_w stdlib - XFAIL
@@ -864,11 +864,11 @@ assert 1481 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-rp2-rpi_pico_w-stdlib-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 66 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 66 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-904c0dc8e69b"></a>
 ## v1.29.0 samd asyncio - XFAIL
@@ -903,11 +903,11 @@ assert 1434 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-samd-micropython-zuban]
 
 ```text
-zuban found 1447 errors and 0 warnings in 59 files.
-assert 1447 == 0
+zuban found 1442 errors and 0 warnings in 59 files.
+assert 1442 == 0
 ```
 
-1447 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1442 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-729f28aa71da"></a>
 ## v1.29.0 samd samd - XFAIL
@@ -968,11 +968,11 @@ assert 1434 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-samd-seeed_wio_terminal-micropython-zuban]
 
 ```text
-zuban found 1447 errors and 0 warnings in 59 files.
-assert 1447 == 0
+zuban found 1442 errors and 0 warnings in 59 files.
+assert 1442 == 0
 ```
 
-1447 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1442 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-fd08e4b0f0d0"></a>
 ## v1.29.0 samd-seeed_wio_terminal samd - XFAIL
@@ -1033,11 +1033,11 @@ assert 1454 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-stm32-micropython-zuban]
 
 ```text
-zuban found 1467 errors and 0 warnings in 62 files.
-assert 1467 == 0
+zuban found 1462 errors and 0 warnings in 62 files.
+assert 1462 == 0
 ```
 
-1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1462 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9a026cfb77a2"></a>
 ## v1.29.0 stm32 stdlib - XFAIL
@@ -1098,11 +1098,11 @@ assert 1454 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-stm32-pybv11-micropython-zuban]
 
 ```text
-zuban found 1467 errors and 0 warnings in 62 files.
-assert 1467 == 0
+zuban found 1462 errors and 0 warnings in 62 files.
+assert 1462 == 0
 ```
 
-1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1462 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e6270e8be47e"></a>
 ## v1.29.0 stm32-pybv11 stdlib - XFAIL
@@ -1137,11 +1137,11 @@ assert 1455 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-unix-asyncio-zuban]
 
 ```text
-zuban found 1467 errors and 0 warnings in 61 files.
-assert 1467 == 0
+zuban found 1462 errors and 0 warnings in 61 files.
+assert 1462 == 0
 ```
 
-1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1462 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-42b76a1e6e4b"></a>
 ## v1.29.0 unix micropython - XFAIL
@@ -1150,11 +1150,11 @@ assert 1467 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-unix-micropython-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 62 files.
-assert 1479 == 0
+zuban found 1470 errors and 0 warnings in 62 files.
+assert 1469 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1469 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-7d27edb32ff1"></a>
 ## v1.29.0 unix stdlib - XFAIL
@@ -1163,11 +1163,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-unix-stdlib-zuban]
 
 ```text
-zuban found 1472 errors and 0 warnings in 64 files.
-assert 1472 == 0
+zuban found 1467 errors and 0 warnings in 64 files.
+assert 1467 == 0
 ```
 
-1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-49647079caa6"></a>
 ## v1.29.0 unix unix - XFAIL
@@ -1176,11 +1176,11 @@ assert 1472 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-unix-unix-zuban]
 
 ```text
-zuban found 1466 errors and 0 warnings in 60 files.
-assert 1466 == 0
+zuban found 1461 errors and 0 warnings in 60 files.
+assert 1461 == 0
 ```
 
-1466 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cbfbe39b379c"></a>
 ## v1.29.0 webassembly micropython - XFAIL
@@ -1189,11 +1189,11 @@ assert 1466 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-webassembly-micropython-zuban]
 
 ```text
-zuban found 1451 errors and 0 warnings in 70 files.
-assert 1450 == 0
+zuban found 1446 errors and 0 warnings in 70 files.
+assert 1445 == 0
 ```
 
-1450 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1445 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-330ec99c4357"></a>
 ## v1.29.0 webassembly stdlib - XFAIL
@@ -1241,11 +1241,11 @@ assert 1431 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.29.0-windows-micropython-zuban]
 
 ```text
-zuban found 1444 errors and 0 warnings in 60 files.
-assert 1443 == 0
+zuban found 1439 errors and 0 warnings in 60 files.
+assert 1438 == 0
 ```
 
-1443 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1438 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-33a8518a6455"></a>
 ## v1.29.0 windows stdlib - XFAIL
@@ -1280,11 +1280,11 @@ assert 1430 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-asyncio-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c7e9426a7675"></a>
 ## v1.28.0 esp32 bluetooth - XFAIL
@@ -1293,11 +1293,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-bluetooth-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-965af2ee1b4e"></a>
 ## v1.28.0 esp32 esp32 - XFAIL
@@ -1306,11 +1306,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 65 files.
-assert 1479 == 0
+zuban found 1476 errors and 0 warnings in 65 files.
+assert 1474 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-45b7f6e5dc4b"></a>
 ## v1.28.0 esp32 espnow - XFAIL
@@ -1319,11 +1319,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-espnow-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-da86386d6a3e"></a>
 ## v1.28.0 esp32 machine - XFAIL
@@ -1332,11 +1332,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-machine-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-af275f32ee7f"></a>
 ## v1.28.0 esp32 micropython - XFAIL
@@ -1345,11 +1345,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-micropython-zuban]
 
 ```text
-zuban found 1499 errors and 0 warnings in 64 files.
-assert 1499 == 0
+zuban found 1489 errors and 0 warnings in 64 files.
+assert 1489 == 0
 ```
 
-1499 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1489 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-b95f639659ce"></a>
 ## v1.28.0 esp32 networking - XFAIL
@@ -1358,11 +1358,11 @@ assert 1499 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-networking-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9d6d0571eeca"></a>
 ## v1.28.0 esp32 stdlib - XFAIL
@@ -1371,11 +1371,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-stdlib-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 66 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 66 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-175c01b6e20f"></a>
 ## v1.28.0 esp32-esp32_generic_c6 asyncio - XFAIL
@@ -1384,11 +1384,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-asyncio-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 64 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 64 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-dfe8eef902ad"></a>
 ## v1.28.0 esp32-esp32_generic_c6 bluetooth - XFAIL
@@ -1397,11 +1397,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-bluetooth-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 63 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 63 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-dbd46d263cbb"></a>
 ## v1.28.0 esp32-esp32_generic_c6 esp32 - XFAIL
@@ -1410,11 +1410,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-esp32-zuban]
 
 ```text
-zuban found 1489 errors and 0 warnings in 68 files.
-assert 1484 == 0
+zuban found 1484 errors and 0 warnings in 68 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-56dfc6aea101"></a>
 ## v1.28.0 esp32-esp32_generic_c6 espnow - XFAIL
@@ -1423,11 +1423,11 @@ assert 1484 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-espnow-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 64 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 64 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0c07f61c23db"></a>
 ## v1.28.0 esp32-esp32_generic_c6 machine - XFAIL
@@ -1436,11 +1436,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-machine-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 63 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 63 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-79b6df152c7d"></a>
 ## v1.28.0 esp32-esp32_generic_c6 micropython - XFAIL
@@ -1449,11 +1449,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-micropython-zuban]
 
 ```text
-zuban found 1504 errors and 0 warnings in 65 files.
-assert 1504 == 0
+zuban found 1494 errors and 0 warnings in 65 files.
+assert 1494 == 0
 ```
 
-1504 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1494 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0ed07348da5d"></a>
 ## v1.28.0 esp32-esp32_generic_c6 networking - XFAIL
@@ -1462,11 +1462,11 @@ assert 1504 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-networking-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 63 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 63 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-12841faae250"></a>
 ## v1.28.0 esp32-esp32_generic_c6 stdlib - XFAIL
@@ -1475,11 +1475,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_c6-stdlib-zuban]
 
 ```text
-zuban found 1488 errors and 0 warnings in 67 files.
-assert 1488 == 0
+zuban found 1483 errors and 0 warnings in 67 files.
+assert 1483 == 0
 ```
 
-1488 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cdace47bbccf"></a>
 ## v1.28.0 esp32-esp32_generic_s3 asyncio - XFAIL
@@ -1488,11 +1488,11 @@ assert 1488 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-asyncio-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-8aaf3906e01a"></a>
 ## v1.28.0 esp32-esp32_generic_s3 bluetooth - XFAIL
@@ -1501,11 +1501,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-bluetooth-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f909a0b593a4"></a>
 ## v1.28.0 esp32-esp32_generic_s3 esp32 - XFAIL
@@ -1514,11 +1514,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-esp32-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 66 files.
-assert 1479 == 0
+zuban found 1477 errors and 0 warnings in 66 files.
+assert 1474 == 0
 ```
 
-1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9b3b97465f5f"></a>
 ## v1.28.0 esp32-esp32_generic_s3 espnow - XFAIL
@@ -1527,11 +1527,11 @@ assert 1479 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-espnow-zuban]
 
 ```text
-zuban found 1478 errors and 0 warnings in 63 files.
-assert 1478 == 0
+zuban found 1473 errors and 0 warnings in 63 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cb74df8d845b"></a>
 ## v1.28.0 esp32-esp32_generic_s3 machine - XFAIL
@@ -1540,11 +1540,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-machine-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c75de046bd2a"></a>
 ## v1.28.0 esp32-esp32_generic_s3 micropython - XFAIL
@@ -1553,11 +1553,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-micropython-zuban]
 
 ```text
-zuban found 1499 errors and 0 warnings in 64 files.
-assert 1499 == 0
+zuban found 1489 errors and 0 warnings in 64 files.
+assert 1489 == 0
 ```
 
-1499 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1489 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-7cd39ff8bea3"></a>
 ## v1.28.0 esp32-esp32_generic_s3 networking - XFAIL
@@ -1566,11 +1566,11 @@ assert 1499 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-networking-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-07bd13d3cc39"></a>
 ## v1.28.0 esp32-esp32_generic_s3 stdlib - XFAIL
@@ -1579,11 +1579,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp32-esp32_generic_s3-stdlib-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 66 files.
-assert 1483 == 0
+zuban found 1478 errors and 0 warnings in 66 files.
+assert 1478 == 0
 ```
 
-1483 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-1eef6e505816"></a>
 ## v1.28.0 esp8266 esp8266 - XFAIL
@@ -1592,11 +1592,11 @@ assert 1483 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-esp8266-zuban]
 
 ```text
-zuban found 1455 errors and 0 warnings in 59 files.
-assert 1455 == 0
+zuban found 1452 errors and 0 warnings in 59 files.
+assert 1452 == 0
 ```
 
-1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1452 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-d2cf69ca4f27"></a>
 ## v1.28.0 esp8266 machine - XFAIL
@@ -1605,11 +1605,11 @@ assert 1455 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-machine-zuban]
 
 ```text
-zuban found 1455 errors and 0 warnings in 59 files.
-assert 1455 == 0
+zuban found 1452 errors and 0 warnings in 59 files.
+assert 1452 == 0
 ```
 
-1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1452 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-74e7e63a8463"></a>
 ## v1.28.0 esp8266 micropython - XFAIL
@@ -1618,11 +1618,11 @@ assert 1455 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-micropython-zuban]
 
 ```text
-zuban found 1465 errors and 0 warnings in 61 files.
-assert 1464 == 0
+zuban found 1462 errors and 0 warnings in 61 files.
+assert 1461 == 0
 ```
 
-1464 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-9e8267583eeb"></a>
 ## v1.28.0 esp8266 networking - XFAIL
@@ -1631,11 +1631,11 @@ assert 1464 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-networking-zuban]
 
 ```text
-zuban found 1455 errors and 0 warnings in 59 files.
-assert 1455 == 0
+zuban found 1452 errors and 0 warnings in 59 files.
+assert 1452 == 0
 ```
 
-1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1452 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-20c2790b227e"></a>
 ## v1.28.0 esp8266 stdlib - XFAIL
@@ -1644,11 +1644,11 @@ assert 1455 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-esp8266-stdlib-zuban]
 
 ```text
-zuban found 1461 errors and 0 warnings in 63 files.
-assert 1461 == 0
+zuban found 1458 errors and 0 warnings in 63 files.
+assert 1458 == 0
 ```
 
-1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3c5e24c37a8d"></a>
 ## v1.28.0 rp2 asm_pio - XFAIL
@@ -1657,11 +1657,11 @@ assert 1461 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-asm_pio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cfd181aa2811"></a>
 ## v1.28.0 rp2 asyncio - XFAIL
@@ -1670,11 +1670,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-asyncio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a752d4d1e37e"></a>
 ## v1.28.0 rp2 machine - XFAIL
@@ -1683,11 +1683,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-machine-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-694fc017856f"></a>
 ## v1.28.0 rp2 micropython - XFAIL
@@ -1696,11 +1696,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-micropython-zuban]
 
 ```text
-zuban found 1518 errors and 0 warnings in 64 files.
-assert 1518 == 0
+zuban found 1508 errors and 0 warnings in 64 files.
+assert 1508 == 0
 ```
 
-1518 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1508 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0eda88cdd2dc"></a>
 ## v1.28.0 rp2 rp2 - XFAIL
@@ -1709,11 +1709,11 @@ assert 1518 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rp2-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0f476ff8a49d"></a>
 ## v1.28.0 rp2 stdlib - XFAIL
@@ -1722,11 +1722,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-stdlib-zuban]
 
 ```text
-zuban found 1502 errors and 0 warnings in 66 files.
-assert 1502 == 0
+zuban found 1497 errors and 0 warnings in 66 files.
+assert 1497 == 0
 ```
 
-1502 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-b4d479ee1da4"></a>
 ## v1.28.0 rp2-rpi_pico asm_pio - XFAIL
@@ -1774,11 +1774,11 @@ assert 1462 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico-micropython-zuban]
 
 ```text
-zuban found 1484 errors and 0 warnings in 64 files.
-assert 1484 == 0
+zuban found 1479 errors and 0 warnings in 64 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c9d7fcfe6903"></a>
 ## v1.28.0 rp2-rpi_pico rp2 - XFAIL
@@ -1852,11 +1852,11 @@ assert 1462 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2-micropython-zuban]
 
 ```text
-zuban found 1484 errors and 0 warnings in 64 files.
-assert 1484 == 0
+zuban found 1479 errors and 0 warnings in 64 files.
+assert 1479 == 0
 ```
 
-1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1479 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-69e250fb8a4d"></a>
 ## v1.28.0 rp2-rpi_pico2 rp2 - XFAIL
@@ -1891,11 +1891,11 @@ assert 1468 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-aioble-zuban]
 
 ```text
-zuban found 1499 errors and 0 warnings in 63 files.
-assert 1499 == 0
+zuban found 1494 errors and 0 warnings in 63 files.
+assert 1494 == 0
 ```
 
-1499 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1494 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e516f493f196"></a>
 ## v1.28.0 rp2-rpi_pico2_w asm_pio - XFAIL
@@ -1904,11 +1904,11 @@ assert 1499 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-asm_pio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f49031d2e2eb"></a>
 ## v1.28.0 rp2-rpi_pico2_w asyncio - XFAIL
@@ -1917,11 +1917,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-asyncio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-fb00f4293afd"></a>
 ## v1.28.0 rp2-rpi_pico2_w bluetooth - XFAIL
@@ -1930,11 +1930,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-bluetooth-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3b75cb09bd13"></a>
 ## v1.28.0 rp2-rpi_pico2_w machine - XFAIL
@@ -1943,11 +1943,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-machine-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2eb5efcb234b"></a>
 ## v1.28.0 rp2-rpi_pico2_w micropython - XFAIL
@@ -1956,11 +1956,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-micropython-zuban]
 
 ```text
-zuban found 1518 errors and 0 warnings in 64 files.
-assert 1518 == 0
+zuban found 1508 errors and 0 warnings in 64 files.
+assert 1508 == 0
 ```
 
-1518 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1508 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c5d2900e085d"></a>
 ## v1.28.0 rp2-rpi_pico2_w networking - XFAIL
@@ -1969,11 +1969,11 @@ assert 1518 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-networking-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-8078abf7f0d2"></a>
 ## v1.28.0 rp2-rpi_pico2_w rp2 - XFAIL
@@ -1982,11 +1982,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-rp2-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-266dfe70e235"></a>
 ## v1.28.0 rp2-rpi_pico2_w stdlib - XFAIL
@@ -1995,11 +1995,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico2_w-stdlib-zuban]
 
 ```text
-zuban found 1502 errors and 0 warnings in 66 files.
-assert 1502 == 0
+zuban found 1497 errors and 0 warnings in 66 files.
+assert 1497 == 0
 ```
 
-1502 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3cdd44194cba"></a>
 ## v1.28.0 rp2-rpi_pico_w aioble - XFAIL
@@ -2008,11 +2008,11 @@ assert 1502 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-aioble-zuban]
 
 ```text
-zuban found 1499 errors and 0 warnings in 63 files.
-assert 1499 == 0
+zuban found 1494 errors and 0 warnings in 63 files.
+assert 1494 == 0
 ```
 
-1499 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1494 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-28210905e35d"></a>
 ## v1.28.0 rp2-rpi_pico_w asm_pio - XFAIL
@@ -2021,11 +2021,11 @@ assert 1499 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-asm_pio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-85cfcf0be057"></a>
 ## v1.28.0 rp2-rpi_pico_w asyncio - XFAIL
@@ -2034,11 +2034,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-asyncio-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-a2c83b574a47"></a>
 ## v1.28.0 rp2-rpi_pico_w bluetooth - XFAIL
@@ -2047,11 +2047,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-bluetooth-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-d1f0687d807a"></a>
 ## v1.28.0 rp2-rpi_pico_w machine - XFAIL
@@ -2060,11 +2060,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-machine-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-b2d86ad85bb3"></a>
 ## v1.28.0 rp2-rpi_pico_w micropython - XFAIL
@@ -2073,11 +2073,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-micropython-zuban]
 
 ```text
-zuban found 1518 errors and 0 warnings in 64 files.
-assert 1518 == 0
+zuban found 1508 errors and 0 warnings in 64 files.
+assert 1508 == 0
 ```
 
-1518 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1508 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-4f9f5fdb31f8"></a>
 ## v1.28.0 rp2-rpi_pico_w networking - XFAIL
@@ -2086,11 +2086,11 @@ assert 1518 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-networking-zuban]
 
 ```text
-zuban found 1496 errors and 0 warnings in 62 files.
-assert 1496 == 0
+zuban found 1491 errors and 0 warnings in 62 files.
+assert 1491 == 0
 ```
 
-1496 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1491 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-20ffbff3984f"></a>
 ## v1.28.0 rp2-rpi_pico_w rp2 - XFAIL
@@ -2099,11 +2099,11 @@ assert 1496 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-rp2-zuban]
 
 ```text
-zuban found 1497 errors and 0 warnings in 63 files.
-assert 1497 == 0
+zuban found 1492 errors and 0 warnings in 63 files.
+assert 1492 == 0
 ```
 
-1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cdc5c54c0bc0"></a>
 ## v1.28.0 rp2-rpi_pico_w stdlib - XFAIL
@@ -2112,11 +2112,11 @@ assert 1497 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-rp2-rpi_pico_w-stdlib-zuban]
 
 ```text
-zuban found 1502 errors and 0 warnings in 66 files.
-assert 1502 == 0
+zuban found 1497 errors and 0 warnings in 66 files.
+assert 1497 == 0
 ```
 
-1502 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1497 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cfb63899b881"></a>
 ## v1.28.0 samd asyncio - XFAIL
@@ -2151,11 +2151,11 @@ assert 1433 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-samd-micropython-zuban]
 
 ```text
-zuban found 1455 errors and 0 warnings in 60 files.
-assert 1455 == 0
+zuban found 1450 errors and 0 warnings in 60 files.
+assert 1450 == 0
 ```
 
-1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1450 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-bf3aea81d794"></a>
 ## v1.28.0 samd samd - XFAIL
@@ -2216,11 +2216,11 @@ assert 1433 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-samd-seeed_wio_terminal-micropython-zuban]
 
 ```text
-zuban found 1455 errors and 0 warnings in 60 files.
-assert 1455 == 0
+zuban found 1450 errors and 0 warnings in 60 files.
+assert 1450 == 0
 ```
 
-1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1450 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-bef68f641628"></a>
 ## v1.28.0 samd-seeed_wio_terminal samd - XFAIL
@@ -2281,11 +2281,11 @@ assert 1450 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-stm32-micropython-zuban]
 
 ```text
-zuban found 1472 errors and 0 warnings in 63 files.
-assert 1472 == 0
+zuban found 1467 errors and 0 warnings in 63 files.
+assert 1467 == 0
 ```
 
-1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-98c999e81047"></a>
 ## v1.28.0 stm32 stdlib - XFAIL
@@ -2346,11 +2346,11 @@ assert 1450 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-stm32-pybv11-micropython-zuban]
 
 ```text
-zuban found 1472 errors and 0 warnings in 63 files.
-assert 1472 == 0
+zuban found 1467 errors and 0 warnings in 63 files.
+assert 1467 == 0
 ```
 
-1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-17f89b327b71"></a>
 ## v1.28.0 stm32-pybv11 stdlib - XFAIL
@@ -2385,11 +2385,11 @@ assert 1451 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-unix-asyncio-zuban]
 
 ```text
-zuban found 1466 errors and 0 warnings in 61 files.
-assert 1466 == 0
+zuban found 1461 errors and 0 warnings in 61 files.
+assert 1461 == 0
 ```
 
-1466 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c236d85352c5"></a>
 ## v1.28.0 unix micropython - XFAIL
@@ -2398,11 +2398,11 @@ assert 1466 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-unix-micropython-zuban]
 
 ```text
-zuban found 1488 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1478 errors and 0 warnings in 63 files.
+assert 1477 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-6c39dbcfe35a"></a>
 ## v1.28.0 unix stdlib - XFAIL
@@ -2411,11 +2411,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-unix-stdlib-zuban]
 
 ```text
-zuban found 1471 errors and 0 warnings in 64 files.
-assert 1471 == 0
+zuban found 1466 errors and 0 warnings in 64 files.
+assert 1466 == 0
 ```
 
-1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1466 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-42c390f3f44f"></a>
 ## v1.28.0 unix unix - XFAIL
@@ -2424,11 +2424,11 @@ assert 1471 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-unix-unix-zuban]
 
 ```text
-zuban found 1465 errors and 0 warnings in 60 files.
-assert 1465 == 0
+zuban found 1460 errors and 0 warnings in 60 files.
+assert 1460 == 0
 ```
 
-1465 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1460 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-cf7512c5dbc6"></a>
 ## v1.28.0 webassembly micropython - XFAIL
@@ -2437,11 +2437,11 @@ assert 1465 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-webassembly-micropython-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 71 files.
-assert 1457 == 0
+zuban found 1453 errors and 0 warnings in 71 files.
+assert 1452 == 0
 ```
 
-1457 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1452 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2c1755af47b9"></a>
 ## v1.28.0 webassembly stdlib - XFAIL
@@ -2496,11 +2496,11 @@ assert 1431 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.28.0-windows-micropython-zuban]
 
 ```text
-zuban found 1453 errors and 0 warnings in 61 files.
-assert 1452 == 0
+zuban found 1448 errors and 0 warnings in 61 files.
+assert 1447 == 0
 ```
 
-1452 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1447 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-00cc71b7c3b5"></a>
 ## v1.28.0 windows stdlib - XFAIL
@@ -2535,11 +2535,11 @@ assert 1430 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-asyncio-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2981d56633e1"></a>
 ## v1.27.0 esp32 bluetooth - XFAIL
@@ -2548,11 +2548,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-bluetooth-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-482d1751ec8d"></a>
 ## v1.27.0 esp32 esp32 - XFAIL
@@ -2561,11 +2561,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32-zuban]
 
 ```text
-zuban found 1480 errors and 0 warnings in 64 files.
-assert 1478 == 0
+zuban found 1475 errors and 0 warnings in 64 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0b8dbfc7be30"></a>
 ## v1.27.0 esp32 espnow - XFAIL
@@ -2574,11 +2574,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-espnow-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3b3e27a39f56"></a>
 ## v1.27.0 esp32 machine - XFAIL
@@ -2587,11 +2587,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-machine-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e8e96bdc4bad"></a>
 ## v1.27.0 esp32 micropython - XFAIL
@@ -2600,11 +2600,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-micropython-zuban]
 
 ```text
-zuban found 1498 errors and 0 warnings in 63 files.
-assert 1498 == 0
+zuban found 1488 errors and 0 warnings in 63 files.
+assert 1488 == 0
 ```
 
-1498 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1488 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-84092ddc62e0"></a>
 ## v1.27.0 esp32 networking - XFAIL
@@ -2613,11 +2613,11 @@ assert 1498 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-networking-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-caf697ee8ae3"></a>
 ## v1.27.0 esp32 stdlib - XFAIL
@@ -2626,11 +2626,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-stdlib-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 65 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 65 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-897deeded841"></a>
 ## v1.27.0 esp32-esp32_generic_c6 asyncio - XFAIL
@@ -2639,11 +2639,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-asyncio-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-418f853d2c41"></a>
 ## v1.27.0 esp32-esp32_generic_c6 bluetooth - XFAIL
@@ -2652,11 +2652,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-bluetooth-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-72753720762c"></a>
 ## v1.27.0 esp32-esp32_generic_c6 esp32 - XFAIL
@@ -2665,11 +2665,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-esp32-zuban]
 
 ```text
-zuban found 1483 errors and 0 warnings in 66 files.
-assert 1478 == 0
+zuban found 1478 errors and 0 warnings in 66 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-5cb50ef4f25a"></a>
 ## v1.27.0 esp32-esp32_generic_c6 espnow - XFAIL
@@ -2678,11 +2678,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-espnow-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-7cb4994d8d44"></a>
 ## v1.27.0 esp32-esp32_generic_c6 machine - XFAIL
@@ -2691,11 +2691,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-machine-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-2e6722240759"></a>
 ## v1.27.0 esp32-esp32_generic_c6 micropython - XFAIL
@@ -2704,11 +2704,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-micropython-zuban]
 
 ```text
-zuban found 1498 errors and 0 warnings in 63 files.
-assert 1498 == 0
+zuban found 1488 errors and 0 warnings in 63 files.
+assert 1488 == 0
 ```
 
-1498 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1488 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-255320df2dbc"></a>
 ## v1.27.0 esp32-esp32_generic_c6 networking - XFAIL
@@ -2717,11 +2717,11 @@ assert 1498 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-networking-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-53335321ca72"></a>
 ## v1.27.0 esp32-esp32_generic_c6 stdlib - XFAIL
@@ -2730,11 +2730,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_c6-stdlib-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 65 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 65 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-7b6ec087f0aa"></a>
 ## v1.27.0 esp32-esp32_generic_s3 asyncio - XFAIL
@@ -2743,11 +2743,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-asyncio-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-c141ccf56e63"></a>
 ## v1.27.0 esp32-esp32_generic_s3 bluetooth - XFAIL
@@ -2756,11 +2756,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-bluetooth-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-ef4ad26ffa36"></a>
 ## v1.27.0 esp32-esp32_generic_s3 esp32 - XFAIL
@@ -2769,11 +2769,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-esp32-zuban]
 
 ```text
-zuban found 1481 errors and 0 warnings in 65 files.
-assert 1478 == 0
+zuban found 1476 errors and 0 warnings in 65 files.
+assert 1473 == 0
 ```
 
-1478 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1473 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-93c15cee2810"></a>
 ## v1.27.0 esp32-esp32_generic_s3 espnow - XFAIL
@@ -2782,11 +2782,11 @@ assert 1478 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-espnow-zuban]
 
 ```text
-zuban found 1477 errors and 0 warnings in 62 files.
-assert 1477 == 0
+zuban found 1472 errors and 0 warnings in 62 files.
+assert 1472 == 0
 ```
 
-1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e63b0ea9eb2b"></a>
 ## v1.27.0 esp32-esp32_generic_s3 machine - XFAIL
@@ -2795,11 +2795,11 @@ assert 1477 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-machine-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-b21fd363dece"></a>
 ## v1.27.0 esp32-esp32_generic_s3 micropython - XFAIL
@@ -2808,11 +2808,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-micropython-zuban]
 
 ```text
-zuban found 1498 errors and 0 warnings in 63 files.
-assert 1498 == 0
+zuban found 1488 errors and 0 warnings in 63 files.
+assert 1488 == 0
 ```
 
-1498 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1488 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-37470adfce6c"></a>
 ## v1.27.0 esp32-esp32_generic_s3 networking - XFAIL
@@ -2821,11 +2821,11 @@ assert 1498 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-networking-zuban]
 
 ```text
-zuban found 1476 errors and 0 warnings in 61 files.
-assert 1476 == 0
+zuban found 1471 errors and 0 warnings in 61 files.
+assert 1471 == 0
 ```
 
-1476 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1471 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-df8a6de50ce0"></a>
 ## v1.27.0 esp32-esp32_generic_s3 stdlib - XFAIL
@@ -2834,11 +2834,11 @@ assert 1476 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp32-esp32_generic_s3-stdlib-zuban]
 
 ```text
-zuban found 1482 errors and 0 warnings in 65 files.
-assert 1482 == 0
+zuban found 1477 errors and 0 warnings in 65 files.
+assert 1477 == 0
 ```
 
-1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1477 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-656c6f18b98a"></a>
 ## v1.27.0 esp8266 esp8266 - XFAIL
@@ -2847,11 +2847,11 @@ assert 1482 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-esp8266-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-01b73cf97bac"></a>
 ## v1.27.0 esp8266 machine - XFAIL
@@ -2860,11 +2860,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-machine-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-11847a01706d"></a>
 ## v1.27.0 esp8266 micropython - XFAIL
@@ -2873,11 +2873,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-micropython-zuban]
 
 ```text
-zuban found 1468 errors and 0 warnings in 62 files.
-assert 1467 == 0
+zuban found 1465 errors and 0 warnings in 62 files.
+assert 1464 == 0
 ```
 
-1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1464 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-8576ca9f9732"></a>
 ## v1.27.0 esp8266 networking - XFAIL
@@ -2886,11 +2886,11 @@ assert 1467 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-networking-zuban]
 
 ```text
-zuban found 1458 errors and 0 warnings in 60 files.
-assert 1458 == 0
+zuban found 1455 errors and 0 warnings in 60 files.
+assert 1455 == 0
 ```
 
-1458 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1455 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-93fb0e5e3b15"></a>
 ## v1.27.0 esp8266 stdlib - XFAIL
@@ -2899,11 +2899,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-esp8266-stdlib-zuban]
 
 ```text
-zuban found 1464 errors and 0 warnings in 64 files.
-assert 1464 == 0
+zuban found 1461 errors and 0 warnings in 64 files.
+assert 1461 == 0
 ```
 
-1464 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1461 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-0880dad7ddbb"></a>
 ## v1.27.0 rp2-rpi_pico2 asm_pio - XFAIL
@@ -2951,11 +2951,11 @@ assert 1452 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2-micropython-zuban]
 
 ```text
-zuban found 1474 errors and 0 warnings in 64 files.
-assert 1474 == 0
+zuban found 1469 errors and 0 warnings in 64 files.
+assert 1469 == 0
 ```
 
-1474 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1469 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-1de6a32c5824"></a>
 ## v1.27.0 rp2-rpi_pico2 rp2 - XFAIL
@@ -2990,11 +2990,11 @@ assert 1458 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-aioble-zuban]
 
 ```text
-zuban found 1489 errors and 0 warnings in 63 files.
-assert 1489 == 0
+zuban found 1484 errors and 0 warnings in 63 files.
+assert 1484 == 0
 ```
 
-1489 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-521606fab1db"></a>
 ## v1.27.0 rp2-rpi_pico2_w asm_pio - XFAIL
@@ -3003,11 +3003,11 @@ assert 1489 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-asm_pio-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-d1f2152afaa5"></a>
 ## v1.27.0 rp2-rpi_pico2_w asyncio - XFAIL
@@ -3016,11 +3016,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-asyncio-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-914b4f593bf8"></a>
 ## v1.27.0 rp2-rpi_pico2_w bluetooth - XFAIL
@@ -3029,11 +3029,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-bluetooth-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f1ed93c2a710"></a>
 ## v1.27.0 rp2-rpi_pico2_w machine - XFAIL
@@ -3042,11 +3042,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-machine-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e7df705b81f5"></a>
 ## v1.27.0 rp2-rpi_pico2_w micropython - XFAIL
@@ -3055,11 +3055,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-micropython-zuban]
 
 ```text
-zuban found 1508 errors and 0 warnings in 64 files.
-assert 1508 == 0
+zuban found 1498 errors and 0 warnings in 64 files.
+assert 1498 == 0
 ```
 
-1508 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1498 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-32c10dc71c4b"></a>
 ## v1.27.0 rp2-rpi_pico2_w networking - XFAIL
@@ -3068,11 +3068,11 @@ assert 1508 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-networking-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3e508cb9434f"></a>
 ## v1.27.0 rp2-rpi_pico2_w rp2 - XFAIL
@@ -3081,11 +3081,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-rp2-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-72d80eb95d0e"></a>
 ## v1.27.0 rp2-rpi_pico2_w stdlib - XFAIL
@@ -3094,11 +3094,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico2_w-stdlib-zuban]
 
 ```text
-zuban found 1492 errors and 0 warnings in 66 files.
-assert 1492 == 0
+zuban found 1487 errors and 0 warnings in 66 files.
+assert 1487 == 0
 ```
 
-1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-003f96bb9d82"></a>
 ## v1.27.0 rp2-rpi_pico_w aioble - XFAIL
@@ -3107,11 +3107,11 @@ assert 1492 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-aioble-zuban]
 
 ```text
-zuban found 1489 errors and 0 warnings in 63 files.
-assert 1489 == 0
+zuban found 1484 errors and 0 warnings in 63 files.
+assert 1484 == 0
 ```
 
-1489 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1484 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f39bd25f0954"></a>
 ## v1.27.0 rp2-rpi_pico_w asm_pio - XFAIL
@@ -3120,11 +3120,11 @@ assert 1489 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-asm_pio-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e4dfa13308d3"></a>
 ## v1.27.0 rp2-rpi_pico_w asyncio - XFAIL
@@ -3133,11 +3133,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-asyncio-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-f2be9486ca21"></a>
 ## v1.27.0 rp2-rpi_pico_w bluetooth - XFAIL
@@ -3146,11 +3146,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-bluetooth-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-fdd8cf26550a"></a>
 ## v1.27.0 rp2-rpi_pico_w machine - XFAIL
@@ -3159,11 +3159,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-machine-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-63bc3e8b43d6"></a>
 ## v1.27.0 rp2-rpi_pico_w micropython - XFAIL
@@ -3172,11 +3172,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-micropython-zuban]
 
 ```text
-zuban found 1508 errors and 0 warnings in 64 files.
-assert 1508 == 0
+zuban found 1498 errors and 0 warnings in 64 files.
+assert 1498 == 0
 ```
 
-1508 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1498 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e09e9bb96e39"></a>
 ## v1.27.0 rp2-rpi_pico_w networking - XFAIL
@@ -3185,11 +3185,11 @@ assert 1508 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-networking-zuban]
 
 ```text
-zuban found 1486 errors and 0 warnings in 62 files.
-assert 1486 == 0
+zuban found 1481 errors and 0 warnings in 62 files.
+assert 1481 == 0
 ```
 
-1486 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1481 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-e5c52ea46d81"></a>
 ## v1.27.0 rp2-rpi_pico_w rp2 - XFAIL
@@ -3198,11 +3198,11 @@ assert 1486 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-rp2-zuban]
 
 ```text
-zuban found 1487 errors and 0 warnings in 63 files.
-assert 1487 == 0
+zuban found 1482 errors and 0 warnings in 63 files.
+assert 1482 == 0
 ```
 
-1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1482 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-3f2de5b776ff"></a>
 ## v1.27.0 rp2-rpi_pico_w stdlib - XFAIL
@@ -3211,11 +3211,11 @@ assert 1487 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-rp2-rpi_pico_w-stdlib-zuban]
 
 ```text
-zuban found 1492 errors and 0 warnings in 66 files.
-assert 1492 == 0
+zuban found 1487 errors and 0 warnings in 66 files.
+assert 1487 == 0
 ```
 
-1492 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1487 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-bf7e19fdb313"></a>
 ## v1.27.0 samd asyncio - XFAIL
@@ -3250,11 +3250,11 @@ assert 1431 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-samd-micropython-zuban]
 
 ```text
-zuban found 1453 errors and 0 warnings in 60 files.
-assert 1453 == 0
+zuban found 1448 errors and 0 warnings in 60 files.
+assert 1448 == 0
 ```
 
-1453 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1448 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-1e149b40f809"></a>
 ## v1.27.0 samd samd - XFAIL
@@ -3315,11 +3315,11 @@ assert 1431 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-samd-seeed_wio_terminal-micropython-zuban]
 
 ```text
-zuban found 1453 errors and 0 warnings in 60 files.
-assert 1453 == 0
+zuban found 1448 errors and 0 warnings in 60 files.
+assert 1448 == 0
 ```
 
-1453 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1448 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-8c02a4e8a6bb"></a>
 ## v1.27.0 samd-seeed_wio_terminal samd - XFAIL
@@ -3380,11 +3380,11 @@ assert 1450 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-stm32-micropython-zuban]
 
 ```text
-zuban found 1472 errors and 0 warnings in 63 files.
-assert 1472 == 0
+zuban found 1467 errors and 0 warnings in 63 files.
+assert 1467 == 0
 ```
 
-1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-bf548b6fb736"></a>
 ## v1.27.0 stm32 stdlib - XFAIL
@@ -3445,11 +3445,11 @@ assert 1450 == 0
 > pytest tests/quality_tests/test_snippets.py::test_typecheck[local-v1.27.0-stm32-pybv11-micropython-zuban]
 
 ```text
-zuban found 1472 errors and 0 warnings in 63 files.
-assert 1472 == 0
+zuban found 1467 errors and 0 warnings in 63 files.
+assert 1467 == 0
 ```
 
-1472 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
+1467 shared diagnostics omitted; see [Shared diagnostics](#shared-diagnostics).
 
 <a id="typecheck-detail-zuban-5e271f47e7aa"></a>
 ## v1.27.0 stm32-pybv11 stdlib - XFAIL
@@ -3644,18 +3644,13 @@ assert 1451 == 0
 "check_micropython/check_viper.py"(47,40): Name "ptr" is not defined (Reported by 27 tests)
 "check_micropython/check_viper.py"(47,48): Name "uint" is not defined (Reported by 27 tests)
 "check_pyb.py"(18,4): Statement is unreachable (Reported by 6 tests)
-"check_uctypes.py"(30,7): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(31,7): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(32,22): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(32,22): Argument 1 to "hex" has incompatible type "None"; expected "SupportsIndex" (Reported by 41 tests)
-"check_uctypes.py"(56,12): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(56,12): Value of type "None" is not indexable (Reported by 41 tests)
-"check_uctypes.py"(81,0): "None" has no attribute "WDGTB" (Reported by 41 tests)
-"check_uctypes.py"(81,0): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(82,0): "None" has no attribute "WDGA" (Reported by 41 tests)
-"check_uctypes.py"(82,0): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
-"check_uctypes.py"(83,26): "None" has no attribute "T" (Reported by 41 tests)
-"check_uctypes.py"(83,26): "__getattr__" of "struct" does not return a value (it only ever returns None) (Reported by 41 tests)
+"check_uctypes.py"(30,7): "struct" has no attribute "EI_MAG" (Reported by 41 tests)
+"check_uctypes.py"(31,7): "struct" has no attribute "EI_DATA" (Reported by 41 tests)
+"check_uctypes.py"(32,22): "struct" has no attribute "e_machine" (Reported by 41 tests)
+"check_uctypes.py"(56,12): "struct" has no attribute "ptr" (Reported by 41 tests)
+"check_uctypes.py"(81,0): "struct" has no attribute "WWDG_CFR" (Reported by 41 tests)
+"check_uctypes.py"(82,0): "struct" has no attribute "WWDG_CR" (Reported by 41 tests)
+"check_uctypes.py"(83,26): "struct" has no attribute "WWDG_CR" (Reported by 41 tests)
 "check_uio.py"(7,24): Argument 1 to "StringIO" has incompatible type "int"; expected "str | None" (Reported by 43 tests)
 "cmath.pyi"(25,16): Unsupported left operand type for | ("type[SupportsFloat]") (Reported by 136 tests)
 "cmath.pyi"(25,4): Invalid type comment or annotation (Reported by 136 tests)
@@ -4990,14 +4985,9 @@ assert 1451 == 0
 "stdlib/ssl.pyi"(109,37): Name "SSLSocket" is not defined (Reported by 161 tests)
 "stdlib/ssl.pyi"(109,49): Name "SSLObject" is not defined (Reported by 161 tests)
 "stdlib/ssl.pyi"(109,72): Name "SSLSocket" is not defined (Reported by 161 tests)
-"stdlib/ssl.pyi"(242,16): Cannot assign to final name "CERT_NONE" (Reported by 161 tests)
-"stdlib/ssl.pyi"(243,20): Cannot assign to final name "CERT_OPTIONAL" (Reported by 146 tests)
-"stdlib/ssl.pyi"(244,20): Cannot assign to final name "CERT_REQUIRED" (Reported by 146 tests)
 "stdlib/ssl.pyi"(246,0): Cannot assign to final name "CERT_NONE" (Reported by 161 tests)
 "stdlib/ssl.pyi"(251,0): Cannot assign to final name "CERT_OPTIONAL" (Reported by 146 tests)
 "stdlib/ssl.pyi"(256,0): Cannot assign to final name "CERT_REQUIRED" (Reported by 146 tests)
-"stdlib/ssl.pyi"(290,26): Cannot assign to final name "PROTOCOL_TLS_CLIENT" (Reported by 161 tests)
-"stdlib/ssl.pyi"(291,26): Cannot assign to final name "PROTOCOL_TLS_SERVER" (Reported by 161 tests)
 "stdlib/ssl.pyi"(300,0): Cannot assign to final name "PROTOCOL_TLS_CLIENT" (Reported by 161 tests)
 "stdlib/ssl.pyi"(302,0): Cannot assign to final name "PROTOCOL_TLS_SERVER" (Reported by 161 tests)
 "stdlib/ssl.pyi"(414,34): Invalid type comment or annotation (Reported by 266 tests)
