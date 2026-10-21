@@ -7,9 +7,7 @@ from typing import Callable, Literal, Optional
 from _mpy_shed import _IRQ
 from _typeshed import Incomplete
 from machine import Pin
-from rp2 import _PIO_ASM_Program, bootsel_button
-from rp2.DMA import DMA
-from rp2.Flash import Flash
+from rp2 import _PIO_ASM_Program
 from rp2.StateMachine import StateMachine
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
