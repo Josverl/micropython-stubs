@@ -7,7 +7,10 @@ from typing import Callable, Optional, Union, overload
 from _mpy_shed import _IRQ
 from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
 from machine import Pin
-from rp2 import _PIO_ASM_Program
+from rp2 import _PIO_ASM_Program, bootsel_button
+from rp2.DMA import DMA
+from rp2.Flash import Flash
+from rp2.PIO import PIO
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class StateMachine:
