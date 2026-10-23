@@ -140,3 +140,16 @@ release version commit :
     git tag {{version}} {{commit}}
     git push origin {{version}}
     gh release create {{version}} --title "MicroPython Stubs {{version}}" --draft --generate-notes
+
+# run community test 
+ct cat="micropython-lib" mode="offline" *PARAMS: 
+    uv run python -m tests.quality_tests.ecosystem.cli --catalog {{cat}} --report --version 1.29.0 --checker pyright --checker mypy --cache-mode {{mode}} {{PARAMS}}
+
+mbct pkg="usb-device-keyboard":
+    stubber docstubs  --version stable
+    stubber merge --port esp32 --board esp32_generic_s3  --version stable
+    stubber build --port esp32 --board esp32_generic_s3  --version stable
+    @just single {{pkg}}
+    
+single pkg="github:micropython/micropython-lib/micropython/aioespnow":
+    uv run python -m tests.quality_tests.ecosystem.cli --package {{pkg}} --version v1.29.0 --portboard esp32-esp32_generic_s3 --checker pyright --checker mypy --stub-source local --no-stub-cache --cache-mode offline

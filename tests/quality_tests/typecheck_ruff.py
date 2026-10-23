@@ -116,7 +116,7 @@ def run_ruff(path: Path) -> list:
         "--output-format=json",
         ".",
     ]
-    
+
     try:
         with chdir_mgr(path):
             result = subprocess.run(
@@ -124,22 +124,23 @@ def run_ruff(path: Path) -> list:
                 capture_output=True,
                 text=True,
             )
-            
+
             # ruff returns exit code 1 if there are violations, which is expected
             if result.returncode not in (0, 1):
-                log.error(f"Ruff failed with returncode {result.returncode}: {result.stderr}")
-                return []
-            
-            if result.stdout.strip():
-                try:
-                    return json.loads(result.stdout)
-                except json.JSONDecodeError as e:
-                    log.error(f"Could not parse ruff JSON output: {e}")
-                    return []
-            return []
-    except Exception as e:
-        log.error(f"Error running ruff: {e}")
-        return []
+                raise RuntimeError(f"Ruff failed with returncode {result.returncode}: {result.stderr}")
+
+            if not result.stdout.strip():
+                raise RuntimeError(f"Ruff produced no JSON output with returncode {result.returncode}: {result.stderr}")
+            try:
+                output = json.loads(result.stdout)
+            except json.JSONDecodeError as error:
+                raise RuntimeError(f"Could not parse Ruff JSON output: {error}") from error
+            if not isinstance(output, list):
+                raise RuntimeError("Ruff JSON output is not a diagnostic list")
+            return output
+    except Exception:
+        log.exception("Error running Ruff")
+        raise
 
 
 def ruff_to_pyright(ruff_output: list, base_path: Path):
@@ -158,44 +159,44 @@ def ruff_to_pyright(ruff_output: list, base_path: Path):
     pyright_report["generalDiagnostics"] = []
 
     files_analyzed = set()
-    
+
     for issue in ruff_output:
         i = json.loads(DIAGNOSTIC)
-        
+
         # Get the file path and make it absolute
         file_path = Path(issue.get("filename", ""))
         if not file_path.is_absolute():
             file_path = base_path / file_path
         i["file"] = str(file_path)
         files_analyzed.add(str(file_path))
-        
+
         # Map severity - ruff doesn't have severity in the same way, treat all as errors
         # unless it's a specific rule we want to treat as warning
         i["severity"] = "error"
-        
+
         # Get the message and rule
         i["message"] = issue.get("message", "")
         code = issue.get("code", "")
         i["rule"] = code
-        
+
         # Get the location
         location = issue.get("location", {})
         # ruff uses 1-based lines, pyright uses 0-based lines
         line_no = location.get("row", 1) - 1
         col_no = location.get("column", 0) - 1 if location.get("column", 0) > 0 else 0
-        
+
         i["range"]["start"]["line"] = line_no
         i["range"]["start"]["character"] = col_no
         i["range"]["end"]["line"] = line_no
         i["range"]["end"]["character"] = col_no + 1
-        
+
         pyright_report["generalDiagnostics"].append(i)
 
     # Update summary counts
     for sev in ["error", "warning", "information"]:
         count = len([d for d in pyright_report["generalDiagnostics"] if d["severity"] == sev])
         pyright_report["summary"][f"{sev}Count"] = count
-    
+
     pyright_report["summary"]["filesAnalyzed"] = len(files_analyzed)
-    
+
     return pyright_report

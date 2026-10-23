@@ -27,6 +27,62 @@ Store the stubs in a folder in your repo or somewhere else on a disk, the defaul
 
 ### Enjoy enhanced code completion and type checking!
 
+## Migrating to the canonical `stdlib/` layout
+
+Recent board and port packages install MicroPython modules that shadow CPython
+standard-library modules once, under `stdlib/`. They are no longer duplicated at
+the root of the install target.
+
+When upgrading from a package that used the flat layout, remove the existing
+target before reinstalling. `pip --target` and `uv pip --target` overwrite files
+but do not remove obsolete flat stubs:
+
+```bash
+# Remove only the dedicated stub target, then recreate it.
+rm -rf typings
+python -m pip install -U micropython-<port>[-<board>]-stubs --no-user --target typings
+```
+
+On Windows PowerShell, replace the removal command with:
+
+```powershell
+Remove-Item -LiteralPath .\typings -Recurse -Force
+```
+
+Configure each checker with the install-target root, not with a copied set of
+flat compatibility files:
+
+```toml
+[tool.pyright]
+stubPath = "typings"
+typeshedPath = "typings"
+
+[tool.mypy]
+mypy_path = "typings"
+custom_typeshed_dir = "typings"
+
+[tool.zuban]
+mypy_path = ["typings", "typings/stdlib"]
+
+[tool.ty.environment]
+extra-paths = ["typings"]
+typeshed = "typings"
+```
+
+For Pylance, use the equivalent workspace settings:
+
+```json
+{
+    "python.analysis.stubPath": "typings",
+    "python.analysis.typeshedPaths": ["typings"]
+}
+```
+
+The package layout intentionally has no flat-plus-`stdlib/` compatibility mode.
+If an older tool cannot read the configured stdlib location, keep using the
+previous package release until that tool can be configured, rather than copying
+the shadow modules and creating two competing definitions.
+
 ## 2: Install in a Virtual Environment
 
 Install the stubs into your active python virtual environment (venv) 
@@ -89,4 +145,3 @@ micropython-esp32-stubs~=1.23.0
 Then install the stubs with `pip install -r requirements-dev.txt --target typings`.	
 
 :::
-

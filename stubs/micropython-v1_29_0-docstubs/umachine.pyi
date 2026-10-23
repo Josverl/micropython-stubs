@@ -1,4 +1,33 @@
-# machine module
-# Allow the use of micro-module notation
-
-from machine import *  # type: ignore
+# This umodule is a MicroPython reference to machine
+from machine import DEEPSLEEP as DEEPSLEEP
+from machine import DEEPSLEEP_RESET as DEEPSLEEP_RESET
+from machine import HARD_RESET as HARD_RESET
+from machine import IDLE as IDLE
+from machine import PIN_WAKE as PIN_WAKE
+from machine import PWRON_RESET as PWRON_RESET
+from machine import RTC_WAKE as RTC_WAKE
+from machine import SLEEP as SLEEP
+from machine import SOFT_RESET as SOFT_RESET
+from machine import WDT_RESET as WDT_RESET
+from machine import WLAN_WAKE as WLAN_WAKE
+from machine import bitstream as bitstream
+from machine import bootloader as bootloader
+from machine import deepsleep as deepsleep
+from machine import disable_irq as disable_irq
+from machine import enable_irq as enable_irq
+from machine import freq as freq
+from machine import idle as idle
+from machine import lightsleep as lightsleep
+from machine import mem8 as mem8
+from machine import mem16 as mem16
+from machine import mem32 as mem32
+from machine import mem_backup as mem_backup
+from machine import reset as reset
+from machine import reset_cause as reset_cause
+from machine import rng as rng
+from machine import sleep as sleep
+from machine import soft_reset as soft_reset
+from machine import time_pulse_us as time_pulse_us
+from machine import unique_id as unique_id
+from machine import wake_pins as wake_pins
+from machine import wake_reason as wake_reason

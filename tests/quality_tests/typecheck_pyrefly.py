@@ -68,7 +68,7 @@ def pyrefly_version():
         return "unknown"
 
 
-def check_with_pyrefly(snip_path: Path):
+def check_with_pyrefly(snip_path: Path, *, targets: tuple[str, ...] = ()):
     """
     Run pyrefly on the specified path and return the type checking results.
 
@@ -79,7 +79,7 @@ def check_with_pyrefly(snip_path: Path):
         json: The type checking results in pyright format.
 
     """
-    raw_results = run_pyrefly(snip_path)
+    raw_results = run_pyrefly(snip_path, targets=targets)
     results = pyrefly_to_pyright(raw_results, snip_path)
     return results
 
@@ -98,7 +98,7 @@ def chdir_mgr(path):
         os.chdir(oldpwd)
 
 
-def run_pyrefly(path: Path) -> list:
+def run_pyrefly(path: Path, *, targets: tuple[str, ...] = ()) -> list:
     """
     Run pyrefly on the specified path.
 
@@ -108,15 +108,13 @@ def run_pyrefly(path: Path) -> list:
     Returns:
         list: The result of running pyrefly in JSON format.
     """
-    # Do not pass a file/folder argument: this keeps pyrefly in "project-checking mode"
-    # so that the project_includes/project_excludes from pyproject.toml (e.g. excluding
-    # the typings folder) are honored.
     cmd = [
         sys.executable,
         "-m",
         "pyrefly",
         "check",
         "--output-format=json",
+        *targets,
     ]
 
     try:
@@ -129,19 +127,20 @@ def run_pyrefly(path: Path) -> list:
 
             # pyrefly returns exit code 1 if there are errors, which is expected
             if result.returncode not in (0, 1):
-                log.error(f"Pyrefly failed with returncode {result.returncode}: {result.stderr}")
-                return []
+                raise RuntimeError(f"Pyrefly failed with returncode {result.returncode}: {result.stderr}")
 
-            if result.stdout.strip():
-                try:
-                    return json.loads(result.stdout).get("errors", [])
-                except json.JSONDecodeError as e:
-                    log.error(f"Could not parse pyrefly JSON output: {e}")
-                    return []
-            return []
-    except Exception as e:
-        log.error(f"Error running pyrefly: {e}")
-        return []
+            if not result.stdout.strip():
+                raise RuntimeError(f"Pyrefly produced no JSON output with returncode {result.returncode}: {result.stderr}")
+            try:
+                output = json.loads(result.stdout)
+            except json.JSONDecodeError as error:
+                raise RuntimeError(f"Could not parse Pyrefly JSON output: {error}") from error
+            if not isinstance(output, dict) or not isinstance(output.get("errors"), list):
+                raise RuntimeError("Pyrefly JSON output does not contain a diagnostic errors list")
+            return output["errors"]
+    except Exception:
+        log.exception("Error running Pyrefly")
+        raise
 
 
 def pyrefly_to_pyright(pyrefly_output: list, base_path: Path):

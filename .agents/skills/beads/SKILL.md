@@ -34,8 +34,7 @@ does not authorize source Git commits, pulls, or pushes.
 2. Search for an existing issue before creating a replacement. Continue the
 	original issue where possible; use `bd supersede <old> --with <new>` for a
 	duplicate that already exists.
-3. After any successful Beads mutation, run `bd dolt push` before handoff.
-4. Never force a Dolt push. Stop and report any pull, merge, or push conflict.
+3. Never force a Dolt push. Stop and report any pull, merge, or push conflict.
 
 Git branch merges and rebases do not synchronize Beads. Cross-machine Beads
 state is carried by the Dolt remote under `refs/dolt/data`.

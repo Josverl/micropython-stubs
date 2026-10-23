@@ -1,2 +1,20 @@
 # This umodule is a MicroPython reference to sys
-from sys import *
+from sys import argv as argv
+from sys import atexit as atexit
+from sys import byteorder as byteorder
+from sys import exit as exit
+from sys import implementation as implementation
+from sys import maxsize as maxsize
+from sys import modules as modules
+from sys import path as path
+from sys import platform as platform
+from sys import print_exception as print_exception
+from sys import ps1 as ps1
+from sys import ps2 as ps2
+from sys import settrace as settrace
+from sys import stderr as stderr
+from sys import stdin as stdin
+from sys import stdout as stdout
+from sys import tracebacklimit as tracebacklimit
+from sys import version as version
+from sys import version_info as version_info

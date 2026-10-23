@@ -1,4 +1,22 @@
-# os module
-# Allow the use of micro-module notation
-
-from os import *  # type: ignore
+# This umodule is a MicroPython reference to os
+from os import VfsFat as VfsFat
+from os import VfsLfs1 as VfsLfs1
+from os import VfsLfs2 as VfsLfs2
+from os import VfsPosix as VfsPosix
+from os import chdir as chdir
+from os import dupterm as dupterm
+from os import dupterm_notify as dupterm_notify
+from os import getcwd as getcwd
+from os import ilistdir as ilistdir
+from os import listdir as listdir
+from os import mkdir as mkdir
+from os import mount as mount
+from os import remove as remove
+from os import rename as rename
+from os import rmdir as rmdir
+from os import stat as stat
+from os import statvfs as statvfs
+from os import sync as sync
+from os import umount as umount
+from os import uname as uname
+from os import urandom as urandom

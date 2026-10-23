@@ -101,6 +101,11 @@ File: `.vscode/settings.json`
 The `python.analysis.typeshedPaths` setting is a list of paths to search for typeshed stubs. *Only the first path* in the list is used to resolve the stubs for a module. If the stubs are not found in the first path, the included stdlib is used. 
 The default value is `["typings"]`.
 
+Point `typeshedPaths` at the install-target root (`typings` or the virtual
+environment's `site-packages` directory), not at its `stdlib` subdirectory.
+Port-specific modules that shadow the standard library are installed directly
+under that root's `stdlib/` directory.
+
 :::{note}
 
 If you right-click on a MicroPython stdlib module name in VScode, there are a few options to navigate to the (type) definition of the module.

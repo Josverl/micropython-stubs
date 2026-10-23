@@ -1,4 +1,2 @@
-# re module
-# Allow the use of micro-module notation
-
-from re import *  # type: ignore
+# This umodule is a MicroPython reference to re
+from re import *

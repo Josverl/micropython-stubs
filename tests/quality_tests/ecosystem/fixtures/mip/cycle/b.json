@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "urls": [
+    ["cycle/b.py", "https://fixtures.invalid/cycle/b.py"]
+  ],
+  "deps": [
+    ["github:fixtures/cycle-a", "v1"]
+  ]
+}

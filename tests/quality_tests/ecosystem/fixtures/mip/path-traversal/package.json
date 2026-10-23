@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "urls": [
+    ["../outside.py", "https://fixtures.invalid/outside.py"],
+    ["/absolute.py", "https://fixtures.invalid/absolute.py"],
+    ["C:/drive.py", "https://fixtures.invalid/drive.py"]
+  ],
+  "deps": []
+}

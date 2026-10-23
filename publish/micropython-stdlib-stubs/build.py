@@ -81,6 +81,11 @@ STDLIB_MODULES_TO_REMOVE = [
     "json/tool.pyi",
     "json/scanner.pyi",
 ]
+# These builtins can differ per MicroPython port, so preserve the supported union.
+MICROPYTHON_BUILTINS_TO_KEEP = {
+    "IOError",
+    "NotImplemented",
+}
 
 
 TYPE_IGNORES = [
@@ -207,6 +212,8 @@ def update_module_vars(module: Path, keep: set):
     """
     if module.is_dir():
         module = module / "__init__.pyi"
+    if module.stem == "builtins":
+        keep.update(MICROPYTHON_BUILTINS_TO_KEEP)
     with open(module, "r", encoding="utf-8") as f:
         lines = f.readlines()
     with open(module, "w", encoding="utf-8") as f:
@@ -410,7 +417,7 @@ def patch_sys_implementation(dist_stdlib_path: Path):
 
 
 def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
-    """Expose compiler-provided names through the custom stdlib builtins module."""
+    """Expose MicroPython-specific names through the custom stdlib builtins module."""
     builtins_stub = dist_stdlib_path / "stdlib/builtins.pyi"
     source_stub = reference_path / "_mpy_shed/_mpy_builtins.pyi"
     if not builtins_stub.exists():
@@ -426,12 +433,75 @@ def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
         raise RuntimeError(f"MicroPython builtins declaration block not found: {source_stub}")
 
     declarations = match.group("declarations").rstrip()
+    changed = False
     if declarations not in content:
         marker = "class object:"
         if marker not in content:
             raise RuntimeError("Could not locate object class in stdlib/builtins.pyi")
-        builtins_stub.write_text(content.replace(marker, f"{declarations}\n\n{marker}", 1), encoding="utf-8")
-        log.info("Patched stdlib/builtins.pyi for MicroPython compiler-provided builtins")
+        content = content.replace(marker, f"{declarations}\n\n{marker}", 1)
+        changed = True
+
+    bytes_format = "    def format(self, *args: object, **kwargs: object) -> bytes: ..."
+    if bytes_format not in content:
+        marker = "class bytes(Sequence[int]):"
+        if marker not in content:
+            raise RuntimeError("Could not locate bytes class in stdlib/builtins.pyi")
+        content = content.replace(marker, f"{marker}\n{bytes_format}", 1)
+        changed = True
+
+    if changed:
+        builtins_stub.write_text(content, encoding="utf-8")
+        log.info("Patched stdlib/builtins.pyi for MicroPython-specific builtins")
+
+
+def patch_micropython_io(dist_stdlib_path: Path):
+    """Restore stream inheritance lost when docstub-only classes are merged."""
+    io_stub = dist_stdlib_path / "stdlib/io.pyi"
+    if not io_stub.exists():
+        log.warning(f"Could not patch MicroPython io, file not found: {io_stub}")
+        return
+
+    content = io_stub.read_text(encoding="utf-8")
+    replacements = {
+        "class StringIO:": "class StringIO(IOBase_mp):",
+        "class BytesIO:": "class BytesIO(IOBase_mp):",
+    }
+    changed = False
+    for declaration, replacement in replacements.items():
+        if replacement in content:
+            continue
+        if declaration not in content:
+            raise RuntimeError(f"Could not locate {declaration} in stdlib/io.pyi")
+        content = content.replace(declaration, replacement, 1)
+        changed = True
+
+    methods = {
+        "class StringIO(IOBase_mp):": (
+            "    def getvalue(self) -> str: ...\n"
+            "    def read(self, size: int | None = -1, /) -> str: ...\n"
+            "    def write(self, s: str, /) -> int: ..."
+        ),
+        "class BytesIO(IOBase_mp):": (
+            "    def getvalue(self) -> bytes: ...\n"
+            "    def read(self, size: int | None = -1, /) -> bytes: ...\n"
+            "    def write(self, b: AnyReadableBuf, /) -> int: ..."
+        ),
+    }
+    for declaration, method in methods.items():
+        if method in content:
+            continue
+        content = content.replace(declaration, f"{declaration}\n{method}", 1)
+        changed = True
+
+    for class_name in ("StringIO", "BytesIO"):
+        reexport = f"from _io import (\n    {class_name} as {class_name},\n)\n"
+        if reexport in content:
+            content = content.replace(reexport, "", 1)
+            changed = True
+
+    if changed:
+        io_stub.write_text(content, encoding="utf-8")
+        log.info("Patched stdlib/io.pyi to restore MicroPython stream inheritance")
 
 
 def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
@@ -463,6 +533,7 @@ def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
 def apply_micropython_patches(reference_path: Path, dist_stdlib_path: Path):
     """Apply deterministic MicroPython-specific patches after stdlib generation."""
     patch_micropython_builtins(reference_path, dist_stdlib_path)
+    patch_micropython_io(dist_stdlib_path)
     patch_sys_implementation(dist_stdlib_path)
     patch_asyncio_support(reference_path, dist_stdlib_path)
 

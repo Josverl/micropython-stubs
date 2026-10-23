@@ -359,7 +359,33 @@ class socket:
         Return value: the line read.
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> int:
+
+    @overload
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
+        """
+        Write the buffer of bytes to the socket. This function will try to
+        write all data to a socket (no "short writes"). This may be not possible
+        with a non-blocking socket though, and returned value will be less than
+        the length of *buf*.
+
+        Return value: number of bytes written.
+        """
+        ...
+
+    @overload
+    def write(self, buf: AnyReadableBuf, max_len: int, /) -> int | None:
+        """
+        Write the buffer of bytes to the socket. This function will try to
+        write all data to a socket (no "short writes"). This may be not possible
+        with a non-blocking socket though, and returned value will be less than
+        the length of *buf*.
+
+        Return value: number of bytes written.
+        """
+        ...
+
+    @overload
+    def write(self, buf: AnyReadableBuf, offset: int, max_len: int, /) -> int | None:
         """
         Write the buffer of bytes to the socket. This function will try to
         write all data to a socket (no "short writes"). This may be not possible

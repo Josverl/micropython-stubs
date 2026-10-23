@@ -1,2 +1,24 @@
 # This umodule is a MicroPython reference to errno
-from errno import *
+from errno import EACCES as EACCES
+from errno import EADDRINUSE as EADDRINUSE
+from errno import EAGAIN as EAGAIN
+from errno import EALREADY as EALREADY
+from errno import EBADF as EBADF
+from errno import ECONNABORTED as ECONNABORTED
+from errno import ECONNREFUSED as ECONNREFUSED
+from errno import ECONNRESET as ECONNRESET
+from errno import EEXIST as EEXIST
+from errno import EHOSTUNREACH as EHOSTUNREACH
+from errno import EINPROGRESS as EINPROGRESS
+from errno import EINVAL as EINVAL
+from errno import EIO as EIO
+from errno import EISDIR as EISDIR
+from errno import ENOBUFS as ENOBUFS
+from errno import ENODEV as ENODEV
+from errno import ENOENT as ENOENT
+from errno import ENOMEM as ENOMEM
+from errno import ENOTCONN as ENOTCONN
+from errno import EOPNOTSUPP as EOPNOTSUPP
+from errno import EPERM as EPERM
+from errno import ETIMEDOUT as ETIMEDOUT
+from errno import errorcode as errorcode

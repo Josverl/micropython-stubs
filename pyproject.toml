@@ -29,10 +29,13 @@ stubber = [
 
 test = [
 "micropython-stubber",
+"rich>=13",
 "rich-click",
+"typing-extensions>=4",
 # for quality reporting
 "pytest",
 "pytest-xdist",
+"markdown-it-py>=3,<4",
 "fasteners",
 "python-dotenv",
 "pydocstyle",
@@ -158,12 +161,15 @@ norecursedirs = [
 ]
 junit_family = "xunit1"
 
-addopts = "--verbose --capture=no --numprocesses=auto"
+addopts = "--verbose --capture=no --numprocesses=auto -m 'not ecosystem_network'"
 #  -m 'not snippets'
 # -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
 # -n --numprocesses=numprocesses - number of parallel workers (pytest-xdist)
 
-markers = ["snippets: test snippets to check the stub quality"]
+markers = [
+    "snippets: test snippets to check the stub quality",
+    "ecosystem_network: opt-in live ecosystem package smoke tests",
+]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -240,5 +246,9 @@ ignore = [
     "PYI014", # Only simple default values allowed for arguments - we want actual defaults
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
 ]
+
+
+
+
 
 

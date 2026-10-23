@@ -53,6 +53,7 @@ firmware
 # no node modules
 node_modules
 package*.json
+!tests/quality_tests/ecosystem/fixtures/**/package.json
 
 coverage/snippet_score.json
 **/__NOT__

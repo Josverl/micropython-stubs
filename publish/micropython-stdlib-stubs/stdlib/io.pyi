@@ -98,16 +98,10 @@ from _io import (
     BufferedWriter as BufferedWriter,
 )
 from _io import (
-    BytesIO as BytesIO,
-)
-from _io import (
     FileIO as FileIO,
 )
 from _io import (
     IncrementalNewlineDecoder as IncrementalNewlineDecoder,
-)
-from _io import (
-    StringIO as StringIO,
 )
 from _io import (
     TextIOWrapper as TextIOWrapper,
@@ -175,7 +169,10 @@ class RawIOBase(_RawIOBase, IOBase): ...
 class BufferedIOBase(_BufferedIOBase, IOBase): ...
 class TextIOBase(_TextIOBase, IOBase): ...
 
-class StringIO:
+class StringIO(IOBase_mp):
+    def getvalue(self) -> str: ...
+    def read(self, size: int | None = -1, /) -> str: ...
+    def write(self, s: str, /) -> int: ...
     @overload
     def __init__(self, string: str = "", /):
         """
@@ -218,7 +215,10 @@ class StringIO:
              This constructor is a MicroPython extension.
         """
 
-class BytesIO:
+class BytesIO(IOBase_mp):
+    def getvalue(self) -> bytes: ...
+    def read(self, size: int | None = -1, /) -> bytes: ...
+    def write(self, b: AnyReadableBuf, /) -> int: ...
     @overload
     def __init__(self, string: bytes = b"", /):
         """
