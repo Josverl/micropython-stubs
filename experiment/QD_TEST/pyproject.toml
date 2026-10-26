@@ -1,0 +1,31 @@
+[project]
+name = "QD_TEST"
+version = "0.1.0"
+description = "A MicroPython project"
+
+[tool.pyright]
+include = ["src"]
+extraPaths = ["src/lib"]
+ignore = ["**/typings"]
+exclude = [
+    ".*",
+    "__*",
+    "**/typings", 
+    "**/node_modules", 
+    "**/__pycache__", 
+    ".venv",
+]
+
+typeCheckingMode = "standard"
+stubPath = "typings"
+typeshedPath = "typings"
+pythonPlatform = "Linux"
+
+reportMissingModuleSource = "none"
+
+[project.optional-dependencies]
+# install to folder typings
+# uv pip install -r pyproject.toml --extra stubs --target typings
+stubs = [
+  "micropython-rp2-stubs==1.29.0.*"
+]
