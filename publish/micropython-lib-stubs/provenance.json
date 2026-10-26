@@ -1,0 +1,43 @@
+{
+  "manifest": "require(\"aiorepl\")\nrequire(\"logging\")\nrequire(\"usb-device\")\nrequire(\"usb-device-cdc\")\n",
+  "micropython": "a39e77f08d1daf13658ccae99b763003a8218bdf",
+  "micropython-lib": "90028be0829c6e988b5e239b28f39fb91b6b20e2",
+  "stubber": "1.28.6",
+  "files": [
+    {
+      "source": "/home/jos/mypython/micropython-stubs/repos/micropython-lib/micropython/aiorepl/aiorepl.py",
+      "target": "aiorepl.py"
+    },
+    {
+      "source": "/home/jos/mypython/micropython-stubs/repos/micropython-lib/python-stdlib/logging/logging.py",
+      "target": "logging.py"
+    },
+    {
+      "source": "/home/jos/mypython/micropython-stubs/repos/micropython-lib/micropython/usb/usb-device/usb/device/__init__.py",
+      "target": "usb/device/__init__.py"
+    },
+    {
+      "source": "/home/jos/mypython/micropython-stubs/repos/micropython-lib/micropython/usb/usb-device-cdc/usb/device/cdc.py",
+      "target": "usb/device/cdc.py"
+    },
+    {
+      "source": "/home/jos/mypython/micropython-stubs/repos/micropython-lib/micropython/usb/usb-device/usb/device/core.py",
+      "target": "usb/device/core.py"
+    }
+  ],
+  "enrichment": [
+    {
+      "source": "/home/jos/mypython/micropython-stubs/reference/micropython",
+      "matches": 0,
+      "enriched": 0,
+      "unmatched": [
+        "aiorepl.pyi",
+        "logging.pyi",
+        "usb/__init__.pyi",
+        "usb/device/__init__.pyi",
+        "usb/device/cdc.pyi",
+        "usb/device/core.pyi"
+      ]
+    }
+  ]
+}

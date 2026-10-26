@@ -9,7 +9,7 @@ default:
     @just --list
 
 init:
-    stubber clone
+    uv run stubber clone
 
 sync:
     uv sync --extra test 
@@ -20,6 +20,14 @@ docstubs v="stable":
 
 stdlib:
     python publish/micropython-stdlib-stubs/build.py
+
+# Build the experimental micropython-lib wheel using the existing project environment.
+build-lib:
+    uv run --no-sync python experiment/build_lib_stubs.py
+
+# Upload the existing wheel to TestPyPI. Set UV_PUBLISH_TOKEN before running.
+publish-lib-test:
+    uv publish --publish-url https://test.pypi.org/legacy/ "publish/micropython-lib-stubs/dist/*.whl"
 
 [script]
 publish_stdlib:

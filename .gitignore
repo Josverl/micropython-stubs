@@ -44,6 +44,7 @@ repos
 publish/*/modules.json
 
 publish/**/dist
+.lib-stubs-experiment
 publish/*/*.dist-info/*
 !publish/*/*.dist-info/METADATA
 # no typings
