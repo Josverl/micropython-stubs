@@ -8,11 +8,11 @@
         "firmware": "micropython-v1_30_0_preview",
         "nodename": "micropython",
         "version": "v1.30.0-preview",
-        "release": "v1.30.0-preview-170-g682e3f1cd",
+        "release": "v1.30.0-preview-171-ga39e77f08",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.29.0",
+        "version": "1.29.1",
         "stubtype": "documentation"
     },
     "modules": [
@@ -38,6 +38,10 @@
         },
         {
             "file": "btree/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "builtins/__init__.pyi",
             "module": "__init__"
         },
         {
