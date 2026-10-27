@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.29.0",
+        "version": "1.29.1",
         "stubtype": "documentation"
     },
     "modules": [
@@ -38,6 +38,10 @@
         },
         {
             "file": "btree/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "builtins/__init__.pyi",
             "module": "__init__"
         },
         {
