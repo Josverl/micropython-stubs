@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_30_0_preview",
         "nodename": "micropython",
         "version": "v1.30.0-preview",
-        "release": "v1.30.0-preview-172-ge6aff0056",
+        "release": "v1.30.0-preview-188-g29d45e488",
         "sysname": "micropython"
     },
     "stubber": {
@@ -223,6 +223,10 @@
         {
             "file": "neopixel/__init__.pyi",
             "module": "__init__"
+        },
+        {
+            "file": "network/HaLow.pyi",
+            "module": "HaLow"
         },
         {
             "file": "network/LAN.pyi",

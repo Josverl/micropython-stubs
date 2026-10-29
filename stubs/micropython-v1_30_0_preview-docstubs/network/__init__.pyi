@@ -43,6 +43,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing import Protocol
 from network.WLAN import WLAN
 from network.WLANWiPy import WLANWiPy
+from network.HaLow import HaLow
 from network.WIZNET5K import WIZNET5K
 from network.LAN import LAN
 from network.PPP import PPP
