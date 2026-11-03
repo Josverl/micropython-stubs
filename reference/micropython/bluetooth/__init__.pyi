@@ -532,9 +532,9 @@ class BLE:
 
     def gap_advertise(
         self,
-        interval_us: int,
-        adv_data: AnyReadableBuf | None = None,
+        interval_us: int | None,
         /,
+        adv_data: AnyReadableBuf | None = None,
         *,
         resp_data: AnyReadableBuf | None = None,
         connectable: bool = True,
@@ -557,7 +557,7 @@ class BLE:
 
     def gap_scan(
         self,
-        duration_ms: int,
+        duration_ms: int | None,
         interval_us: int = 1280000,
         window_us: int = 11250,
         active: bool = False,
@@ -630,7 +630,7 @@ class BLE:
         """
         ...
 
-    def gap_disconnect(self, conn_handle: memoryview, /) -> bool:
+    def gap_disconnect(self, conn_handle: int, /) -> bool:
         """
         Disconnect the specified connection handle. This can either be a
         central that has connected to this device (if acting as a peripheral)
@@ -645,7 +645,7 @@ class BLE:
         """
         ...
 
-    def gatts_register_services(self, services_definition: tuple[_Service, ...], /) -> tuple[tuple[memoryview, ...], ...]:
+    def gatts_register_services(self, services_definition: tuple[_Service, ...], /) -> tuple[tuple[int, ...], ...]:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -708,14 +708,14 @@ class BLE:
         """
         ...
 
-    def gatts_read(self, value_handle: memoryview, /) -> bytes:
+    def gatts_read(self, value_handle: int, /) -> bytes:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
         """
         ...
 
-    def gatts_write(self, value_handle: memoryview, data: bytes, send_update: bool = False, /) -> None:
+    def gatts_write(self, value_handle: int, data: AnyReadableBuf, send_update: bool = False, /) -> None:
         """
         Writes the local value for this handle, which can be read by a client.
 
@@ -725,7 +725,13 @@ class BLE:
         """
         ...
 
-    def gatts_notify(self, value_handle: memoryview, data: bytes, /) -> None:
+    def gatts_notify(
+        self,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf | None = None,
+        /,
+    ) -> None:
         """
         Sends a notification request to a connected client.
 
@@ -740,7 +746,13 @@ class BLE:
         """
         ...
 
-    def gatts_indicate(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gatts_indicate(
+        self,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf | None = None,
+        /,
+    ) -> None:
         """
         Sends a indication request to a connected client.
 
@@ -758,7 +770,7 @@ class BLE:
         """
         ...
 
-    def gatts_set_buffer(self, conn_handle: memoryview, len: int, append: bool = False, /) -> None:
+    def gatts_set_buffer(self, value_handle: int, len: int, append: bool = False, /) -> None:
         """
         Sets the internal buffer size for a value in bytes. This will limit the
         largest possible write that can be received. The default is 20.
@@ -771,7 +783,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_services(self, conn_handle: memoryview, uuid: UUID | None = None, /) -> None:
+    def gattc_discover_services(self, conn_handle: int, uuid: UUID | None = None, /) -> None:
         """
         Query a connected server for its services.
 
@@ -784,7 +796,7 @@ class BLE:
 
     def gattc_discover_characteristics(
         self,
-        conn_handle: memoryview,
+        conn_handle: int,
         start_handle: int,
         end_handle: int,
         uuid: UUID | None = None,
@@ -804,7 +816,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_descriptors(self, conn_handle: memoryview, start_handle: int, end_handle: int, /) -> None:
+    def gattc_discover_descriptors(self, conn_handle: int, start_handle: int, end_handle: int, /) -> None:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -813,7 +825,7 @@ class BLE:
         """
         ...
 
-    def gattc_read(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gattc_read(self, conn_handle: int, value_handle: int, /) -> None:
         """
         Issue a remote read to a connected server for the specified
         characteristic or descriptor handle.
@@ -825,9 +837,9 @@ class BLE:
 
     def gattc_write(
         self,
-        conn_handle: memoryview,
-        value_handle: memoryview,
-        data: bytes,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf,
         mode: int = 0,
         /,
     ) -> None:
@@ -850,7 +862,7 @@ class BLE:
         """
         ...
 
-    def gattc_exchange_mtu(self, conn_handle: memoryview, /) -> None:
+    def gattc_exchange_mtu(self, conn_handle: int, /) -> None:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -864,7 +876,7 @@ class BLE:
         """
         ...
 
-    def l2cap_listen(self, psm: memoryview, mtu: memoryview, /) -> None:
+    def l2cap_listen(self, psm: int, mtu: int, /) -> None:
         """
         Start listening for incoming L2CAP channel requests on the specified *psm*
         with the local MTU set to *mtu*.
@@ -881,7 +893,7 @@ class BLE:
         """
         ...
 
-    def l2cap_connect(self, conn_handle: memoryview, psm: memoryview, mtu: memoryview, /) -> None:
+    def l2cap_connect(self, conn_handle: int, psm: int, mtu: int, /) -> None:
         """
         Connect to a listening peer on the specified *psm* with local MTU set to *mtu*.
 
@@ -893,14 +905,14 @@ class BLE:
         """
         ...
 
-    def l2cap_disconnect(self, conn_handle: memoryview, cid: memoryview, /) -> None:
+    def l2cap_disconnect(self, conn_handle: int, cid: int, /) -> None:
         """
         Disconnect an active L2CAP channel with the specified *conn_handle* and
         *cid*.
         """
         ...
 
-    def l2cap_send(self, conn_handle: memoryview, cid: memoryview, /) -> bool:
+    def l2cap_send(self, conn_handle: int, cid: int, buf: AnyReadableBuf, /) -> bool:
         """
         Send the specified *buf* (which must support the buffer protocol) on the
         L2CAP channel identified by *conn_handle* and *cid*.
@@ -916,7 +928,7 @@ class BLE:
         """
         ...
 
-    def l2cap_recvinto(self, conn_handle: memoryview, cid: memoryview, buf: AnyWritableBuf | None, /) -> int:
+    def l2cap_recvinto(self, conn_handle: int, cid: int, buf: AnyWritableBuf | None, /) -> int:
         """
         Receive data from the specified *conn_handle* and *cid* into the provided
         *buf* (which must support the buffer protocol, e.g. bytearray or
@@ -936,7 +948,7 @@ class BLE:
         """
         ...
 
-    def gap_pair(self, conn_handle: memoryview, /) -> None:
+    def gap_pair(self, conn_handle: int, /) -> None:
         """
         Initiate pairing with the remote device.
 
@@ -947,7 +959,7 @@ class BLE:
         """
         ...
 
-    def gap_passkey(self, conn_handle: memoryview, action: int, passkey: int, /) -> None:
+    def gap_passkey(self, conn_handle: int, action: int, passkey: int, /) -> None:
         """
         Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified *conn_handle*
         and *action*.

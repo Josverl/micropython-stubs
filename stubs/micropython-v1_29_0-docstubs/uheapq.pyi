@@ -1,4 +1,4 @@
-# heapq module
-# Allow the use of micro-module notation
-
-from heapq import *  # type: ignore
+# This umodule is a MicroPython reference to heapq
+from heapq import heapify as heapify
+from heapq import heappop as heappop
+from heapq import heappush as heappush

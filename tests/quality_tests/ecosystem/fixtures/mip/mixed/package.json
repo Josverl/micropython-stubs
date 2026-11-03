@@ -1,0 +1,8 @@
+{
+  "version": "2.0.0",
+  "urls": [
+    ["mixed/source.py", "https://fixtures.invalid/mixed/source.py"],
+    ["mixed/native.mpy", "https://fixtures.invalid/mixed/native.mpy"]
+  ],
+  "deps": []
+}

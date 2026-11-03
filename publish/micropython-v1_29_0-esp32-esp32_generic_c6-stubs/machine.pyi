@@ -3331,7 +3331,7 @@ class SPI:
         """
         ...
     @overload
-    def __init__(self, id: int, /):
+    def __init__(self, id: int | str, /):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
         on a particular port and its hardware. Values 0, 1, etc. are commonly used
@@ -3346,7 +3346,7 @@ class SPI:
     @overload
     def __init__(
         self,
-        id: int,
+        id: int | str,
         /,
         baudrate: int = 1_000_000,
         *,
@@ -3372,7 +3372,7 @@ class SPI:
     @overload
     def __init__(
         self,
-        id: int,
+        id: int | str,
         /,
         baudrate: int = 1_000_000,
         *,

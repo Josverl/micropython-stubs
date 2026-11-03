@@ -8,7 +8,10 @@ from pathlib import Path
 
 from cachetools import TTLCache, cached
 
-from typecheck_mypy import DIAGNOSTIC, HEADER
+if __package__:
+    from .typecheck_mypy import DIAGNOSTIC, HEADER
+else:
+    from typecheck_mypy import DIAGNOSTIC, HEADER
 
 log = logging.getLogger()
 
