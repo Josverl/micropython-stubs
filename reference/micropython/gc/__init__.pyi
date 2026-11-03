@@ -81,7 +81,7 @@ def threshold() -> int:
     """
 
 @overload
-def threshold(amount: int) -> None:
+def threshold(amount: int, /) -> None:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an
