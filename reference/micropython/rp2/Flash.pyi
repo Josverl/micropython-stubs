@@ -14,7 +14,7 @@ class Flash(AbstractBlockDev):
 
     def __init__(self, *, start: int = -1, len: int = -1) -> None: ...
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, /) -> None:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -24,7 +24,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> None:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int, /) -> None:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
