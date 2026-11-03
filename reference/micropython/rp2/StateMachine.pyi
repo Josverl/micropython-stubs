@@ -182,7 +182,7 @@ class StateMachine:
     @overload
     def active(self) -> bool: ...
     @overload
-    def active(self, value: Union[bool, int]) -> bool:
+    def active(self, value: Union[bool, int], /) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 
