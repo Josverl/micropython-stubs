@@ -34,7 +34,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, /) -> None:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -45,7 +45,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int, /) -> None:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
