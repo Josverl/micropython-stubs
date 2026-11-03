@@ -58,7 +58,7 @@ def getcwd() -> Incomplete:
     ...
 
 @overload
-def ilistdir(dir: Union[str,bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
+def ilistdir(dir: Union[str,bytes], /) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
     """
     This function returns an iterator which then yields tuples corresponding to
     the entries in the directory that it is listing.  With no argument it lists the
