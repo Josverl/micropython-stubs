@@ -636,7 +636,7 @@ def raw_temperature() -> int:
 def mcu_temperature() -> int:
     ...
 
-def idf_heap_info(capabilities: int) -> List[Tuple]:
+def idf_heap_info(capabilities: int, /) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
     the MicroPython heap and the others are used by ESP-IDF, e.g., for network

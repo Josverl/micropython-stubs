@@ -96,7 +96,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value: int | ReadableBuffer, shift: int = 0) -> None:
+    def put(self, value: int | ReadableBuffer, shift: int = 0, /) -> None:
         """
         Push words onto the state machine's TX FIFO.
 
@@ -147,7 +147,7 @@ class StateMachine:
         """
         ...
 
-    def exec(self, instr: Union[int, str]) -> None:
+    def exec(self, instr: Union[int, str], /) -> None:
         """
         Execute a single PIO instruction.
 

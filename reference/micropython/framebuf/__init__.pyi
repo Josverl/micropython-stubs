@@ -161,7 +161,7 @@ class FrameBuffer:
         """
         ...
 
-    def ellipse(self, x, y, xr, yr, c, f: Union[bool, int] = False, m: Optional[int] = None) -> None:
+    def ellipse(self, x, y, xr, yr, c, f: Union[bool, int] = False, m: Optional[int] = None, /) -> None:
         """
         Draw an ellipse at the given location. Radii *xr* and *yr* define the
         geometry; equal values cause a circle to be drawn. The *c* parameter

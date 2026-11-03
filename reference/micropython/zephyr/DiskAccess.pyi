@@ -13,7 +13,7 @@ class DiskAccess:
 
     def __init__(self, disk_name: str) -> None: ...
 
-    def readblocks(self, block_num: int, buf: bytearray) -> int:
+    def readblocks(self, block_num: int, buf: bytearray, /) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -32,7 +32,7 @@ class DiskAccess:
         which will be a multiple of the block size.
         """
 
-    def ioctl(self, op: int, arg: int) -> int:
+    def ioctl(self, op: int, arg: int, /) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by

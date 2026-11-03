@@ -71,7 +71,7 @@ class PIO:
     IRQ_SM3: int = 0x800
 
     def __init__(self, id: int) -> None: ...
-    def gpio_base(self, base: int | Pin | None = None) -> Pin:
+    def gpio_base(self, base: int | Pin | None = None, /) -> Pin:
         """
         Query and optionally set the current GPIO base for this PIO instance.
 
@@ -79,7 +79,7 @@ class PIO:
         """
         ...
 
-    def add_program(self, program: _PIO_ASM_Program) -> None:
+    def add_program(self, program: _PIO_ASM_Program, /) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
 
@@ -89,7 +89,7 @@ class PIO:
         """
         ...
 
-    def remove_program(self, program: Optional[_PIO_ASM_Program] = None) -> None:
+    def remove_program(self, program: Optional[_PIO_ASM_Program] = None, /) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
 

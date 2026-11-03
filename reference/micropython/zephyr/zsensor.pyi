@@ -118,46 +118,46 @@ class Sensor:
         """
         ...
 
-    def get_float(self, sensor_channel: int) -> float:
+    def get_float(self, sensor_channel: int, /) -> float:
         """
         Returns the value of the sensor measurement sample as a float.
         """
         ...
 
-    def get_micros(self, sensor_channel: int) -> int:
+    def get_micros(self, sensor_channel: int, /) -> int:
         """
         Returns the value of the sensor measurement sample in millionths.
         (Ex. value of ``(1, 500000)`` returns as ``1500000``)
         """
         ...
 
-    def get_millis(self, sensor_channel: int) -> int:
+    def get_millis(self, sensor_channel: int, /) -> int:
         """
         Returns the value of sensor measurement sample in thousandths.
         (Ex. value of ``(1, 500000)`` returns as ``1500``)
         """
         ...
 
-    def get_int(self, sensor_channel: int) -> int:
+    def get_int(self, sensor_channel: int, /) -> int:
         """
         Returns only the integer value of the measurement sample.
         (Ex. value of ``(1, 500000)`` returns as ``1``)
         """
         ...
 
-    def attr_get_float(self, sensor_channel: int, channel_attribute: int) -> float:
+    def attr_get_float(self, sensor_channel: int, channel_attribute: int, /) -> float:
         """Returns the value of the sensor channel's attribute as a float."""
         ...
 
-    def attr_get_micros(self, sensor_channel: int, channel_attribute: int) -> int:
+    def attr_get_micros(self, sensor_channel: int, channel_attribute: int, /) -> int:
         """Returns the value of the sensor channel's attribute in millionths."""
         ...
 
-    def attr_get_millis(self, sensor_channel: int, channel_attribute: int) -> int:
+    def attr_get_millis(self, sensor_channel: int, channel_attribute: int, /) -> int:
         """Returns the value of the sensor channel's attribute in thousandths."""
         ...
 
-    def attr_get_int(self, sensor_channel: int, channel_attribute: int) -> int:
+    def attr_get_int(self, sensor_channel: int, channel_attribute: int, /) -> int:
         """Returns only the integer value of the channel's attribute."""
         ...
 

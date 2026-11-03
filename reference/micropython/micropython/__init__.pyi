@@ -34,7 +34,7 @@ class RingIO:
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
+    def read(self, nbytes: Optional[Any] = None, /) -> bytes:
         """
         Read available characters. This is a non-blocking function. If ``nbytes``
         is specified then read at most that many bytes, otherwise read as much
@@ -45,7 +45,7 @@ class RingIO:
         """
         ...
 
-    def readline(self, nbytes: Optional[Any] = None) -> bytes:
+    def readline(self, nbytes: Optional[Any] = None, /) -> bytes:
         """
         Read a line, ending in a newline character or return if one exists in
         the buffer, else return available bytes in buffer. If ``nbytes`` is
@@ -55,7 +55,7 @@ class RingIO:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None, /) -> int:
         """
         Read available bytes into the provided ``buf``.  If ``nbytes`` is
         specified then read at most that many bytes.  Otherwise, read at
@@ -65,7 +65,7 @@ class RingIO:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf, /) -> int:
         """
         Non-blocking write of bytes from ``buf`` into the ringbuffer, limited
         by the available space in the ringbuffer.
@@ -250,7 +250,7 @@ def heap_unlock() -> int:
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
 
-def kbd_intr(chr: int) -> None:
+def kbd_intr(chr: int, /) -> None:
     """
     Set the character that will raise a `KeyboardInterrupt` exception.  By
     default this is set to 3 during script execution, corresponding to Ctrl-C.
