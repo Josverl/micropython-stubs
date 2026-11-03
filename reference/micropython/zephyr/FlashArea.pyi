@@ -20,7 +20,7 @@ class FlashArea:
 
     def __init__(self, id: int, block_size: int) -> None: ...
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> int:
+    def readblocks(self, block_num: int, buf: bytearray, /) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -30,7 +30,7 @@ class FlashArea:
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> int:
+    def readblocks(self, block_num: int, buf: bytearray, offset: int, /) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
