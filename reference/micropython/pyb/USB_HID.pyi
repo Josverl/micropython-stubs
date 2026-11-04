@@ -47,7 +47,7 @@ class USB_HID:
         otherwise the number of bytes read into ``data`` is returned.
         """
 
-    def send(self, data: Sequence[int]) -> int:
+    def send(self, data: Sequence[int], /) -> int:
         """
         Send data over the USB HID interface:
 

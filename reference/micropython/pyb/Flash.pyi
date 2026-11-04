@@ -41,7 +41,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> int:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, /) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -51,7 +51,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> int:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int, /) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -86,7 +86,7 @@ class Flash(AbstractBlockDev):
         argument is specified, even if it is zero.
         """
 
-    def ioctl(self, op: int, arg: int) -> int | None:
+    def ioctl(self, op: int, arg: int, /) -> int | None:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by

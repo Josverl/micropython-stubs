@@ -28,7 +28,7 @@ def current_tid() -> int:
     """
     ...
 
-def thread_analyze(cpu: int) -> None:
+def thread_analyze(cpu: int, /) -> None:
     """
     Runs the Zephyr debug thread analyzer on the current thread and prints stack size statistics in the format:
 
@@ -43,7 +43,7 @@ def thread_analyze(cpu: int) -> None:
     """
     ...
 
-def shell_exec(cmd_in: str) -> None:
+def shell_exec(cmd_in: str, /) -> None:
     """
     Executes the given command on an UART backend. This function can only be accessed if ``CONFIG_SHELL_BACKEND_SERIAL``
     is configured for the port in ``zephyr/prj.conf``.

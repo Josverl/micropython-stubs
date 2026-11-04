@@ -82,7 +82,7 @@ class Partition(AbstractBlockDev):
         ...
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+    def readblocks(self, block_num: int, buf: bytearray, /) -> bool:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -92,7 +92,7 @@ class Partition(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+    def readblocks(self, block_num: int, buf: bytearray, offset: int, /) -> bool:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -127,17 +127,7 @@ class Partition(AbstractBlockDev):
         argument is specified, even if it is zero.
         """
 
-    @overload
-    def ioctl(self, op: int, arg) -> None:
-        """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`vfs.AbstractBlockDev`.
-        """
-        ...
-
-    @overload
-    def ioctl(self, op: int) -> int:
+    def ioctl(self, op: int, arg, /) -> int | None:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -636,7 +626,7 @@ def raw_temperature() -> int:
 def mcu_temperature() -> int:
     ...
 
-def idf_heap_info(capabilities: int) -> List[Tuple]:
+def idf_heap_info(capabilities: int, /) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
     the MicroPython heap and the others are used by ESP-IDF, e.g., for network

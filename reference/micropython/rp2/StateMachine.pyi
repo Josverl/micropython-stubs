@@ -96,7 +96,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value: int | ReadableBuffer, shift: int = 0) -> None:
+    def put(self, value: int | ReadableBuffer, shift: int = 0, /) -> None:
         """
         Push words onto the state machine's TX FIFO.
 
@@ -147,7 +147,7 @@ class StateMachine:
         """
         ...
 
-    def exec(self, instr: Union[int, str]) -> None:
+    def exec(self, instr: Union[int, str], /) -> None:
         """
         Execute a single PIO instruction.
 
@@ -164,10 +164,10 @@ class StateMachine:
         ...
 
     @overload
-    def get(self, buf: None = None, shift: int = 0) -> int: ...
+    def get(self, buf: None = None, shift: int = 0, /) -> int: ...
     @overload
-    def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
-    def get(self, buf: WriteableBuffer | None = None, shift: int = 0) -> int | WriteableBuffer:
+    def get(self, buf: WriteableBuffer, shift: int = 0, /) -> WriteableBuffer: ...
+    def get(self, buf: WriteableBuffer | None = None, shift: int = 0, /) -> int | WriteableBuffer:
         """
         Pull a word from the state machine's RX FIFO.
 
@@ -182,7 +182,7 @@ class StateMachine:
     @overload
     def active(self) -> bool: ...
     @overload
-    def active(self, value: Union[bool, int]) -> bool:
+    def active(self, value: Union[bool, int], /) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 

@@ -20,7 +20,7 @@ class FlashArea:
 
     def __init__(self, id: int, block_size: int) -> None: ...
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> int:
+    def readblocks(self, block_num: int, buf: bytearray, /) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -30,7 +30,7 @@ class FlashArea:
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> int:
+    def readblocks(self, block_num: int, buf: bytearray, offset: int, /) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -65,7 +65,7 @@ class FlashArea:
         argument is specified, even if it is zero.
         """
 
-    def ioctl(self, op: int, arg: int) -> int:
+    def ioctl(self, op: int, arg: int, /) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by

@@ -80,7 +80,7 @@ class RTC:
         The documentation for RTC is in a poor state; better to experiment and use `dir`!
         """
 
-    def datetime(self, datetimetuple: Any | None = None) -> Tuple:
+    def datetime(self, datetimetuple: Any | None = None, /) -> Tuple:
         """
         Get or set the date and time of the RTC.
 

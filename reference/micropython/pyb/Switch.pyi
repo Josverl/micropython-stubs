@@ -42,7 +42,7 @@ class Switch:
         """
         ...
 
-    def callback(self, fun: Callable[[], None] | None) -> None:
+    def callback(self, fun: Callable[[], None] | None, /) -> None:
         """
         Register the given function to be called when the switch is pressed down.
         If ``fun`` is ``None``, then it disables the callback.
