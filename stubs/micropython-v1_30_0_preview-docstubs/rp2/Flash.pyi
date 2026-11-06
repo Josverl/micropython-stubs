@@ -6,10 +6,6 @@ from typing import overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from rp2 import bootsel_button
-from rp2.DMA import DMA
-from rp2.PIO import PIO
-from rp2.StateMachine import StateMachine
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
 
