@@ -23,6 +23,7 @@ _STATUS_COLORS = {
     "XFAIL": "#9a6700",
     "XPASS": "#16ef71",
 }
+_SHARED_DIAGNOSTIC_THRESHOLD = 20
 _PREFERRED_ROW_PARAMS = ("version", "portboard", "feature")
 _LOCATION_DIAGNOSTIC_RE = re.compile(r'^"(?P<path>.+)"\((?P<location>\d+,\d+)\): (?P<message>.+)$')
 _ISOLATED_WORKSPACE_RE = re.compile(
@@ -169,12 +170,9 @@ def _render_checker_details(rows: dict[str, ReportRow], checkers: list[str], mai
             continue
         normalized_details = [(row, cell, _normalized_diagnostic_lines(cell.diagnostic)) for row, cell in details]
         occurrence_counts = Counter(
-            line
-            for _, _, diagnostic_lines in normalized_details
-            for line in set(diagnostic_lines)
-            if _LOCATION_DIAGNOSTIC_RE.match(line)
+            line for _, _, diagnostic_lines in normalized_details for line in set(diagnostic_lines) if _LOCATION_DIAGNOSTIC_RE.match(line)
         )
-        shared_diagnostics = {line: count for line, count in occurrence_counts.items() if count > 1}
+        shared_diagnostics = {line: count for line, count in occurrence_counts.items() if count > _SHARED_DIAGNOSTIC_THRESHOLD}
         lines = [
             f"# {_escape_markdown(checker)} failures and expected failures",
             "",

@@ -1,7 +1,47 @@
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'family': 'micropython', 'board_id': 'RPI_PICO_W', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.0
 """
-Module: 'rp2.PIOASMEmit'
+Type hints for the ``rp2.asm_pio`` DSL **as exposed on RP2350** (PIO version 1).
+
+This stub is a thin **overlay** on top of :mod:`rp2.asm_pio_rp2040` (the
+RP2040-compatible PIO version 0 baseline). Importing it inside a
+``TYPE_CHECKING`` block enables the additional instructions, sources,
+modifiers and constants that exist on RP2350's PIO v1 hardware:
+
+* ``irq(prev, …)`` / ``irq(next, …)`` — target a neighbouring PIO instance.
+* ``wait(1, jmppin, n)`` — stall on the JMP-pin GPIO.
+* ``wait(1, irq_prev, n)`` / ``wait(1, irq_next, n)`` — cross-PIO IRQ wait.
+* ``in_(pindirs, n)`` and ``mov(pindirs, src)`` — read/write the PINDIRS register.
+* Wider side-set / set / out pin counts (driven by ``@asm_pio`` configuration).
+
+Reference: https://github.com/micropython/micropython/pull/18975
+
+Usage in a PIO program file
+---------------------------
+
+The PIO target **must be specified explicitly** at the top of the file. Pick
+*one* of the three imports below — they cannot be combined:
+
+.. code-block:: python
+
+    try:
+        from typing_extensions import TYPE_CHECKING  # type: ignore
+    except ImportError:
+        TYPE_CHECKING = False
+
+    if TYPE_CHECKING:
+        # Default (RP2040 / PIO v0):
+        from rp2.asm_pio import *
+
+        # Explicit RP2040 / PIO v0:
+        # from rp2.asm_pio_rp2040 import *
+
+        # RP2350 / PIO v1 (uncomment instead of one of the lines above):
+        # from rp2.asm_pio_rp2350 import *
+
+This module re-exports every symbol from :mod:`rp2.asm_pio_rp2040`, so a
+single ``from rp2.asm_pio_rp2350 import *`` is sufficient — there is no
+need to also import the baseline.
 
 ---
 Module: 'rp2' on micropython-v1.29.0-rp2-RPI_PICO2
@@ -50,7 +90,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., _PIO_ASM_Program]:
+  ) -> Callable[[Callable[[], object]], _PIO_ASM_Program]:
     """
     Assemble a PIO program.
 
@@ -591,15 +631,23 @@ class Flash(AbstractBlockDev):
         :class:`vfs.AbstractBlockDev`.
         """
     def __init__(self, *, start: int = -1, len: int = -1) -> None: ...
+
 class PIOASMEmit:
     """
     Internal emitter used by the ``@asm_pio`` decorator. Not intended for
-    direct use.
+    direct instantiation.
 
-    PIO instructions, directives, and modifiers are exposed via
-    :mod:`rp2.asm_pio` (which re-exports :mod:`rp2.asm_pio_rp2040`), and
-    that module is the single source of truth for their typing surface.
+    The PIO assembler instructions, directives, and modifiers (``set``,
+    ``out``, ``jmp``, ``side``, ``label``, ``wrap``, …) are defined in a
+    single place — :mod:`rp2.asm_pio` — which is the authoritative typing
+    surface. Keeping this class opaque avoids duplicated, drifting
+    declarations.
+
+    A single ``__getattr__`` fallback is exposed so that attribute access
+    on instances (rare; not the supported usage) returns the chainable
+    :class:`rp2.asm_pio._PIOInstr` expression rather than ``Any``.
     """
+
     def __init__(
         self,
         *,
@@ -615,6 +663,9 @@ class PIOASMEmit:
         pull_thresh: int = ...,
         fifo_join: int = ...,
     ) -> None: ...
+    # Fallback for instance-level attribute access. The decorator-scope names
+    # (``set``, ``out``, ``jmp``, …) live in ``rp2.asm_pio`` — that is the
+    # single source of truth for their typing surface.
     def __getattr__(self, name: str) -> Incomplete: ...
 
 @overload
@@ -636,11 +687,12 @@ def country(code: str, /) -> None:
     Only available when CYW43 networking support is enabled.
     """
     ...
+
 class _PIO_ASM_Program:
     """Opaque handle representing an assembled PIO program.
 
-    Returned by ``@asm_pio`` and consumed by ``StateMachine``/``PIO``.
-    Users should not introspect or index this object. The chainable
-    per-instruction expression that lives inside the decorator body is
-    a different type (``rp2.asm_pio._PIOInstr``).
+    Returned by the ``@asm_pio`` decorator and consumed by ``StateMachine``
+    and ``PIO``. Users should not introspect or index this object — treat it
+    as opaque. The chainable per-instruction expression that lives *inside*
+    the decorator body is a different type (:class:`rp2.asm_pio._PIOInstr`).
     """

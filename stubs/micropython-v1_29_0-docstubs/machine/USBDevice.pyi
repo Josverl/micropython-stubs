@@ -13,7 +13,11 @@ class USBDevice:
 
     ``Note:`` This object is a singleton, each call to this constructor
               returns the same object reference.
+
     """
+
+    # mp_available
+    builtin_driver: bool | Incomplete
 
     BUILTIN_NONE: Incomplete
     BUILTIN_DEFAULT: Incomplete

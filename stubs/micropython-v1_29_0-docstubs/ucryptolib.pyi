@@ -1,4 +1,2 @@
-# cryptolib module
-# Allow the use of micro-module notation
-
-from cryptolib import *  # type: ignore
+# This umodule is a MicroPython reference to cryptolib
+from cryptolib import aes as aes
