@@ -58,7 +58,7 @@ def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], 
     """
     ...
 
-def load(stream: IOBase_mp | Incomplete) -> Any:
+def load(stream: IOBase_mp | Incomplete, /) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is
@@ -69,7 +69,7 @@ def load(stream: IOBase_mp | Incomplete) -> Any:
     """
     ...
 
-def loads(str: AnyStr) -> Any:
+def loads(str: AnyStr, /) -> Any:
     """
     Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
     string is not correctly formed.

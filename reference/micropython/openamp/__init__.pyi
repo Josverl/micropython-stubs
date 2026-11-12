@@ -124,7 +124,7 @@ class RemoteProc:
         """
         ...
 
-def new_service_callback(ns_callback: Callable | None) -> None:
+def new_service_callback(ns_callback: Callable | None, /) -> None:
     """
     Set the new service callback.
 

@@ -14,7 +14,7 @@ class Flash(AbstractBlockDev):
 
     def __init__(self, *, start: int = -1, len: int = -1) -> None: ...
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, /) -> None:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -24,7 +24,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> None:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int, /) -> None:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -34,7 +34,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, /) -> None:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -45,7 +45,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int, /) -> None:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
@@ -59,11 +59,7 @@ class Flash(AbstractBlockDev):
         argument is specified, even if it is zero.
         """
 
-    @overload
-    def ioctl(self, op: int, arg: int) -> int | None: ...
-    #
-    @overload
-    def ioctl(self, op: int) -> int | None:
+    def ioctl(self, op: int, arg: int, /) -> int | None:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
