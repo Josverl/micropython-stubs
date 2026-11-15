@@ -19,5 +19,5 @@ assert 8 == 0
 "check_pyscript/check_modules.py"(16,22): too-many-positional-arguments: Too many positional arguments to bound method `Event.remove_listener`: expected 1, got 2
 "check_pyscript/check_modules.py"(18,58): unknown-argument: Argument `indent` does not match any known parameter of function `stringify`
 "check_pyscript/check_web.py"(53,4): not-subscriptable: Cannot delete subscript on object of type `Style` with no `__delitem__` method
-"check_pyscript/check_web.py"(55,0): unresolved-attribute: Object of type `Classes` has no attribute `discard`
+"check_pyscript/check_web.py"(55,0): missing-attribute: Object of type `Classes` has no attribute `discard`
 ```
