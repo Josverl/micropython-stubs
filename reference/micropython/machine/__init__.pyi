@@ -106,7 +106,7 @@ def reset_cause() -> int:
     """
     ...
 
-def bootloader(value: Optional[Any] = None) -> None:
+def bootloader(value: Optional[Any] = None, /) -> None:
     """
     Reset the device and enter its bootloader.  This is typically used to put the
     device into a state where it can be programmed with new firmware.

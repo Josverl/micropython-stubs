@@ -190,7 +190,7 @@ class CAN:
                   keyword parameters for hardware-specific features such as oversampling.
         """
         ...
-    def set_filters(self, filters: Iterable[__CANFilter] | None) -> None:
+    def set_filters(self, filters: Iterable[__CANFilter] | None, /) -> None:
         """
         Set receive filters in the CAN controller. *filters* can be:
 
@@ -377,7 +377,7 @@ class CAN:
         See `machine_can_irq_flags` for an example.
         """
         ...
-    def cancel_send(self, index: int) -> bool:
+    def cancel_send(self, index: int, /) -> bool:
         """
         Request the CAN controller to cancel sending a message onto the bus.
 

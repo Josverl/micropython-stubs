@@ -117,7 +117,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
         b 3
     """
 
-def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str], /) -> type[tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows

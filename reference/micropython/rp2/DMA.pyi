@@ -150,7 +150,7 @@ class DMA:
         """
         ...
 
-    def active(self, value: Any | None = None) -> bool:
+    def active(self, value: Any | None = None, /) -> bool:
         """
         Gets or sets whether the DMA channel is currently running.
 

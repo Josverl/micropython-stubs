@@ -245,7 +245,7 @@ def mount() -> List[tuple[Incomplete, str]]:
     ...
     
 
-def umount(mount_point: Incomplete) -> None:
+def umount(mount_point: Incomplete, /) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the

@@ -169,7 +169,7 @@ def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /)
     ...
 
 @mp_available
-def settrace(tracefunc) -> None:
+def settrace(tracefunc, /) -> None:
     """
     Enable tracing of bytecode execution.  For details see the `CPython
     documentation `<https://docs.python.org/3/library/sys.html#sys.settrace>.

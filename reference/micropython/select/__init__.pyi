@@ -24,7 +24,7 @@ class poll:
     """
 
     def __init__(self) -> None: ...
-    def register(self, obj, eventmask: Optional[Any] = None) -> None:
+    def register(self, obj, eventmask: Optional[Any] = None, /) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:
 
@@ -44,13 +44,13 @@ class poll:
         """
         ...
 
-    def unregister(self, obj) -> None:
+    def unregister(self, obj, /) -> None:
         """
         Unregister *obj* from polling.
         """
         ...
 
-    def modify(self, obj, eventmask) -> None:
+    def modify(self, obj, eventmask, /) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.

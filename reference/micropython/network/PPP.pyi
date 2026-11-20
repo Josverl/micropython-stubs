@@ -74,7 +74,7 @@ class PPP:
         """
         ...
 
-    def ifconfig(self, configtuple: Any | None = None) -> Incomplete:
+    def ifconfig(self, configtuple: Any | None = None, /) -> Incomplete:
         """
         See `AbstractNIC.ifconfig`.
         """
