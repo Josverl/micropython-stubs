@@ -1,4 +1,5 @@
 import bluetooth
+from typing_extensions import assert_type
 
 bt = bluetooth.BLE()
 from micropython import const
@@ -115,3 +116,11 @@ SERVICES = (
     ),
 ) = bt.gatts_register_services(SERVICES)
 
+assert_type(hr, int)
+assert_type(tx, int)
+assert_type(rx, int)
+
+bt.gap_advertise(100_000, adv_data=b"x", resp_data=b"y")
+bt.gap_advertise(None)
+bt.gap_disconnect(1)
+bt.gattc_exchange_mtu(1)

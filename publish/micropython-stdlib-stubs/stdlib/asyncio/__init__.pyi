@@ -15,6 +15,8 @@ from .queues import *
 from .runners import *
 from .streams import *
 
+from . import core as core
+
 # from .subprocess import *
 from .tasks import *
 from .tasks import Task as Task

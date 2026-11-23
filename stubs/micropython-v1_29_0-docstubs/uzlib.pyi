@@ -1,4 +1,3 @@
-# zlib module
-# Allow the use of micro-module notation
-
-from zlib import *  # type: ignore
+# This umodule is a MicroPython reference to zlib
+from zlib import compress as compress
+from zlib import decompress as decompress

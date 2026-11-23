@@ -13,3 +13,6 @@ feat_*/pyrightconfig.json
 .versions_cache.json.lock
 .docker_tags_cache.json
 .docker_tags_cache.json.lock
+
+# Downloaded ecosystem catalogs, manifests, payloads, and package workspaces.
+.ecosystem-cache/

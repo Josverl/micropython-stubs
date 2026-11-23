@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "urls": [
+    ["shared.py", "https://fixtures.invalid/one.py"],
+    ["shared.py", "https://fixtures.invalid/two.py"]
+  ],
+  "deps": []
+}

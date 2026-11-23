@@ -64,9 +64,9 @@ class BLE:
     """
     def gattc_write(
         self,
-        conn_handle: memoryview,
-        value_handle: memoryview,
-        data: bytes,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf,
         mode: int = 0,
         /,
     ) -> None:
@@ -88,7 +88,13 @@ class BLE:
         ``_IRQ_GATTC_WRITE_DONE`` event will be raised.
         """
         ...
-    def gatts_indicate(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gatts_indicate(
+        self,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf | None = None,
+        /,
+    ) -> None:
         """
         Sends a indication request to a connected client.
 
@@ -105,7 +111,7 @@ class BLE:
         status of the client to this characteristic.
         """
         ...
-    def gattc_discover_services(self, conn_handle: memoryview, uuid: UUID | None = None, /) -> None:
+    def gattc_discover_services(self, conn_handle: int, uuid: UUID | None = None, /) -> None:
         """
         Query a connected server for its services.
 
@@ -115,7 +121,7 @@ class BLE:
         be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion.
         """
         ...
-    def gattc_read(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gattc_read(self, conn_handle: int, value_handle: int, /) -> None:
         """
         Issue a remote read to a connected server for the specified
         characteristic or descriptor handle.
@@ -124,7 +130,7 @@ class BLE:
         raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised.
         """
         ...
-    def gattc_exchange_mtu(self, conn_handle: memoryview, /) -> None:
+    def gattc_exchange_mtu(self, conn_handle: int, /) -> None:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -137,7 +143,7 @@ class BLE:
         peripheral initiating the MTU exchange. NimBLE works for both roles.
         """
         ...
-    def gatts_set_buffer(self, conn_handle: memoryview, len: int, append: bool = False, /) -> None:
+    def gatts_set_buffer(self, value_handle: int, len: int, append: bool = False, /) -> None:
         """
         Sets the internal buffer size for a value in bytes. This will limit the
         largest possible write that can be received. The default is 20.
@@ -149,7 +155,7 @@ class BLE:
         like the Nordic UART Service.
         """
         ...
-    def gatts_write(self, value_handle: memoryview, data: bytes, send_update: bool = False, /) -> None:
+    def gatts_write(self, value_handle: int, data: AnyReadableBuf, send_update: bool = False, /) -> None:
         """
         Writes the local value for this handle, which can be read by a client.
 
@@ -158,7 +164,13 @@ class BLE:
         the characteristic supports) about this write.
         """
         ...
-    def gatts_notify(self, value_handle: memoryview, data: bytes, /) -> None:
+    def gatts_notify(
+        self,
+        conn_handle: int,
+        value_handle: int,
+        data: AnyReadableBuf | None = None,
+        /,
+    ) -> None:
         """
         Sends a notification request to a connected client.
 
@@ -172,7 +184,7 @@ class BLE:
         status of the client to this characteristic.
         """
         ...
-    def gatts_register_services(self, services_definition: tuple[_Service, ...], /) -> tuple[tuple[memoryview, ...], ...]:
+    def gatts_register_services(self, services_definition: tuple[_Service, ...], /) -> tuple[tuple[int, ...], ...]:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -234,7 +246,7 @@ class BLE:
         As for the IRQs above, any required constants should be added to your Python code.
         """
         ...
-    def gatts_read(self, value_handle: memoryview, /) -> bytes:
+    def gatts_read(self, value_handle: int, /) -> bytes:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
@@ -435,9 +447,9 @@ class BLE:
         ...
     def gap_advertise(
         self,
-        interval_us: int,
-        adv_data: AnyReadableBuf | None = None,
+        interval_us: int | None,
         /,
+        adv_data: AnyReadableBuf | None = None,
         *,
         resp_data: AnyReadableBuf | None = None,
         connectable: bool = True,
@@ -488,7 +500,7 @@ class BLE:
         of power usage.
         """
         ...
-    def gattc_discover_descriptors(self, conn_handle: memoryview, start_handle: int, end_handle: int, /) -> None:
+    def gattc_discover_descriptors(self, conn_handle: int, start_handle: int, end_handle: int, /) -> None:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -790,7 +802,7 @@ class BLE:
         """
     def gap_scan(
         self,
-        duration_ms: int,
+        duration_ms: int | None,
         interval_us: int = 1280000,
         window_us: int = 11250,
         active: bool = False,
@@ -832,7 +844,7 @@ class BLE:
         ...
     def gattc_discover_characteristics(
         self,
-        conn_handle: memoryview,
+        conn_handle: int,
         start_handle: int,
         end_handle: int,
         uuid: UUID | None = None,
@@ -851,7 +863,7 @@ class BLE:
         event will be raised, followed by ``_IRQ_GATTC_CHARACTERISTIC_DONE`` on completion.
         """
         ...
-    def gap_disconnect(self, conn_handle: memoryview, /) -> bool:
+    def gap_disconnect(self, conn_handle: int, /) -> bool:
         """
         Disconnect the specified connection handle. This can either be a
         central that has connected to this device (if acting as a peripheral)
@@ -865,7 +877,7 @@ class BLE:
         otherwise.
         """
         ...
-    def gap_passkey(self, conn_handle: memoryview, action: int, passkey: int, /) -> None:
+    def gap_passkey(self, conn_handle: int, action: int, passkey: int, /) -> None:
         """
         Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified *conn_handle*
         and *action*.
@@ -882,7 +894,7 @@ class BLE:
               and then respond with either ``0`` (cancel pairing), or ``1`` (accept pairing).
         """
         ...
-    def gap_pair(self, conn_handle: memoryview, /) -> None:
+    def gap_pair(self, conn_handle: int, /) -> None:
         """
         Initiate pairing with the remote device.
 

@@ -1,4 +1,3 @@
-# bluetooth module
-# Allow the use of micro-module notation
-
-from bluetooth import *  # type: ignore
+# This umodule is a MicroPython reference to bluetooth
+from bluetooth import BLE as BLE
+from bluetooth import UUID as UUID

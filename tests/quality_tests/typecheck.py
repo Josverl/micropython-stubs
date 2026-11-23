@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import platform
 import re
 import shutil
 import subprocess
@@ -12,11 +11,19 @@ from typing import Dict, List
 import pytest
 from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version, InvalidVersion
-from typecheck_mypy import check_with_mypy
-from typecheck_ruff import check_with_ruff
-from typecheck_pyrefly import check_with_pyrefly
-from typecheck_ty import check_with_ty
-from typecheck_zuban import check_with_zuban
+
+if __package__:
+    from .typecheck_mypy import check_with_mypy
+    from .typecheck_pyrefly import check_with_pyrefly
+    from .typecheck_ruff import check_with_ruff
+    from .typecheck_ty import check_with_ty
+    from .typecheck_zuban import check_with_zuban
+else:
+    from typecheck_mypy import check_with_mypy
+    from typecheck_pyrefly import check_with_pyrefly
+    from typecheck_ruff import check_with_ruff
+    from typecheck_ty import check_with_ty
+    from typecheck_zuban import check_with_zuban
 
 log = logging.getLogger()
 
@@ -111,7 +118,7 @@ def stub_ignore(line, version, port, board, linter, is_source=True, strict=False
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
+    context["version"] = Version(version) if version not in {"preview", "latest", "-"} else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -178,31 +185,9 @@ def run_typechecker(
         tuple: A tuple containing the information message and the number of errors found.
     """
 
-    results = {}
-    if linter == "pyright":
-        results = check_with_pyright(snip_path)
-    elif linter == "mypy":
-        patch = False
-        try:
-            if Version(version) < Version("1.24.1"):
-                patch = True
-        except InvalidVersion:
-            # likely preview or stdlib
-            pass
+    results = invoke_typechecker(snip_path, version, linter=linter)
 
-        results = check_with_mypy(snip_path, patch=patch)
-    elif linter == "ruff":
-        results = check_with_ruff(snip_path)
-    elif linter == "pyrefly":
-        results = check_with_pyrefly(snip_path)
-    elif linter == "ty":
-        results = check_with_ty(snip_path)
-    elif linter == "zuban":
-        results = check_with_zuban(snip_path)
-    else:
-        raise NotImplementedError(f"Unknown linter {linter}")
-
-    if not results or not "generalDiagnostics" in results:
+    if not results or "generalDiagnostics" not in results:
         pytest.xfail(f"Could not run {linter} on {snip_path}")
 
     issues: List[Dict] = results["generalDiagnostics"]
@@ -233,13 +218,36 @@ def run_typechecker(
     return info_msg, errorcount
 
 
+def invoke_typechecker(snip_path: Path, version: str, *, linter: str, targets: tuple[str, ...] = ()) -> dict:
+    """Run one supported checker and return its normalized diagnostic report."""
+    if linter == "pyright":
+        return check_with_pyright(snip_path)
+    if linter == "mypy":
+        patch = False
+        try:
+            if Version(version) < Version("1.24.1"):
+                patch = True
+        except InvalidVersion:
+            # likely preview or stdlib
+            pass
+        return check_with_mypy(snip_path, patch=patch)
+    if linter == "ruff":
+        return check_with_ruff(snip_path)
+    if linter == "pyrefly":
+        return check_with_pyrefly(snip_path, targets=targets)
+    if linter == "ty":
+        return check_with_ty(snip_path)
+    if linter == "zuban":
+        return check_with_zuban(snip_path)
+    raise NotImplementedError(f"Unknown linter {linter}")
+
+
 # =====================================================================================
 
 
 def check_with_pyright(snip_path: Path):
     # cmd = f"pyright --project {str(snip_path)} --outputjson"
     cmd = [sys.executable, "-m", "pyright", "--project", str(snip_path), "--outputjson"]
-    use_shell = platform.system() != "Windows"
     results = {}
 
     # get the cwd

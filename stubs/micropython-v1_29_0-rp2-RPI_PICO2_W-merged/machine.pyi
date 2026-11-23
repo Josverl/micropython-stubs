@@ -1923,8 +1923,11 @@ class USBDevice:
 
     ``Note:`` This object is a singleton, each call to this constructor
               returns the same object reference.
+
     """
 
+    # mp_available
+    builtin_driver: bool | Incomplete
     XFER_STALLED: Final[int] = 2
     """\
     These are integer constants that represent the possible transfer
@@ -3114,7 +3117,7 @@ class SPI:
         """
         ...
     @overload
-    def __init__(self, id: int, /):
+    def __init__(self, id: int | str, /):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
         on a particular port and its hardware. Values 0, 1, etc. are commonly used
@@ -3129,7 +3132,7 @@ class SPI:
     @overload
     def __init__(
         self,
-        id: int,
+        id: int | str,
         /,
         baudrate: int = 1_000_000,
         *,
@@ -3155,7 +3158,7 @@ class SPI:
     @overload
     def __init__(
         self,
-        id: int,
+        id: int | str,
         /,
         baudrate: int = 1_000_000,
         *,

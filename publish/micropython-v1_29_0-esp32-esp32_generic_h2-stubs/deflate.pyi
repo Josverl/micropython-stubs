@@ -26,10 +26,12 @@ Module: 'deflate' on micropython-v1.29.0-esp32-ESP32_GENERIC_H2
 # Stubber: v1.28.6
 from __future__ import annotations
 
+from types import TracebackType
 from typing import Final
 
+from _mpy_shed import mp_available
 from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import Awaitable, Self, TypeAlias, TypeVar
 
 GZIP: Final[int] = 3
 """Supported values for the *format* parameter."""
@@ -88,3 +90,13 @@ class DeflateIO:
     def read(self, *args, **kwargs) -> Incomplete: ...
     def close(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    @mp_available()  # force push
+    def __enter__(self) -> Self: ...
+    @mp_available()  # force push
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        tb: TracebackType | None,
+        /,
+    ) -> None: ...

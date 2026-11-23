@@ -8,7 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 from __future__ import annotations
 import sys
-from _typeshed import Incomplete, MaybeNone, OptExcInfo, ProfileFunction, TraceFunction, structseq
+from _typeshed import Incomplete, SupportsWrite, MaybeNone, OptExcInfo, ProfileFunction, TraceFunction, structseq
 from _typeshed.importlib import MetaPathFinderProtocol, PathEntryFinderProtocol
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable
@@ -539,7 +539,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     ...
 
 @mp_available
-def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
+def print_exception(exc: Exception | BaseException, file: IOBase_mp | SupportsWrite[str] = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

@@ -1,2 +1,19 @@
 # This umodule is a MicroPython reference to socket
-from socket import *
+from socket import AF_INET as AF_INET
+from socket import AF_INET6 as AF_INET6
+from socket import IP_ADD_MEMBERSHIP as IP_ADD_MEMBERSHIP
+from socket import IPPROTO_IP as IPPROTO_IP
+from socket import IPPROTO_TCP as IPPROTO_TCP
+from socket import IPPROTO_UDP as IPPROTO_UDP
+from socket import MSG_DONTWAIT as MSG_DONTWAIT
+from socket import MSG_PEEK as MSG_PEEK
+from socket import SO_BINDTODEVICE as SO_BINDTODEVICE
+from socket import SO_BROADCAST as SO_BROADCAST
+from socket import SO_REUSEADDR as SO_REUSEADDR
+from socket import SOCK_DGRAM as SOCK_DGRAM
+from socket import SOCK_RAW as SOCK_RAW
+from socket import SOCK_STREAM as SOCK_STREAM
+from socket import SOL_SOCKET as SOL_SOCKET
+from socket import TCP_NODELAY as TCP_NODELAY
+from socket import getaddrinfo as getaddrinfo
+from socket import socket as socket

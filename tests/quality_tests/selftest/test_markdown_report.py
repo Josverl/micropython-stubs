@@ -183,7 +183,7 @@ def test_checker_report_uses_a_longer_fence_for_checker_output(tmp_path):
     assert "````text\nmessage with ``` inside\n````" in markdown
 
 
-def test_checker_report_hoists_repeated_isolated_workspace_diagnostics(tmp_path):
+def test_checker_report_keeps_repeated_isolated_workspace_diagnostics_inline(tmp_path):
     reports = [
         make_report(
             checker="zuban",
@@ -235,17 +235,41 @@ def test_checker_report_hoists_repeated_isolated_workspace_diagnostics(tmp_path)
     write_markdown_report(terminalreporter, tmp_path / "typecheck_report.md")
     markdown = (tmp_path / "typecheck_report_zuban.md").read_text(encoding="utf-8")
 
-    assert markdown.count('"_mpy_shed/foo.pyi"(12,4): Invalid type annotation') == 1
+    assert markdown.count('"_mpy_shed/foo.pyi"(12,4): Invalid type annotation') == 4
     assert ".pytest_cache/d/typings_" not in markdown
     assert "pytest-of-test" not in markdown
     assert "pytest-of-runner" not in markdown
-    assert "1 shared diagnostic omitted; see [Shared diagnostics](#shared-diagnostics)." in markdown
-    assert "## Shared diagnostics" in markdown
-    assert "Reported by 4 tests" in markdown
+    assert "shared diagnostic omitted" not in markdown
+    assert "## Shared diagnostics" not in markdown
     assert "Asyncio-only error" in markdown
     assert "Machine-only error" in markdown
     assert "Windows-only error" in markdown
     assert "Linux-only error" in markdown
+
+
+@pytest.mark.parametrize(
+    ("occurrence_count", "expected_rendered_count", "is_shared"),
+    [(20, 20, False), (21, 1, True)],
+)
+def test_checker_report_hoists_diagnostics_above_threshold(tmp_path, occurrence_count, expected_rendered_count, is_shared):
+    diagnostic = '"typings/shared.pyi"(12,4): Invalid type annotation'
+    reports = [
+        make_report(
+            checker="zuban",
+            values=("v1.29.0", f"board-{index}", "stdlib"),
+            outcome="failed",
+            diagnostic=diagnostic,
+        )
+        for index in range(occurrence_count)
+    ]
+    terminalreporter = SimpleNamespace(stats={"failed": reports})
+
+    write_markdown_report(terminalreporter, tmp_path / "typecheck_report.md")
+    markdown = (tmp_path / "typecheck_report_zuban.md").read_text(encoding="utf-8")
+
+    assert markdown.count(diagnostic) == expected_rendered_count
+    assert ("## Shared diagnostics" in markdown) is is_shared
+    assert (f"Reported by {occurrence_count} tests" in markdown) is is_shared
 
 
 def test_report_option_aggregates_xdist_results_and_is_opt_in(pytester):

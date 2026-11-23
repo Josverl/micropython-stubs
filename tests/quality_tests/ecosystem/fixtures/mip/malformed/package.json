@@ -1,0 +1,9 @@
+{
+  "version": 7,
+  "urls": {
+    "main.py": "https://fixtures.invalid/main.py"
+  },
+  "deps": [
+    ["missing-version"]
+  ]
+}

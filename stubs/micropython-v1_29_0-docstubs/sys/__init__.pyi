@@ -9,7 +9,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 # source version: v1.29.0
 # origin module:: repos/micropython/docs/library/sys.rst
 from __future__ import annotations
-from _typeshed import Incomplete
+from _typeshed import SupportsWrite, Incomplete
 from typing import Callable, NoReturn, Dict, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import IOBase_mp, _mp_implementation, mp_available
@@ -174,7 +174,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     ...
 
 @mp_available
-def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
+def print_exception(exc: Exception | BaseException, file: IOBase_mp | SupportsWrite[str] = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

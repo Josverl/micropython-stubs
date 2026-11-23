@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "catalog_cases": [
+    {
+      "id": "awesome-community-root",
+      "fixture": "awesome/readme.md.txt",
+      "entry": "micropython-joystick-2-unit",
+      "expected_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
+      "expected_action": "resolve_mip"
+    },
+    {
+      "id": "awesome-deep-file",
+      "fixture": "awesome/readme.md.txt",
+      "entry": "IoTy extension",
+      "expected_reference": "github:quirkycort/ioty/public/extensions/example.py@main",
+      "expected_action": "resolve_single_file"
+    },
+    {
+      "id": "awesome-gitlab-root",
+      "fixture": "awesome/readme.md.txt",
+      "entry": "gitlab-package",
+      "expected_reference": "gitlab:example/micropython-package",
+      "expected_action": "resolve_mip"
+    },
+    {
+      "id": "awesome-micropython-lib",
+      "fixture": "awesome/readme.md.txt",
+      "entry": "Official OneWire",
+      "expected_source_family": "micropython_lib",
+      "expected_disposition": "deferred",
+      "expected_reason": "deferred_internal_manifest"
+    },
+    {
+      "id": "mim-community",
+      "discovery_fixture": "mim/sitemap.xml",
+      "fixture": "mim/community-package.html",
+      "expected_reference": "github:howmanyoliversarethere/micropython-joystick-2-unit",
+      "expected_action": "resolve_mip"
+    },
+    {
+      "id": "mim-official",
+      "discovery_fixture": "mim/sitemap.xml",
+      "fixture": "mim/official-package.html",
+      "expected_reference": "ntptime",
+      "expected_source_family": "micropython_lib",
+      "expected_disposition": "deferred",
+      "expected_reason": "deferred_internal_manifest"
+    }
+  ],
+  "manifest_cases": [
+    {
+      "id": "supplied-example",
+      "fixture": "mip/simple/package.json",
+      "expected_python_files": ["joystick_2_unit.py"],
+      "expected_disposition": "check"
+    },
+    {
+      "id": "nested-dependency",
+      "fixture": "mip/nested/package.json",
+      "expected_dependencies": ["github:example/dependency", "collections-defaultdict"],
+      "dependency_fixtures": {
+        "github:example/dependency@v1.0.0": "mip/nested/provider-dependency.json",
+        "index:collections-defaultdict@latest": "mip/nested/index-dependency.json"
+      },
+      "expected_disposition": "check"
+    },
+    {
+      "id": "mixed-source-bytecode",
+      "fixture": "mip/mixed/package.json",
+      "expected_python_files": ["mixed/source.py"],
+      "expected_mpy_files": ["mixed/native.mpy"],
+      "expected_disposition": "check"
+    },
+    {
+      "id": "mpy-only",
+      "fixture": "mip/mpy-only/package.json",
+      "expected_mpy_files": ["native_only.mpy"],
+      "expected_disposition": "skip",
+      "expected_reason": "mpy_only"
+    },
+    {
+      "id": "malformed",
+      "fixture": "mip/malformed/package.json",
+      "expected_disposition": "error",
+      "expected_reason": "invalid_manifest"
+    },
+    {
+      "id": "path-traversal",
+      "fixture": "mip/path-traversal/package.json",
+      "expected_disposition": "error",
+      "expected_reason": "unsafe_path"
+    },
+    {
+      "id": "dependency-cycle",
+      "fixture": "mip/cycle/a.json",
+      "dependency_fixtures": {
+        "github:fixtures/cycle-a@v1": "mip/cycle/a.json",
+        "github:fixtures/cycle-b@v1": "mip/cycle/b.json"
+      },
+      "expected_disposition": "error",
+      "expected_reason": "dependency_cycle"
+    },
+    {
+      "id": "target-collision",
+      "fixture": "mip/collision/package.json",
+      "expected_disposition": "error",
+      "expected_reason": "target_collision"
+    }
+  ]
+}

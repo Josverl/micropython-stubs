@@ -1,2 +1,2 @@
 # This umodule is a MicroPython reference to cryptolib
-from cryptolib import *
+from cryptolib import aes as aes

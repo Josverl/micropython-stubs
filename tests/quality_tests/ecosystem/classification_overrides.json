@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "packages": {
+    "repository:github:bartoszadamczyk/pico-ir": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["rpi_pico"],
+      "rationale": "The maintainer README describes this as a complete IR library for Raspberry Pi Pico and makes no broader host claim.",
+      "reference": "https://github.com/bartoszadamczyk/pico-ir/blob/13cd0fd9ebc689d42e49a5be91370a64455c1e33/README.md#pico-ir"
+    },
+    "repository:github:micropython/micropython-lib/micropython/bluetooth/aioble": {
+      "classification": "port_specific",
+      "ports": ["rp2"],
+      "boards": ["arduino_nano_rp2040_connect"],
+      "rationale": "The aggregate manifest installs the L2CAP component, so it requires a Bluetooth build that exposes the L2CAP API; the selected board stubs include that surface.",
+      "reference": "https://github.com/micropython/micropython-lib/blob/ee4bb8ff139e24c42b739935fbd8ec7c4d061e02/micropython/bluetooth/aioble/manifest.py#L7-L15"
+    },
+    "repository:github:micropython/micropython-lib/micropython/drivers/display/lcd160cr": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["pybv11"],
+      "rationale": "The official LCD160CR driver uses the Pyboard X/Y bus identifiers; the selected PYBV11 stubs expose those board-specific identifiers.",
+      "reference": "https://github.com/micropython/micropython-lib/blob/ee4bb8ff139e24c42b739935fbd8ec7c4d061e02/micropython/drivers/display/lcd160cr/lcd160cr.py#L33-L55"
+    },
+    "repository:github:micropython/micropython-lib/micropython/lora/lora-stm32wl5": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["nucleo_wl55"],
+      "rationale": "The driver requires the STM32 stm module with STM32WL5 sub-GHz radio support and defaults its antenna configuration to the NUCLEO-WL55 board.",
+      "reference": "https://github.com/micropython/micropython-lib/blob/ee4bb8ff139e24c42b739935fbd8ec7c4d061e02/micropython/lora/lora-stm32wl5/lora/stm32wl5.py#L1-L8"
+    },
+    "repository:github:micropython/micropython-lib/micropython/usb/usb-device": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["arduino_nano_rp2040_connect", "esp32_generic_s3"],
+      "rationale": "The shared USB device implementation requires machine.USBDevice; the selected board stubs expose that low-level API.",
+      "reference": "https://github.com/micropython/micropython-lib/blob/ee4bb8ff139e24c42b739935fbd8ec7c4d061e02/micropython/usb/usb-device/usb/device/core.py#L89"
+    },
+    "repository:github:peterhinch/micropython-micro-gui": {
+      "classification": "portable",
+      "ports": [],
+      "boards": [],
+      "rationale": "The maintainer README calls the library portable between hosts and records tests on ESP32 variants, Raspberry Pi Pico, and Pyboard.",
+      "reference": "https://github.com/peterhinch/micropython-micro-gui/blob/5728ad6a7260c63f8b4e9b26badfd2a07c77cf12/README.md#supported-displays"
+    },
+    "repository:github:raspberrypifoundation/picozero": {
+      "classification": "port_specific",
+      "ports": [],
+      "boards": ["rpi_pico"],
+      "rationale": "The Raspberry Pi Foundation README defines picozero as a library for Raspberry Pi Pico and says it is aligned with that board.",
+      "reference": "https://github.com/RaspberryPiFoundation/picozero/blob/0f5f07701c0057db2c11be710193cdf14ec68c29/README.rst#picozero"
+    }
+  }
+}

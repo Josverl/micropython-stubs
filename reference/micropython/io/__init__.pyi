@@ -81,7 +81,6 @@ from __future__ import annotations
 from array import array
 from typing import TypeVar, overload
 
-
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase_mp, PathLike, TextIOWrapper, FileIO
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
 
@@ -101,14 +100,9 @@ class BufferedWriter(IOBase_mp):
     Write-buffering wrapper available on builds with MICROPY_PY_IO_BUFFEREDWRITER.
     """
 
-    def __init__(self, stream: IOBase_mp, alloc: int, /) -> None:
-        ...
-
-    def write(self, buf: AnyReadableBuf, /) -> int:
-        ...
-
-    def flush(self) -> None:
-        ...
+    def __init__(self, stream: IOBase_mp, alloc: int, /) -> None: ...
+    def write(self, buf: AnyReadableBuf, /) -> int: ...
+    def flush(self) -> None: ...
 
 class StringIO(IOBase_mp):
     """
@@ -156,6 +150,15 @@ class StringIO(IOBase_mp):
 
              This constructor is a MicroPython extension.
         """
+
+    def getvalue(self) -> str:
+        """
+        Get the current contents of the underlying buffer which holds data.
+        """
+        ...
+
+    def read(self, size: int | None = -1, /) -> str: ...
+    def write(self, s: str, /) -> int: ...
 
 class BytesIO(IOBase_mp):
     """
@@ -221,6 +224,9 @@ class BytesIO(IOBase_mp):
         Get the current contents of the underlying buffer which holds data.
         """
         ...
+
+    def read(self, size: int | None = -1, /) -> bytes: ...
+    def write(self, b: AnyReadableBuf, /) -> int: ...
 
 @overload
 def open(name: _OpenFile, /, **kwargs) -> TextIOWrapper:

@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "urls": [
+    ["nested/provider_dependency.py", "github:example/dependency/provider_dependency.py"]
+  ],
+  "deps": []
+}

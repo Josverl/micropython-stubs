@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "urls": [
+    ["nested/main.py", "src/main.py"]
+  ],
+  "deps": [
+    ["github:example/dependency", "v1.0.0"],
+    ["collections-defaultdict", "latest"]
+  ]
+}
