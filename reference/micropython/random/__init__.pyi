@@ -86,7 +86,7 @@ def random() -> float:
     """
     ...
 
-def uniform(a: float, b: float) -> float:
+def uniform(a: float, b: float, /) -> float:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.

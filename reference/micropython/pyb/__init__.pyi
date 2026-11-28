@@ -138,7 +138,7 @@ def bootloader() -> NoReturn:
     """
     ...
 
-def fault_debug(value: bool = False) -> None:
+def fault_debug(value: bool = False, /) -> None:
     """
     Enable or disable hard-fault debugging.  A hard-fault is when there is a fatal
     error in the underlying system, like an invalid memory access.

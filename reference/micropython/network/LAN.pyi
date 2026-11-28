@@ -59,7 +59,7 @@ class LAN:
         """
         ...
 
-    def ifconfig(self, configtuple: Any | None = None) -> Tuple:
+    def ifconfig(self, configtuple: Any | None = None, /) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
 

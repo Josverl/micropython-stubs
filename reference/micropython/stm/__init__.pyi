@@ -77,7 +77,7 @@ def rfcore_sys_hci(ogf: int, ocf: int, data: int, timeout_ms: int = 0, /) -> byt
     """
     ...
 
-def subghz_cs(level) -> None:
+def subghz_cs(level, /) -> None:
     """
     Sets the internal SPI CS pin attached to the radio peripheral. The ``level``
     argument is active-low: a truthy value means "CS pin high" and de-asserts the
@@ -88,7 +88,7 @@ def subghz_cs(level) -> None:
     """
     ...
 
-def subghz_irq(handler) -> None:
+def subghz_irq(handler, /) -> None:
     """
     Sets the internal SUBGHZ radio interrupt handler to the provided
     function. The handler function is called as a "hard" interrupt in response to
